@@ -1,0 +1,21 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "orderd-deadlock",
+  "track": "demo",
+  "source": {"kind": "dir", "path": "cases/orderd/buggy"},
+  "issue": {
+    "title": "orderd occasionally freezes under load; process must be killed",
+    "body": "A few times a week in production, orderd stops responding during busy periods.\nCPU drops to ~0% and no more log lines appear; we have to kill -9 it.\nThe last log lines before a freeze always show a cancel being processed while the\nperiodic risk sweep is running. All ctest tests pass and we cannot reproduce it on\ndemand locally. Expected: cancels and the risk sweep can run at the same time\nwithout the process ever freezing.\n",
+    "url": null,
+    "rewritten": false,
+    "mentions_fix": false
+  },
+  "build": {
+    "system": "cmake",
+    "cmake_args": [],
+    "targets": [],
+    "jobs": 4,
+    "custom_script": null,
+    "test_command": "ctest --output-on-failure -j4"
+  }
+}

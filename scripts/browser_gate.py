@@ -138,7 +138,115 @@ CHECKS: dict[int, list[Callable[[Page], None]]] = {
 }
 
 
-def _open(browser, width: int, height: int):
+def check_b1_1(page: Page) -> None:
+    page.goto(BASE_URL + "demo/", wait_until="load")
+    page.wait_for_selector("[data-testid=issue-body]")
+    instance = json.loads((REPO / "cases" / "orderd" / "instance.json").read_text(encoding="utf-8"))
+    actual = page.locator("[data-testid=issue-body]").inner_text().strip()
+    expected = instance["issue"]["body"].strip()
+    assert actual == expected, f"issue body mismatch\npage={actual!r}\njson={expected!r}"
+
+
+def check_b1_2(page: Page) -> None:
+    page.goto(BASE_URL + "demo/", wait_until="load")
+    rows = page.locator("[data-testid=matrix] tbody tr")
+    assert rows.count() == 4, f"expected 4 rows, got {rows.count()}"
+    for index in range(4):
+        cells = rows.nth(index).locator("td.result")
+        assert cells.count() == 3, f"row {index} has {cells.count()} result cells"
+        for column in range(3):
+            cell = cells.nth(column)
+            bits = cell.locator("[data-source]")
+            assert bits.count() == 2, f"row {index} col {column} data-source count {bits.count()}"
+            left = bits.nth(0).inner_text().strip()
+            right = bits.nth(1).inner_text().strip()
+            shown = cell.inner_text().replace(" ", "").replace("\n", "")
+            assert f"{left}/{right}" in shown, f"row {index} col {column}: {shown!r} vs {left}/{right}"
+
+
+def check_b1_3(page: Page) -> None:
+    page.goto(BASE_URL + "demo/", wait_until="load")
+    row = page.locator("[data-testid=row-timing_backoff]")
+    assert row.locator("[data-testid=ctest-cell] .pill-pass").count() == 1
+    assert row.locator("[data-testid=verifier-cell] .pill-fail").count() == 1
+
+
+def check_b1_4(page: Page) -> None:
+    page.goto(BASE_URL + "demo/", wait_until="load")
+    pill = page.locator("[data-testid=row-scoped_cancel] [data-testid=verifier-cell] .pill-pass")
+    assert pill.count() == 1, "scoped_cancel verifier is not a pass pill"
+    text = pill.inner_text().replace(" ", "").replace("\n", "")
+    assert text == "0/20", text
+
+
+def check_b1_5(page: Page) -> None:
+    page.goto(BASE_URL + "demo/", wait_until="load")
+    dots = page.locator("[data-testid=run-strip] .dot")
+    assert dots.count() == 10, dots.count()
+
+
+def check_b1_6(page: Page) -> None:
+    page.goto(BASE_URL + "demo/", wait_until="load")
+    raw = page.locator("[data-testid=raw-report]")
+    assert raw.count() == 1
+    raw.locator("summary").click()
+    pre = raw.locator("pre")
+    pre.wait_for(state="visible")
+    text = pre.inner_text()
+    assert "lock-order-inversion" in text
+    assert "OrderBook::" in text
+
+
+def check_b1_7(page: Page) -> None:
+    page.goto(BASE_URL + "demo/", wait_until="load")
+    label = page.locator("[data-testid=harness-source-label]")
+    assert label.inner_text().strip() == "Reference harness (hand-written)"
+
+
+def check_b1_8(page: Page) -> None:
+    page.goto(BASE_URL + "demo/", wait_until="load")
+    verified = {"C1", "C2", "C3", "C4", "C5", "C6"}
+    links = page.locator("a[href]")
+    external = 0
+    for index in range(links.count()):
+        href = links.nth(index).get_attribute("href") or ""
+        if href.startswith("http://") or href.startswith("https://"):
+            external += 1
+            ok = href == "https://byteask.ai/" or href.startswith("https://docs.byteask.ai/")
+            assert ok, href
+            claim = links.nth(index).get_attribute("data-claim")
+            assert claim in verified, claim
+    assert external >= 1, "no external claim links"
+
+
+check_b1_1.check_id = "B1.1"  # type: ignore[attr-defined]
+check_b1_2.check_id = "B1.2"  # type: ignore[attr-defined]
+check_b1_3.check_id = "B1.3"  # type: ignore[attr-defined]
+check_b1_4.check_id = "B1.4"  # type: ignore[attr-defined]
+check_b1_5.check_id = "B1.5"  # type: ignore[attr-defined]
+check_b1_6.check_id = "B1.6"  # type: ignore[attr-defined]
+check_b1_7.check_id = "B1.7"  # type: ignore[attr-defined]
+check_b1_8.check_id = "B1.8"  # type: ignore[attr-defined]
+
+CHECKS[1] = [
+    check_b1_1,
+    check_b1_2,
+    check_b1_3,
+    check_b1_4,
+    check_b1_5,
+    check_b1_6,
+    check_b1_7,
+    check_b1_8,
+]
+
+
+_START = {
+    0: (BASE_URL, "[data-testid=toolchain-table]", "index"),
+    1: (BASE_URL + "demo/", "[data-testid=matrix]", "demo"),
+}
+
+
+def _open(browser, width: int, height: int, url: str, ready: str):
     page = browser.new_page(viewport={"width": width, "height": height})
     state: dict[str, list[str]] = {"console": [], "failed": []}
 
@@ -152,8 +260,8 @@ def _open(browser, width: int, height: int):
 
     page.on("console", on_console)
     page.on("requestfailed", on_failed)
-    page.goto(BASE_URL, wait_until="load")
-    page.wait_for_selector("[data-testid=toolchain-table]")
+    page.goto(url, wait_until="load")
+    page.wait_for_selector(ready)
     return page, state
 
 
@@ -165,10 +273,15 @@ def run(phase: int) -> list[str]:
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)
         try:
+            start_url, ready, shot = _START[phase]
             for width, height, tag in VIEWPORTS:
-                page, state = _open(browser, width, height)
+                page, state = _open(browser, width, height, start_url, ready)
                 try:
-                    page.screenshot(path=str(evidence / f"index-{tag}.png"), full_page=True)
+                    page.screenshot(path=str(evidence / f"{shot}-{tag}.png"), full_page=True)
+                    if phase == 1 and tag == "1280":
+                        page.locator("[data-testid=matrix]").screenshot(
+                            path=str(evidence / "demo-matrix-1280.png")
+                        )
                     assert_clean(page, state, width)
                     for check in checks:
                         check_id = getattr(check, "check_id", check.__name__)
@@ -186,7 +299,7 @@ def run(phase: int) -> list[str]:
                         failures.append(f"global@{tag}: {exc}")
                 except Exception as exc:
                     failures.append(f"page@{tag}: {exc}")
-                    page.screenshot(path=str(evidence / f"index-{tag}.png"), full_page=True)
+                    page.screenshot(path=str(evidence / f"{shot}-{tag}.png"), full_page=True)
                 finally:
                     page.close()
         finally:

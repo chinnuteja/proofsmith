@@ -1,0 +1,16 @@
+--- a/order_book.cpp
++++ b/order_book.cpp
+@@ -23,12 +23,11 @@
+ }
+ 
+ bool OrderBook::cancel(std::uint64_t order_id) {
+-  std::lock_guard<std::mutex> book(book_mtx_);
++  std::scoped_lock lk(book_mtx_, risk_mtx_);
+   auto it = orders_.find(order_id);
+   if (it == orders_.end()) return false;
+   const Order o = it->second;
+   orders_.erase(it);
+-  std::lock_guard<std::mutex> risk(risk_mtx_);
+   exposure_[o.account] -= o.price_ticks * o.qty;
+   return true;
+ }

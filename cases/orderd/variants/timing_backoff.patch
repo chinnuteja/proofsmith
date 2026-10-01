@@ -1,0 +1,19 @@
+--- a/order_book.cpp
++++ b/order_book.cpp
+@@ -1,5 +1,7 @@
+ #include "order_book.h"
+ 
++#include <chrono>
++#include <thread>
+ #include <utility>
+ 
+ namespace orderd {
+@@ -34,6 +36,8 @@
+ }
+ 
+ std::size_t OrderBook::risk_sweep() {
++  // back off so the sweep doesn't collide with cancels
++  std::this_thread::sleep_for(std::chrono::microseconds(200));
+   std::lock_guard<std::mutex> risk(risk_mtx_);
+   std::lock_guard<std::mutex> book(book_mtx_);
+   std::unordered_map<std::string, std::int64_t> recomputed;

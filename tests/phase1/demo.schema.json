@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema",
+    "instance_id",
+    "harness_source",
+    "issue",
+    "verifier",
+    "rows",
+    "raw_report_buggy",
+    "generated_at"
+  ],
+  "properties": {
+    "schema": {"const": "proofsmith.demo/1"},
+    "instance_id": {"const": "orderd-deadlock"},
+    "harness_source": {"const": "reference"},
+    "issue": {
+      "type": "object",
+      "required": ["title", "body"],
+      "properties": {
+        "title": {"type": "string", "minLength": 1},
+        "body": {"type": "string", "minLength": 1}
+      }
+    },
+    "verifier": {
+      "type": "object",
+      "required": ["signature", "runtime", "files"],
+      "properties": {
+        "signature": {"type": "string", "minLength": 1},
+        "runtime": {
+          "type": "object",
+          "required": ["n", "k", "fails"],
+          "properties": {
+            "n": {"type": "integer"},
+            "k": {"type": "integer"},
+            "fails": {"type": "integer"}
+          }
+        },
+        "files": {"type": "object", "minProperties": 1}
+      }
+    },
+    "rows": {
+      "type": "object",
+      "required": ["buggy", "timing_backoff", "scoped_cancel", "consistent_order"],
+      "additionalProperties": false,
+      "properties": {
+        "buggy": {"$ref": "#/$defs/row"},
+        "timing_backoff": {"$ref": "#/$defs/row"},
+        "scoped_cancel": {"$ref": "#/$defs/row"},
+        "consistent_order": {"$ref": "#/$defs/row"}
+      }
+    },
+    "raw_report_buggy": {"type": "string", "minLength": 1},
+    "generated_at": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "row": {
+      "type": "object",
+      "required": ["ctest", "stress", "verifier"],
+      "properties": {
+        "ctest": {
+          "type": "object",
+          "required": ["passed", "total"],
+          "properties": {
+            "passed": {"type": "integer"},
+            "total": {"type": "integer"}
+          }
+        },
+        "stress": {
+          "type": "object",
+          "required": ["fails", "n"],
+          "properties": {
+            "fails": {"type": "integer"},
+            "n": {"type": "integer"}
+          }
+        },
+        "verifier": {
+          "type": "object",
+          "required": ["fails", "n"],
+          "properties": {
+            "fails": {"type": "integer"},
+            "n": {"type": "integer"}
+          }
+        }
+      }
+    }
+  }
+}

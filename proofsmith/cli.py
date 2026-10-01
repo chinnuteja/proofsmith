@@ -9,6 +9,9 @@ def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(prog="proofsmith")
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("doctor", help="compile and run the sanitizer probes")
+    demo = sub.add_parser("demo")
+    demo_sub = demo.add_subparsers(dest="demo_command", required=True)
+    demo_sub.add_parser("orderd", help="run the orderd deadlock demo")
     report = sub.add_parser("report")
     report_sub = report.add_subparsers(dest="report_command", required=True)
     report_sub.add_parser("build", help="render the static site")
@@ -28,6 +31,12 @@ def main(argv: list[str] | None = None) -> None:
         print(path)
         if not all(item.ok for item in results):
             raise SystemExit(1)
+        return
+
+    if args.command == "demo" and args.demo_command == "orderd":
+        from proofsmith.demo import run_orderd
+
+        run_orderd()
         return
 
     if args.command == "report" and args.report_command == "build":

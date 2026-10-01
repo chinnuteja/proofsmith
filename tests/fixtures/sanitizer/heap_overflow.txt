@@ -1,19 +1,19 @@
 =================================================================
-==1397==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x503000000060 at pc 0x632da44a8bee bp 0x7ffd6985af70 sp 0x7ffd6985af68
+==3826==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x503000000060 at pc 0x62d7e8400bee bp 0x7ffc2a971e00 sp 0x7ffc2a971df8
 WRITE of size 4 at 0x503000000060 thread T0
-    #0 0x632da44a8bed in poke(int*, int) /home/chinnu/psw/probes/heap_overflow.cpp:5:76
-    #1 0x632da44a8c26 in main /home/chinnu/psw/probes/heap_overflow.cpp:9:3
-    #2 0x70726602a1c9 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
-    #3 0x70726602a28a in __libc_start_main csu/../csu/libc-start.c:360:3
-    #4 0x632da43cd344 in _start (/home/chinnu/psw/probes/heap_overflow+0x2c344) (BuildId: 1240dee0fd33533d50e90b1ea218bf6b2dd6eb80)
+    #0 0x62d7e8400bed in poke(int*, int) /home/chinnu/psw/probes/heap_overflow.cpp:5:76
+    #1 0x62d7e8400c26 in main /home/chinnu/psw/probes/heap_overflow.cpp:9:3
+    #2 0x75e6eaa2a1c9 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+    #3 0x75e6eaa2a28a in __libc_start_main csu/../csu/libc-start.c:360:3
+    #4 0x62d7e8325344 in _start (/home/chinnu/psw/probes/heap_overflow+0x2c344) (BuildId: 1240dee0fd33533d50e90b1ea218bf6b2dd6eb80)
 
 0x503000000060 is located 0 bytes after 32-byte region [0x503000000040,0x503000000060)
 allocated by thread T0 here:
-    #0 0x632da44a68d1 in operator new[](unsigned long) (/home/chinnu/psw/probes/heap_overflow+0x1058d1) (BuildId: 1240dee0fd33533d50e90b1ea218bf6b2dd6eb80)
-    #1 0x632da44a8c15 in main /home/chinnu/psw/probes/heap_overflow.cpp:8:12
-    #2 0x70726602a1c9 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
-    #3 0x70726602a28a in __libc_start_main csu/../csu/libc-start.c:360:3
-    #4 0x632da43cd344 in _start (/home/chinnu/psw/probes/heap_overflow+0x2c344) (BuildId: 1240dee0fd33533d50e90b1ea218bf6b2dd6eb80)
+    #0 0x62d7e83fe8d1 in operator new[](unsigned long) (/home/chinnu/psw/probes/heap_overflow+0x1058d1) (BuildId: 1240dee0fd33533d50e90b1ea218bf6b2dd6eb80)
+    #1 0x62d7e8400c15 in main /home/chinnu/psw/probes/heap_overflow.cpp:8:12
+    #2 0x75e6eaa2a1c9 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+    #3 0x75e6eaa2a28a in __libc_start_main csu/../csu/libc-start.c:360:3
+    #4 0x62d7e8325344 in _start (/home/chinnu/psw/probes/heap_overflow+0x2c344) (BuildId: 1240dee0fd33533d50e90b1ea218bf6b2dd6eb80)
 
 SUMMARY: AddressSanitizer: heap-buffer-overflow /home/chinnu/psw/probes/heap_overflow.cpp:5:76 in poke(int*, int)
 Shadow bytes around the buggy address:
@@ -47,4 +47,4 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
   ASan internal:           fe
   Left alloca redzone:     ca
   Right alloca redzone:    cb
-==1397==ABORTING
+==3826==ABORTING

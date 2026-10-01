@@ -1,0 +1,9 @@
+{
+  "schema": "proofsmith.hidden/1",
+  "id": "orderd-deadlock",
+  "fixed": {"kind": "patch", "path": "cases/orderd/hidden/fix.patch"},
+  "bug_class": "deadlock",
+  "fix_files": ["order_book.cpp"],
+  "dev_tests": [],
+  "notes": ""
+}

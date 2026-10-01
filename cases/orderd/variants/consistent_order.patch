@@ -1,0 +1,12 @@
+--- a/order_book.cpp
++++ b/order_book.cpp
+@@ -34,8 +34,8 @@
+ }
+ 
+ std::size_t OrderBook::risk_sweep() {
++  std::lock_guard<std::mutex> book(book_mtx_);
+   std::lock_guard<std::mutex> risk(risk_mtx_);
+-  std::lock_guard<std::mutex> book(book_mtx_);
+   std::unordered_map<std::string, std::int64_t> recomputed;
+   for (const auto& [id, o] : orders_) recomputed[o.account] += o.price_ticks * o.qty;
+   std::size_t breaches = 0;

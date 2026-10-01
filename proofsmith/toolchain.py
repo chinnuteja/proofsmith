@@ -4,13 +4,13 @@ from __future__ import annotations
 
 import json
 import os
-import re
 import shutil
 import subprocess
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
 from proofsmith.config import REPO, RESULTS, RUN_TIMEOUT_S, WORK
+from proofsmith.oracles.signature import parse_evidence
 from proofsmith.oracles.variants import VARIANTS
 
 PROBES: list[tuple[str, str, str]] = [
@@ -31,26 +31,6 @@ class ProbeResult:
     observed_kind: str
     ok: bool
     output_path: str
-
-
-def _slug(text: str) -> str:
-    return re.sub(r"[^a-z0-9]+", "-", text.strip().lower()).strip("-")
-
-
-def observed_kind(output: str) -> str:
-    """Minimal classifier. Phase 1 replaces this with parse_evidence."""
-    asan = re.search(r"ERROR: AddressSanitizer: ([a-z0-9-]+)", output)
-    if asan:
-        return f"asan:{asan.group(1)}"
-    ubsan = re.search(r"runtime error: ([^:\n]+)", output)
-    if ubsan:
-        return f"ubsan:{_slug(ubsan.group(1))}"
-    tsan = re.search(r"WARNING: ThreadSanitizer: ([^(\n]+)", output)
-    if tsan:
-        return f"tsan:{_slug(tsan.group(1))}"
-    if "PROOFSMITH_CHECK_FAILED" in output:
-        return "assert"
-    return "none"
 
 
 def _child_env(variant_name: str) -> dict[str, str]:
@@ -103,6 +83,8 @@ def doctor() -> list[ProbeResult]:
         binary = probe_dir / name
         rel = f"tests/fixtures/sanitizer/{name}.txt"
         dest = REPO / rel
+        timed_out = False
+        code = 1
         try:
             _compile(src, binary, variant, probe_dir)
             proc = subprocess.run(
@@ -115,14 +97,17 @@ def doctor() -> list[ProbeResult]:
                 check=False,
             )
             output = proc.stdout.decode("utf-8", errors="replace")
+            code = proc.returncode
         except subprocess.TimeoutExpired as exc:
+            timed_out = True
             raw = exc.stdout or b""
             output = raw.decode("utf-8", errors="replace") + "\nTIMEOUT\n"
+            code = -1
         except RuntimeError as exc:
             output = f"COMPILE FAILED\n{exc}\n"
         output = output.replace("\r\n", "\n")
         dest.write_text(output, encoding="utf-8", newline="\n")
-        kind = observed_kind(output)
+        kind = parse_evidence(output, code, timed_out, str(probe_dir)).kind
         results.append(
             ProbeResult(
                 name=name,

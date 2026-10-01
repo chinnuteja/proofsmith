@@ -109,22 +109,22 @@ td {
   white-space: normal;
 }
 
-th:nth-child(1),
-td:nth-child(1) { width: 17%; }
-th:nth-child(2),
-td:nth-child(2) { width: 13%; }
-th:nth-child(3),
-td:nth-child(3) { width: 16%; }
-th:nth-child(4),
-td:nth-child(4) { width: 16%; }
-th:nth-child(5),
-td:nth-child(5) { width: 8%; }
-th:nth-child(6),
-td:nth-child(6) { width: 30%; }
+table.toolchain th:nth-child(1),
+table.toolchain td:nth-child(1) { width: 17%; }
+table.toolchain th:nth-child(2),
+table.toolchain td:nth-child(2) { width: 13%; }
+table.toolchain th:nth-child(3),
+table.toolchain td:nth-child(3) { width: 16%; }
+table.toolchain th:nth-child(4),
+table.toolchain td:nth-child(4) { width: 16%; }
+table.toolchain th:nth-child(5),
+table.toolchain td:nth-child(5) { width: 8%; }
+table.toolchain th:nth-child(6),
+table.toolchain td:nth-child(6) { width: 30%; }
 
-td:nth-child(1),
-td:nth-child(2),
-td:nth-child(5) {
+table.toolchain td:nth-child(1),
+table.toolchain td:nth-child(2),
+table.toolchain td:nth-child(5) {
   white-space: nowrap;
 }
 
@@ -253,4 +253,60 @@ pre.report {
     letter-spacing: 0.04em;
     text-transform: uppercase;
   }
+}
+
+.issue-title {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+}
+
+.wrap-text,
+code.wrap {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+code.wrap {
+  font-family: ui-monospace, "Cascadia Code", "Segoe UI Mono", Menlo, Consolas, monospace;
+  font-size: 13px;
+}
+
+.run-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0 16px;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-fail {
+  background: #c62828;
+}
+
+.dot-pass {
+  background: #2e7d32;
+}
+
+table.matrix {
+  table-layout: auto;
+}
+
+table.matrix th,
+table.matrix td {
+  width: auto;
+  white-space: normal;
+}
+
+.section {
+  margin: 0 0 28px;
+}
+
+.why a {
+  color: #0b4f8a;
 }

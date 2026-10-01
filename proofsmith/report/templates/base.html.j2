@@ -13,6 +13,7 @@
       <a class="brand" href="/" data-testid="brand">Proofsmith</a>
       <nav data-testid="nav" aria-label="Primary">
         <a href="/" data-testid="nav-toolchain">Toolchain</a>
+        {% if show_demo %}<a href="/demo/" data-testid="nav-demo">Demo</a>{% endif %}
       </nav>
     </div>
   </header>

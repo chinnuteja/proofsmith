@@ -1,0 +1,66 @@
+{% extends "base.html.j2" %}
+{% block title %}Proofsmith demo{% endblock %}
+{% block body %}
+<h1>orderd</h1>
+<p class="lede">Existing tests pass on every tree. The frozen TSan check stays red through a timing backoff, and goes green only when the two locks are taken in one order.</p>
+
+<section class="section" data-testid="section-issue">
+  <h2>The issue</h2>
+  <p class="issue-title" data-testid="issue-title">{{ issue.title }}</p>
+  <pre class="report" data-testid="issue-body">{{ issue.body }}</pre>
+</section>
+
+<section class="section" data-testid="section-check">
+  <h2>The frozen check</h2>
+  <p>Oracle <span data-testid="oracle" data-source="results/demo/orderd.json#/oracle">{{ oracle }}</span></p>
+  <p class="wrap-text">Signature <code class="wrap" data-testid="signature" data-source="results/demo/orderd.json#/verifier/signature">{{ verifier.signature }}</code></p>
+  <p>Runs <span data-source="results/demo/orderd.json#/verifier/runtime/fails">{{ verifier.runtime.fails }}</span>/<span data-source="results/demo/orderd.json#/verifier/runtime/n">{{ verifier.runtime.n }}</span>
+    with the signature, threshold <span data-source="results/demo/orderd.json#/verifier/runtime/k">{{ verifier.runtime.k }}</span>.</p>
+  <div data-testid="run-strip" class="run-strip" aria-label="ten acceptance runs">
+    {% for failed in strip %}
+    <span class="dot {{ 'dot-fail' if failed else 'dot-pass' }}"></span>
+    {% endfor %}
+  </div>
+  <p class="wrap-text">harness.cpp sha256 <code class="wrap" data-testid="harness-sha" data-source="results/demo/orderd.json#/verifier/files/harness~1harness.cpp">{{ harness_sha }}</code></p>
+  <p data-testid="harness-source-label">Reference harness (hand-written)</p>
+</section>
+
+<section class="section" data-testid="section-matrix">
+  <h2>Who says it's fixed?</h2>
+  <table class="matrix" data-testid="matrix">
+    <thead>
+      <tr>
+        <th>Tree</th>
+        <th>existing tests (ctest)</th>
+        <th>stress repro ×20</th>
+        <th>Proofsmith check ×20</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in rows %}
+      <tr data-testid="row-{{ row.id }}">
+        <td data-label="Tree">{{ row.label }}</td>
+        {% for cell in row.cells %}
+        <td class="result" data-label="{{ cell.label }}" data-testid="{{ cell.name }}-cell">
+          <span class="{{ cell.pill }}"><span data-source="{{ cell.left_source }}">{{ cell.left }}</span>/<span data-source="{{ cell.right_source }}">{{ cell.right }}</span></span>
+        </td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section class="section" data-testid="section-evidence">
+  <h2>The evidence</h2>
+  <details data-testid="raw-report">
+    <summary>raw TSan report</summary>
+    <pre class="report">{{ raw_report }}</pre>
+  </details>
+</section>
+
+<section class="section" data-testid="section-why">
+  <h2>Why this matters</h2>
+  <p class="why">ByteAsk's homepage stops a debugger on a deadlock in orderd, in <code>OrderBook::cancel</code>, and shows the fix <code>std::scoped_lock lk(book_mtx_, risk_mtx_);</code> (<a href="https://byteask.ai/" data-claim="C2">C2</a>). The same page shows ctest at 100% — book_ops, risk_engine, wire_codec — beside an AddressSanitizer report (<a href="https://byteask.ai/" data-claim="C3">C3</a>). This matrix is that pair of facts for one freeze: the tests stay green, including after a timing backoff, and the frozen check goes green only when both paths take the locks in one order.</p>
+</section>
+{% endblock %}

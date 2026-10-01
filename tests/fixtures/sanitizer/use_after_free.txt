@@ -1,25 +1,25 @@
 =================================================================
-==1402==ERROR: AddressSanitizer: heap-use-after-free on address 0x502000000010 at pc 0x5d7d02606bae bp 0x7ffebaf16380 sp 0x7ffebaf16378
+==3831==ERROR: AddressSanitizer: heap-use-after-free on address 0x502000000010 at pc 0x556fb53c1bae bp 0x7ffcd83e5930 sp 0x7ffcd83e5928
 READ of size 4 at 0x502000000010 thread T0
-    #0 0x5d7d02606bad in main /home/chinnu/psw/probes/use_after_free.cpp:4:10
-    #1 0x799b7f42a1c9 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
-    #2 0x799b7f42a28a in __libc_start_main csu/../csu/libc-start.c:360:3
-    #3 0x5d7d0252b344 in _start (/home/chinnu/psw/probes/use_after_free+0x2c344) (BuildId: e78a00b0fb652c99e9aedff1151e71fa07cd1fe0)
+    #0 0x556fb53c1bad in main /home/chinnu/psw/probes/use_after_free.cpp:4:10
+    #1 0x6fffb1e2a1c9 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+    #2 0x6fffb1e2a28a in __libc_start_main csu/../csu/libc-start.c:360:3
+    #3 0x556fb52e6344 in _start (/home/chinnu/psw/probes/use_after_free+0x2c344) (BuildId: e78a00b0fb652c99e9aedff1151e71fa07cd1fe0)
 
 0x502000000010 is located 0 bytes inside of 4-byte region [0x502000000010,0x502000000014)
 freed by thread T0 here:
-    #0 0x5d7d02605031 in operator delete(void*) (/home/chinnu/psw/probes/use_after_free+0x106031) (BuildId: e78a00b0fb652c99e9aedff1151e71fa07cd1fe0)
-    #1 0x5d7d02606b72 in main /home/chinnu/psw/probes/use_after_free.cpp:3:3
-    #2 0x799b7f42a1c9 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
-    #3 0x799b7f42a28a in __libc_start_main csu/../csu/libc-start.c:360:3
-    #4 0x5d7d0252b344 in _start (/home/chinnu/psw/probes/use_after_free+0x2c344) (BuildId: e78a00b0fb652c99e9aedff1151e71fa07cd1fe0)
+    #0 0x556fb53c0031 in operator delete(void*) (/home/chinnu/psw/probes/use_after_free+0x106031) (BuildId: e78a00b0fb652c99e9aedff1151e71fa07cd1fe0)
+    #1 0x556fb53c1b72 in main /home/chinnu/psw/probes/use_after_free.cpp:3:3
+    #2 0x6fffb1e2a1c9 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+    #3 0x6fffb1e2a28a in __libc_start_main csu/../csu/libc-start.c:360:3
+    #4 0x556fb52e6344 in _start (/home/chinnu/psw/probes/use_after_free+0x2c344) (BuildId: e78a00b0fb652c99e9aedff1151e71fa07cd1fe0)
 
 previously allocated by thread T0 here:
-    #0 0x5d7d026047b1 in operator new(unsigned long) (/home/chinnu/psw/probes/use_after_free+0x1057b1) (BuildId: e78a00b0fb652c99e9aedff1151e71fa07cd1fe0)
-    #1 0x5d7d02606b48 in main /home/chinnu/psw/probes/use_after_free.cpp:2:12
-    #2 0x799b7f42a1c9 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
-    #3 0x799b7f42a28a in __libc_start_main csu/../csu/libc-start.c:360:3
-    #4 0x5d7d0252b344 in _start (/home/chinnu/psw/probes/use_after_free+0x2c344) (BuildId: e78a00b0fb652c99e9aedff1151e71fa07cd1fe0)
+    #0 0x556fb53bf7b1 in operator new(unsigned long) (/home/chinnu/psw/probes/use_after_free+0x1057b1) (BuildId: e78a00b0fb652c99e9aedff1151e71fa07cd1fe0)
+    #1 0x556fb53c1b48 in main /home/chinnu/psw/probes/use_after_free.cpp:2:12
+    #2 0x6fffb1e2a1c9 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+    #3 0x6fffb1e2a28a in __libc_start_main csu/../csu/libc-start.c:360:3
+    #4 0x556fb52e6344 in _start (/home/chinnu/psw/probes/use_after_free+0x2c344) (BuildId: e78a00b0fb652c99e9aedff1151e71fa07cd1fe0)
 
 SUMMARY: AddressSanitizer: heap-use-after-free /home/chinnu/psw/probes/use_after_free.cpp:4:10 in main
 Shadow bytes around the buggy address:
@@ -53,4 +53,4 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
   ASan internal:           fe
   Left alloca redzone:     ca
   Right alloca redzone:    cb
-==1402==ABORTING
+==3831==ABORTING
