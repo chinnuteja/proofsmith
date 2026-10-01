@@ -1,0 +1,36 @@
+{% extends "base.html.j2" %}
+{% block title %}Proofsmith{% endblock %}
+{% block body %}
+<h1>Toolchain</h1>
+<p class="lede">Sanitizer probes compiled with clang and run on this machine.</p>
+<p class="clang-line"><span data-testid="clang-version" data-source="results/toolchain.json#/clang_version">{{ clang_version }}</span></p>
+<table data-testid="toolchain-table">
+  <thead>
+    <tr>
+      <th>Probe</th>
+      <th>Variant</th>
+      <th>Expected</th>
+      <th>Observed</th>
+      <th>Status</th>
+      <th>Report</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for p in probes %}
+    <tr data-testid="probe-{{ p.name }}">
+      <td data-label="Probe">{{ p.name }}</td>
+      <td data-label="Variant">{{ p.variant }}</td>
+      <td data-label="Expected" data-testid="expected-kind" data-source="results/toolchain.json#/probes/{{ loop.index0 }}/expected_kind">{{ p.expected_kind }}</td>
+      <td data-label="Observed" data-testid="observed-kind" data-source="results/toolchain.json#/probes/{{ loop.index0 }}/observed_kind">{{ p.observed_kind }}</td>
+      <td data-label="Status"><span class="{{ p.pill }}" data-testid="status-{{ p.name }}">{{ p.pill_text }}</span></td>
+      <td data-label="Report" class="report-cell">
+        <details data-testid="raw-{{ p.name }}">
+          <summary>raw output</summary>
+          <pre class="report">{{ p.output }}</pre>
+        </details>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

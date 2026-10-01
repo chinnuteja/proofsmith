@@ -1,0 +1,10 @@
+PROOFSMITH_CHECK_FAILED /home/chinnu/psw/probes/check_fail.cpp:17: 1 + 1 == 3
+/home/chinnu/psw/probes/check_fail(+0x1210)[0x63666c67b210]
+/lib/x86_64-linux-gnu/libc.so.6(+0x45330)[0x76c134645330]
+/lib/x86_64-linux-gnu/libc.so.6(pthread_kill+0x11c)[0x76c13469ec0c]
+/lib/x86_64-linux-gnu/libc.so.6(gsignal+0x1e)[0x76c13464527e]
+/lib/x86_64-linux-gnu/libc.so.6(abort+0xdf)[0x76c1346288ff]
+/home/chinnu/psw/probes/check_fail(+0x11ef)[0x63666c67b1ef]
+/lib/x86_64-linux-gnu/libc.so.6(+0x2a1ca)[0x76c13462a1ca]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x8b)[0x76c13462a28b]
+/home/chinnu/psw/probes/check_fail(+0x10d5)[0x63666c67b0d5]

@@ -1,0 +1,53 @@
+{
+  "clang_version": "Ubuntu clang version 18.1.3 (1ubuntu1)",
+  "probes": [
+    {
+      "name": "heap_overflow",
+      "variant": "asan_ubsan",
+      "expected_kind": "asan:heap-buffer-overflow",
+      "observed_kind": "asan:heap-buffer-overflow",
+      "ok": true,
+      "output_path": "tests/fixtures/sanitizer/heap_overflow.txt"
+    },
+    {
+      "name": "use_after_free",
+      "variant": "asan_ubsan",
+      "expected_kind": "asan:heap-use-after-free",
+      "observed_kind": "asan:heap-use-after-free",
+      "ok": true,
+      "output_path": "tests/fixtures/sanitizer/use_after_free.txt"
+    },
+    {
+      "name": "signed_overflow",
+      "variant": "asan_ubsan",
+      "expected_kind": "ubsan:signed-integer-overflow",
+      "observed_kind": "ubsan:signed-integer-overflow",
+      "ok": true,
+      "output_path": "tests/fixtures/sanitizer/signed_overflow.txt"
+    },
+    {
+      "name": "data_race",
+      "variant": "tsan",
+      "expected_kind": "tsan:data-race",
+      "observed_kind": "tsan:data-race",
+      "ok": true,
+      "output_path": "tests/fixtures/sanitizer/data_race.txt"
+    },
+    {
+      "name": "lock_order",
+      "variant": "tsan",
+      "expected_kind": "tsan:lock-order-inversion",
+      "observed_kind": "tsan:lock-order-inversion",
+      "ok": true,
+      "output_path": "tests/fixtures/sanitizer/lock_order.txt"
+    },
+    {
+      "name": "check_fail",
+      "variant": "plain",
+      "expected_kind": "assert",
+      "observed_kind": "assert",
+      "ok": true,
+      "output_path": "tests/fixtures/sanitizer/check_fail.txt"
+    }
+  ]
+}

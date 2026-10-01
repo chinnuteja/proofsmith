@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "proofsmith"
+version = "0.1.0"
+description = "Toolchain-backed failing checks for C/C++ bug reports"
+requires-python = ">=3.12"
+dependencies = [
+    "openai>=1.40",
+    "pydantic>=2.7",
+    "jinja2>=3.1",
+    "python-dotenv>=1.0",
+    "jsonschema>=4.21",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-timeout>=2.3", "playwright>=1.45"]
+
+[project.scripts]
+proofsmith = "proofsmith.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["proofsmith*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "live: calls the DeepSeek API",
+    "slow: builds real C++",
+]
