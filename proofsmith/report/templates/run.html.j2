@@ -1,0 +1,62 @@
+{% extends "base.html.j2" %}
+{% block title %}Proofsmith run {{ summary.run_id }}{% endblock %}
+{% block body %}
+<h1>Run <span class="wrap-text">{{ summary.run_id }}</span></h1>
+<p class="lede">
+  <span class="pill-{{ pill }}" data-source="runs/{{ summary.run_id }}/summary.json#/status">{{ summary.status | fmt }}</span>
+  <span data-source="runs/{{ summary.run_id }}/summary.json#/system">{{ summary.system | fmt }}</span>
+  on
+  <span data-source="runs/{{ summary.run_id }}/summary.json#/instance_id">{{ summary.instance_id | fmt }}</span>
+</p>
+
+<section class="section" data-testid="budget-section">
+  <h2>Budget</h2>
+  <div
+    class="budget"
+    role="progressbar"
+    data-testid="budget-bar"
+    aria-valuemin="0"
+    aria-valuenow="{{ summary.tokens }}"
+    aria-valuemax="{{ summary.max_total_tokens }}"
+    aria-label="tokens used"
+  >
+    <div class="budget-fill" style="width: {{ token_pct }}%"></div>
+  </div>
+  <p>
+    Tokens
+    <span data-testid="token-total" data-source="runs/{{ summary.run_id }}/summary.json#/tokens">{{ summary.tokens | fmt }}</span>
+    /
+    <span data-source="runs/{{ summary.run_id }}/summary.json#/max_total_tokens">{{ summary.max_total_tokens | fmt }}</span>
+  </p>
+  <p>
+    Cost
+    <span data-testid="cost-total" data-source="runs/{{ summary.run_id }}/summary.json#/cost_usd">{{ summary.cost_usd | fmt }}</span>
+    · steps
+    <span data-source="runs/{{ summary.run_id }}/summary.json#/steps">{{ summary.steps | fmt }}</span>
+    · wall
+    <span data-source="runs/{{ summary.run_id }}/summary.json#/wall_s">{{ summary.wall_s | fmt }}</span>
+  </p>
+</section>
+
+<section class="section" data-testid="steps">
+  <h2>Steps</h2>
+  {% for step in steps %}
+  <article class="step" data-testid="step">
+    <h3>Step {{ step.step }}</h3>
+    {% if step.content %}
+    <p class="model-text" data-testid="model-text">{{ step.content }}</p>
+    {% endif %}
+    {% for call in step.calls %}
+    <p class="tool-line"><span data-testid="tool-name">{{ call.name }}</span></p>
+    <pre class="report" data-testid="tool-args">{{ call.arguments }}</pre>
+    {% endfor %}
+    {% for result in step.results %}
+    <details data-testid="tool-output">
+      <summary>{{ result.name }} output</summary>
+      <pre class="report">{{ result.output }}</pre>
+    </details>
+    {% endfor %}
+  </article>
+  {% endfor %}
+</section>
+{% endblock %}

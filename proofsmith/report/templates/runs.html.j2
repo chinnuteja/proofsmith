@@ -1,0 +1,34 @@
+{% extends "base.html.j2" %}
+{% block title %}Proofsmith runs{% endblock %}
+{% block body %}
+<h1>Runs</h1>
+<p class="lede">Every agent run recorded on this machine. Open a row to read the tool calls.</p>
+<table class="runs" data-testid="runs-table">
+  <thead>
+    <tr>
+      <th>Run</th>
+      <th>System</th>
+      <th>Instance</th>
+      <th>Status</th>
+      <th>Steps</th>
+      <th>Tokens</th>
+      <th>Cost</th>
+      <th>Wall</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for run in runs %}
+    <tr data-testid="run-{{ run.run_id }}">
+      <td data-label="Run"><a href="/runs/{{ run.run_id }}/" data-testid="run-link">{{ run.run_id }}</a></td>
+      <td data-label="System" data-source="runs/{{ run.run_id }}/summary.json#/system">{{ run.system | fmt }}</td>
+      <td data-label="Instance" data-source="runs/{{ run.run_id }}/summary.json#/instance_id">{{ run.instance_id | fmt }}</td>
+      <td data-label="Status"><span class="pill-{{ run.pill }}" data-testid="run-status" data-source="runs/{{ run.run_id }}/summary.json#/status">{{ run.status | fmt }}</span></td>
+      <td data-label="Steps" data-source="runs/{{ run.run_id }}/summary.json#/steps">{{ run.steps | fmt }}</td>
+      <td data-label="Tokens" data-source="runs/{{ run.run_id }}/summary.json#/tokens">{{ run.tokens | fmt }}</td>
+      <td data-label="Cost" data-source="runs/{{ run.run_id }}/summary.json#/cost_usd">{{ run.cost_usd | fmt }}</td>
+      <td data-label="Wall" data-source="runs/{{ run.run_id }}/summary.json#/wall_s">{{ run.wall_s | fmt }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

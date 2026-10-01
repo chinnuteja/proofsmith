@@ -9,7 +9,7 @@ from pathlib import Path
 
 from jinja2 import Environment, FileSystemLoader
 
-from proofsmith.config import REPO, RESULTS, SITE
+from proofsmith.config import REPO, RESULTS, RUNS, SITE
 
 TEMPLATE_DIR = Path(__file__).resolve().parent / "templates"
 STATIC_DIR = Path(__file__).resolve().parent / "static"
@@ -120,6 +120,7 @@ def _render_demo(env: Environment, git_sha: str) -> None:
     harness_sha = files.get("harness/harness.cpp", "")
     html = env.get_template("demo.html.j2").render(
         show_demo=True,
+        show_runs=bool(_load_run_summaries()),
         git_sha=git_sha,
         issue=payload["issue"],
         oracle=payload.get("oracle", ""),
@@ -133,6 +134,120 @@ def _render_demo(env: Environment, git_sha: str) -> None:
     demo_dir = SITE / "demo"
     demo_dir.mkdir(parents=True, exist_ok=True)
     (demo_dir / "index.html").write_text(html, encoding="utf-8", newline="\n")
+
+
+def _status_pill(status: str) -> str:
+    if status == "finished":
+        return "pass"
+    if status == "abstained":
+        return "warn"
+    if status in {"error", "budget_exhausted"}:
+        return "fail"
+    return "info"
+
+
+def _load_run_summaries() -> list[dict]:
+    if not RUNS.is_dir():
+        return []
+    found: list[dict] = []
+    for path in sorted(RUNS.glob("*/summary.json")):
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            continue
+        if not isinstance(data, dict):
+            continue
+        data.setdefault("run_id", path.parent.name)
+        data["pill"] = _status_pill(str(data.get("status") or ""))
+        found.append(data)
+    return found
+
+
+def _load_events(run_id: str) -> list[dict]:
+    path = RUNS / run_id / "trajectory.jsonl"
+    if not path.is_file():
+        return []
+    events: list[dict] = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        try:
+            events.append(json.loads(line))
+        except json.JSONDecodeError:
+            continue
+    return events
+
+
+def _run_steps(events: list[dict]) -> list[dict]:
+    grouped: dict[int, dict] = {}
+    for event in events:
+        kind = event.get("type")
+        if kind not in {"llm_response", "tool_call", "tool_result"}:
+            continue
+        step = int(event.get("step") or 0)
+        bucket = grouped.setdefault(
+            step,
+            {"step": step, "content": "", "calls": [], "results": []},
+        )
+        if kind == "llm_response":
+            bucket["content"] = event.get("content") or ""
+        elif kind == "tool_call":
+            bucket["calls"].append(
+                {
+                    "name": event.get("name") or "",
+                    "arguments": json.dumps(event.get("arguments") or {}, indent=2, ensure_ascii=False),
+                }
+            )
+        else:
+            bucket["results"].append(
+                {
+                    "name": event.get("name") or "tool",
+                    "output": event.get("output") or "",
+                }
+            )
+    return [grouped[key] for key in sorted(grouped)]
+
+
+def _copy_run_data(runs: list[dict]) -> None:
+    dest_root = SITE / "data" / "runs"
+    dest_root.mkdir(parents=True, exist_ok=True)
+    for run in runs:
+        run_id = str(run.get("run_id") or "")
+        source = RUNS / run_id / "summary.json"
+        if source.is_file():
+            shutil.copyfile(source, dest_root / f"{run_id}.json")
+
+
+def _render_runs(env: Environment, git_sha: str, runs: list[dict]) -> None:
+    if not runs:
+        return
+    runs_dir = SITE / "runs"
+    runs_dir.mkdir(parents=True, exist_ok=True)
+    index = env.get_template("runs.html.j2").render(
+        git_sha=git_sha,
+        show_demo=_load_demo() is not None,
+        show_runs=True,
+        runs=runs,
+    )
+    (runs_dir / "index.html").write_text(index, encoding="utf-8", newline="\n")
+    for run in runs:
+        run_id = str(run["run_id"])
+        steps = _run_steps(_load_events(run_id))
+        tokens = float(run.get("tokens") or 0)
+        maximum = float(run.get("max_total_tokens") or 0)
+        pct = 0.0 if maximum <= 0 else min(100.0, tokens / maximum * 100.0)
+        html = env.get_template("run.html.j2").render(
+            git_sha=git_sha,
+            show_demo=_load_demo() is not None,
+            show_runs=True,
+            summary=run,
+            steps=steps,
+            pill=run.get("pill") or "info",
+            token_pct=f"{pct:.4f}",
+        )
+        page = runs_dir / run_id
+        page.mkdir(parents=True, exist_ok=True)
+        (page / "index.html").write_text(html, encoding="utf-8", newline="\n")
 
 
 def build_site() -> None:
@@ -157,13 +272,19 @@ def build_site() -> None:
             }
         )
     env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
+    env.filters["fmt"] = format_number
     sha = git_short_sha()
+    runs = _load_run_summaries()
     show_demo = _load_demo() is not None
+    show_runs = bool(runs)
     html = env.get_template("index.html.j2").render(
         clang_version=payload.get("clang_version", "UNKNOWN"),
         probes=probes,
         git_sha=sha,
         show_demo=show_demo,
+        show_runs=show_runs,
     )
     (SITE / "index.html").write_text(html, encoding="utf-8", newline="\n")
     _render_demo(env, sha)
+    _copy_run_data(runs)
+    _render_runs(env, sha, runs)

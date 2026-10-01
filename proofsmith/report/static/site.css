@@ -310,3 +310,53 @@ table.matrix td {
 .why a {
   color: #0b4f8a;
 }
+
+.step {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin: 0 0 12px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.step h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.tool-line {
+  margin: 8px 0 4px;
+  font-family: ui-monospace, "Cascadia Code", "Segoe UI Mono", Menlo, Consolas, monospace;
+  font-weight: 700;
+}
+
+.model-text {
+  margin: 0 0 8px;
+  overflow-wrap: anywhere;
+}
+
+.budget {
+  height: 14px;
+  background: #e7eef6;
+  border-radius: 999px;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.budget-fill {
+  height: 100%;
+  background: #1d4e89;
+  max-width: 100%;
+}
+
+table.runs {
+  table-layout: auto;
+}
+
+table.runs th,
+table.runs td {
+  width: auto;
+  overflow-wrap: anywhere;
+}

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 import traceback
 from collections.abc import Callable
@@ -239,10 +240,84 @@ CHECKS[1] = [
     check_b1_8,
 ]
 
+_SK = re.compile(r"(?<![A-Za-z0-9])sk-")
+RUNS_URL = BASE_URL + "runs/"
+RUN_URL = BASE_URL + "runs/live-smoke/"
+
+
+def _assert_no_sk(page: Page) -> None:
+    html = page.content()
+    assert _SK.search(html) is None, "page contains a string starting with sk-"
+
+
+def check_b2_1(page: Page) -> None:
+    page.goto(RUNS_URL, wait_until="load")
+    page.wait_for_selector("[data-testid=runs-table]")
+    row = page.locator("[data-testid=run-live-smoke]")
+    assert row.count() == 1, "live smoke run is not listed"
+    status = row.locator("[data-testid=run-status]").inner_text().strip()
+    assert status == "finished", status
+
+
+def check_b2_2(page: Page) -> None:
+    page.goto(RUN_URL, wait_until="load")
+    page.wait_for_selector("[data-testid=step]")
+    steps = page.locator("[data-testid=step]")
+    assert steps.count() >= 2, f"expected at least 2 steps, got {steps.count()}"
+    names = page.locator("[data-testid=tool-name]")
+    args = page.locator("[data-testid=tool-args]")
+    assert names.count() >= 1, "no tool calls"
+    assert names.count() == args.count(), f"names {names.count()} args {args.count()}"
+    for index in range(names.count()):
+        assert names.nth(index).inner_text().strip(), f"empty tool name at {index}"
+        assert args.nth(index).inner_text().strip(), f"empty tool arguments at {index}"
+    outputs = page.locator("[data-testid=tool-output]")
+    assert outputs.count() >= 1, "no tool output"
+    outputs.first.locator("summary").click()
+    pre = outputs.first.locator("pre")
+    pre.wait_for(state="visible")
+    assert pre.inner_text().strip(), "tool output was empty"
+
+
+def check_b2_3(page: Page) -> None:
+    page.goto(RUN_URL, wait_until="load")
+    summary = json.loads((REPO / "runs" / "live-smoke" / "summary.json").read_text(encoding="utf-8"))
+    tokens = page.locator("[data-testid=token-total]").inner_text().strip()
+    cost = page.locator("[data-testid=cost-total]").inner_text().strip()
+    assert tokens == format_number(summary["tokens"]), tokens
+    assert cost == format_number(summary["cost_usd"]), cost
+    assert_data_sources(page)
+
+
+def check_b2_4(page: Page) -> None:
+    page.goto(RUN_URL, wait_until="load")
+    bar = page.locator("[data-testid=budget-bar]")
+    tokens = page.locator("[data-testid=token-total]").inner_text().strip()
+    assert bar.get_attribute("aria-valuenow") == tokens, bar.get_attribute("aria-valuenow")
+    assert bar.get_attribute("aria-valuemax") == "500000", bar.get_attribute("aria-valuemax")
+
+
+def check_b2_5(page: Page) -> None:
+    page.goto(RUN_URL, wait_until="load")
+    _assert_no_sk(page)
+    page.goto(RUNS_URL, wait_until="load")
+    _assert_no_sk(page)
+    page.goto(RUN_URL, wait_until="load")
+
+
+check_b2_1.check_id = "B2.1"  # type: ignore[attr-defined]
+check_b2_2.check_id = "B2.2"  # type: ignore[attr-defined]
+check_b2_3.check_id = "B2.3"  # type: ignore[attr-defined]
+check_b2_4.check_id = "B2.4"  # type: ignore[attr-defined]
+check_b2_5.check_id = "B2.5"  # type: ignore[attr-defined]
+
+CHECKS[2] = [check_b2_1, check_b2_2, check_b2_3, check_b2_4, check_b2_5]
+
 
 _START = {
     0: (BASE_URL, "[data-testid=toolchain-table]", "index"),
     1: (BASE_URL + "demo/", "[data-testid=matrix]", "demo"),
+    2: (RUNS_URL, "[data-testid=runs-table]", "runs"),
 }
 
 
@@ -282,6 +357,13 @@ def run(phase: int) -> list[str]:
                         page.locator("[data-testid=matrix]").screenshot(
                             path=str(evidence / "demo-matrix-1280.png")
                         )
+                    if phase == 2:
+                        page.goto(RUN_URL, wait_until="load")
+                        page.wait_for_selector("[data-testid=budget-bar]")
+                        page.screenshot(path=str(evidence / f"run-{tag}.png"), full_page=True)
+                        assert_clean(page, state, width)
+                        page.goto(start_url, wait_until="load")
+                        page.wait_for_selector(ready)
                     assert_clean(page, state, width)
                     for check in checks:
                         check_id = getattr(check, "check_id", check.__name__)
