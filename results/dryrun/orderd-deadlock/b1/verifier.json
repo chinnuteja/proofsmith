@@ -1,0 +1,39 @@
+{
+  "abstain_reason": null,
+  "buggy_tree_sha256": "2ddb72e3844a29586591fbb181bca5fa24c280be0afeed42006d2c476f589faa",
+  "cost_usd": 0.10471736,
+  "created_at": "2026-10-02T13:07:01Z",
+  "files": {
+    "harness/build.sh": "4fa39767ff5c457b4cba959be2b98d7861f14dcdddb5dd4929d0b48263eaa293",
+    "harness/deadlock_repro.cpp": "14a8f5555ce38f2cae35cc881dd6926511d60064b8b877c87aa0c1c27a522fa5"
+  },
+  "flags": {
+    "cxxflags": "-g -O1 -fno-omit-frame-pointer -fsanitize=thread",
+    "env": {
+      "TSAN_OPTIONS": "halt_on_error=1:exitcode=66:second_deadlock_stack=1:symbolize=1:external_symbolizer_path=/usr/bin/llvm-symbolizer"
+    },
+    "ldflags": "-fsanitize=thread"
+  },
+  "instance_id": "orderd-deadlock",
+  "model": "deepseek-v4-pro",
+  "oracle": null,
+  "runtime": {
+    "fails": 0,
+    "k": 0,
+    "n": 0,
+    "signatures": {}
+  },
+  "schema": "proofsmith.verifier/1",
+  "signature": null,
+  "status": "submitted",
+  "system": "b1",
+  "trajectory": "runs/orderd-deadlock-b1-e9d556da/trajectory.jsonl",
+  "usage": {
+    "cache_hit_tokens": 65920,
+    "completion_tokens": 21385,
+    "prompt_tokens": 78899,
+    "reasoning_tokens": 19914
+  },
+  "variant": "tsan",
+  "wall_s": 297.47692420899966
+}

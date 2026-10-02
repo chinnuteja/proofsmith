@@ -1,0 +1,36 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "httplib-1765",
+  "track": "A",
+  "source": {
+    "kind": "git",
+    "url": "https://github.com/yhirose/cpp-httplib",
+    "commit": "44b3fe6277398f424f1844295b7ae46ba5a1a35f"
+  },
+  "issue": {
+    "title": "detail::is_valid_path returns true for paths with embedded NULs",
+    "body": "The `detail::is_valid_path` function judges `std::string`s that contain embedded NUL bytes (`'\\0'`) as valid paths. At least on Linux, this is not the case: paths are NUL-terminated and cannot contain NULs. The interpretation difference means that the file request handler can be tricked into serving static files with an unexpected Content-Type:\n\n```\n% ~ \u203a curl -I http://localhost:3456/style.css      \nHTTP/1.1 200 OK\nAccept-Ranges: bytes\nContent-Length: 4862\nContent-Type: text/css\nKeep-Alive: timeout=5, max=5\n\n% ~ \u203a curl -I http://localhost:3456/style.css%00.js\nHTTP/1.1 200 OK\nAccept-Ranges: bytes\nContent-Length: 4862\nContent-Type: text/javascript\nKeep-Alive: timeout=5, max=5\n```\n\nTested on Linux with httplib 0.13.1.",
+    "url": "https://github.com/yhirose/cpp-httplib/issues/1763",
+    "rewritten": false,
+    "mentions_fix": false
+  },
+  "build": {
+    "system": "cmake",
+    "cmake_args": [
+      "-DHTTPLIB_COMPILE=ON",
+      "-DHTTPLIB_TEST=OFF",
+      "-DHTTPLIB_INSTALL=OFF",
+      "-DHTTPLIB_REQUIRE_OPENSSL=OFF",
+      "-DHTTPLIB_USE_OPENSSL_IF_AVAILABLE=OFF",
+      "-DHTTPLIB_REQUIRE_MBEDTLS=OFF",
+      "-DHTTPLIB_USE_MBEDTLS_IF_AVAILABLE=OFF",
+      "-DHTTPLIB_USE_BROTLI_IF_AVAILABLE=OFF",
+      "-DHTTPLIB_USE_ZLIB_IF_AVAILABLE=OFF",
+      "-DHTTPLIB_USE_ZSTD_IF_AVAILABLE=OFF"
+    ],
+    "targets": [],
+    "jobs": 4,
+    "custom_script": null,
+    "test_command": null
+  }
+}

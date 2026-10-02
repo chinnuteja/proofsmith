@@ -1,0 +1,25 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "json-708",
+  "track": "A",
+  "source": {
+    "kind": "git",
+    "url": "https://github.com/nlohmann/json",
+    "commit": "e45eaf6e3085fd5e51907cff1b93d747620ffc00"
+  },
+  "issue": {
+    "title": "broken from_json implementation for pair and tuple",
+    "body": "I just realized that I introduced a bug in the develop branch.\n\nThe tests pass, because I forgot to add a test that retrieves a `pair` and a `tuple`...\nThat's really shameful, but luckily we haven't released yet.\n\n```cpp\n// no need for variadic here by the way\ntemplate<typename BasicJsonType, typename... Args>\nvoid from_json(const BasicJsonType& j, std::pair<Args...>& p)\n{\n    // broken, must use at().get<>()\n    p = {j.at(0), j.at(1)};\n}\n\ntemplate<typename BasicJsonType, typename Tuple, std::size_t... Idx>\nvoid from_json_tuple_impl(const BasicJsonType& j, Tuple& t, index_sequence<Idx...>)\n{\n    // same thing here\n    t = std::make_tuple(j.at(Idx)...);\n}\n```",
+    "url": "https://github.com/nlohmann/json/issues/707",
+    "rewritten": false,
+    "mentions_fix": false
+  },
+  "build": {
+    "system": "custom",
+    "cmake_args": [],
+    "targets": [],
+    "jobs": 4,
+    "custom_script": "scripts/tracka_header_build.sh",
+    "test_command": null
+  }
+}

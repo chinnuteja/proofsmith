@@ -1,0 +1,282 @@
+{
+  "schema": "proofsmith.verdict/1",
+  "instance_id": "orderd-deadlock",
+  "system": "proofsmith",
+  "track": "demo",
+  "bundle_status": "accepted",
+  "build_ok_buggy": true,
+  "build_ok_fixed": true,
+  "buggy_fails": 20,
+  "fixed_fails": 0,
+  "n": 20,
+  "f2p": true,
+  "alignment": {
+    "strict": true,
+    "relaxed": true,
+    "unknown": false,
+    "hits": [
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:31 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:26 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:31 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:26 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:31 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:26 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:31 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:26 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:31 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:26 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:31 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:26 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:31 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:26 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:31 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:26 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:31 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:26 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:31 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:26 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:31 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:26 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:31 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:26 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:31 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:26 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:31 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:26 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:31 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:26 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:31 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:26 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:31 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:26 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:31 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:26 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:31 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:26 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:31 orderd::OrderBook::cancel(unsigned long)"
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "via": "frame",
+        "evidence": "order_book.cpp:26 orderd::OrderBook::cancel(unsigned long)"
+      }
+    ],
+    "changed": [
+      {
+        "function": "add",
+        "file": "order_book.cpp",
+        "start": 9,
+        "end": 23
+      },
+      {
+        "function": "cancel",
+        "file": "order_book.cpp",
+        "start": 25,
+        "end": 34
+      }
+    ]
+  },
+  "oracle": "tsan",
+  "evidence_kinds": {
+    "tsan:lock-order-inversion": 20
+  },
+  "cost_usd": 0.034670328,
+  "wall_s": 204.92482979599993,
+  "error": null,
+  "trajectory": "runs/orderd-deadlock-tsan-9eb3d44a/trajectory.jsonl"
+}

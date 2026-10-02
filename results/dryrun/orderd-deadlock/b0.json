@@ -1,0 +1,26 @@
+{
+  "schema": "proofsmith.verdict/1",
+  "instance_id": "orderd-deadlock",
+  "system": "b0",
+  "track": "demo",
+  "bundle_status": "gave_up",
+  "build_ok_buggy": false,
+  "build_ok_fixed": false,
+  "buggy_fails": 0,
+  "fixed_fails": 0,
+  "n": 0,
+  "f2p": false,
+  "alignment": {
+    "strict": false,
+    "relaxed": false,
+    "unknown": false,
+    "hits": [],
+    "changed": []
+  },
+  "oracle": null,
+  "evidence_kinds": {},
+  "cost_usd": 0.257478408,
+  "wall_s": 707.815046316,
+  "error": "bundle has no build variant",
+  "trajectory": "runs/orderd-deadlock-b0-41182983/trajectory.jsonl"
+}

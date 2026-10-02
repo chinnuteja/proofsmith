@@ -1,0 +1,35 @@
+{% extends "base.html.j2" %}
+{% block title %}Proofsmith dry run {{ instance_id }}{% endblock %}
+{% block body %}
+<h1>{{ instance_id }}</h1>
+<p class="lede">Dry-run verdicts. These numbers are not the evaluation. Fail-to-pass and alignment are separate.</p>
+<div class="eval-columns">
+  {% for column in columns %}
+  <section class="eval-card" data-testid="system-column" data-system="{{ column.system }}">
+    <h2>{{ column.label }}</h2>
+    <p>fail-to-pass <span data-testid="f2p" data-source="{{ column.base }}/f2p">{{ column.f2p | fmt }}</span></p>
+    <p>buggy <span data-testid="buggy-fails" data-source="{{ column.base }}/buggy_fails">{{ column.buggy_fails | fmt }}</span>/<span data-testid="buggy-n" data-source="{{ column.base }}/n">{{ column.n | fmt }}</span></p>
+    <p>fixed <span data-testid="fixed-fails" data-source="{{ column.base }}/fixed_fails">{{ column.fixed_fails | fmt }}</span>/<span data-testid="fixed-n" data-source="{{ column.base }}/n">{{ column.n | fmt }}</span></p>
+    <p>alignment strict <span data-testid="align-strict" data-source="{{ column.base }}/alignment/strict">{{ column.strict | fmt }}</span> relaxed <span data-testid="align-relaxed" data-source="{{ column.base }}/alignment/relaxed">{{ column.relaxed | fmt }}</span></p>
+    <p>oracle <span data-testid="oracle" data-source="{{ column.oracle_source }}">{{ column.oracle_text | fmt }}</span></p>
+    <p>cost <span data-testid="cost" data-source="{{ column.base }}/cost_usd">{{ column.cost | fmt }}</span></p>
+    <p><a data-testid="trajectory-link" href="{{ column.trajectory_href }}">trajectory</a></p>
+  </section>
+  {% endfor %}
+</div>
+<section class="alignment-panel" data-testid="alignment-panel">
+  <h2>Alignment</h2>
+  <h3>Changed functions</h3>
+  <ul>
+    {% for item in changed %}
+    <li data-testid="changed-function"><span data-source="{{ item.source }}">{{ item.function | fmt }}</span> <span class="wrap-text">{{ item.file }}</span></li>
+    {% endfor %}
+  </ul>
+  <h3>Hits</h3>
+  <ul>
+    {% for hit in hits %}
+    <li data-testid="alignment-hit"><span data-source="{{ hit.function_source }}">{{ hit.function | fmt }}</span> <span data-source="{{ hit.via_source }}">{{ hit.via | fmt }}</span> <span data-source="{{ hit.evidence_source }}">{{ hit.evidence | fmt }}</span></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

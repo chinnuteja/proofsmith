@@ -399,6 +399,213 @@ def _load_trackb() -> dict | None:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def _excluded_ids() -> set[str]:
+    path = REPO / "data" / "trackB" / "EXCLUDED.md"
+    if not path.is_file():
+        return set()
+    found: set[str] = set()
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if line.startswith("## "):
+            found.add(line[3:].strip())
+    return found
+
+
+def _load_tracka() -> dict | None:
+    path = RESULTS / "trackA_check.json"
+    if not path.is_file():
+        return None
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _load_dryrun() -> list[dict] | None:
+    root = RESULTS / "dryrun"
+    if not root.is_dir():
+        return None
+    wanted = (
+        "orderd-deadlock",
+        "uaf-lru",
+        "race-stats",
+        "ub-notional",
+        "rounding-ticks",
+        "vague-perf",
+    )
+    rows: list[dict] = []
+    for instance_id in wanted:
+        path = root / instance_id
+        columns = []
+        for system in ("b0", "b1", "proofsmith"):
+            verdict = path / f"{system}.json"
+            if not verdict.is_file():
+                return None
+            columns.append(json.loads(verdict.read_text(encoding="utf-8")))
+        rows.append({"id": instance_id, "columns": columns})
+    return rows
+
+
+def _trajectory_href(value: object) -> str:
+    if not isinstance(value, str) or not value:
+        return "/runs/"
+    parts = Path(value).parts
+    if len(parts) >= 2 and parts[0] == "runs":
+        return f"/runs/{parts[1]}/"
+    return "/runs/"
+
+
+def _render_dryrun(env: Environment, git_sha: str, rows: list[dict] | None) -> None:
+    if not rows:
+        return
+    labels = {"b0": "B0", "b1": "B1", "proofsmith": "Proofsmith"}
+    preferred = [
+        "orderd-deadlock",
+        "uaf-lru",
+        "race-stats",
+        "ub-notional",
+        "rounding-ticks",
+        "vague-perf",
+    ]
+    rank = {name: index for index, name in enumerate(preferred)}
+    rows = sorted(rows, key=lambda row: rank.get(row["id"], len(preferred)))
+    grid = []
+    for row in rows:
+        cells = []
+        for column in row["columns"]:
+            system = str(column.get("system") or "")
+            f2p = bool(column.get("f2p"))
+            cells.append(
+                {
+                    "label": labels.get(system, system),
+                    "f2p": f2p,
+                    "pill": "pill-pass" if f2p else "pill-fail",
+                    "source": f"results/dryrun/{row['id']}/{system}.json#/f2p",
+                }
+            )
+        grid.append({"id": row["id"], "cells": cells})
+    common = {
+        "git_sha": git_sha,
+        "show_demo": _load_demo() is not None,
+        "show_runs": bool(_load_run_summaries()),
+        "show_verifiers": bool(_load_verifiers()),
+        "show_trackb": _load_trackb() is not None,
+        "show_tracka": _load_tracka() is not None,
+        "show_eval": True,
+    }
+    html = env.get_template("eval_index.html.j2").render(rows=grid, **common)
+    dest = SITE / "eval" / "dryrun"
+    dest.mkdir(parents=True, exist_ok=True)
+    (dest / "index.html").write_text(html, encoding="utf-8", newline="\n")
+    for row in rows:
+        columns = []
+        changed = []
+        hits = []
+        changed_source_row = None
+        for column in row["columns"]:
+            system = str(column.get("system") or "")
+            base = f"results/dryrun/{row['id']}/{system}.json"
+            oracle = column.get("oracle")
+            variant = column.get("variant")
+            if isinstance(oracle, str) and oracle:
+                oracle_source = f"{base}#/oracle"
+                oracle_text = oracle
+            elif "variant" in column:
+                oracle_source = f"{base}#/variant"
+                oracle_text = variant
+            else:
+                oracle_source = f"{base}#/oracle"
+                oracle_text = oracle
+            alignment = column.get("alignment") or {}
+            columns.append(
+                {
+                    "system": system,
+                    "label": labels.get(system, system),
+                    "base": base + "#",
+                    "f2p": column.get("f2p"),
+                    "buggy_fails": column.get("buggy_fails"),
+                    "fixed_fails": column.get("fixed_fails"),
+                    "n": column.get("n"),
+                    "strict": alignment.get("strict"),
+                    "relaxed": alignment.get("relaxed"),
+                    "oracle_source": oracle_source,
+                    "oracle_text": oracle_text,
+                    "cost": column.get("cost_usd"),
+                    "trajectory_href": _trajectory_href(column.get("trajectory")),
+                }
+            )
+            if changed_source_row is None and alignment.get("changed"):
+                changed_source_row = (system, alignment.get("changed") or [])
+            for index, hit in enumerate(alignment.get("hits") or []):
+                hits.append(
+                    {
+                        "function": hit.get("function") or "",
+                        "via": hit.get("via") or "",
+                        "evidence": hit.get("evidence") or "",
+                        "function_source": f"{base}#/alignment/hits/{index}/function",
+                        "via_source": f"{base}#/alignment/hits/{index}/via",
+                        "evidence_source": f"{base}#/alignment/hits/{index}/evidence",
+                    }
+                )
+        if changed_source_row is not None:
+            system, functions = changed_source_row
+            for index, item in enumerate(functions):
+                changed.append(
+                    {
+                        "function": item.get("function") or "",
+                        "file": item.get("file") or "",
+                        "source": (
+                            f"results/dryrun/{row['id']}/{system}.json#/alignment/changed/{index}/function"
+                        ),
+                    }
+                )
+        page = env.get_template("eval_instance.html.j2").render(
+            instance_id=row["id"],
+            columns=columns,
+            changed=changed,
+            hits=hits,
+            **common,
+        )
+        folder = dest / row["id"]
+        folder.mkdir(parents=True, exist_ok=True)
+        (folder / "index.html").write_text(page, encoding="utf-8", newline="\n")
+
+
+def _render_tracka(env: Environment, git_sha: str, payload: dict | None) -> None:
+    if not payload:
+        return
+    rows = []
+    for index, row in enumerate(payload.get("instances") or []):
+        base = f"results/trackA_check.json#/instances/{index}"
+        builds = []
+        for side in ("buggy", "fixed"):
+            for variant, label in (("plain", "plain"), ("asan_ubsan", "asan")):
+                ok = bool(((row.get("builds") or {}).get(side) or {}).get(variant))
+                builds.append(
+                    {
+                        "side": side,
+                        "variant": variant,
+                        "label": f"{side[0]}/{label}",
+                        "ok": ok,
+                        "pill": "pill-pass" if ok else "pill-fail",
+                        "source": f"{base}/builds/{side}/{variant}",
+                    }
+                )
+        rows.append({**row, "builds": builds, "base": base})
+    html = env.get_template("tracka.html.j2").render(
+        git_sha=git_sha,
+        show_demo=_load_demo() is not None,
+        show_runs=bool(_load_run_summaries()),
+        show_verifiers=bool(_load_verifiers()),
+        show_trackb=_load_trackb() is not None,
+        show_tracka=True,
+        show_eval=_load_dryrun() is not None,
+        total=payload.get("total", 0),
+        source_url=payload.get("source_url") or "",
+        source_revision=payload.get("source_revision") or "",
+        rows=rows,
+    )
+    dest = SITE / "tracka"
+    dest.mkdir(parents=True, exist_ok=True)
+    (dest / "index.html").write_text(html, encoding="utf-8", newline="\n")
+
+
 def _render_trackb(env: Environment, git_sha: str, payload: dict | None) -> None:
     if not payload:
         return
@@ -419,7 +626,7 @@ def _render_trackb(env: Environment, git_sha: str, payload: dict | None) -> None
                         "source": f"{base}/builds/{side}/{variant}",
                     }
                 )
-        rows.append({**row, "builds": builds, "base": base})
+        rows.append({**row, "builds": builds, "base": base, "excluded": str(row.get("id") or "") in _excluded_ids()})
     html = env.get_template("trackb.html.j2").render(
         git_sha=git_sha,
         show_demo=_load_demo() is not None,
@@ -460,7 +667,11 @@ def build_site() -> None:
     env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
     env.filters["fmt"] = format_number
     trackb = _load_trackb()
+    tracka = _load_tracka()
+    dryrun = _load_dryrun()
     env.globals["show_trackb"] = trackb is not None
+    env.globals["show_tracka"] = tracka is not None
+    env.globals["show_eval"] = dryrun is not None
     sha = git_short_sha()
     runs = _load_run_summaries()
     verifiers = _load_verifiers()
@@ -481,3 +692,5 @@ def build_site() -> None:
     _render_runs(env, sha, runs)
     _render_verifiers(env, sha, verifiers)
     _render_trackb(env, sha, trackb)
+    _render_tracka(env, sha, tracka)
+    _render_dryrun(env, sha, dryrun)

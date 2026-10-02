@@ -17,7 +17,7 @@ from proofsmith.llm import LLMResponse, Usage
 RESEND_REASONING = False
 
 NUDGE = "Use a tool. Call finish(...) or abstain(...) when done."
-MAX_RESPONSE_TOKENS = 4096
+MAX_RESPONSE_TOKENS = 16384
 _TERMINAL = {"finish", "abstain"}
 
 

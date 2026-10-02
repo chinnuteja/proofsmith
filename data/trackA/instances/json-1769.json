@@ -1,0 +1,25 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "json-1769",
+  "track": "A",
+  "source": {
+    "kind": "git",
+    "url": "https://github.com/nlohmann/json",
+    "commit": "99d7518d21cbbfe91d341a5431438bf7559c6974"
+  },
+  "issue": {
+    "title": "json_pointer<>::back() should be const",
+    "body": "- What is the issue you have?\nIt is impossible su use `json_pointer<>::back()` on `const json_pointer`.\n\n- What is the expected behavior?\nI expect to be able to use on a const. Since it returns a `const std::string&`, and since it is implemented with `std::vector<>::back()` that has a `const` overload, I expect the `json_pointer<>::back()` has to be declared `const`.\n\n- And what is the actual behavior instead?\nThe function is not marked as `const`.\n\n- Did you use a released version of the library or the version from the `develop` branch?\ntested with 3.7.0.",
+    "url": "https://github.com/nlohmann/json/issues/1764",
+    "rewritten": false,
+    "mentions_fix": false
+  },
+  "build": {
+    "system": "custom",
+    "cmake_args": [],
+    "targets": [],
+    "jobs": 4,
+    "custom_script": "scripts/tracka_header_build.sh",
+    "test_command": null
+  }
+}

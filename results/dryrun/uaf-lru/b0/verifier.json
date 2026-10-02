@@ -1,0 +1,41 @@
+{
+  "abstain_reason": null,
+  "buggy_tree_sha256": "804d8b4ae7fb668475c37745d307b555ddd5f7da57b49573f8fe6d2e4b7b76c0",
+  "cost_usd": 0.017673128,
+  "created_at": "2026-10-02T13:09:54Z",
+  "files": {
+    "harness/build.sh": "ef453e00a41ac008b4346ed6063e27a48e3c68ca1d7d0ac6317def9d9f61dc67",
+    "harness/harness.cpp": "a73191977ab3007530eff493a2a61d386d2551267839f46f91af0bf406f37cab"
+  },
+  "flags": {
+    "cxxflags": "-g -O1 -fno-omit-frame-pointer -fsanitize=address,undefined -fno-sanitize-recover=undefined",
+    "env": {
+      "ASAN_OPTIONS": "halt_on_error=1:abort_on_error=0:detect_leaks=0:exitcode=23:symbolize=1:allocator_may_return_null=1",
+      "ASAN_SYMBOLIZER_PATH": "/usr/bin/llvm-symbolizer",
+      "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1:exitcode=24:symbolize=1"
+    },
+    "ldflags": "-fsanitize=address,undefined"
+  },
+  "instance_id": "uaf-lru",
+  "model": "deepseek-v4-pro",
+  "oracle": null,
+  "runtime": {
+    "fails": 0,
+    "k": 0,
+    "n": 0,
+    "signatures": {}
+  },
+  "schema": "proofsmith.verifier/1",
+  "signature": null,
+  "status": "submitted",
+  "system": "b0",
+  "trajectory": "runs/uaf-lru-b0-bd441230/trajectory.jsonl",
+  "usage": {
+    "cache_hit_tokens": 26752,
+    "completion_tokens": 2412,
+    "prompt_tokens": 32013,
+    "reasoning_tokens": 1512
+  },
+  "variant": "asan_ubsan",
+  "wall_s": 46.87219985899992
+}

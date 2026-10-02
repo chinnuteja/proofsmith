@@ -1,0 +1,14 @@
+{
+  "schema": "proofsmith.hidden/1",
+  "id": "json-708",
+  "fixed": {
+    "kind": "patch",
+    "path": "data/trackA/hidden/json-708.fix.diff"
+  },
+  "bug_class": "behavioral",
+  "fix_files": [
+    "src/json.hpp"
+  ],
+  "dev_tests": [],
+  "notes": "Multi-SWE-bench nlohmann__json-708 at dataset revision 56ff018c04a38e27ada1e9d0a6d5839a51f88f0d."
+}

@@ -1,0 +1,31 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "fmt-3734",
+  "track": "A",
+  "source": {
+    "kind": "git",
+    "url": "https://github.com/fmtlib/fmt",
+    "commit": "f5750892436a667fe622e5ecc8a02c15a5d9bc88"
+  },
+  "issue": {
+    "title": "presentation_type `c` accepted in combination with `bool`",
+    "body": "While applying massive random tests with generated format-specs, it turned out that the `c` presentation-type is allowed for `bool`. \n\n```cpp\n    std::string_view constexpr formatString{\"{:X<#9c}\"}; // invalid format string\n    std::cout << fmt::format(formatString, false) << std::endl; // accepted, compile error expected\n    std::cout << std::format(formatString, false) << std::endl; // rejected, compiler error as expected\n```\n\n[godbolt](https://www.godbolt.org/z/xzbsdq49o)\n\nWhile writing for `false` the value is missing\n```cpp\n    std::string_view constexpr formatString{\"{:X<#2c}\"};\n    auto const s1{fmt::format(formatString, false)};\n    std::cout << s1 << std::endl; // prints \"X\"\n```\n[godbolt](https://www.godbolt.org/z/ccz388zMr)\n\nfor `true` the output seems to include uninitialized memory (unprintable chars)\n```cpp\n    std::string_view constexpr formatString{\"{:X<#2c}\"};\n    auto const s1{fmt::format(formatString, false)};\n    std::cout << s1 << std::endl; // prints \"?X\", where ? is an unprintable char\n```\n[godbolt](https://www.godbolt.org/z/W5dGjK5h9)",
+    "url": "https://github.com/fmtlib/fmt/issues/3726",
+    "rewritten": false,
+    "mentions_fix": false
+  },
+  "build": {
+    "system": "cmake",
+    "cmake_args": [
+      "-DFMT_DOC=OFF",
+      "-DFMT_TEST=OFF",
+      "-DFMT_INSTALL=OFF",
+      "-DFMT_FUZZ=OFF",
+      "-DFMT_MODULE=OFF"
+    ],
+    "targets": [],
+    "jobs": 4,
+    "custom_script": null,
+    "test_command": null
+  }
+}

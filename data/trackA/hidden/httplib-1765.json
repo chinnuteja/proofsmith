@@ -1,0 +1,16 @@
+{
+  "schema": "proofsmith.hidden/1",
+  "id": "httplib-1765",
+  "fixed": {
+    "kind": "patch",
+    "path": "data/trackA/hidden/httplib-1765.fix.diff"
+  },
+  "bug_class": "behavioral",
+  "fix_files": [
+    "httplib.h"
+  ],
+  "dev_tests": [
+    "ServerTest.GetMethodEmbeddedNUL"
+  ],
+  "notes": "Multi-SWE-bench yhirose__cpp-httplib-1765 at dataset revision 56ff018c04a38e27ada1e9d0a6d5839a51f88f0d."
+}

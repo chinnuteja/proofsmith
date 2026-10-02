@@ -423,12 +423,75 @@ check_b4_3.check_id = "B4.3"  # type: ignore[attr-defined]
 CHECKS[4] = [check_b4_1, check_b4_2, check_b4_3]
 
 
+_DRY_SYSTEMS = ("b0", "b1", "proofsmith")
+
+
+def check_b5_1(page: Page) -> None:
+    page.goto(BASE_URL + "eval/dryrun/orderd-deadlock/", wait_until="load")
+    page.wait_for_selector("[data-testid=system-column]")
+    columns = page.locator("[data-testid=system-column]")
+    assert columns.count() == 3, columns.count()
+    for index, system in enumerate(_DRY_SYSTEMS):
+        column = columns.nth(index)
+        assert column.get_attribute("data-system") == system
+        for name in (
+            "f2p",
+            "buggy-fails",
+            "buggy-n",
+            "fixed-fails",
+            "fixed-n",
+            "align-strict",
+            "align-relaxed",
+            "oracle",
+            "cost",
+        ):
+            assert column.locator(f"[data-testid={name}]").count() == 1, name
+        href = column.locator("[data-testid=trajectory-link]").get_attribute("href") or ""
+        assert href, system
+    assert_data_sources(page)
+
+
+def check_b5_2(page: Page) -> None:
+    page.goto(BASE_URL + "eval/dryrun/orderd-deadlock/", wait_until="load")
+    panel = page.locator("[data-testid=alignment-panel]")
+    assert panel.locator("[data-testid=changed-function]").count() >= 1
+    assert panel.locator("[data-testid=alignment-hit]").count() >= 1
+    assert_data_sources(page)
+
+
+def check_b5_3(page: Page) -> None:
+    page.goto(BASE_URL + "eval/dryrun/", wait_until="load")
+    page.wait_for_selector("[data-testid=eval-grid]")
+    pills = page.locator("[data-testid=f2p-pill]")
+    assert pills.count() == 18, pills.count()
+    assert_data_sources(page)
+
+
+def check_b5_4(page: Page) -> None:
+    page.goto(BASE_URL + "tracka/", wait_until="load")
+    page.wait_for_selector("[data-testid=tracka-table]")
+    rows = page.locator("[data-testid=tracka-row]")
+    assert rows.count() == 12, rows.count()
+    for index in range(rows.count()):
+        assert rows.nth(index).locator(".pill-pass").count() == 4, index
+    assert_data_sources(page)
+
+
+check_b5_1.check_id = "B5.1"  # type: ignore[attr-defined]
+check_b5_2.check_id = "B5.2"  # type: ignore[attr-defined]
+check_b5_3.check_id = "B5.3"  # type: ignore[attr-defined]
+check_b5_4.check_id = "B5.4"  # type: ignore[attr-defined]
+
+CHECKS[5] = [check_b5_1, check_b5_2, check_b5_3, check_b5_4]
+
+
 _START = {
     0: (BASE_URL, "[data-testid=toolchain-table]", "index"),
     1: (BASE_URL + "demo/", "[data-testid=matrix]", "demo"),
     2: (RUNS_URL, "[data-testid=runs-table]", "runs"),
     3: (BASE_URL + "verifiers/", "[data-testid=verifier-index]", "verifiers"),
     4: (BASE_URL + "trackb/", "[data-testid=trackb-table]", "trackb"),
+    5: (BASE_URL + "eval/dryrun/", "[data-testid=eval-grid]", "eval-grid"),
 }
 
 
@@ -485,6 +548,23 @@ def run(phase: int) -> list[str]:
                         page.goto(BASE_URL + "verifiers/vague-perf/", wait_until="load")
                         page.wait_for_selector("[data-testid=abstain-banner]")
                         page.screenshot(path=str(evidence / "verifier-abstain-1280.png"), full_page=True)
+                        assert_clean(page, state, width)
+                        page.goto(start_url, wait_until="load")
+                        page.wait_for_selector(ready)
+                    if phase == 5 and tag == "1280":
+                        page.goto(BASE_URL + "eval/dryrun/orderd-deadlock/", wait_until="load")
+                        page.wait_for_selector("[data-testid=alignment-panel]")
+                        page.screenshot(path=str(evidence / "eval-orderd-1280.png"), full_page=True)
+                        page.goto(BASE_URL + "tracka/", wait_until="load")
+                        page.wait_for_selector("[data-testid=tracka-table]")
+                        page.screenshot(path=str(evidence / "tracka-1280.png"), full_page=True)
+                        assert_clean(page, state, width)
+                        page.goto(start_url, wait_until="load")
+                        page.wait_for_selector(ready)
+                    if phase == 5 and tag == "390":
+                        page.goto(BASE_URL + "eval/dryrun/orderd-deadlock/", wait_until="load")
+                        page.wait_for_selector("[data-testid=alignment-panel]")
+                        page.screenshot(path=str(evidence / "eval-orderd-390.png"), full_page=True)
                         assert_clean(page, state, width)
                         page.goto(start_url, wait_until="load")
                         page.wait_for_selector(ready)

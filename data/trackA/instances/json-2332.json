@@ -1,0 +1,25 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "json-2332",
+  "track": "A",
+  "source": {
+    "kind": "git",
+    "url": "https://github.com/nlohmann/json",
+    "commit": "1da931730a73365a5a817c8571d36c9ef024dd57"
+  },
+  "issue": {
+    "title": "ignore_comment=true fails on multiple consecutive lines starting with comments",
+    "body": "<!-- Provide a concise summary of the issue in the title above. -->\nI know comments are not supported in json, but I'm trying to migrate a project that used YAJL, which has an option for allowing comments, specifically multiple consecutive lines of comments:\n\n// description\n// more description\n{\n...\n}\n\nI'm using the parse(...,ignore_comments=true) option, but it's failing on the second comment line. I\n\n\n#### What is the issue you have?\n\n<!-- Provide a detailed introduction to the issue itself, and why you consider it to be a bug. -->\n<!-- If possible, be specific and add stack traces, error messages, etc. Avoid vague terms like \"crash\" or \"doesn't work\". -->\n\n#### Please describe the steps to reproduce the issue.\nstd::string ss = \"//\\n//\\n{\\n}\\n\";\njson j = json::parse(ss,nullptr,true,true);\n\n#### Can you provide a small but working code example?\n\nstd::string ss = \"//\\n//\\n{\\n}\\n\";\njson j = json::parse(ss,nullptr,true,true);\n\n#### What is the expected behavior?\n\nshould ignore both lines\n\n#### And what is the actual behavior instead?\nterminate called after throwing an instance of 'nlohmann::detail::parse_error'\n  what():  [json.exception.parse_error.101] parse error at line 2, column 1: syntax error while parsing value - invalid literal; last read: '//<U+000A>/'\nAborted (core dumped)\n\n\n#### Which compiler and operating system are you using?\n- Compiler: gcc 9.2\n- Operating system: Ubuntu 20.04\n\n#### Which version of the library did you use?\n\n<!-- Please add an `x` to the respective line. -->\n\n- [ ] latest release version 3.9.0\n- [ ] other release - please state the version: ___\n- [x ] the `develop` branch (35daa5c0)\n\n#### If you experience a compilation error: can you [compile and run the unit tests](https://github.com/nlohmann/json#execute-unit-tests)?\n\n- [x ] yes\n- [ ] no - please copy/paste the error message below",
+    "url": "https://github.com/nlohmann/json/issues/2330",
+    "rewritten": false,
+    "mentions_fix": false
+  },
+  "build": {
+    "system": "custom",
+    "cmake_args": [],
+    "targets": [],
+    "jobs": 4,
+    "custom_script": "scripts/tracka_header_build.sh",
+    "test_command": null
+  }
+}

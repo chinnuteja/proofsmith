@@ -1,0 +1,290 @@
+{
+  "schema": "proofsmith.tracka_check/1",
+  "total": 12,
+  "repos": {
+    "catchorg/Catch2": 1,
+    "fmtlib/fmt": 5,
+    "yhirose/cpp-httplib": 1,
+    "nlohmann/json": 5
+  },
+  "source_url": "https://huggingface.co/datasets/ByteDance-Seed/Multi-SWE-bench",
+  "source_revision": "56ff018c04a38e27ada1e9d0a6d5839a51f88f0d",
+  "instances": [
+    {
+      "id": "Catch2-2288",
+      "repo": "catchorg/Catch2",
+      "issue_url": "https://github.com/catchorg/Catch2/issues/2273",
+      "issue_title": "Approx::operator() not const-correct",
+      "base_commit": "85c9544fa4c9625b9656d9bd765e54f8e639287f",
+      "bug_class": "behavioral",
+      "fix_files": 1,
+      "fix_lines": 2,
+      "dev_tests": 0,
+      "builds": {
+        "buggy": {
+          "plain": true,
+          "asan_ubsan": true
+        },
+        "fixed": {
+          "plain": true,
+          "asan_ubsan": true
+        }
+      },
+      "schema_ok": true,
+      "separation_ok": true
+    },
+    {
+      "id": "fmt-3569",
+      "repo": "fmtlib/fmt",
+      "issue_url": "https://github.com/fmtlib/fmt/issues/3567",
+      "issue_title": "Formatting element of std::vector<bool> fails",
+      "base_commit": "8a4bec5cf53387356738a06ba0cf4fdf086241ae",
+      "bug_class": "behavioral",
+      "fix_files": 1,
+      "fix_lines": 9,
+      "dev_tests": 0,
+      "builds": {
+        "buggy": {
+          "plain": true,
+          "asan_ubsan": true
+        },
+        "fixed": {
+          "plain": true,
+          "asan_ubsan": true
+        }
+      },
+      "schema_ok": true,
+      "separation_ok": true
+    },
+    {
+      "id": "fmt-3713",
+      "repo": "fmtlib/fmt",
+      "issue_url": "https://github.com/fmtlib/fmt/issues/3712",
+      "issue_title": "formatting a std::optional with format_as function fails to compile using clang",
+      "base_commit": "649fe0fc8b9366375eab67639cab404617c527cd",
+      "bug_class": "behavioral",
+      "fix_files": 1,
+      "fix_lines": 1,
+      "dev_tests": 0,
+      "builds": {
+        "buggy": {
+          "plain": true,
+          "asan_ubsan": true
+        },
+        "fixed": {
+          "plain": true,
+          "asan_ubsan": true
+        }
+      },
+      "schema_ok": true,
+      "separation_ok": true
+    },
+    {
+      "id": "fmt-3734",
+      "repo": "fmtlib/fmt",
+      "issue_url": "https://github.com/fmtlib/fmt/issues/3726",
+      "issue_title": "presentation_type `c` accepted in combination with `bool`",
+      "base_commit": "f5750892436a667fe622e5ecc8a02c15a5d9bc88",
+      "bug_class": "behavioral",
+      "fix_files": 1,
+      "fix_lines": 1,
+      "dev_tests": 0,
+      "builds": {
+        "buggy": {
+          "plain": true,
+          "asan_ubsan": true
+        },
+        "fixed": {
+          "plain": true,
+          "asan_ubsan": true
+        }
+      },
+      "schema_ok": true,
+      "separation_ok": true
+    },
+    {
+      "id": "fmt-4057",
+      "repo": "fmtlib/fmt",
+      "issue_url": "https://github.com/fmtlib/fmt/issues/4053",
+      "issue_title": "trunk doesn't work with `std::generator`",
+      "base_commit": "ccea338070c795fd966a4dc08b19268b6fbad5ef",
+      "bug_class": "behavioral",
+      "fix_files": 1,
+      "fix_lines": 2,
+      "dev_tests": 0,
+      "builds": {
+        "buggy": {
+          "plain": true,
+          "asan_ubsan": true
+        },
+        "fixed": {
+          "plain": true,
+          "asan_ubsan": true
+        }
+      },
+      "schema_ok": true,
+      "separation_ok": true
+    },
+    {
+      "id": "fmt-4310",
+      "repo": "fmtlib/fmt",
+      "issue_url": "https://github.com/fmtlib/fmt/issues/4307",
+      "issue_title": "Can't access context args() directly in 11.1.0",
+      "base_commit": "01914f0389ef6ff151c289670f6910e059d5063f",
+      "bug_class": "behavioral",
+      "fix_files": 1,
+      "fix_lines": 1,
+      "dev_tests": 0,
+      "builds": {
+        "buggy": {
+          "plain": true,
+          "asan_ubsan": true
+        },
+        "fixed": {
+          "plain": true,
+          "asan_ubsan": true
+        }
+      },
+      "schema_ok": true,
+      "separation_ok": true
+    },
+    {
+      "id": "httplib-1765",
+      "repo": "yhirose/cpp-httplib",
+      "issue_url": "https://github.com/yhirose/cpp-httplib/issues/1763",
+      "issue_title": "detail::is_valid_path returns true for paths with embedded NULs",
+      "base_commit": "44b3fe6277398f424f1844295b7ae46ba5a1a35f",
+      "bug_class": "behavioral",
+      "fix_files": 1,
+      "fix_lines": 1,
+      "dev_tests": 1,
+      "builds": {
+        "buggy": {
+          "plain": true,
+          "asan_ubsan": true
+        },
+        "fixed": {
+          "plain": true,
+          "asan_ubsan": true
+        }
+      },
+      "schema_ok": true,
+      "separation_ok": true
+    },
+    {
+      "id": "json-1769",
+      "repo": "nlohmann/json",
+      "issue_url": "https://github.com/nlohmann/json/issues/1764",
+      "issue_title": "json_pointer<>::back() should be const",
+      "base_commit": "99d7518d21cbbfe91d341a5431438bf7559c6974",
+      "bug_class": "behavioral",
+      "fix_files": 2,
+      "fix_lines": 4,
+      "dev_tests": 0,
+      "builds": {
+        "buggy": {
+          "plain": true,
+          "asan_ubsan": true
+        },
+        "fixed": {
+          "plain": true,
+          "asan_ubsan": true
+        }
+      },
+      "schema_ok": true,
+      "separation_ok": true
+    },
+    {
+      "id": "json-2332",
+      "repo": "nlohmann/json",
+      "issue_url": "https://github.com/nlohmann/json/issues/2330",
+      "issue_title": "ignore_comment=true fails on multiple consecutive lines starting with comments",
+      "base_commit": "1da931730a73365a5a817c8571d36c9ef024dd57",
+      "bug_class": "behavioral",
+      "fix_files": 2,
+      "fix_lines": 4,
+      "dev_tests": 0,
+      "builds": {
+        "buggy": {
+          "plain": true,
+          "asan_ubsan": true
+        },
+        "fixed": {
+          "plain": true,
+          "asan_ubsan": true
+        }
+      },
+      "schema_ok": true,
+      "separation_ok": true
+    },
+    {
+      "id": "json-4537",
+      "repo": "nlohmann/json",
+      "issue_url": "https://github.com/nlohmann/json/issues/3915",
+      "issue_title": "JSON_DIAGNOSTICS trigger assertion",
+      "base_commit": "e6cafa573aac6ed9227f752a5371c0b3f436307d",
+      "bug_class": "behavioral",
+      "fix_files": 2,
+      "fix_lines": 2,
+      "dev_tests": 0,
+      "builds": {
+        "buggy": {
+          "plain": true,
+          "asan_ubsan": true
+        },
+        "fixed": {
+          "plain": true,
+          "asan_ubsan": true
+        }
+      },
+      "schema_ok": true,
+      "separation_ok": true
+    },
+    {
+      "id": "json-708",
+      "repo": "nlohmann/json",
+      "issue_url": "https://github.com/nlohmann/json/issues/707",
+      "issue_title": "broken from_json implementation for pair and tuple",
+      "base_commit": "e45eaf6e3085fd5e51907cff1b93d747620ffc00",
+      "bug_class": "behavioral",
+      "fix_files": 1,
+      "fix_lines": 8,
+      "dev_tests": 0,
+      "builds": {
+        "buggy": {
+          "plain": true,
+          "asan_ubsan": true
+        },
+        "fixed": {
+          "plain": true,
+          "asan_ubsan": true
+        }
+      },
+      "schema_ok": true,
+      "separation_ok": true
+    },
+    {
+      "id": "json-807",
+      "repo": "nlohmann/json",
+      "issue_url": "https://github.com/nlohmann/json/issues/805",
+      "issue_title": "{} uses copy constructor, while = does not",
+      "base_commit": "8e067c0c3c8739912e24035e9656df9aa973bb9d",
+      "bug_class": "behavioral",
+      "fix_files": 1,
+      "fix_lines": 2,
+      "dev_tests": 0,
+      "builds": {
+        "buggy": {
+          "plain": true,
+          "asan_ubsan": true
+        },
+        "fixed": {
+          "plain": true,
+          "asan_ubsan": true
+        }
+      },
+      "schema_ok": true,
+      "separation_ok": true
+    }
+  ]
+}

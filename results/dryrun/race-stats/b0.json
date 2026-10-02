@@ -1,0 +1,528 @@
+{
+  "schema": "proofsmith.verdict/1",
+  "instance_id": "race-stats",
+  "system": "b0",
+  "track": "micro",
+  "bundle_status": "submitted",
+  "build_ok_buggy": true,
+  "build_ok_fixed": true,
+  "buggy_fails": 20,
+  "fixed_fails": 0,
+  "n": 20,
+  "f2p": true,
+  "alignment": {
+    "strict": true,
+    "relaxed": true,
+    "unknown": false,
+    "hits": [
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:5 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:5 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      },
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)"
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "via": "frame",
+        "evidence": "metrics.cpp:16 WorkerPool::serve(Stats&, int, int)::$_0::operator()() const"
+      }
+    ],
+    "changed": [
+      {
+        "function": "record",
+        "file": "metrics.cpp",
+        "start": 3,
+        "end": 6
+      },
+      {
+        "function": "requests",
+        "file": "metrics.cpp",
+        "start": 8,
+        "end": 8
+      },
+      {
+        "function": "serve",
+        "file": "metrics.cpp",
+        "start": 10,
+        "end": 23
+      }
+    ]
+  },
+  "oracle": null,
+  "evidence_kinds": {
+    "tsan:data-race": 20
+  },
+  "cost_usd": 0.022027544,
+  "wall_s": 60.31812244899993,
+  "error": null,
+  "trajectory": "runs/race-stats-b0-94811e2a/trajectory.jsonl"
+}

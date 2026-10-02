@@ -28,7 +28,7 @@
   <tbody>
     {% for row in rows %}
     <tr data-testid="trackb-row" data-instance="{{ row.id }}">
-      <td data-label="Instance"><span data-testid="instance-id">{{ row.id }}</span></td>
+      <td data-label="Instance"><span data-testid="instance-id">{{ row.id }}</span>{% if row.excluded %} <span class="pill-warn" data-testid="excluded">excluded</span>{% endif %}</td>
       <td data-label="Repo"><span data-testid="repo">{{ row.repo | replace("/", "/​") }}</span></td>
       <td data-label="Issue"><a data-testid="issue-link" href="{{ row.issue_url }}">link</a></td>
       <td data-label="Rewritten"><span data-testid="rewritten" data-source="{{ row.base }}/rewritten">{{ row.rewritten | fmt }}</span></td>

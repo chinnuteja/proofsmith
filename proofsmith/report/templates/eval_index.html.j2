@@ -1,0 +1,26 @@
+{% extends "base.html.j2" %}
+{% block title %}Proofsmith dry run{% endblock %}
+{% block body %}
+<h1>Dry run</h1>
+<p class="lede">Plumbing results for the six demo instances. These numbers are not the evaluation.</p>
+<table class="trackb" data-testid="eval-grid">
+  <thead>
+    <tr>
+      <th>Instance</th>
+      <th>B0</th>
+      <th>B1</th>
+      <th>Proofsmith</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in rows %}
+    <tr>
+      <td data-label="Instance"><a href="/eval/dryrun/{{ row.id }}/">{{ row.id }}</a></td>
+      {% for cell in row.cells %}
+      <td data-label="{{ cell.label }}"><span class="{{ cell.pill }}" data-testid="f2p-pill" data-source="{{ cell.source }}">{{ cell.f2p | fmt }}</span></td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

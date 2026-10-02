@@ -1,0 +1,36 @@
+{% extends "base.html.j2" %}
+{% block title %}Proofsmith Track A{% endblock %}
+{% block body %}
+<h1>Track A</h1>
+<p class="lede">Multi-SWE-bench C++ instances built locally with clang. No Docker. The fix patch stays in the hidden files.</p>
+<ul class="summary-strip">
+  <li>instances <span data-testid="instance-total" data-source="results/trackA_check.json#/total">{{ total | fmt }}</span></li>
+  <li>source <span data-testid="source-url" data-source="results/trackA_check.json#/source_url">{{ source_url | fmt }}</span></li>
+  <li>revision <span data-testid="source-revision" data-source="results/trackA_check.json#/source_revision">{{ source_revision | fmt }}</span></li>
+</ul>
+<table class="trackb" data-testid="tracka-table">
+  <thead>
+    <tr>
+      <th>Instance</th>
+      <th>Repo</th>
+      <th>Issue</th>
+      <th>b plain</th>
+      <th>b asan</th>
+      <th>f plain</th>
+      <th>f asan</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in rows %}
+    <tr data-testid="tracka-row" data-instance="{{ row.id }}">
+      <td data-label="Instance"><span data-testid="instance-id">{{ row.id }}</span></td>
+      <td data-label="Repo"><span data-testid="repo">{{ row.repo | replace("/", "/​") }}</span></td>
+      <td data-label="Issue">{% if row.issue_url %}<a data-testid="issue-link" href="{{ row.issue_url }}">link</a>{% else %}<span>none</span>{% endif %}</td>
+      {% for cell in row.builds %}
+      <td data-label="{{ cell.side }} {{ cell.variant }}"><span class="{{ cell.pill }}" data-testid="build-{{ cell.side }}-{{ cell.variant }}" data-source="{{ cell.source }}">{{ cell.ok | fmt }}</span></td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

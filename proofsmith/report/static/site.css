@@ -388,6 +388,8 @@ table.runs td {
   border: 1px solid var(--line);
   border-radius: 999px;
   padding: 4px 12px;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 
 table.trackb {
@@ -444,5 +446,48 @@ table.trackb td:nth-child(10) { width: 6%; }
   table.trackb td:nth-child(n) {
     display: block;
     width: 100%;
+  }
+}
+
+.eval-columns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0 0 20px;
+}
+
+.eval-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  min-width: 0;
+}
+
+.eval-card h2 {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+}
+
+.eval-card p {
+  margin: 0 0 8px;
+  overflow-wrap: anywhere;
+}
+
+.alignment-panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  min-width: 0;
+}
+
+.alignment-panel li {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 800px) {
+  .eval-columns {
+    grid-template-columns: 1fr;
   }
 }

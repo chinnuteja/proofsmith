@@ -1,0 +1,34 @@
+{
+  "abstain_reason": "budget exhausted",
+  "buggy_tree_sha256": "2ddb72e3844a29586591fbb181bca5fa24c280be0afeed42006d2c476f589faa",
+  "cost_usd": 0.257478408,
+  "created_at": "2026-10-02T13:02:15Z",
+  "files": {},
+  "flags": {
+    "cxxflags": "",
+    "env": {},
+    "ldflags": ""
+  },
+  "instance_id": "orderd-deadlock",
+  "model": "deepseek-v4-pro",
+  "oracle": null,
+  "runtime": {
+    "fails": 0,
+    "k": 0,
+    "n": 0,
+    "signatures": {}
+  },
+  "schema": "proofsmith.verifier/1",
+  "signature": null,
+  "status": "gave_up",
+  "system": "b0",
+  "trajectory": "runs/orderd-deadlock-b0-41182983/trajectory.jsonl",
+  "usage": {
+    "cache_hit_tokens": 421632,
+    "completion_tokens": 50542,
+    "prompt_tokens": 451011,
+    "reasoning_tokens": 46503
+  },
+  "variant": null,
+  "wall_s": 707.815046316
+}

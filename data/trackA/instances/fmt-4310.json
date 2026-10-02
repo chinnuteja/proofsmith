@@ -1,0 +1,31 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "fmt-4310",
+  "track": "A",
+  "source": {
+    "kind": "git",
+    "url": "https://github.com/fmtlib/fmt",
+    "commit": "01914f0389ef6ff151c289670f6910e059d5063f"
+  },
+  "issue": {
+    "title": "Can't access context args() directly in 11.1.0",
+    "body": "I have a use case where my custom formatter needs to format to a buffer and then remove either the front or the back of the buffer.\n\nExample on 11.0.0 where this works: https://godbolt.org/z/96KeTG9bG\n\nIn order to do this, I create a new `format_context` using the original context's `args()` and `locale()` in the `format` function, but with a temporary append buffer. I then can output just a chunk of the buffer.\n\nWith 11.1.0 there was some code cleanup in 1416edabbb0f9b91053555d80015e6857f6dc433 that removed the accessor for `args_` which breaks my use case. In order for my code to work I either need:\n- An accessor to `args_` and `locale_` (`locale()` is still available)\n- A method to replace `out_`\n- A constructor to make a new context from a `const context&` and a new `appender`\n\nSample found on godbolt:\n```c++\n#include <fmt/core.h>\n#include <string_view>\n\ntemplate<class T>\nclass truncator\n{\n    const T& t;\n    int c;\n  public:\n    constexpr truncator(const T& data_, const int count_) noexcept\n        : t{data_}, c{count_}\n    {}\n\n    constexpr const T& data() const noexcept { return t; }\n    constexpr int count() const noexcept { return c; }\n};\n\ntemplate<class T>\nconstexpr truncator<T> trunc(const T& data, int count) noexcept\n{\n    return {data, count};\n}\n\nnamespace fmt\n{\ntemplate<typename T, typename Char>\nstruct formatter<truncator<T>, Char> : public formatter<T, Char>\n{\n  public:\n    template<typename FormatContext>\n    auto format(const truncator<T>& v, FormatContext& ctx) const\n    {\n        basic_memory_buffer<Char> buffer;\n        format_context ctx2(appender{buffer}, ctx.args(), ctx.locale());\n        formatter<T, Char>::format(v.data(), ctx2);\n\t\tauto beg = buffer.begin();\n\t\tauto end = buffer.end();\n        const auto size = std::distance(beg, end);\n        const auto abs_count = v.count() < 0 ? -v.count() : v.count();\n        if(v.count() != 0 && size > abs_count) {\n            const auto size_remove = size - abs_count;\n\t\t\tif(v.count() > 0) {\n\t\t\t\tbeg = std::next(beg, size_remove);\n\t\t\t} else {\n\t\t\t\tend = std::prev(end, size_remove);\n\t\t\t}\n        }\n        ctx.advance_to(std::copy(beg, end, ctx.out()));\n\t\treturn ctx.out();\n    }\n};\n}\n\nint main() {\n  fmt::print(\">{0}<\\n\", trunc(1234, -2));\n  fmt::print(\">{0}<\\n\", trunc(1234, 2));\n}\n```",
+    "url": "https://github.com/fmtlib/fmt/issues/4307",
+    "rewritten": false,
+    "mentions_fix": false
+  },
+  "build": {
+    "system": "cmake",
+    "cmake_args": [
+      "-DFMT_DOC=OFF",
+      "-DFMT_TEST=OFF",
+      "-DFMT_INSTALL=OFF",
+      "-DFMT_FUZZ=OFF",
+      "-DFMT_MODULE=OFF"
+    ],
+    "targets": [],
+    "jobs": 4,
+    "custom_script": null,
+    "test_command": null
+  }
+}

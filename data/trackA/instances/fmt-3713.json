@@ -1,0 +1,31 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "fmt-3713",
+  "track": "A",
+  "source": {
+    "kind": "git",
+    "url": "https://github.com/fmtlib/fmt",
+    "commit": "649fe0fc8b9366375eab67639cab404617c527cd"
+  },
+  "issue": {
+    "title": "formatting a std::optional with format_as function fails to compile using clang",
+    "body": "clang reports compiler error for code that formats a variable of type std::optional<T>, where T is an enum with a `format_as` custom formatter. The same code compiles fine with gcc or msvc.\n[gobolt example](https://godbolt.org/z/h6jE463jP)\n\nThe compiler error is due to the optional formatter (in fmt/std.h) calling `u.set_debug_format(set);` on line 170, and this function being private due to private inheritance (fmt/format.h - line 4055.\n\nAdding the following line to fmt/format line 4058 solves the problem:   ` using base::set_debug_format;`. Alternatively, changing from private to public inheritance on line 4055 fixes it too.",
+    "url": "https://github.com/fmtlib/fmt/issues/3712",
+    "rewritten": false,
+    "mentions_fix": true
+  },
+  "build": {
+    "system": "cmake",
+    "cmake_args": [
+      "-DFMT_DOC=OFF",
+      "-DFMT_TEST=OFF",
+      "-DFMT_INSTALL=OFF",
+      "-DFMT_FUZZ=OFF",
+      "-DFMT_MODULE=OFF"
+    ],
+    "targets": [],
+    "jobs": 4,
+    "custom_script": null,
+    "test_command": null
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "fmt-4057",
+  "track": "A",
+  "source": {
+    "kind": "git",
+    "url": "https://github.com/fmtlib/fmt",
+    "commit": "ccea338070c795fd966a4dc08b19268b6fbad5ef"
+  },
+  "issue": {
+    "title": "trunk doesn't work with `std::generator`",
+    "body": "```cpp\n#include <fmt/ranges.h>\n#include <sstream>\n#include <generator>\n\nstd::generator<std::string&> istream_gen() {\n  auto words = std::istringstream{\"today is yesterday's tomorrow\"};\n  std::string word;\n  while (words >> word)\n    co_yield word;\n}\n\nint main() {\n  fmt::print(\"{}\\n\", istream_gen());\n}\n```\n\nhttps://godbolt.org/z/s7sGrGvzd",
+    "url": "https://github.com/fmtlib/fmt/issues/4053",
+    "rewritten": false,
+    "mentions_fix": true
+  },
+  "build": {
+    "system": "cmake",
+    "cmake_args": [
+      "-DFMT_DOC=OFF",
+      "-DFMT_TEST=OFF",
+      "-DFMT_INSTALL=OFF",
+      "-DFMT_FUZZ=OFF",
+      "-DFMT_MODULE=OFF"
+    ],
+    "targets": [],
+    "jobs": 4,
+    "custom_script": null,
+    "test_command": null
+  }
+}

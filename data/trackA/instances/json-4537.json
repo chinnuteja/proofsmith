@@ -1,0 +1,25 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "json-4537",
+  "track": "A",
+  "source": {
+    "kind": "git",
+    "url": "https://github.com/nlohmann/json",
+    "commit": "e6cafa573aac6ed9227f752a5371c0b3f436307d"
+  },
+  "issue": {
+    "title": "JSON_DIAGNOSTICS trigger assertion",
+    "body": "### Description\n\nHi,\n\nI have activated the JSON_DIAGNOSTICS=1 globally in my project and ASSERTION are now fired at runtime.\nI tested it on with 3.10.5 and then with latest release 3.11.2.\n\nI have done a minimal example to reproduce the assertion (see minimal code example below)\n\nIs there something wrong with my code?\n\n### Reproduction steps\n\nRun the minimal code example below\n\n### Expected vs. actual results\n\nNo ASSERTION should be triggered since without the JSON_DIAGNOSTICS enabled, all seem to work without any memory issues\n\n### Minimal code example\n\n```Shell\njson j = json::object();\nj[\"root\"] = \"root_str\";\n\njson jj = json::object();\njj[\"child\"] = json::object();\n\n// If do not push anything in object, then no assert will be produced\njj[\"child\"][\"prop1\"] = \"prop1_value\";\n\n// Push all properties of child in parent\nj.insert(jj.at(\"child\").begin(), jj.at(\"child\").end());\n\n// Here assert is generated when construct new json \njson k(j);\n```\n\n\n### Error messages\n\n```Shell\nnlohmann/json.hpp:19864: void nlohmann::json_abi_diag_v3_11_2::basic_json<std::map, std::vector, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, long, unsigned long, double, std::allocator, adl_serializer, std::vector<unsigned char, std::allocator<unsigned char> > >::assert_invariant(bool) const [ObjectType = std::map, ArrayType = std::vector, StringType = std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, BooleanType = bool, NumberIntegerType = long, NumberUnsignedType = unsigned long, NumberFloatType = double, AllocatorType = std::allocator, JSONSerializer = adl_serializer, BinaryType = std::vector<unsigned char, std::allocator<unsigned char> >]: Assertion `!check_parents || !is_structured() || std::all_of(begin(), end(), [this](const basic_json & j) { return j.m_parent == this; })' failed.\n```\n\n\n### Compiler and operating system\n\nClang-10 on Ubuntu 20.04 \n\n### Library version\n\n3.11.2\n\n### Validation\n\n- [ ] The bug also occurs if the latest version from the [`develop`](https://github.com/nlohmann/json/tree/develop) branch is used.\n- [ ] I can successfully [compile and run the unit tests](https://github.com/nlohmann/json#execute-unit-tests).",
+    "url": "https://github.com/nlohmann/json/issues/3915",
+    "rewritten": false,
+    "mentions_fix": true
+  },
+  "build": {
+    "system": "custom",
+    "cmake_args": [],
+    "targets": [],
+    "jobs": 4,
+    "custom_script": "scripts/tracka_header_build.sh",
+    "test_command": null
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "Catch2-2288",
+  "track": "A",
+  "source": {
+    "kind": "git",
+    "url": "https://github.com/catchorg/Catch2",
+    "commit": "85c9544fa4c9625b9656d9bd765e54f8e639287f"
+  },
+  "issue": {
+    "title": "Approx::operator() not const-correct",
+    "body": "**Describe the bug**\n\nThe `Approx` type has an overload of `template <typename T, ...SFINAE...> Approx operator()(T const&)` which (correct me if I'm wrong) is meant to be a factory function for instances that have the same epsilon, margin, and scale, but that use the passed value. \n\nAFAICT this should be const on the instance, but it's not.\n\nMinimum failing example:\n```C++\n#include <catch2/catch.hpp>\n\nTEST_CASE(\"Approx factory is const-correct\") {\n  // Set up a template Approx with problem-specific margin, etc.\n  Approx const apprx = Approx(0.0).margin(1e-6);\n  double value = 1.0;\n  // Use template in assertions\n  REQUIRE(value == apprx(1.0));\n}\n```\n\n**Expected behavior**\nAbove test compiles, runs and passes.\n\n**Reproduction steps**\nSee above.\n\n**Platform information:**\n - OS: RHEL 8\n - Compiler+version: GCC 8.2.0\n - Catch version: 2.13.6\n\n\n**Additional context**\nAdd any other context about the problem here.",
+    "url": "https://github.com/catchorg/Catch2/issues/2273",
+    "rewritten": false,
+    "mentions_fix": false
+  },
+  "build": {
+    "system": "custom",
+    "cmake_args": [],
+    "targets": [],
+    "jobs": 4,
+    "custom_script": "scripts/tracka_header_build.sh",
+    "test_command": null
+  }
+}

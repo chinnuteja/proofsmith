@@ -1,0 +1,14 @@
+{
+  "schema": "proofsmith.hidden/1",
+  "id": "fmt-4057",
+  "fixed": {
+    "kind": "patch",
+    "path": "data/trackA/hidden/fmt-4057.fix.diff"
+  },
+  "bug_class": "behavioral",
+  "fix_files": [
+    "include/fmt/ranges.h"
+  ],
+  "dev_tests": [],
+  "notes": "Multi-SWE-bench fmtlib__fmt-4057 at dataset revision 56ff018c04a38e27ada1e9d0a6d5839a51f88f0d."
+}

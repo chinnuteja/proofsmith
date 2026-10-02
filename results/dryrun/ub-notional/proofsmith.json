@@ -1,0 +1,156 @@
+{
+  "schema": "proofsmith.verdict/1",
+  "instance_id": "ub-notional",
+  "system": "proofsmith",
+  "track": "micro",
+  "bundle_status": "accepted",
+  "build_ok_buggy": true,
+  "build_ok_fixed": true,
+  "buggy_fails": 20,
+  "fixed_fails": 0,
+  "n": 20,
+  "f2p": true,
+  "alignment": {
+    "strict": true,
+    "relaxed": true,
+    "unknown": false,
+    "hits": [
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      }
+    ],
+    "changed": [
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "start": 3,
+        "end": 3
+      }
+    ]
+  },
+  "oracle": "asan_ubsan",
+  "evidence_kinds": {
+    "ubsan:signed-integer-overflow": 20
+  },
+  "cost_usd": 0.033169664,
+  "wall_s": 210.86411587399994,
+  "error": null,
+  "trajectory": "runs/ub-notional-asan_ubsan-d9b7d9de/trajectory.jsonl"
+}

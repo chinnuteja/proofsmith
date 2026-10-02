@@ -1,0 +1,31 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "fmt-3569",
+  "track": "A",
+  "source": {
+    "kind": "git",
+    "url": "https://github.com/fmtlib/fmt",
+    "commit": "8a4bec5cf53387356738a06ba0cf4fdf086241ae"
+  },
+  "issue": {
+    "title": "Formatting element of std::vector<bool> fails",
+    "body": "Hi, the following code does not compile : \n\n```\n#include <vector>\n#include <fmt/core.h>\n\nint main()\n{\n    std::vector<bool> myVector = {false};\n    \n    fmt::print(\"{}\", myVector[0]);\n}\n```\n\nThis is because std::vector bool as a specialisation where the elements are made [space efficient](https://en.cppreference.com/w/cpp/container/vector_bool).\n\nIs there something already in place that allows me to format the value or do I need to cast the element when calling fmt::print()?\n\nhttps://godbolt.org/z/91P18xKxK",
+    "url": "https://github.com/fmtlib/fmt/issues/3567",
+    "rewritten": false,
+    "mentions_fix": false
+  },
+  "build": {
+    "system": "cmake",
+    "cmake_args": [
+      "-DFMT_DOC=OFF",
+      "-DFMT_TEST=OFF",
+      "-DFMT_INSTALL=OFF",
+      "-DFMT_FUZZ=OFF",
+      "-DFMT_MODULE=OFF"
+    ],
+    "targets": [],
+    "jobs": 4,
+    "custom_script": null,
+    "test_command": null
+  }
+}

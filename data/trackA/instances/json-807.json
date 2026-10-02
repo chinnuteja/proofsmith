@@ -1,0 +1,25 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "json-807",
+  "track": "A",
+  "source": {
+    "kind": "git",
+    "url": "https://github.com/nlohmann/json",
+    "commit": "8e067c0c3c8739912e24035e9656df9aa973bb9d"
+  },
+  "issue": {
+    "title": "{} uses copy constructor, while = does not",
+    "body": "Just a little annoyance I encountered while writing to_json functions for a large number of in house classes.  Ideally I'd like it if the {} operator behaved the same as the = operator.\n\nGiven the following code:\n```cpp\nusing json = nlohmann::json;\n\nclass A {\nprivate:\n\tstd::string          _val;\n\n\t// by including the mutex we've implicitly deleted our copy constructor \n\tstd::recursive_mutex _mutex;\n\npublic:\n\tA() : _val(\"Hello World\") {};\n\n\tfriend void to_json(json &j, const A &a) {\n\t\tj = {\n\t\t\t{\"val\", a._val}\n\t\t};\n\t}\n};\n\n\n\nint main(int argc, char* argv[]) {\n\n\tjson j = {};\n\tA a;\n\n        // This line compiles and runs completely fine.\n        j[\"data\"][\"A\"] =  a;\n\n        //this line will fail to compile, due to the implicitly deleted A::A(const A&)\n\tj[\"data\"] = {{\"A\", a}};\n\t\n        std::cout << j.dump() << std::endl;\n\treturn 0;\n}\n```",
+    "url": "https://github.com/nlohmann/json/issues/805",
+    "rewritten": false,
+    "mentions_fix": false
+  },
+  "build": {
+    "system": "custom",
+    "cmake_args": [],
+    "targets": [],
+    "jobs": 4,
+    "custom_script": "scripts/tracka_header_build.sh",
+    "test_command": null
+  }
+}

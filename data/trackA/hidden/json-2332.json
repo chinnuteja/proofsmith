@@ -1,0 +1,15 @@
+{
+  "schema": "proofsmith.hidden/1",
+  "id": "json-2332",
+  "fixed": {
+    "kind": "patch",
+    "path": "data/trackA/hidden/json-2332.fix.diff"
+  },
+  "bug_class": "behavioral",
+  "fix_files": [
+    "include/nlohmann/detail/input/lexer.hpp",
+    "single_include/nlohmann/json.hpp"
+  ],
+  "dev_tests": [],
+  "notes": "Multi-SWE-bench nlohmann__json-2332 at dataset revision 56ff018c04a38e27ada1e9d0a6d5839a51f88f0d."
+}
