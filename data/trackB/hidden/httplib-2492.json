@@ -1,0 +1,16 @@
+{
+  "schema": "proofsmith.hidden/1",
+  "id": "httplib-2492",
+  "fixed": {
+    "kind": "git",
+    "commit": "873d7019723cb91efdd8b89687222ec3029655c0"
+  },
+  "bug_class": "lifetime",
+  "fix_files": [
+    "httplib.h"
+  ],
+  "dev_tests": [
+    "test/test.cc"
+  ],
+  "notes": "Issue 2492 includes a suggested destructor order. This build turns TLS backends off because OpenSSL and mbedTLS headers are not installed, so the changed destructor is not compiled."
+}

@@ -380,11 +380,55 @@ check_b3_4.check_id = "B3.4"  # type: ignore[attr-defined]
 CHECKS[3] = [check_b3_1, check_b3_2, check_b3_3, check_b3_4]
 
 
+def check_b4_1(page: Page) -> None:
+    page.goto(BASE_URL + "trackb/", wait_until="load")
+    page.wait_for_selector("[data-testid=trackb-table]")
+    rows = page.locator("[data-testid=trackb-row]")
+    assert rows.count() >= 1, "no trackb rows"
+    for index in range(rows.count()):
+        row = rows.nth(index)
+        assert row.locator("[data-testid=instance-id]").inner_text().strip()
+        assert row.locator("[data-testid=repo]").inner_text().strip()
+        href = row.locator("[data-testid=issue-link]").get_attribute("href") or ""
+        assert href.startswith("https://github.com/"), href
+        assert row.locator("[data-testid=rewritten]").count() == 1
+        assert row.locator("[data-testid=mentions-fix]").count() == 1
+        assert row.locator("[data-testid=fix-size]").count() == 1
+        assert row.locator(".pill-pass").count() == 4, row.locator(".pill-pass").count()
+    assert_data_sources(page)
+
+
+def check_b4_2(page: Page) -> None:
+    page.goto(BASE_URL + "trackb/", wait_until="load")
+    for name in ("deadlock", "race", "lifetime", "ub"):
+        el = page.locator(f"[data-testid=class-{name}]")
+        assert el.count() == 1, name
+        source = el.get_attribute("data-source")
+        assert source == f"results/trackB_check.json#/counts/{name}", source
+    assert_data_sources(page)
+
+
+def check_b4_3(page: Page) -> None:
+    page.goto(BASE_URL + "trackb/", wait_until="load")
+    rows = page.locator("[data-testid=trackb-row]").count()
+    files = list((REPO / "data" / "trackB" / "instances").glob("*.json"))
+    assert rows == len(files), f"rows={rows} files={len(files)}"
+    assert_data_sources(page)
+
+
+check_b4_1.check_id = "B4.1"  # type: ignore[attr-defined]
+check_b4_2.check_id = "B4.2"  # type: ignore[attr-defined]
+check_b4_3.check_id = "B4.3"  # type: ignore[attr-defined]
+
+CHECKS[4] = [check_b4_1, check_b4_2, check_b4_3]
+
+
 _START = {
     0: (BASE_URL, "[data-testid=toolchain-table]", "index"),
     1: (BASE_URL + "demo/", "[data-testid=matrix]", "demo"),
     2: (RUNS_URL, "[data-testid=runs-table]", "runs"),
     3: (BASE_URL + "verifiers/", "[data-testid=verifier-index]", "verifiers"),
+    4: (BASE_URL + "trackb/", "[data-testid=trackb-table]", "trackb"),
 }
 
 

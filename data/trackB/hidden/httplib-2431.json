@@ -1,0 +1,14 @@
+{
+  "schema": "proofsmith.hidden/1",
+  "id": "httplib-2431",
+  "fixed": {
+    "kind": "git",
+    "commit": "5ebbfeef0bf8e26b41036a2033fd391e05d5639f"
+  },
+  "bug_class": "lifetime",
+  "fix_files": [
+    "httplib.h"
+  ],
+  "dev_tests": [],
+  "notes": "Issue 2431 names httplib.h and includes a suggested repair, so mentions_fix is set. The accepted commit is the one that drops the buggy path."
+}

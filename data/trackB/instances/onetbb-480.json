@@ -1,0 +1,30 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "onetbb-480",
+  "track": "B",
+  "source": {
+    "kind": "git",
+    "url": "https://github.com/uxlfoundation/oneTBB",
+    "commit": "a3151ce8acf61c230dfaef6e0ebcf664401faf30"
+  },
+  "issue": {
+    "title": "ThreadSanitizer reports a race during allocator startup",
+    "body": "Under ThreadSanitizer, the first allocations from several threads at once report a data race while the allocator is still finishing its one-time setup.",
+    "url": "https://github.com/uxlfoundation/oneTBB/pull/480",
+    "rewritten": true,
+    "mentions_fix": true
+  },
+  "build": {
+    "system": "cmake",
+    "cmake_args": [
+      "-DTBB_TEST=OFF",
+      "-DTBB_EXAMPLES=OFF",
+      "-DTBB_STRICT=OFF",
+      "-DTBB_ENABLE_IPO=OFF",
+      "-DTBB4PY_BUILD=OFF"
+    ],
+    "targets": [],
+    "jobs": 4,
+    "test_command": null
+  }
+}

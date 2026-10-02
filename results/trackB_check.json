@@ -1,0 +1,302 @@
+{
+  "schema": "proofsmith.trackb_check/1",
+  "total": 12,
+  "counts": {
+    "deadlock": 2,
+    "race": 4,
+    "lifetime": 6,
+    "ub": 0
+  },
+  "concurrency": 6,
+  "mentions_fix": 9,
+  "instances": [
+    {
+      "id": "concurrentqueue-288",
+      "repo": "cameron314/concurrentqueue",
+      "issue_url": "https://github.com/cameron314/concurrentqueue/issues/288",
+      "issue_title": "Endless loop in ImplicitProducer* get_or_add_implicit_producer()",
+      "rewritten": false,
+      "mentions_fix": false,
+      "fix_files": 1,
+      "fix_lines": 28,
+      "bug_class": "lifetime",
+      "builds": {
+        "buggy": {
+          "asan_ubsan": true,
+          "tsan": true
+        },
+        "fixed": {
+          "asan_ubsan": true,
+          "tsan": true
+        }
+      },
+      "schema_ok": true,
+      "issue_ok": true,
+      "separation_ok": true
+    },
+    {
+      "id": "httplib-2232",
+      "repo": "yhirose/cpp-httplib",
+      "issue_url": "https://github.com/yhirose/cpp-httplib/pull/2232",
+      "issue_title": "A timed-out DNS lookup can crash the client",
+      "rewritten": true,
+      "mentions_fix": true,
+      "fix_files": 1,
+      "fix_lines": 56,
+      "bug_class": "lifetime",
+      "builds": {
+        "buggy": {
+          "asan_ubsan": true,
+          "tsan": true
+        },
+        "fixed": {
+          "asan_ubsan": true,
+          "tsan": true
+        }
+      },
+      "schema_ok": true,
+      "issue_ok": true,
+      "separation_ok": true
+    },
+    {
+      "id": "httplib-2431",
+      "repo": "yhirose/cpp-httplib",
+      "issue_url": "https://github.com/yhirose/cpp-httplib/issues/2431",
+      "issue_title": "Bug: `getaddrinfo_with_timeout` use-after-free on Linux (getaddrinfo_a path)",
+      "rewritten": false,
+      "mentions_fix": true,
+      "fix_files": 1,
+      "fix_lines": 61,
+      "bug_class": "lifetime",
+      "builds": {
+        "buggy": {
+          "asan_ubsan": true,
+          "tsan": true
+        },
+        "fixed": {
+          "asan_ubsan": true,
+          "tsan": true
+        }
+      },
+      "schema_ok": true,
+      "issue_ok": true,
+      "separation_ok": true
+    },
+    {
+      "id": "httplib-2492",
+      "repo": "yhirose/cpp-httplib",
+      "issue_url": "https://github.com/yhirose/cpp-httplib/issues/2492",
+      "issue_title": "Use after free with mbedTLS",
+      "rewritten": false,
+      "mentions_fix": true,
+      "fix_files": 1,
+      "fix_lines": 9,
+      "bug_class": "lifetime",
+      "builds": {
+        "buggy": {
+          "asan_ubsan": true,
+          "tsan": true
+        },
+        "fixed": {
+          "asan_ubsan": true,
+          "tsan": true
+        }
+      },
+      "schema_ok": true,
+      "issue_ok": true,
+      "separation_ok": true
+    },
+    {
+      "id": "libuv-2226",
+      "repo": "libuv/libuv",
+      "issue_url": "https://github.com/libuv/libuv/issues/2226",
+      "issue_title": "Threading bug - race condition in uv_async_send",
+      "rewritten": false,
+      "mentions_fix": false,
+      "fix_files": 1,
+      "fix_lines": 37,
+      "bug_class": "race",
+      "builds": {
+        "buggy": {
+          "asan_ubsan": true,
+          "tsan": true
+        },
+        "fixed": {
+          "asan_ubsan": true,
+          "tsan": true
+        }
+      },
+      "schema_ok": true,
+      "issue_ok": true,
+      "separation_ok": true
+    },
+    {
+      "id": "libuv-4321",
+      "repo": "libuv/libuv",
+      "issue_url": "https://github.com/libuv/libuv/pull/4321",
+      "issue_title": "Closing a UDP handle from its receive callback crashes",
+      "rewritten": true,
+      "mentions_fix": true,
+      "fix_files": 1,
+      "fix_lines": 2,
+      "bug_class": "lifetime",
+      "builds": {
+        "buggy": {
+          "asan_ubsan": true,
+          "tsan": true
+        },
+        "fixed": {
+          "asan_ubsan": true,
+          "tsan": true
+        }
+      },
+      "schema_ok": true,
+      "issue_ok": true,
+      "separation_ok": true
+    },
+    {
+      "id": "libuv-4980",
+      "repo": "libuv/libuv",
+      "issue_url": "https://github.com/libuv/libuv/pull/4980",
+      "issue_title": "A failed uv_spawn is followed by a crash in uv_walk",
+      "rewritten": true,
+      "mentions_fix": true,
+      "fix_files": 1,
+      "fix_lines": 1,
+      "bug_class": "lifetime",
+      "builds": {
+        "buggy": {
+          "asan_ubsan": true,
+          "tsan": true
+        },
+        "fixed": {
+          "asan_ubsan": true,
+          "tsan": true
+        }
+      },
+      "schema_ok": true,
+      "issue_ok": true,
+      "separation_ok": true
+    },
+    {
+      "id": "libuv-5058",
+      "repo": "libuv/libuv",
+      "issue_url": "https://github.com/libuv/libuv/pull/5058",
+      "issue_title": "Data race when uv_async_send runs during uv_loop_close",
+      "rewritten": true,
+      "mentions_fix": true,
+      "fix_files": 1,
+      "fix_lines": 48,
+      "bug_class": "race",
+      "builds": {
+        "buggy": {
+          "asan_ubsan": true,
+          "tsan": true
+        },
+        "fixed": {
+          "asan_ubsan": true,
+          "tsan": true
+        }
+      },
+      "schema_ok": true,
+      "issue_ok": true,
+      "separation_ok": true
+    },
+    {
+      "id": "onetbb-1117",
+      "repo": "uxlfoundation/oneTBB",
+      "issue_url": "https://github.com/uxlfoundation/oneTBB/pull/1117",
+      "issue_title": "Printing malloc block statistics can hang",
+      "rewritten": true,
+      "mentions_fix": true,
+      "fix_files": 1,
+      "fix_lines": 1,
+      "bug_class": "deadlock",
+      "builds": {
+        "buggy": {
+          "asan_ubsan": true,
+          "tsan": true
+        },
+        "fixed": {
+          "asan_ubsan": true,
+          "tsan": true
+        }
+      },
+      "schema_ok": true,
+      "issue_ok": true,
+      "separation_ok": true
+    },
+    {
+      "id": "onetbb-480",
+      "repo": "uxlfoundation/oneTBB",
+      "issue_url": "https://github.com/uxlfoundation/oneTBB/pull/480",
+      "issue_title": "ThreadSanitizer reports a race during allocator startup",
+      "rewritten": true,
+      "mentions_fix": true,
+      "fix_files": 1,
+      "fix_lines": 36,
+      "bug_class": "race",
+      "builds": {
+        "buggy": {
+          "asan_ubsan": true,
+          "tsan": true
+        },
+        "fixed": {
+          "asan_ubsan": true,
+          "tsan": true
+        }
+      },
+      "schema_ok": true,
+      "issue_ok": true,
+      "separation_ok": true
+    },
+    {
+      "id": "onetbb-518",
+      "repo": "uxlfoundation/oneTBB",
+      "issue_url": "https://github.com/uxlfoundation/oneTBB/pull/518",
+      "issue_title": "Concurrent realloc through the allocator proxy can crash",
+      "rewritten": true,
+      "mentions_fix": true,
+      "fix_files": 1,
+      "fix_lines": 7,
+      "bug_class": "race",
+      "builds": {
+        "buggy": {
+          "asan_ubsan": true,
+          "tsan": true
+        },
+        "fixed": {
+          "asan_ubsan": true,
+          "tsan": true
+        }
+      },
+      "schema_ok": true,
+      "issue_ok": true,
+      "separation_ok": true
+    },
+    {
+      "id": "spdlog-1570",
+      "repo": "gabime/spdlog",
+      "issue_url": "https://github.com/gabime/spdlog/issues/1570",
+      "issue_title": "daily_file_sink has deadlock bug",
+      "rewritten": false,
+      "mentions_fix": false,
+      "fix_files": 3,
+      "fix_lines": 16,
+      "bug_class": "deadlock",
+      "builds": {
+        "buggy": {
+          "asan_ubsan": true,
+          "tsan": true
+        },
+        "fixed": {
+          "asan_ubsan": true,
+          "tsan": true
+        }
+      },
+      "schema_ok": true,
+      "issue_ok": true,
+      "separation_ok": true
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "libuv-5058",
+  "track": "B",
+  "source": {
+    "kind": "git",
+    "url": "https://github.com/libuv/libuv",
+    "commit": "88d6d362f649a33e88f7f7d47155acc36aed213f"
+  },
+  "issue": {
+    "title": "Data race when uv_async_send runs during uv_loop_close",
+    "body": "Calling uv_async_send from one thread while another thread closes the loop reports a data race under ThreadSanitizer, and can crash. The window is the overlap between the send and loop teardown.",
+    "url": "https://github.com/libuv/libuv/pull/5058",
+    "rewritten": true,
+    "mentions_fix": true
+  },
+  "build": {
+    "system": "cmake",
+    "cmake_args": [
+      "-DBUILD_TESTING=OFF",
+      "-DLIBUV_BUILD_TESTS=OFF",
+      "-DLIBUV_BUILD_BENCH=OFF",
+      "-DLIBUV_BUILD_SHARED=OFF",
+      "-DASAN=OFF",
+      "-DTSAN=OFF",
+      "-DUBSAN=OFF",
+      "-DENABLE_CLANG_TIDY=OFF"
+    ],
+    "targets": [],
+    "jobs": 4,
+    "test_command": null
+  }
+}

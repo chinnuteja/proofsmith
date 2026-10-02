@@ -392,6 +392,50 @@ def _render_runs(env: Environment, git_sha: str, runs: list[dict]) -> None:
         (page / "index.html").write_text(html, encoding="utf-8", newline="\n")
 
 
+def _load_trackb() -> dict | None:
+    path = RESULTS / "trackB_check.json"
+    if not path.is_file():
+        return None
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _render_trackb(env: Environment, git_sha: str, payload: dict | None) -> None:
+    if not payload:
+        return
+    rows = []
+    for index, row in enumerate(payload.get("instances") or []):
+        base = f"results/trackB_check.json#/instances/{index}"
+        builds = []
+        for side in ("buggy", "fixed"):
+            for variant, label in (("asan_ubsan", "asan"), ("tsan", "tsan")):
+                ok = bool(((row.get("builds") or {}).get(side) or {}).get(variant))
+                builds.append(
+                    {
+                        "side": side,
+                        "variant": variant,
+                        "label": f"{side[0]}/{label}",
+                        "ok": ok,
+                        "pill": "pill-pass" if ok else "pill-fail",
+                        "source": f"{base}/builds/{side}/{variant}",
+                    }
+                )
+        rows.append({**row, "builds": builds, "base": base})
+    html = env.get_template("trackb.html.j2").render(
+        git_sha=git_sha,
+        show_demo=_load_demo() is not None,
+        show_runs=bool(_load_run_summaries()),
+        show_verifiers=bool(_load_verifiers()),
+        show_trackb=True,
+        total=payload.get("total", 0),
+        counts=payload.get("counts") or {},
+        mentions_fix=payload.get("mentions_fix", 0),
+        rows=rows,
+    )
+    dest = SITE / "trackb"
+    dest.mkdir(parents=True, exist_ok=True)
+    (dest / "index.html").write_text(html, encoding="utf-8", newline="\n")
+
+
 def build_site() -> None:
     SITE.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(STATIC_DIR / "site.css", SITE / "site.css")
@@ -415,6 +459,8 @@ def build_site() -> None:
         )
     env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
     env.filters["fmt"] = format_number
+    trackb = _load_trackb()
+    env.globals["show_trackb"] = trackb is not None
     sha = git_short_sha()
     runs = _load_run_summaries()
     verifiers = _load_verifiers()
@@ -434,3 +480,4 @@ def build_site() -> None:
     _copy_run_data(runs)
     _render_runs(env, sha, runs)
     _render_verifiers(env, sha, verifiers)
+    _render_trackb(env, sha, trackb)

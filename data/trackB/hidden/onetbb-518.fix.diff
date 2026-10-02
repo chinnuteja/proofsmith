@@ -1,0 +1,54 @@
+diff --git a/src/tbbmalloc/backend.cpp b/src/tbbmalloc/backend.cpp
+index abff1dfb..3a0aef44 100644
+--- a/src/tbbmalloc/backend.cpp
++++ b/src/tbbmalloc/backend.cpp
+@@ -967,9 +967,15 @@ void *Backend::remap(void *ptr, size_t oldSize, size_t newSize, size_t alignment
+         return NULL;
+     regionList.remove(oldRegion);
+ 
++    // The deallocation should be registered in address range before mremap to
++    // prevent a race condition with allocation on another thread.
++    // (OS can reuse the memory and registerAlloc will be missed on another thread)
++    usedAddrRange.registerFree((uintptr_t)oldRegion, (uintptr_t)oldRegion + oldRegionSize);
++
+     void *ret = mremap(oldRegion, oldRegion->allocSz, requestSize, MREMAP_MAYMOVE);
+     if (MAP_FAILED == ret) { // can't remap, revert and leave
+         regionList.add(oldRegion);
++        usedAddrRange.registerAlloc((uintptr_t)oldRegion, (uintptr_t)oldRegion + oldRegionSize);
+         return NULL;
+     }
+     MemRegion *region = (MemRegion*)ret;
+@@ -1001,7 +1007,6 @@ void *Backend::remap(void *ptr, size_t oldSize, size_t newSize, size_t alignment
+     MALLOC_ASSERT((uintptr_t)lmb + lmb->unalignedSize >=
+                   (uintptr_t)object + lmb->objectSize, "An object must fit to the block.");
+ 
+-    usedAddrRange.registerFree((uintptr_t)oldRegion, (uintptr_t)oldRegion + oldRegionSize);
+     usedAddrRange.registerAlloc((uintptr_t)region, (uintptr_t)region + requestSize);
+     totalMemSize.fetch_add(region->allocSz - oldRegionSize);
+ 
+diff --git a/test/tbbmalloc/test_malloc_overload.cpp b/test/tbbmalloc/test_malloc_overload.cpp
+index de88343a..87216bce 100644
+--- a/test/tbbmalloc/test_malloc_overload.cpp
++++ b/test/tbbmalloc/test_malloc_overload.cpp
+@@ -500,4 +500,21 @@ TEST_CASE("Main set of tests") {
+     TestZoneOverload();
+     TestRuntimeRoutines();
+ }
++
++//! Test address range tracker in backend that could be
++//! broken during remap because of incorrect order of
++//! deallocation event and the mremap system call
++//! \brief \ref regression
++TEST_CASE("Address range tracker regression test") {
++    int numThreads = 16;
++    utils::NativeParallelFor(numThreads, [](int) {
++        void *ptr = nullptr;
++        for (int i = 0; i < 1000; ++i) {
++            for (int j = 0; j < 100; ++j) {
++                ptr = realloc(ptr, 1024*1024 + 4096*j);
++            }
++        }
++        free(ptr);
++    });
++}
+ #endif // !HARNESS_SKIP_TEST

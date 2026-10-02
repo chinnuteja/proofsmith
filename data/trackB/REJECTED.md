@@ -1,0 +1,1094 @@
+# Track B rejections
+
+954 candidates were mined. 12 were accepted. 942 were rejected.
+
+## Reason counts
+
+- 298: not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built
+- 265: no non-test source files
+- 137: duplicate cherry-pick of the same commit subject on another branch
+- 17: release commit; the history hit is a version bump, not a bug fix
+- 16: not accepted: libuv already has four instances, the per-repository cap, and this commit was not fetched or built
+- 15: Windows-only change; the Linux sanitizer build does not compile the buggy file
+- 13: no non-test source files; 227 changed lines
+- 12: 6 non-test source files
+- 12: 7 non-test source files
+- 8: no linked issue or pull request
+- 7: platform-specific change that this Linux sanitizer build does not compile
+- 2: no GitHub issue or pull request linked from the commit
+- 2: sync with upstream, not a local bug fix
+- 2: 9 non-test source files; 426 changed lines
+- 2: 292 changed lines
+- 2: 331 changed lines
+- 2: 727 changed lines
+- 2: 10 non-test source files; 448 changed lines
+- 2: 8 non-test source files; 333 changed lines
+- 2: no non-test source files; 228 changed lines
+- 2: 207 changed lines
+- 1: adds comments about MOODYCAMEL_NO_TSAN; not a bug fix
+- 1: adds a ThreadSanitizer suppression macro; not a bug fix
+- 1: 26 non-test source files; 832 changed lines
+- 1: reverts a logger-callback feature; no linked issue describes a lifetime or concurrency bug
+- 1: the linked pull request is about disabling global logger registration, not this deadlock
+- 1: no non-test source files; 254 changed lines
+- 1: no linked issue or pull request in the commit message
+- 1: 201 changed lines
+- 1: the commit message says the ThreadSanitizer warning is a false positive
+- 1: 307 changed lines
+- 1: 266 changed lines
+- 1: 30811 changed lines
+- 1: 362 changed lines
+- 1: 839 changed lines
+- 1: no non-test source files; 214 changed lines
+- 1: unittest race with no linked issue or pull request
+- 1: 7 non-test source files; 247 changed lines
+- 1: 376 changed lines
+- 1: hostname-verification change, not a lifetime, race, deadlock, or undefined-behavior fix, and TLS headers are not installed
+- 1: multipart form ordering change, not a lifetime, race, deadlock, or undefined-behavior fix
+- 1: WebSocket TLS use-after-free; OpenSSL headers are not installed, and the advisory lookup returned 404
+- 1: 374 changed lines
+- 1: restores getaddrinfo_a on a parent that already dropped that path, so the parent does not contain the bug
+- 1: no non-test source files; 409 changed lines
+- 1: 2937 changed lines
+- 1: the issue text contains the fix diff, so the visible instance cannot be separated from the patch
+- 1: 7 non-test source files; 296 changed lines
+- 1: 232 changed lines
+- 1: 205 changed lines
+- 1: works around a kernel io_uring bug; libuv is already at the four-instance cap
+- 1: 428 changed lines
+- 1: 6 non-test source files; 500 changed lines
+- 1: 9 non-test source files
+- 1: 7 non-test source files; 853 changed lines
+- 1: 250 changed lines
+- 1: no non-test source files; 202 changed lines
+- 1: 6 non-test source files; 538 changed lines
+- 1: no non-test source files; 281 changed lines
+- 1: pull request body is an empty template and the diff mixes several sanitizer fixes
+- 1: pull request body is an unfilled template and does not describe the bug
+- 1: tcm.cpp is not part of the CMake build, so the sanitizer build does not compile the buggy file
+- 1: enables ThreadSanitizer on macOS; not a product bug fix
+- 1: no non-test source files; 4913 changed lines
+- 1: 7 non-test source files; 416 changed lines
+- 1: 6 non-test source files; 972 changed lines
+- 1: 9 non-test source files; 3299 changed lines
+- 1: 32 non-test source files; 9685 changed lines
+- 1: 1281 changed lines
+- 1: 21 non-test source files; 2318 changed lines
+- 1: 18 non-test source files; 2213 changed lines
+- 1: 6 non-test source files; 217 changed lines
+- 1: 6 non-test source files; 591 changed lines
+- 1: 179 non-test source files; 63394 changed lines
+- 1: no non-test source files; 252 changed lines
+- 1: 10 non-test source files; 705 changed lines
+- 1: 8 non-test source files; 500 changed lines
+- 1: 21 non-test source files; 380 changed lines
+- 1: 12 non-test source files; 249 changed lines
+- 1: 9 non-test source files; 327 changed lines
+- 1: 60 non-test source files; 23575 changed lines
+- 1: 18 non-test source files; 2462 changed lines
+- 1: 312 changed lines
+- 1: no non-test source files; 451 changed lines
+- 1: 295 changed lines
+- 1: 298 changed lines
+- 1: 6 non-test source files; 201 changed lines
+- 1: no non-test source files; 444 changed lines
+- 1: 8 non-test source files; 2883 changed lines
+- 1: 824 changed lines
+- 1: 2210 changed lines
+- 1: 13 non-test source files; 4817 changed lines
+- 1: 7 non-test source files; 202 changed lines
+- 1: 11 non-test source files; 524 changed lines
+- 1: 443 changed lines
+- 1: no non-test source files; 915 changed lines
+- 1: 11 non-test source files; 610 changed lines
+- 1: 29 non-test source files; 849 changed lines
+- 1: 8 non-test source files; 481 changed lines
+- 1: 7 non-test source files; 224 changed lines
+- 1: 13 non-test source files; 766 changed lines
+- 1: 2438 changed lines
+- 1: 242 changed lines
+- 1: 8 non-test source files; 331 changed lines
+- 1: 350 changed lines
+- 1: 11 non-test source files; 3130 changed lines
+- 1: 650 changed lines
+- 1: 543 changed lines
+- 1: 11 non-test source files; 548 changed lines
+- 1: 465 changed lines
+- 1: 462 changed lines
+- 1: 463 changed lines
+- 1: 608 changed lines
+- 1: 290 changed lines
+- 1: 293 changed lines
+- 1: no non-test source files; 443 changed lines
+- 1: 657 changed lines
+- 1: 604 changed lines
+- 1: 455 changed lines
+- 1: 13 non-test source files
+- 1: 20 non-test source files; 263 changed lines
+- 1: no non-test source files; 226 changed lines
+- 1: 10 non-test source files; 4308 changed lines
+- 1: 8 non-test source files; 227 changed lines
+- 1: 8 non-test source files; 261 changed lines
+- 1: 10 non-test source files; 594 changed lines
+- 1: 406 changed lines
+- 1: 10 non-test source files
+- 1: 320 changed lines
+- 1: 342 changed lines
+- 1: 13 non-test source files; 591 changed lines
+- 1: 6 non-test source files; 289 changed lines
+- 1: no non-test source files; 418 changed lines
+- 1: 355 changed lines
+- 1: 34 non-test source files; 2307 changed lines
+- 1: 210 changed lines
+- 1: 234 changed lines
+- 1: 384 changed lines
+- 1: 219 changed lines
+- 1: 9 non-test source files; 228 changed lines
+- 1: 442 changed lines
+- 1: 260 changed lines
+- 1: 12 non-test source files; 504 changed lines
+
+## Candidates
+
+- `5c278285c247ff315059459762cb9ca15c8c4bcf` cameron314/concurrentqueue — no non-test source files. Merge pull request #198 from graphicsMan/master
+- `da34fb977c0bae9120f4990e810324f7993537f4` cameron314/concurrentqueue — adds comments about MOODYCAMEL_NO_TSAN; not a bug fix. Add comments about the purpose/usage of MOODYCAMEL_NO_TSAN
+- `75732bf18f0fe890c495656ac12594e97c838d42` cameron314/concurrentqueue — adds a ThreadSanitizer suppression macro; not a bug fix. Add a macro for per-function TSAN report suppression
+- `12d65eebe6f5701dcb526e958eb599ac61373400` gabime/spdlog — 26 non-test source files; 832 changed lines. Synchronize v2.x With Changes from v1.x (#3581)
+- `14a202580b13e5111dbbcd022ed5de92e0c81a7f` gabime/spdlog — no non-test source files. Update readme ci tsan to debug
+- `c122eaf749a48010e1d56f5ada537317274c5db0` gabime/spdlog — no non-test source files. Gabime/tsan (#3237)
+- `0e95bba098692a99a9f96d649e9fcb1a50664f32` gabime/spdlog — no non-test source files. Fixed race condition in tests
+- `7cee026baab9d0d152a083e20a17e37005a51e42` gabime/spdlog — no non-test source files. Added tsan to ci (#3247)
+- `9fe79692eb2ce80ba8fd74e6deeeb97504331b27` gabime/spdlog — no non-test source files. Gabime/tsan (#3237)
+- `96c9a62bfde6b448a91e5562ff1ed354ea7af4a1` gabime/spdlog — no non-test source files. Fixed race condition in tests
+- `e5865186d491c806cfce34d9b6766cb99364a068` gabime/spdlog — reverts a logger-callback feature; no linked issue describes a lifetime or concurrency bug. Revert "Added a function to add callbacks that are called when a logger is registered (#2883)"
+- `ac19803d03538c0202ac5d96ea1b02fe7480b45a` gabime/spdlog — no non-test source files. Merge pull request #1571 from IIFE/filename-deadlock
+- `ca14ae19db47b53721384d3addea5fd3b5cb1675` gabime/spdlog — no non-test source files. Turn off tsan in travis - gives false positives
+- `a446f187c19efc22d4d275ae397cdfc62c60ad1e` gabime/spdlog — the linked pull request is about disabling global logger registration, not this deadlock. Fixed deadlock by recursive mutex
+- `4534d5239fe5dac44af1cd6c9b276224ff5379af` gabime/spdlog — no non-test source files. Remove tsan and gcc 4.9 jobs
+- `368b3699d01be0e73aaa055aef0fc3a4efea68a6` gabime/spdlog — no non-test source files. Run ASAN/TSAN jobs with clang
+- `49d663f6c8001af5277cc4b63584f439934a684c` gabime/spdlog — no non-test source files. Move tsan/asan flag management to cmake
+- `7e32ccbd8f634252bdf3bb09c4f25fe5a6587708` gabime/spdlog — no non-test source files; 254 changed lines. Modify travis-ci, fix issues
+- `8bfec30d48a4c1d2b93b3417f2fcf5d7d83f1958` gabime/spdlog — no linked issue or pull request in the commit message. Fix deadlock issue with mingw in async logger
+- `4a0c572440c7df2f56a6f5fb5aec9e366d522edb` google/leveldb — no GitHub issue or pull request linked from the commit. Fix TEST_CompactMemTable deadlock
+- `60db170a43a373d734c5b9f19693d36c75251c39` google/leveldb — no non-test source files. Fix tsan problem in env_test.
+- `ce399ac28af7023b1aff0ede4986cb6d89b3c0b5` google/leveldb — no GitHub issue or pull request linked from the commit. Always copy bytes to scratch buffer when reading w/MemEnv.
+- `9ce30510d482f5b2fa2965201453f0fc914f700c` google/leveldb — no non-test source files. Deleted dangling reference to deleted atomic_pointer.h.
+- `d177a0263cce4344d05188521ad53459c369b940` google/leveldb — 201 changed lines. Replace port_posix with port_stdcxx.
+- `80e5b0d944b7651046f8b0e795065eca02a01e59` google/leveldb — sync with upstream, not a local bug fix. sync with upstream @21706995
+- `740d8b3d009462eed28a94ea516d667e735b0dfc` google/leveldb — 9 non-test source files; 426 changed lines. Update from upstream @21551990
+- `0ef34c872f25f3681b7b877beb03aaba8fd99139` taskflow/taskflow — the commit message says the ThreadSanitizer warning is a false positive. fixed the data race warning (actually false positive) in object pool
+- `86e3699a47874e3fcdc93a31c8dd2028ae6c0c83` taskflow/taskflow — 307 changed lines. fixed the data race in atomic_intrusive_stack
+- `178a12079efc3dc702e9186c79b29eacd2d36acb` taskflow/taskflow — no non-test source files. Merge pull request #749 from taskflow/dev
+- `f46bc1ff24d32b373fa781e37c3e8c913d50ff1b` taskflow/taskflow — 6 non-test source files. fixed the tsan error caused by estate anchor problem in corun and tear_down_async
+- `733b48b1ab51563f4d96779b4959f3488e3662a0` taskflow/taskflow — 266 changed lines. fixed tsan error in nonblocking notifier in C++20
+- `575eb37f469665a2e648c45cb8f1f15cfaf91006` taskflow/taskflow — 30811 changed lines. attempt to fix tsan error in find-if with closure wrapper
+- `adbf64be52d0b6bfc2b83a23483561caad132367` taskflow/taskflow — no linked issue or pull request. fixed tsan error of tsq
+- `85ab961496967f449a9f060686a756f6627c65d1` taskflow/taskflow — no non-test source files. fixed tsan error for module async
+- `7759a3e0d4f0c0bc3575636a891395a3ad32652f` taskflow/taskflow — 362 changed lines. fixed scan tsan error in macos
+- `a215c4ee9bfe41a53c0e30615d121ec5a316b9e9` taskflow/taskflow — 839 changed lines. added exception test under tsan
+- `57ea394b697b2c033d73f9472fedfeaca35c920d` taskflow/taskflow — no linked issue or pull request. fixed tsan error in runtime's parent
+- `04000861c55de2f2ead34b1f7ad6239c27c5c07c` taskflow/taskflow — no linked issue or pull request. fixed tsan problem
+- `7f6cda5131bebd6518d1e2828e2d5b95bda4dd47` taskflow/taskflow — no non-test source files. tried fixing the tsan error
+- `e7ed29cc83a2ead171c1f953622c15ee79047cc8` taskflow/taskflow — no non-test source files. updated tsan compilation
+- `dd213fe72cd43a1ab8cf637460951818ab303a49` taskflow/taskflow — no non-test source files. open ubuntu tsan test
+- `8fee3ccd8141fbc6d8ffa04aa00596cbb27875de` taskflow/taskflow — no non-test source files. updated ubuntu tsan test
+- `b4c1e1eadc601d88347ae34ea566310b7c5c2212` taskflow/taskflow — no non-test source files; 214 changed lines. fixed exception tsan issue
+- `a5151541ebb337846675f89c24844d965b1ebd60` taskflow/taskflow — no linked issue or pull request. fixed data race
+- `a7bde2f37719b5566881f247976b9a48ea692dc4` taskflow/taskflow — no linked issue or pull request. fixed data race
+- `bcbd67fdd2407d662575bdf5e95c99995808cffb` taskflow/taskflow — unittest race with no linked issue or pull request. fix data race in unittest PipelineInPipeline
+- `83f17d471d98dff7e4f31c6924f48e65a9b56a61` taskflow/taskflow — no linked issue or pull request. fixed data race
+- `1a3ffddce6ddf04be04eba7e92dfa48aa6a3372c` taskflow/taskflow — no non-test source files. added tsan/asan to both linux and macox
+- `f30bb7febbd5ca40029a7de9ddb63e5497d1951b` taskflow/taskflow — 7 non-test source files; 247 changed lines. add leak/tsan-check to ubuntu workflow
+- `9008039a2cff2b848421953c6f085bb43948fe59` taskflow/taskflow — no linked issue or pull request. try fixing tsan error
+- `228af9033bbd4f9f3aa4f2d7778e2c1a47726a9a` yhirose/cpp-httplib — 376 changed lines. Fix TLS session data race on wss:// WebSocket connections (#2551)
+- `19333f80d42a5ffc03a70296d5a4746fb432ec96` yhirose/cpp-httplib — hostname-verification change, not a lifetime, race, deadlock, or undefined-behavior fix, and TLS headers are not installed. Fix Mbed TLS/wolfSSL hostname verification bugs in set_sni()
+- `23f67f25c28dd43a2ea790769541bde17b7f8f94` yhirose/cpp-httplib — multipart form ordering change, not a lifetime, race, deadlock, or undefined-behavior fix. Preserve the order of multipart form parts (#2524)
+- `2f986fd5e56e7c5f686d965174516360930f371d` yhirose/cpp-httplib — WebSocket TLS use-after-free; OpenSSL headers are not installed, and the advisory lookup returned 404. Fix use-after-free of TLS session in WebSocketClient::shutdown_and_close()
+- `39ec7d05082cd0c50f7a2fdb945352bf75de66ec` yhirose/cpp-httplib — 374 changed lines. Add enable_system_ca() and unify WebSocketClient CA handling (#2471)
+- `806fcb82681195e330dda01d57e92a68b206b52b` yhirose/cpp-httplib — restores getaddrinfo_a on a parent that already dropped that path, so the parent does not contain the bug. Re-enable getaddrinfo_a with worker-completion wait (#2431) (#2439)
+- `d14e4fc05f8576c553b0888270e85abf4069841f` yhirose/cpp-httplib — no non-test source files; 409 changed lines. Reproducer test for #2431 (getaddrinfo_a use-after-free) (#2433)
+- `464867a9cedef2b6185e25e3e912d3f796fe58fd` yhirose/cpp-httplib — 2937 changed lines. WebSocket and Dynamic Thread Pool support (#2368)
+- `c1ee85d89ea2d857509164df6b759e36342ef2e4` yhirose/cpp-httplib — no non-test source files. Use iptables to disable network (#2363)
+- `f1431311a47b57212093e30ed38ba43f42b53b7c` yhirose/cpp-httplib — no non-test source files. Minor fixes on test cases (#1709)
+- `067c56e34093fc32bfc161ef68320a5f8a1c70ef` libuv/libuv — the issue text contains the fix diff, so the visible instance cannot be separated from the patch. async: restore release/acquire on the busy counter (#5307)
+- `840404ce8ba7cc0204be52389a6cfff9f2c90fb6` libuv/libuv — 292 changed lines. 2026.09.24, Version 1.53.0 (Stable)
+- `ea493f19895bc0cc90b28b48a4e204bc139c48d3` libuv/libuv — 7 non-test source files; 296 changed lines. win: fix race condition in uv_async_send (#5079)
+- `9f5306fa36b2f39aed6470189269cba5e4c9ab42` libuv/libuv — Windows-only change; the Linux sanitizer build does not compile the buggy file. win: use PROC_THREAD_ATTRIBUTE_HANDLE_LIST in uv_spawn (#5100)
+- `048acb509c267833bc61f869f06809e07cfb49cb` libuv/libuv — no non-test source files. doc: fix threading bugs in progress example (#4956)
+- `b84a067e0f004e960dc743813ed3e41987149df4` libuv/libuv — not accepted: libuv already has four instances, the per-repository cap, and this commit was not fetched or built. unix,tty: don't drain when setting the TTY mode (#4945)
+- `7026ae0fe26693ae825e7673a08a2831e59f363f` libuv/libuv — Windows-only change; the Linux sanitizer build does not compile the buggy file. win,pipe: minimal fix to uv_read_cb->uv_read_start recursion bug (#4784)
+- `5f3c0d3d08a3f24cb8fadf588478a0a7f53f48bd` libuv/libuv — Windows-only change; the Linux sanitizer build does not compile the buggy file. win: use WSA_FLAG_NO_HANDLE_INHERIT in WSASocketW (#4810)
+- `5152db2cbfeb5582e9c27c5ea1dba2cd9e10759b` libuv/libuv — release commit; the history hit is a version bump, not a bug fix. 2025.04.25, Version 1.51.0 (Stable)
+- `47a5c85c4e7c63adc838d8e252fb4859e6cb743d` libuv/libuv — no non-test source files. test: skip multievent tests on macOS with TSAN enabled (#4763)
+- `d2e56a5e8d3e39947b78405ca6e4727c70f5568a` libuv/libuv — 232 changed lines. 2024.09.25, Version 1.49.0 (Stable)
+- `9dddebab0d93997da87c8452ce13dcf72387bf8e` libuv/libuv — no non-test source files. test: delete test with invalid assumption (#4530)
+- `a6a987c0de8d7eccf7048a6d768ea88fd7fac449` libuv/libuv — Windows-only change; the Linux sanitizer build does not compile the buggy file. win,signal: fix data race dispatching SIGWINCH (#4488)
+- `727ee7237ede117c539a64258bf82a1b36b9991e` libuv/libuv — 205 changed lines. win,pipe: fix race with concurrent readers (#4470)
+- `ff9587991f53a427c6e0e8e02df40ba3749d166c` libuv/libuv — Windows-only change; the Linux sanitizer build does not compile the buggy file. win: almost fix race detecting ESRCH in uv_kill (#4341)
+- `1752791c9ea89dbf54e2a20a9d9f899119a2d179` libuv/libuv — works around a kernel io_uring bug; libuv is already at the four-instance cap. linux: work around io_uring IORING_OP_CLOSE bug (#4059)
+- `b9789a452f814c9f36fe16e15e5f7c1527ec4699` libuv/libuv — 331 changed lines. 2023.05.19, Version 1.45.0 (Stable)
+- `96e05543f53b19d9642b4b0dd73b86ad3cea313e` libuv/libuv — 331 changed lines. 2023.05.19, Version 1.45.0 (Stable)
+- `c51522c08f8882b6d4a93b11325f09cd44aea1ba` libuv/libuv — Windows-only change; the Linux sanitizer build does not compile the buggy file. win: fix race condition in uv__init_console() (#3973)
+- `964f79f7c81f4457e7750601ea961cd0299797f7` libuv/libuv — 428 changed lines. barrier: wait for prior out before next in (#3905)
+- `e613fdd83cb1fb448ac0ebace7ade055d0068829` libuv/libuv — platform-specific change that this Linux sanitizer build does not compile. macos: fix fsevents thread race conditions (#3909)
+- `67063ead6092657725d74b595a8763ebb0bdd659` libuv/libuv — no non-test source files. build: promote tsan ci to must-pass
+- `a3b7dfcfca285aee530caf5511cbe16c3a4b43cf` libuv/libuv — no non-test source files. test: cond-skip tcp_writealot
+- `bcbaf671a9572b7381ec2e15f1528643eacc3955` libuv/libuv — no non-test source files. test: cond-skip signal_multiple_loops
+- `c58cd282794018a883ad899fdda4e05046f9e060` libuv/libuv — no non-test source files. test: cond-skip fork_threadpool_queue_work_simple
+- `f328457cb1d06b0dc328fe0136f1d7466432b0c5` libuv/libuv — no non-test source files. test: fix ThreadSanitizer data race warning
+- `7b5a21deaaf914d221e57d3666e1fe48ab56127e` libuv/libuv — no non-test source files. test: fix ThreadSanitizer data race warning
+- `895a1c03be41c3f021f021062246f7ccb3fa6631` libuv/libuv — no non-test source files. test: fix ThreadSanitizer data race warning
+- `679d679f25a47e88b2a46de192972491655e7237` libuv/libuv — no non-test source files. test: fix ThreadSanitizer thread leak warning
+- `3706c4f85505714b217591f2eefae5afe8d87946` libuv/libuv — Windows-only change; the Linux sanitizer build does not compile the buggy file. win,pipe: fixes in uv_pipe_connect()
+- `ee970e38a6325d9cbc0dbd4b90e813c0a27dd8a8` libuv/libuv — 6 non-test source files; 500 changed lines. win,shutdown: improve how shutdown is dispatched (#3649)
+- `ec67735412bc80c0f44fa7cb1cacd87b5ba97be8` libuv/libuv — Windows-only change; the Linux sanitizer build does not compile the buggy file. win,pipe: fix bugs with pipe resource lifetime management (#3611)
+- `a302ad427d96ad21582edb6fc9b860eae4156225` libuv/libuv — no non-test source files. test: rewrite embed test (#3608)
+- `bae2992cb0d4b9dd1f8e0fb5f3e01651dbf5c4d6` libuv/libuv — not accepted: libuv already has four instances, the per-repository cap, and this commit was not fetched or built. process: fix hang after NOTE_EXIT (#3521)
+- `e89abc80ea43065a726ade191b810af53ec6158a` libuv/libuv — no non-test source files. test: fix flaky uv_fs_lutime test (#3424)
+- `3a7b95593acaab9739404bd120baa62c2007a18a` libuv/libuv — platform-specific change that this Linux sanitizer build does not compile. darwin: translate EPROTOTYPE to ECONNRESET (#3413)
+- `988f2bfc4defb9a85a536a3e645834c161143ee0` libuv/libuv — release commit; the history hit is a version bump, not a bug fix. 2022.01.05, Version 1.43.0 (Stable)
+- `22d62239289c7c6e50e6cc4a93642b3b46bf2dad` libuv/libuv — no non-test source files. build: add experimental TSAN configuration (#3328)
+- `6ce14710da7079eb248868171f6343bc409ea3a4` libuv/libuv — release commit; the history hit is a version bump, not a bug fix. 2021.07.21, Version 1.42.0 (Stable)
+- `e49ef4f309e631e2ecbeb7ff4397b0b073da681c` libuv/libuv — platform-specific change that this Linux sanitizer build does not compile. darwin: fix uv_barrier race condition
+- `e8b989ea1f7f9d4083511a2caec7791e9abd1871` libuv/libuv — release commit; the history hit is a version bump, not a bug fix. 2020.07.04, Version 1.38.1 (Stable)
+- `c70dd705bc2adc488ddffcdc12f0c610d116e77b` libuv/libuv — 9 non-test source files. unix: use relaxed loads/stores for feature checks
+- `aeab873bbe4efb94baacc17ca9ab38a45009e6e8` libuv/libuv — Windows-only change; the Linux sanitizer build does not compile the buggy file. win,tty: fix deadlock caused by inconsistent state
+- `623aa05ac775c36c7427fca90205d3bd06949775` libuv/libuv — Windows-only change; the Linux sanitizer build does not compile the buggy file. win: remove bad assert in uv_loop_close
+- `43957efd92c167b352b4c948b617ca7afbee0ed1` libuv/libuv — release commit; the history hit is a version bump, not a bug fix. 2019.05.16, Version 1.29.0 (Stable)
+- `1698be72057a58de913a7d45405fe86950e6da05` libuv/libuv — no non-test source files. test: fix test-ipc tests
+- `274f2bd3b70847cadd9a3965577a87e666ab9ac3` libuv/libuv — release commit; the history hit is a version bump, not a bug fix. 2018.12.17, Version 1.24.1 (Stable)
+- `f4feea331a54e2b1a1cd432e04ea83d32cfd6c5c` libuv/libuv — platform-specific change that this Linux sanitizer build does not compile. aix: fix data race in uv_fs_event_start()
+- `34c12788d2e7308f3ac506c0abcbf74c0d6abd20` libuv/libuv — release commit; the history hit is a version bump, not a bug fix. 2018.10.09, Version 1.23.2 (Stable)
+- `49b8a9f1819cb47f408f7f749b0759a78b0ca139` libuv/libuv — not accepted: libuv already has four instances, the per-repository cap, and this commit was not fetched or built. unix: signal done to last thread barrier waiter
+- `daf04e83cb4551f0dcb7d62c17e0c8bfd5379d56` libuv/libuv — not accepted: libuv already has four instances, the per-repository cap, and this commit was not fetched or built. unix,win: fix threadpool race condition
+- `e4983a9b0c152932f7553ff4a9ff189d2314cdcb` libuv/libuv — release commit; the history hit is a version bump, not a bug fix. 2018.06.23, Version 1.21.0 (Stable)
+- `4e53af9120094adefe5db67fbbeda8ebde28a93d` libuv/libuv — 7 non-test source files; 853 changed lines. win,pipe: fix IPC pipe deadlock
+- `421d7571a3e4ed9aacd37ff601aebe0b1c49aed8` libuv/libuv — no non-test source files. test: add test for IPC deadlock on Windows (#1099)
+- `36ac2fc8edfd5ff3e9be529be1d4a3f0d5364e94` libuv/libuv — release commit; the history hit is a version bump, not a bug fix. 2018.04.19, Version 1.20.1 (Stable)
+- `fbd6de31be38ba362daa56ccfd5be2a8f5d3b2b1` libuv/libuv — not accepted: libuv already has four instances, the per-repository cap, and this commit was not fetched or built. unix: work around glibc semaphore race condition
+- `24334e0739d72e3f485f0cc573091673e8e045f5` libuv/libuv — platform-specific change that this Linux sanitizer build does not compile. zos: lock protect global epoll list in epoll_ctl
+- `8342fcaab815f33b988c1910ea988f28dfe27edb` libuv/libuv — release commit; the history hit is a version bump, not a bug fix. 2017.07.06, Version 1.13.0 (Stable)
+- `c42a4ca372b8476c78c026cab856694830735490` libuv/libuv — Windows-only change; the Linux sanitizer build does not compile the buggy file. win,pipe: race condition canceling readfile thread
+- `7452ef4e06a4f99ee26b694c65476401534f2725` libuv/libuv — release commit; the history hit is a version bump, not a bug fix. 2017.02.02, Version 1.11.0 (Stable)
+- `c66f265b5d700bdd922316788545c0fb7956db1d` libuv/libuv — Windows-only change; the Linux sanitizer build does not compile the buggy file. win,signal: fix potential deadlock
+- `c8a373c729b4c9392e0e14fc53cd6b67b3051ab9` libuv/libuv — 250 changed lines. 2016.10.25, Version 1.10.0 (Stable)
+- `84144036ce5f76f39bb042fa4fb45c24aa9473f4` libuv/libuv — Windows-only change; the Linux sanitizer build does not compile the buggy file. win,tty: fix uv_tty_set_mode race conditions
+- `78a1cd167fd97ebd7bb2f6aaf80dc093d54e2234` libuv/libuv — 6 non-test source files. win,async: refactor internal implementation
+- `d43ee0eafa3605d8e4edc1c405a7a08baf00993d` libuv/libuv — Windows-only change; the Linux sanitizer build does not compile the buggy file. win: clarify fsevents handling code
+- `229b3a4cc150aebd6561e6bd43076eafa7a03756` libuv/libuv — release commit; the history hit is a version bump, not a bug fix. 2016.04.08, Version 1.9.0 (Stable)
+- `ca0b6578913f861ebeba19189cd6a1b46e320aae` libuv/libuv — no non-test source files. test: fix deadlocks in uv_cond_wait
+- `d41749d546e70c5456c13c8741c7784c2c4b2048` libuv/libuv — no non-test source files. test: fix race condition in pipe-close-stdout
+- `5467299450ecf61635657557b6e01aaaf6c3fdf4` libuv/libuv — release commit; the history hit is a version bump, not a bug fix. 2015.12.15, Version 1.8.0 (Stable)
+- `e4675f6fe79602184735013dd04edfa57f104069` libuv/libuv — no non-test source files. test: fix self-deadlocks in thread_rwlock_trylock
+- `0761bfe6a3d6c08326630879574354141741b0f1` libuv/libuv — platform-specific change that this Linux sanitizer build does not compile. fsevents: fix race on simultaneous init+close
+- `da42780223bae35d38b6d4d920caa1563e884470` libuv/libuv — not accepted: libuv already has four instances, the per-repository cap, and this commit was not fetched or built. threadpool: fix thread starvation bug
+- `83264701a7e7b7ad82eec6c601a208dfd71df74d` libuv/libuv — no non-test source files; 202 changed lines. tests: refactored fs watch_dir tests for stability
+- `adfccad76456061dfcf79b8df8e7dbfee51791d7` libuv/libuv — release commit; the history hit is a version bump, not a bug fix. 2015.06.04, Version 1.6.0 (Stable)
+- `7005d29514b05391947727285636ff7f4558bb1e` libuv/libuv — not accepted: libuv already has four instances, the per-repository cap, and this commit was not fetched or built. stream: fix `select()` race condition
+- `4e77f74c7b95b639b3397095db1bc5bcc016c203` libuv/libuv — release commit; the history hit is a version bump, not a bug fix. 2015.05.07, Version 1.5.0 (Stable)
+- `531b08555d342eaee7fe352d9df8651f51ceda4f` libuv/libuv — no non-test source files. test: fix race condition in multithreaded test
+- `e8e3fc5789cc0f02937879d141cca0411274093c` libuv/libuv — release commit; the history hit is a version bump, not a bug fix. 2015.02.25, Version 1.4.1 (Stable)
+- `37aa4aa9b9712c778d7b249563e868cabfdb8332` libuv/libuv — release commit; the history hit is a version bump, not a bug fix. 2015.02.21, Version 0.10.34 (Stable)
+- `4ed237278cbb1d48f8ad58dd7029af2776611bf0` libuv/libuv — not accepted: libuv already has four instances, the per-repository cap, and this commit was not fetched or built. unix: fix for uv_async data race
+- `22725f2433fd321c71d4392461baab24ffca2372` libuv/libuv — duplicate cherry-pick of the same commit subject on another branch. unix: fix for uv_async data race
+- `837c62c71b5dbb3d97287fcca772327241afa32b` libuv/libuv — 6 non-test source files. windows: make uv_read_stop immediately stop reading
+- `c8abb29f68abf64bacf2dc5a483eedab84b52428` libuv/libuv — Windows-only change; the Linux sanitizer build does not compile the buggy file. windows: don't use atexit for cleaning up the threadpool
+- `1830a3cd91f225bfe091408695be47b8964ead0a` libuv/libuv — no non-test source files. Revert "test: make barrier test more rigorous"
+- `e9f75fb146c85d7962d39a3f15551053f2c4d6dc` libuv/libuv — not accepted: libuv already has four instances, the per-repository cap, and this commit was not fetched or built. unix: set close-on-exec flag on received fds
+- `717e0e5635a03ab2b1366e3ff2015ad223855b81` libuv/libuv — no non-test source files. build: use -pthread on sunos
+- `4a8ec0c62295394ac4f4cd0959ed458b3632d392` libuv/libuv — platform-specific change that this Linux sanitizer build does not compile. sunos: handle disabled watcher after callback
+- `26fa6f8031d35513857525197c8ec85e596d3fa7` libuv/libuv — not accepted: libuv already has four instances, the per-repository cap, and this commit was not fetched or built. linux: fix abort() on epoll_ctl() race condition
+- `dcd3b55c1990342054083272f3ad7f866832d270` libuv/libuv — not accepted: libuv already has four instances, the per-repository cap, and this commit was not fetched or built. unix: fix thread pool race condition
+- `b9c8d196379dc28a9ed503a2695581d6698ba466` libuv/libuv — no non-test source files. bench: close timer handles before deleting loop
+- `b0bcbdfe81c6343f64d83b3ba717d49714196d4d` libuv/libuv — not accepted: libuv already has four instances, the per-repository cap, and this commit was not fetched or built. unix: NULL pipe_fname in uv__pipe_close()
+- `aa69f34d53dfa0897aa00a7a1f0e97b3f6947d9b` libuv/libuv — 6 non-test source files; 538 changed lines. windows: report spawn errors to the exit callback
+- `4fe1916926f9e0deb904179e55501da426cd434f` libuv/libuv — not accepted: libuv already has four instances, the per-repository cap, and this commit was not fetched or built. linux: fix 'two watchers, one path' segfault
+- `20879c1cf29a6312761d9671357eb12cb8958a80` libuv/libuv — no non-test source files. test: fix a race condition in 'async' test
+- `5345ee36f2fd49ae01a1ee6fe396ffb8291b6641` libuv/libuv — no non-test source files; 281 changed lines. test: fix race conditions in test-async
+- `bca49960fbde41517a833bc3f6bca1971c9746c0` libuv/libuv — not accepted: libuv already has four instances, the per-repository cap, and this commit was not fetched or built. unix: handle stream write errors properly
+- `37e8bf2556ff088ee6886299eac4a6f0883b354a` libuv/libuv — not accepted: libuv already has four instances, the per-repository cap, and this commit was not fetched or built. unix: fix dangling pointer free() bug
+- `041d60e1416335a817f735c41e033d27bd8f7ade` libuv/libuv — not accepted: libuv already has four instances, the per-repository cap, and this commit was not fetched or built. uv-unix: avoid exec-after-fork race in uv_spawn()
+- `1f862a15bebfc6beb62af045e980591fc0977a2f` uxlfoundation/oneTBB — no non-test source files. TSAN: set -Wno-tsan only for GCC compiler (#2191)
+- `1368bbf89b3286fdab9cfca2fe9a9a6b03c4d83f` uxlfoundation/oneTBB — pull request body is an empty template and the diff mixes several sanitizer fixes. Fix a set of AddressSanitizer and ThreadSanitizer issues (#1889)
+- `326ab8f617d5c4fac51e2e6abe2d87c1a15c33f2` uxlfoundation/oneTBB — pull request body is an unfilled template and does not describe the bug. fix deadlock during initialization between vtune and tbbmalloc_proxy
+- `04fe9127cdb11a07d631e98b889d3a3897d541a4` uxlfoundation/oneTBB — no non-test source files. Fix dangling pointer (#1430)
+- `244fba9d40003c460cab85917a1c1c6564b49d10` uxlfoundation/oneTBB — no non-test source files. Fix deadlock in test_scheduler_mix (#1309)
+- `5ddef563b86f92ea73f2d16db0ccc9bfb886e27b` uxlfoundation/oneTBB — no linked issue or pull request. [TCM] Do deep copying of permit requests
+- `e8386bdad1c1b655e7e5bd16872b8d64e7041c7a` uxlfoundation/oneTBB — tcm.cpp is not part of the CMake build, so the sanitizer build does not compile the buggy file. [TCM] Remove static from buffer objects (TSAN report) (#33)
+- `23266bc5411a5ffd7dd5e94a90ccaeadbc6c3d12` uxlfoundation/oneTBB — no non-test source files. Suppress TSAN warning on ITT initialization (#1020)
+- `0f0d1cb994733cde5f93e34b1fe845f334e4240c` uxlfoundation/oneTBB — enables ThreadSanitizer on macOS; not a product bug fix. Enable ThreadSanitizer on macOS (#911)
+- `3db67b5ba2a81bd1288325c5847e09e13c46f4d7` uxlfoundation/oneTBB — no non-test source files. Fixed deadlock in the task_group conforance tests (#699)
+- `14c35995085847e77a2a12a2245d4b2fc9291b23` uxlfoundation/oneTBB — 727 changed lines. Moving task_group_exptensions out of the preview (#668)
+- `2aee740f55235b370cd4007d73b6b92f2679a39a` uxlfoundation/oneTBB — no non-test source files. Suppress data race during ittnotify initialization (#659)
+- `74b7fc748bffb699a60bdedc867a1e208e50bd2a` uxlfoundation/oneTBB — 727 changed lines. Moving task_group_exptensions out of the preview (#668)
+- `952845afefe4a6c886cdf4b8b5d8318ebdf5661f` uxlfoundation/oneTBB — no non-test source files. Suppress data race during ittnotify initialization (#659)
+- `a8206f85401e9d5f58ea0334868b138e44168206` uxlfoundation/oneTBB — no non-test source files. Skip leak test in test_arena_constaints with tsan (#595)
+- `97ac8f432424ed0596a3e0c21566e816c13208ca` uxlfoundation/oneTBB — no non-test source files. Disable RTM based tests under TSAN (#567)
+- `de0109bed0f017b4aa84fb3319e788d98910f83d` uxlfoundation/oneTBB — no non-test source files; 4913 changed lines. Improve Flow Graph conformance tests (#410)
+- `35147e0021727916c789287ba52a3499eb3ab348` uxlfoundation/oneTBB — 7 non-test source files; 416 changed lines. Simplify synchronization logic in task_group_context (#462)
+- `59ac78fa8713fc7d33a1371a7e0bd284325c1830` uxlfoundation/oneTBB — no non-test source files. Fix flow graph tests under Thread Sanitizer (#444)
+- `4beec37a1d63e531a207619ebe96a0acc9ea534c` uxlfoundation/oneTBB — no non-test source files. Fix TSAN errors in collaborative_call_once (#445)
+- `f306bc31a93033551d29190ac6247f71f824cf3d` redis/redis — no non-test source files. Stabilize ASM write pause timeout test under TSan (#15716)
+- `1c6fa3748fed39644549e87527cda3b795ba440a` redis/redis — no non-test source files. Fix gcov CI warnings and failures in multi-threaded coverage (#15634)
+- `e5b079d0ee68f15a3ffef0ffcd7a4fc9f0b5065b` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. MOD-16035: Fix VSIM/VREM race in Vector Sets
+- `d711b06a56dad375369622b8754be9681e09a3b8` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix use-after-free in tlsProcessPendingData() pending-list iteration (#1391)
+- `c86d400fa7d1f813d2eb0f7f7620458358bfea4f` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix use-after-free in handleClientsBlockedOnKey (#15594)
+- `913be44b960993e01650db6c9aef27b266a9959e` redis/redis — duplicate cherry-pick of the same commit subject on another branch. MOD-16035: Fix VSIM/VREM race in Vector Sets
+- `2d24ea2a6c7ea9709c1a8475c6287317082010cd` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix use-after-free in tlsProcessPendingData() pending-list iteration (#1391)
+- `00be682befa895e2c7763e1dc4eefb72907903f2` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix use-after-free in handleClientsBlockedOnKey (#15594)
+- `bdb5aeca94f0833d2b3c36d82cf98d0162884a0c` redis/redis — duplicate cherry-pick of the same commit subject on another branch. MOD-16035: Fix VSIM/VREM race in Vector Sets
+- `6d088c335d5c3ec49a6c28486140b498e70b7834` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix use-after-free in tlsProcessPendingData() pending-list iteration (#1391)
+- `e44cbf6b829c96240c67d55fbc66fe340fb97a6b` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix use-after-free in handleClientsBlockedOnKey (#15594)
+- `36611984988776fbd941548b8b612eb9644c8c72` redis/redis — duplicate cherry-pick of the same commit subject on another branch. MOD-16035: Fix VSIM/VREM race in Vector Sets
+- `d0078df7a039a14dece0baefec5f0f2b06eaba14` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix use-after-free in tlsProcessPendingData() pending-list iteration (#1391)
+- `cd98e7c3a3bb39c6db498f676356ae510e1091e3` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix use-after-free in handleClientsBlockedOnKey (#15594)
+- `352c6cc8cc0c94cc90e395bc148eb9b93785aaa2` redis/redis — duplicate cherry-pick of the same commit subject on another branch. MOD-16035: Fix VSIM/VREM race in Vector Sets
+- `a8ca994aa3f5f7eaab30b48d0fab0b35f60873e1` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix use-after-free in tlsProcessPendingData() pending-list iteration (#1391)
+- `009324be81f7105313ce6586ed4807f03c62c7fe` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix use-after-free in handleClientsBlockedOnKey (#15594)
+- `34d20636e88e85143e7746b85b76b0e2471ca8de` redis/redis — duplicate cherry-pick of the same commit subject on another branch. MOD-16035: Fix VSIM/VREM race in Vector Sets
+- `0678e5663aa87ef0bbe62837219a4c85f6f5c93c` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix use-after-free in tlsProcessPendingData() pending-list iteration (#1391)
+- `9ee9c67054299e9a349a7fde889c9a93d07a5bbd` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix use-after-free in handleClientsBlockedOnKey (#15594)
+- `0e20360afe42042d6d227b8cc0dfde3f71e6b077` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix use-after-free in tlsProcessPendingData() pending-list iteration (#1391)
+- `70f3115bba86c3eb3df2daa4e08065fbd4546511` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix use-after-free in handleClientsBlockedOnKey (#15594)
+- `21ac517dc640cdb92d20c9b673be52c7f038ca6e` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix use-after-free in tlsProcessPendingData() pending-list iteration (#1391)
+- `b12c4db14a5e3dba28f431cc8863951eb93eb663` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix use-after-free in tlsProcessPendingData() pending-list iteration (#1391)
+- `a8edcfc98c50bb01c850e5dab3998ce57807144d` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix use-after-free in handleClientsBlockedOnKey (#15594)
+- `d886ae924f0669b9039efc506ac19613496121f2` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix XDELEX DELREF propagation for deleted entries (#15569)
+- `1de65ebff644189631acf4d6ebd9f25c53f6a494` redis/redis — no non-test source files. Attempt to solve MacOS CI issues in GH Actions (#12013)
+- `5724eeced623df168e9d071a06cb13893775c5f5` redis/redis — no non-test source files. Test tcp deadlock fixes (#14667)
+- `4f62a8bf15c634187d8a87d874f8988032f90b6c` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Reject corrupt stream RDB with shared NACK across consumers (#15081)
+- `1ef202bd8fa7464d8745ebf0d535379bb7580beb` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Reject corrupt stream RDB with shared NACK across consumers (#15081)
+- `d8a624453db3ef39bf40f3e73c25aceee9fd8b76` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Reject corrupt stream RDB with shared NACK across consumers (#15081)
+- `04292292f2f5c180322292007a599a700611ebaf` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Reject corrupt stream RDB with shared NACK across consumers (#15081)
+- `6805e71e585c8fa151ab32007b4c608dfea454f0` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Reject corrupt stream RDB with shared NACK across consumers (#15081)
+- `41a958720e64e03576dd652d224aa46d22c096c3` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Reject corrupt stream RDB with shared NACK across consumers (#15081)
+- `6bf6224c3dad518329ddc893ef9c5d58dcbabdeb` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Revert "Add FORK_CHILD_PRE/CANCELLED subevents for pre-fork module coordination (#15327)" (#15432)
+- `fe5d2186468217f682e61b0fd4b4198ff49f7a90` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix TSAN warning in hashTypeLength (#15382)
+- `750f6e762c9d22ec61d0d18d253b3582c3e2cde3` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Add FORK_CHILD_PRE/CANCELLED subevents for pre-fork module coordination (#15327)
+- `fbee01f667c590e1c3388ef437a1551c8dfd0421` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix race condition for lookupCommand (#14466)
+- `96db44e98daa5ccdc4015df0d1e88e266f3f3ef7` redis/redis — no non-test source files. Fix diskless replicas drop during rdb pipe test (#15131)
+- `211685db2f5fc354c43612465a0f8ec02c9d6dc4` redis/redis — no non-test source files. Fix diskless replicas drop during rdb pipe test (#15131)
+- `8923cc33d40d62d0c675175c0457719a0d7d40a9` redis/redis — no non-test source files. Fix diskless replicas drop during rdb pipe test (#15131)
+- `73aff7bcfa7c3acfada72142421006ed8ddf61d3` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix use-after-free in RM_RegisterClusterMessageReceiver() (#15059)
+- `148de483340619d7b329a97e962b2c7e4003d1a6` redis/redis — no non-test source files. Fix potential TCP deadlock in module datatype defrag test (#15274)
+- `31896140d1e940cad43d725e830cff0e49d060e5` redis/redis — no non-test source files. Fix diskless replicas drop during rdb pipe test (#15131)
+- `dbe5d1e6052d00ff5f9521edbeaf56c4526305d8` redis/redis — no non-test source files. Fix invalid repl-diskless-load value in replication test (#15178)
+- `5c355b68ecc87a9b50ebf644895e8e45bbf6072c` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix use-after-free when evicting blocked client during unblock (CVE-2026-23479)
+- `837ca7f8f4d835fdc7754cef3c944a429dc28c29` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix use-after-free when fullsync happens while replica is running a timed out script (CVE-2026-23631)
+- `557e027022f04976f5492665e6bfb3ed34ea795f` redis/redis — no non-test source files. Test tcp deadlock fixes (#14946)
+- `5400b6ac65d59c6c11c119cfcb547ed0d74a9c8a` redis/redis — no non-test source files. Test tcp deadlock fixes (#14667)
+- `b8af6c7f86ddea17ac7f3a9f1eeea0d14dcc2bd0` redis/redis — no non-test source files. Test tcp deadlock fixes (#14946)
+- `6202e345ada3130264c034060ff884fb4c8f5ae0` redis/redis — no non-test source files. Test tcp deadlock fixes (#14667)
+- `5d0b0741b5f59084542465a29c11a07ee5818069` redis/redis — no non-test source files. Test tcp deadlock fixes (#14946)
+- `7895ef54f8574d158f91f711ed8fc3617eca26af` redis/redis — no non-test source files. Test tcp deadlock fixes (#14667)
+- `bb33d0345dd9c281081311fc40e3251751cb9d9a` redis/redis — no non-test source files. Test tcp deadlock fixes (#14946)
+- `5bdca6957889a1db3d490405c4afa55e32444dcc` redis/redis — no non-test source files. Test tcp deadlock fixes (#14667)
+- `a96060a7a2c40b09e4eec083d4059f57d2c8885b` redis/redis — no non-test source files. Fix potential TCP deadlock in Active defrag IDMP streams test (#14886)
+- `98f0ddb97c429877c0f342a391618cd014de5126` redis/redis — no non-test source files. Test tcp deadlock fixes (#14946)
+- `5033e15143d100bdc004bc69399b9d013d52ff23` redis/redis — no non-test source files. Fix invalid repl-diskless-load value in replication test (#15178)
+- `4c023067da77d354b4b2d078b34d6c6e6e3e0b1b` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix use-after-free when evicting blocked client during unblock (CVE-2026-23479)
+- `e40071df33a2eec17fde6d822b51de336b428a99` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix use-after-free when fullsync happens while replica is running a timed out script (CVE-2026-23631)
+- `0b51620ef1e0a34fb6239e328bfa15068e12caa4` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix use-after-free when evicting blocked client during unblock (CVE-2026-23479)
+- `80c2b5a0a6de27df5d846c9d25b544c0b4cbac3b` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix use-after-free when fullsync happens while replica is running a timed out script (CVE-2026-23631)
+- `c14e9925e571c3c8ecbeb8632fe834faa32175ea` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix use-after-free when evicting blocked client during unblock (CVE-2026-23479)
+- `0cca172a174642bdae03b871615227896274d9bb` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix use-after-free when fullsync happens while replica is running a timed out script (CVE-2026-23631)
+- `a6cb2feca4dfa141cd29edd92ca82fc03435e33c` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix use-after-free when evicting blocked client during unblock (CVE-2026-23479)
+- `e0fd4b5728bf576f60c10ee2b778bc07173fa0d8` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix use-after-free when fullsync happens while replica is running a timed out script (CVE-2026-23631)
+- `252f4bd1370d25ee5627475a81ac8ba3c567be40` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix use-after-free when evicting blocked client during unblock (CVE-2026-23479)
+- `5b2a5044d4413113c5213c7a2d5f455186d7d75c` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix use-after-free when fullsync happens while replica is running a timed out script (CVE-2026-23631)
+- `47c51369eeffd55e1baf20df7955a3dfbe842fc4` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Reject corrupt stream RDB with shared NACK across consumers (#15081)
+- `303667a40cdf5032b1044e94dfc6860a15414e03` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix use-after-free in RM_RegisterClusterMessageReceiver() (#15059)
+- `a6a27f56f2df1a9da3d46aea1fca6e33a89e3f61` redis/redis — no non-test source files. Test tcp deadlock fixes (#14946)
+- `40c140bf16ca88cc67e6262c813fde1d8ea8242f` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix heap-use-after-free in restoreCommand when module sets key metadata during notification (#14929)
+- `fce7df67a3528b8f366ca353d9a05e8730f6a973` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. fix use after free in RESTORE command handling
+- `bbc0dcbb9af7c911207e20fcba1d238d7863dc07` redis/redis — no non-test source files. Fix potential TCP deadlock in Active defrag IDMP streams test (#14886)
+- `cbee671c45ef21d6db94c29a640c6f150ed5c95a` redis/redis — no non-test source files. Fix test assertion except from TSAN case (#14852)
+- `b3ce4c28ca733529d4456b504616c1b408962a67` redis/redis — no non-test source files. Fix test assertion except from TSAN case (#14852)
+- `afa548d4f7776c8abadbb62aae0c4be38eb50768` redis/redis — no non-test source files. Update RediSearch 8.2.9 (#14744)
+- `4eab774b8290540719bc9c73175f079f4e440b63` redis/redis — no non-test source files. Update Redisearch module version to v8.4.5 (#14743)
+- `6e2cbd51c3c9f3f58f2df131f061b577d4a8ba8a` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix deferring free object that refcount is more than 1 (#14738)
+- `e3c38aab66f232e3cef847342522351247f900ee` redis/redis — 6 non-test source files; 972 changed lines. Handle primary/replica clients in IO threads (#14335)
+- `221409788aa6a43e3320b5e1aea2c6a5e640097e` redis/redis — 9 non-test source files; 3299 changed lines. Add idempotency support to XADD via IDMPAUTO and IDMP parameters (#14615)
+- `3b20e8f92ff6c1fb73741e3326552a43942f3b53` redis/redis — no non-test source files. Fix flaky ASM tests (#14604)
+- `154fdcee013ce87a89ce6bfa9b6b99a8d22a0aa5` redis/redis — no non-test source files. Test tcp deadlock fixes (#14667)
+- `c5f3d3e11ce1bbcf9713003d5e94c211de5ab8d1` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix use-after-free in hnsw_cursor_free (#14627)
+- `08b63b6cebaf18e2df9fbc7c0801be6a03176ef9` redis/redis — no non-test source files. Fix flaky ASM tests (#14604)
+- `b632e9df6a46874911242329696b5070cefe2f5e` redis/redis — no non-test source files. Fix flaky ASM write load test (#14551)
+- `6ea4e2c949c7fa50b85ff59647ee5e3f95e97037` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix race condition for lookupCommand (#14466)
+- `4b6935b5f8f68071033da38579de11f0ed60c315` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix re-entrant deadlock in bugReportStart() when called from signal handlers (#14457)
+- `2bc4e0299d4d23cf8a0cb32b5cbf82e6ecb2b75a` redis/redis — 32 non-test source files; 9685 changed lines. Add Atomic Slot Migration (ASM) support (#14414)
+- `663a471ba7f620a1868bc0db92af6aa1b0af5f66` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix defrag issues for pubsub and lua (#14330)
+- `af627aa29ce8f3474f0475a7c5e39c48e63681df` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix defrag issues for pubsub and lua (#14330)
+- `9829bdbfd9e7eeb8fb6c79ce36bcc77a681824b1` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix defrag issues for stream defrag and HFE (#14323)
+- `45e9f27306e555ce8b68054f3ee29c530cdceb60` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix defrag issues for pubsub and lua (#14330)
+- `9bd3d246b8dd2d96d67bd7fb3ef118e9ceb7bbf9` redis/redis — no non-test source files. MOD-11572: Bump RediSearch to v8.2.5 for Redis 8.2.2 (#14388)
+- `d649637ebd1b7b7792a4224a42e1ef8824743378` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix defrag issues for stream defrag and HFE (#14323)
+- `d339fe70adc335dcf8b0e03cbb52bcd0263afcd5` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix defrag issues for pubsub and lua (#14330)
+- `d816a6591b43181f5bedc88b9e918ddce64aadb8` redis/redis — no non-test source files. Fix module_tests dependency to resolve parallel build issues (#14328)
+- `e9d2bf48e0960bd9f3199d3cb28bfb80d6e47f6e` redis/redis — no non-test source files. Skip replication test due to flakiness under TSAN (#14225)
+- `0eb59d1c3b8c95eafd4ab4baa6300fb163f32ae2` redis/redis — 7 non-test source files. Avoid performing IO on coverage when child exits due to signal handler (#14072)
+- `fa040a72c0720d9b0a833117b086e5bbafa6ddc8` redis/redis — 1281 changed lines. Add XDELEX and XACKDEL commands for stream (#14130)
+- `4313d7ff23ce60d9d2aba4bb748d0dbc69516613` redis/redis — no non-test source files. Stabilize tests for IO threading (#14138)
+- `b7c6755b1b44da36866c0376da0a000873177270` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Add thread sanitizer run to daily CI (#13964)
+- `161326d332f948315c971ebb8e4cecac5b225d0d` redis/redis — 7 non-test source files. Avoid performing IO on coverage when child exits due to signal handler (#14072)
+- `30fe74363886beaec51e19a4d17eb1191fd16c93` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix race condition issues between the main thread and module threads (#12817)
+- `7278a0c26affb140b72b1465446119d7740a6b24` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Make RM_Yield thread-safe (#12905)
+- `fd4b5cb3fab63dae77ef62f0bea024a273819975` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Improve refcount check in 'decrRefCount' (#13888)
+- `a0da8390a28a92e7068fef7a00ebc9b767e70500` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix use-after-free when diskless load config is not swapdb (#13887)
+- `2a189709e098139b3158575ee6cb6d7ff266ed45` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. avoid possible use-after-free with module KSN changes (#13875)
+- `7145dc09b23f7585ca62ded873e811cdae3b7204` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a race condition issue in the cache_memory of functionsLibCtx (#13476)
+- `7665bdc91aa6f98289eefdcbdb2def4467864b7a` redis/redis — 7 non-test source files. Offload `lookupCommand` into IO threads when threaded IO is enabled (#13696)
+- `64a40b20d906f019a32fcb227c938768079dd9ed` redis/redis — 21 non-test source files; 2318 changed lines. Async IO Threads (#13695)
+- `033abd6f5708ee97acd83929a2714a31abec8c23` redis/redis — 18 non-test source files; 2213 changed lines. Async IO threads (#13665)
+- `5fe3e74a383141aa851185c5264639d70e186f14` redis/redis — no non-test source files. Redis 8.0 M01 (#13538)
+- `6c6489280c0afd0d45dc01855e5f68052fb4cbd7` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix a race condition issue in the cache_memory of functionsLibCtx (#13476)
+- `447ce11a64bbcb79b0336a0940c2fb62993e7586` redis/redis — no non-test source files. solve race conditions in tests (#13433)
+- `4581d43230fab23600b90f731edb0472dbea1c4d` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix daylight race condition and some thread leaks (#13191)
+- `e64d91c37105bc2e23816b6f81b9ffc5e5d99801` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix dict use-after-free problem in kvs->rehashing (#13154)
+- `7b070423b8e20cf14a9ab80dfa7bea5ba88c54a3` redis/redis — 6 non-test source files; 217 changed lines. Fix dictionary use-after-free in active expire and make kvstore iter to respect EMPTY flag (#13135)
+- `81666a651089938c9dbd5783481d22f064d22291` redis/redis — 6 non-test source files. Fix heap-use-after-free when pubsubshard_channels became NULL (#13038)
+- `12fd7524435885b99790e5d945bc9db7f2b2b6fd` redis/redis — no non-test source files. Bump actions/cache from 3 to 4 (#12978)
+- `d0640029dcf8d9157b9ac78ca0b99fb48f97e380` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix race condition issues between the main thread and module threads (#12817)
+- `ca1f67af80434f831e8aa0eaaf8a6573bcb31bcb` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Make RM_Yield thread-safe (#12905)
+- `03345ddc7faf7af079485f2cbe5d17a1611cbce1` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix issue of listen before chmod on Unix sockets (CVE-2023-45145) (#12671)
+- `1119ecae6fd8796fa337df2212f09173ab6c7b0a` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix issue of listen before chmod on Unix sockets (CVE-2023-45145)
+- `7f486ea6eebf0afce74f2e59763b9b82b78629dc` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix issue of listen before chmod on Unix sockets (CVE-2023-45145)
+- `8f30d2a6043b765d9dded2c9308b9de7fb5c127c` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix issue of listen before chmod on Unix sockets (CVE-2023-45145)
+- `cc2be6399729c098357add2c3f1b264047b5ac9f` redis/redis — 6 non-test source files; 591 changed lines. Print stack trace from all threads in crash report (#12453)
+- `fe47c2027ba53c1e814f0481a12ffee97106115a` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Signal handler attributes (#12426)
+- `b653c759cd9f0629ea19ef7c8a11400c065c7efd` redis/redis — no non-test source files. Fix race condition in tests/unit/auth.tcl (#12444)
+- `153f8f082e96da08a2d1763a8e45db1bcd1209ff` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix use after free on blocking RM_Call. (#12342)
+- `07d54dc5baa1b2e7adb5ce8e7bee398d376fe13b` redis/redis — no non-test source files. Merge pull request #12115 from oranagra/update_jemalloc_5_3_0
+- `6d23d3ac3b3f9d13ad2ce99029e69a9ea9f2e517` redis/redis — 179 non-test source files; 63394 changed lines. Squashed 'deps/jemalloc/' changes from ea6b3e973..54eaed1d8
+- `997fa41e99271cc5c3a79e9bf8a1332b3d9ab0c2` redis/redis — no non-test source files; 252 changed lines. Attempt to solve MacOS CI issues in GH Actions (#12013)
+- `9344f654c6227f30adf8bafd49b4218357c438b7` redis/redis — 10 non-test source files; 705 changed lines. Implementing the WAITAOF command (issue #10505) (#11713)
+- `7091b495a09b8e8b93c1f1dd257fd91fff7023fb` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix possible memory corruption in FLUSHALL when a client watches more than one key (#11854)
+- `18017df7c1407bc025741c64a90f20f4a8098bd2` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix possible memory corruption in FLUSHALL when a client watches more than one key (#11854)
+- `3c525fab6ac61aaa3494cfa767f55d2967dc6004` redis/redis — no non-test source files. Fix redis-cli cluster add-node race in cli.tcl (#11349)
+- `e1557e6c7a973389af5773c6624fd0630a5f7caf` redis/redis — no non-test source files. fix test Migrate the last slot away from a node using redis-cli (#11221)
+- `a549b78c48121c698c84536d25404a23f01c167d` redis/redis — no non-test source files. Fix redis-cli cluster add-node race in cli.tcl (#11349)
+- `7fc1a8c5a0d14db45ab6125d737791379e4372d5` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Prevent use after free for inbound cluster link (#11255)
+- `6c03786b66d27a53629cac21d5b89b17bfad6b65` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Prevent use after free for inbound cluster link (#11255)
+- `c0ce97faccb314f00cdda38a233508d38bd1b855` redis/redis — no non-test source files. fix test Migrate the last slot away from a node using redis-cli (#11221)
+- `4faddf18ca8ca3adb93cf1e4e620be9eaf0f6bf4` redis/redis — 8 non-test source files; 500 changed lines. Build TLS as a loadable module
+- `783b210db4b79cdd1313a8196ea58fa5ad999fd1` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. FLUSHDB and FLUSHALL add call forceCommandPropagation / FLUSHALL reset dirty counter to 0 if we enable save (#10691)
+- `b53c7f2c0bb8692fd30c59348190c2bd897958a0` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Turn into replica on SETSLOT (#10489)
+- `0b21ef8d49c47a5dd47a0bcc0cf1b2c235f24fd0` redis/redis — no non-test source files. Fix new / failing cluster slot migration test (#10482)
+- `69017fa232093728a84dfcb1befe7bc4b204c182` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix redis-cli CLUSTER SETSLOT race conditions (#10381)
+- `ae89958972ee720be2bff68231d6353553c2272a` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Set repl-diskless-sync to yes by default, add repl-diskless-sync-max-replicas (#10092)
+- `b91d8b289bb64965c5eaa445809f9f49293e99c0` redis/redis — 21 non-test source files; 380 changed lines. Add sanitizer support and clean up sanitizer findings (#9601)
+- `d04f306931f337e70a9cb270f0bbd1a202eedeb0` redis/redis — no non-test source files. Fix race condition in cluster test 22-replica-in-sync (#9721)
+- `cea7809ceac68b58c6d538e9e1898e3421a26ade` redis/redis — no non-test source files. Fix race condition in psync2-pingoff test (#9712)
+- `48d54265ce16cff0764b0aad7b56e091401b3d4b` redis/redis — no non-test source files. Fix failing cluster tests (#9707)
+- `37559ca79fe621385f4ebc5f692e13677f93fb93` redis/redis — no non-test source files. Fix race condition in lazy free test (#9682)
+- `53ad5627b7c0fd846590c97b9647fd4ed379d289` redis/redis — no non-test source files. Sentinel: Fix failed daily tests, due to race condition (#9501)
+- `c9931ddba53f43c291cb61b6976a91496976e2fd` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Use fchmod to update command history file. (#9447)
+- `5e3a15ae1b58630a10639b34cd016ba9c0ff6b15` redis/redis — no non-test source files. Fix failing cluster tests. (#8763)
+- `4724dd439e1a33310008ae244f82f70835d96a2e` redis/redis — no non-test source files. Clean up and stabilize cluster migration tests. (#8745)
+- `cd81dcf18bf9dafbe0edf29d9bba8c626cd2459e` redis/redis — no non-test source files. solve race conditions in psync2-pingoff test (#8720)
+- `817894c012ee67cdf8e33e0a098025f65521ba42` redis/redis — no non-test source files. Fix test false positive due to a race condition. (#8616)
+- `5d180d28349b36a177f9d70edb12bb27e88e8c61` redis/redis — no non-test source files. Fix potential replication-4 test race condition. (#8583)
+- `86f27be3dc49a012807ccf94fabfdfcef41dbb0f` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix use-after-free issue in spt_copyenv. (#8088)
+- `0c65342889537fa644003db09b1ca15dcda7c731` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Remove race condition and consistency issues with client pause and threaded IO (#8520)
+- `2a2d5a7a1f93c1d8e3d241e3da2cdc80d02dc7ce` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix use-after-free issue in spt_copyenv. (#8088)
+- `7e5a6313f0add995c723351532d994118e3e8a6d` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix use-after-free issue in spt_copyenv. (#8088)
+- `d87a0d02868df3f8739b6e2e1cd8c2a1a9cc14c3` redis/redis — 12 non-test source files; 249 changed lines. Unified MULTI, LUA, and RM_Call with respect to blocking commands (#8025)
+- `445a4b669a3a7232a18bf23340c5f7d580aa92c7` redis/redis — 9 non-test source files; 327 changed lines. Implement redisAtomic to replace _Atomic C11 builtin (#7707)
+- `e9fef49e1241fb9a672760007cfd177bb1583f5a` redis/redis — no non-test source files. Tests: fix unmonitored servers. (#7756)
+- `2df4cb93acabf10bb0ff39c12030791b0947e719` redis/redis — no non-test source files. Tests: fix unmonitored servers. (#7756)
+- `6b4ae919e8f3ebe883902e10305d29a083b3c679` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix data race in bugReportStart (#7700)
+- `f179f71e42f735bb10591fd97a94417c9ff8ba56` redis/redis — no non-test source files. make replication tests more stable on slow machines
+- `ba809f26d4bd81d23fa929d0c018f235ab298564` redis/redis — no non-test source files. make replication tests more stable on slow machines
+- `0ed3970f2c79141106a811389f8da598010920ba` redis/redis — no non-test source files. fix small test suite race conditions
+- `46a51cdcdc0bd92473163068c2ec3bef4dffe63c` redis/redis — no non-test source files. Merge pull request #5549 from oranagra/fix_test_races
+- `d0850369c4a06d6362dbaf12d873e54d6ce931cc` redis/redis — no non-test source files. fix small test suite race conditions
+- `27102605944a91cd334bc79c8c689869eee7101b` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Prevent RDB autosave from overwriting full resync results
+- `21971ac83cbab9bb8e28324f3b0182c3aa759642` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Prevent RDB autosave from overwriting full resync results
+- `98a64523c451d9f6519342b78a857a4aa729cf58` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Prevent RDB autosave from overwriting full resync results
+- `ba92b517b8c22a4d62c583c0a6ac94fb9a0c2486` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Remove AOF optimization to skip expired keys.
+- `7178cac031843f63133a494fbf566569b0285eb0` redis/redis — 60 non-test source files; 23575 changed lines. Revert "Jemalloc updated to 4.4.0."
+- `d9dc0d777b775f2fe4f23f42e1b4130f4de1ed72` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a possible race condition of sdown detection if the connection to master/slave/sentinel decames disconnected just after the last PONG and before the next PING.
+- `f5ff91f675843b132bfee9c0c4b19cc1908cacb9` redis/redis — no non-test source files. Merge pull request #2998 from danielhtshih/unstable
+- `8637384191ade8afbe380c10c2596f4dbc1eedbc` redis/redis — no non-test source files. Merge pull request #2726 from seppo0010/patch-2
+- `e6d970534b41825e9b32504b4e80d0039a389d28` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix a possible race condition of sdown detection if the connection to master/slave/sentinel decames disconnected just after the last PONG and before the next PING.
+- `7a7e46b22f76a8fd20a733cae6de0e0cb445c08b` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a race that may lead to the active (slave) client to be freed.
+- `e0b7388de3474ae1a685190cd1240927dac734d1` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix a race that may lead to the active (slave) client to be freed.
+- `d999f5a68efe9347e10ae6f9471e4a550e076172` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix a race that may lead to the active (slave) client to be freed.
+- `bb215375967cea35a1562feedbce97cf0222f811` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix a race that may lead to the active (slave) client to be freed.
+- `97a2248309937a2cecb8b800af40526e06fc64c4` redis/redis — no non-test source files. Fix race condition in unit/introspection
+- `e21e0ba3dcd67d9048ecea9be5398b2a791e7bc5` redis/redis — no non-test source files. Sentinel test: more correct sentinels config reset.
+- `6adf0e092c2ce97d33e7c6a49b53f39c6d40c75a` redis/redis — no non-test source files. Sentinel test: more correct sentinels config reset.
+- `5d16a838db8fa1dea4af88b92756fc121572b9ba` redis/redis — no non-test source files. Sentinel test: more correct sentinels config reset.
+- `e4833ed8bf06b528f56d03dbbcbf55fcca90ecd4` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix configEpoch assignment when a cluster slot gets "closed".
+- `8dea2029a4ec3382b7d80de82d793ef2ba2773e5` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix configEpoch assignment when a cluster slot gets "closed".
+- `e15ba6a6972f7e20fe92340b6d92fd6b73119d52` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Sentinel: fix address of master in Hello messages.
+- `69d826a354f69918e3887bac1d11c208917f0b4e` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Sentinel: fix address of master in Hello messages.
+- `b37512a28f11c3c2b57cc95da108ce5179c703e5` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix AOF bug: expire could be removed from key on AOF rewrite.
+- `a94db7908a86b1520fd2003ba1ff9b7f64758d20` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix AOF bug: expire could be removed from key on AOF rewrite.
+- `9cd06e4406377254c4d788299d11e4a040c200d6` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Fix AOF bug: expire could be removed from key on AOF rewrite.
+- `fb0d08e35fc35aac95af589ffefe45c051f36726` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Sentinel: only demote old master into slave under certain conditions.
+- `70845320ccf551687e09bcc632dd72ff509b7881` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Sentinel: only demote old master into slave under certain conditions.
+- `48ede0d84d43cc40addaa7de5e88daafe717abba` redis/redis — duplicate cherry-pick of the same commit subject on another branch. Sentinel: only demote old master into slave under certain conditions.
+- `0aed6a952a0acf5a02ec4b588031ec3dc231a68c` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. fixed diskstore race condition
+- `7493d2a0325fe33dc75317bfedf9b1c1e5b0d0b5` redis/redis — duplicate cherry-pick of the same commit subject on another branch. fixed diskstore race condition
+- `05600eb8a7cb981f1a132bfba7d30f0b81f0a472` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. fixed two diskstore issues, a quasi-deadlock creating problems with I/O speed and a race condition among threads
+- `e37efb0d8bb12172990f6c688230bc7515aa6524` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. diskstore race condition fixed
+- `7f00cd226438d3cd91238974346cee624d8920e1` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fixed a race condition in VM happening when a key was deleted while there was a client waiting for this key to be resumed from swap to memory. The client would hang forever.
+- `55f6287677140c0daa018587bcca6539a852b2a0` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. make sure to unblock clients waiting for a given key if VM is enabled when the key is deleted. This fixes a race condition with VM where the blocked client is never notified.
+- `521cdafafef93cd277a77100d596b861b773505b` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. avoid actively expiring keys in the cron loop if this keys are being swapped or loaded. This avoids a rare race condition
+- `76b7233adb5c59b072209434d9a5ee795c5affa5` redis/redis — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. fixed a deadlock caused by too much finished processes in queue so that I/O clients writing to the wirte side of the pipe used to awake the main thread where blocking. Then a BGSAVE started waiting for the last active thread to finish, condition impossible because all the I/O threads where blocking on threads. Takes this as a note to myself...
+- `ded3cb72a5af90d7efa0f80cb93e385ccc097665` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix trace replay on the default column family and error reporting in multi-threaded replay (#15296)
+- `31675ca6d02ce5741f210646665258e21a7ccf4d` facebook/rocksdb — 18 non-test source files; 2462 changed lines. Recover from poisoned WAL handles on remote file systems (#15193)
+- `b4e068e1ed6561646da1558042cc12d3a32c2091` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Reuse MANIFEST batch traversal after apply errors (#15288)
+- `5fa16200aa6ee18f316ef5c5f9c1542c02e00b02` facebook/rocksdb — 312 changed lines. Release MANIFEST writers after batch-build failures (#15286)
+- `3d381e1bd4084e22492130b0856d92fd695d7476` facebook/rocksdb — no non-test source files. Fix heap-use-after-free in DBSecondaryTest.SecondaryCloseFiles Env teardown (#15283)
+- `bec9dcec7c3c930919f8bbe24191b35936121fce` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Make db_stress actually tolerate transient remote IO errors (#15170)
+- `03b8d1afa0c3e67bbac99de096ffb16348628958` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Prevent normal flushes from starving error recovery (#15132)
+- `42fca1bb390655147cbdbd4e395ec60f06efdeaf` facebook/rocksdb — no non-test source files. Enable core dumps for sanitizer crash tests (#15131)
+- `f0c1e3d7d9fa9db38a94a30b7b543615cdc1df0b` facebook/rocksdb — no non-test source files. Fix cleanup-on-failure and flaky liveness check in point_lock_manager_stress_test (#15116)
+- `323d915dbcaed4a7a1d8bf73389c389c08f69e03` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Prevent late async-read stats context restoration (#15100)
+- `2dc6bc51b498c7fcae16e78a54de9058181c8b75` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix TSAN data race on speculative auto_skip_bypassed read (#15094)
+- `b4fd1daa683ef257382379ae4fbb1abbddc74f62` facebook/rocksdb — no non-test source files. Avoid deletefile test purge/flush deadlock (#15027)
+- `e2ccb78cf209477cea24612784d29bfc14f14637` facebook/rocksdb — no non-test source files. Avoid deletefile test purge/flush deadlock (#15027)
+- `144deb248a64a22545d8d650e374e2721acc19e4` facebook/rocksdb — no non-test source files. Harden MaybeOpenReadOnlyOnPrimary stress test: fix TSAN lock-limit crash + drop false-positive read-only Get (#14979)
+- `223b5ee13de592747fa599f53fc8d778f6f5cbf8` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix data race in VerifyPkSkFast between virtual call and TransactionDB destruction (#14930)
+- `dc72a64a5bd662838ac51da366056bef4383c60b` facebook/rocksdb — 7 non-test source files. Flush no-WAL live-file data with LockWAL (#14931)
+- `8fae7ff39d49280715f53447a296c6a9e3699071` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix use-after-free in EmbeddedBlobResolvingIterator when key() called before value()
+- `123030ffee24be515e6219ec310ba447b039dd66` facebook/rocksdb — no non-test source files; 451 changed lines. Graceful shutdown on fatal benchmark errors (#14855)
+- `77d9ed7f63f642cbefc86ad9a01e9433382a2663` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Use _exit(1) instead of exit(1) after DB is open to avoid UAF (#14850)
+- `8d33fe7c70dd8ff524c91869ba91cf353306ee89` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. fix use-after-free: drain background purge in CloseHelper (#14842)
+- `8c3bd2c3e94bbefb263bce577e09c6f301d254b5` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix stale no-reopen tracking in fault injection FS (#14822)
+- `8bf167a1949e69491071beca1a08eae4a87407c5` facebook/rocksdb — 295 changed lines. Notify listeners before DB shutdown begins (#14769)
+- `d1ab4bf12ccba94512fd6d8010bd61558cc49b19` facebook/rocksdb — no non-test source files. Guard db_bench DB lifetime with RWMutex against shutdown race (#14754)
+- `224e849e8d4b0da92cb99e4a78d130ad9b88dea2` facebook/rocksdb — no non-test source files. env: suppress liburing TSAN false positives (#14710)
+- `7be9ffc81a2bcdc4eba6ca81d5fcd71e219a9b0d` facebook/rocksdb — 10 non-test source files; 448 changed lines. Fix range tombstone conversion + ingest sst and re-enable crash tests (#14654)
+- `03e5a0b9a84e9e1d85c0ae8c9d7135cdcac4edaa` facebook/rocksdb — 10 non-test source files; 448 changed lines. Fix range tombstone conversion + ingest sst and re-enable crash tests (#14654)
+- `a9ac4df6306af614c0c48126de9440ed74b01ef8` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. env: avoid unused info in TSAN mapping helper (#14597)
+- `4254c705a2228afab57d2c1d9bc0a07308c06c0e` facebook/rocksdb — 298 changed lines. env: reset TSAN state for recycled mappings (#14594)
+- `3dd6d060e5ef9e6b52f9f7f60cea4e73b7536e98` facebook/rocksdb — no non-test source files. Upgrade CI Docker images: clang-18→clang-21, ubuntu24 24.0→24.1 (#14576)
+- `f12465cb93d7a7f1079c75b3f3f81654556fd41c` facebook/rocksdb — no non-test source files. Add COERCE_CONTEXT_SWITCH and ASSERT_STATUS_CHECKED guidance to CLAUDE.md (#14522)
+- `dcf3db95a6ffec839847e95fb8a08a724a4f070a` facebook/rocksdb — 6 non-test source files; 201 changed lines. Make concurrent Memtable stats more robust (#14506)
+- `ec31d0074f03d05c7a15522d772e81dee42b1540` facebook/rocksdb — no non-test source files; 444 changed lines. Accelerate build and test infrastructure (#14478)
+- `bcaf2794dc0120be6d2331e6bc5edb705b627db7` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix TSAN data race in InjectedErrorLog by suppressing benign races (#14467)
+- `16c81a27e94860907e932fe60d94ac9389c4c92b` facebook/rocksdb — 8 non-test source files; 2883 changed lines. Extend UDI trie index with seqno side-table for same-user-key block boundaries (#14412)
+- `3b66de3facb28110570934c805e571b045748f43` facebook/rocksdb — no non-test source files. Fix out of disk unit test issue (#14425)
+- `cc19bd7555ed5c3d29118e9d55db38ca9af68670` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Disable mmap_read with trie index to fix SIGSEGV (#14409)
+- `c2580e2b7a7ae2bbe18b545ab0db1091de423b48` facebook/rocksdb — no non-test source files. Fix use-after-free in db_stress with UDI factory (#14411)
+- `49a4165e3a1bde6183d6e433b6e8faf400e57631` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix deadlock error false positive in stress test (#14376)
+- `eb5d12e7445f431efa468bc3013aa72d1bfbd015` facebook/rocksdb — no non-test source files. Fix race condition causing flaky hang in WritePreparedTransactionSeqnoTest (#14361)
+- `256838180eeb11a6c72c5879a55f8f705e3b908c` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix stress test deadlock failure in TestPut (#14235)
+- `1cc1df8dab6a400146188d35aee1b847a0dcc530` facebook/rocksdb — 824 changed lines. Finish migrating HCC to BitFields API (#14154)
+- `d2fe0ee389ce4695e00f4816b599b77eb1cf1135` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix use-after-free in BlockBasedTable after best-efforts recovery retry (#14155)
+- `7c22fbe0d511c5108d48ec16392e6cfa37edbc5d` facebook/rocksdb — no non-test source files. Disable a param combo in crash test to fix a data race (#14023)
+- `c411586f1be7bb294fc1bc925d5cffffe088e16c` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Add shared mutex field to IODebugContext (#13993)
+- `90241e18c8616677a08cee78be3a1cb91752f9fb` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Add shared mutex field to IODebugContext (#13993)
+- `7c3472b4d96a201e5fa87affabbbdd6bba480ca6` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Work around GCC TSAN bug (#13958)
+- `e12650878e748471d53e4ba38af1b638af93a65c` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a race condition in FIFO size-based compaction where concurrent threads could select the same non-L0 file (#13946)
+- `29d9798ae86ed358cb2ad64781ab88257dbe8c30` facebook/rocksdb — 2210 changed lines. Revamp of parallel compression (#13910)
+- `54941a8d42de156f4b1fc8031ce439877e097b97` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix a race condition in FIFO size-based compaction where concurrent threads could select the same non-L0 file (#13946)
+- `1aca60c089a48857930b4191b0c84b6dd98a221c` facebook/rocksdb — 13 non-test source files; 4817 changed lines. Improve efficiency in PointLockManager by using separate Condvar (#13731)
+- `9c0a0c00581cdcf46a81815c0251f9496b692654` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix remote compaction stress test (#13835)
+- `b72fe4f2b9a7838a63487ae2fbf3d40a4c7b6f58` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Remove stats_ field from SstFileManagerImpl (#13757)
+- `29c65d8bffa1dce5f63cacead05e09747b38da06` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Remove stats_ field from SstFileManagerImpl (#13757)
+- `c8aafdba337e7e454cc8dd2b7208d8326f568507` facebook/rocksdb — 7 non-test source files; 202 changed lines. Support concurrent write for vector memtable (#13675)
+- `1d94aeea448bcc7796c03f34761267a81b176e52` facebook/rocksdb — 11 non-test source files; 524 changed lines. Refactor snapshot context into JobContext and fix deadlock on db mutex in WP/WUP (#13632)
+- `8cb2bfa2335077e5709fd9b1d246a84d36bb85ff` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix race in accessing MANIFEST number in crash test (#13603)
+- `1428e950bd7a7678c7a63995337631213416175b` facebook/rocksdb — 443 changed lines. Bug fix and refactoring on parallel compression (#13583)
+- `6c0e55a2a9e244ebbe71613c48eb3157ecfce9af` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a bug where lock upgrade can incorrectly return deadlock status (#13575)
+- `6d802639f7dc35bf765dbe1ed6b3942e4d76375d` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a data race reported for secondary (#13529)
+- `a30c0204cc7e5dadef5c41b74f7c4c895dc51cea` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Set Options File Number for CompactionInput under Mutex Lock (#13394)
+- `d48af213860054a7696e7ea2764f266c88a3263e` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix some race conditions in listener_test (#13385)
+- `ed2a87db07b67ba402914d69edad5d528f2a0370` facebook/rocksdb — no non-test source files. BlobDB is not compatible with secondary instances (#13371)
+- `57c177be5509f194431ba88d3d884c4f885f4ba9` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Use secondary_cfhs in secondary_db_->Get (#13351)
+- `f37ce33fcc49dab97f385b01e4e4d51446e0c558` facebook/rocksdb — no non-test source files. Clean up secondary column families alongside primary column families (#13343)
+- `6e97a813dc8c4b574fa0743df3099b09e87af7e0` facebook/rocksdb — 7 non-test source files. Deprecate db delete file public API (#13284)
+- `2af12ea69c29ecd278b4f46272ea0d29c9c497e5` facebook/rocksdb — no non-test source files; 915 changed lines. Remove .circleci folder (#13232)
+- `1d919ac414141683bac75775b76ea06dab71bfed` facebook/rocksdb — no non-test source files. Update build-linux-clang10-mini-tsan (#13220)
+- `d386385e0bb7a17564493b3a2f5eed0f2356e05e` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Temporarily disable file system buffer reuse optimization for compaction prefetches (#13177)
+- `4ac7fcb033203bd851c499442feef8c49decf3c0` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Add comment clarifying proper use of fs_scratch (#13189)
+- `debd87596a98f3d2148cbf999eaab6f3317c590a` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Potential fix for heap use-after-free issue (#13182)
+- `3fd1f11d35ac6b5ff4c2d3e3cf336bdcb36e000f` facebook/rocksdb — 11 non-test source files; 610 changed lines. Fix race to make BlockBasedTableOptions effectively mutable (#13082)
+- `ac24f152a134041f92b171f6e97849d1aec13070` facebook/rocksdb — 29 non-test source files; 849 changed lines. Refactor `table_factory` into MutableCFOptions (#13077)
+- `6727f0f58a1251028eb22e0d74dc0551925189a2` facebook/rocksdb — no non-test source files. fix compaction_picker_test asan heap use after free (#12908)
+- `c20eefc0a399bcde415640c8c17cb023a2ca9c6d` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Make transaction name conflict check more robust (#12895)
+- `97a152b84162228558ca3f4c985d0823e13781ff` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Make transaction name conflict check more robust (#12895)
+- `2e8a1a14eff1ef1532be92face831e76d4d1fcf0` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a data race affecting the background error status (#12910)
+- `55877d88935b8e98c7bb280eb0ec280a27fb7906` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Make transaction name conflict check more robust (#12895)
+- `05c9c9aeedf315587af8b22a2e4fe4dc0f6784fa` facebook/rocksdb — no non-test source files. Fix race between test and recovery flush switch memtable (#12884)
+- `d6f265f9d6bd4ee3c5356b6e7b7f7e2f5e2ea716` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix race in multiops txn stress test (#12847)
+- `41c6b4549ab0dccfb15b7af038f7803cbe8c5f23` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Revert back to previous ReadAsync error injection (#12811)
+- `56f7ef50d70c0636e397e9f47a477f767a2c9b5c` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix nullptr access and race to fault_fs_guard (#12799)
+- `fa4ffc816c7801fd8e5dfdeafe29f29d2987f68d` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix race condition between event listener and error handler (#12803)
+- `cce51f06640dc693796d87507b89a315a2a52718` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix heap-use-after-free in MultiCfIteratorImpl (#12784)
+- `961468f92e210d9fa5e3b8ca7aef1d5b2c3d4b5c` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix TSAN-reported data race with uncache_aggressiveness (#12753)
+- `21eb82ebec503ab9fa9b2d9f36e3c332920f8274` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Disable "uncache" behavior in DB shutdown (#12751)
+- `68112b3beb885c9ec8bc410e15b05e7e27e3c9ee` facebook/rocksdb — no non-test source files. Attempt fix rare failure in DBBlockCacheTypeTest.Uncache (#12748)
+- `4dd084f66dcfc747d6a42ebc8cfc576328078f45` facebook/rocksdb — no non-test source files. fix gcc warning about dangling-reference in backup_engine_test (#12637)
+- `3ed46e0668f840bea490e29beeac7777c50ae8fb` facebook/rocksdb — no non-test source files. Handle early exit in DBErrorHandlingFSTests (#12655)
+- `933ac0e05ce8c14847d0c67160c3c5869eae9656` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix locking for `ColumnFamilyOptions::inplace_update_support` (#12624)
+- `3b736c4aa3b997cc8ca05fda0f004f6e414a8812` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix heap use after free error on retry after checksum mismatch (#12464)
+- `096fb9b67d19a9a180e7c906b4a0cdb2b2d0c1f6` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix data race in WalManager (#12439)
+- `e91263edb9ece1c4cdb2ad83cb93c38ac60bde85` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix data race in AutoRollLogger (#12436)
+- `de1e3ff6eab9bc562ef262b1a49ec002b7bbbaef` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a data race in DBImpl::RenameTempFileToOptionsFile (#12347)
+- `9a2d7485f0503c0ed0ccfbe09ac99d69f32120cc` facebook/rocksdb — no non-test source files. Print stderr in crash test script and exit on stderr (#12335)
+- `377eee77f8da3f5d232cf014db0c4ca232352883` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix race condition for accessing file size in TestFSWritableFile (#12312)
+- `f046a8f6178a40d6c34a8277eaf9831ae88fea0b` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Deflake ColumnFamilyTest.WriteStallSingleColumnFamily (#12294)
+- `1de69409805e196dae4daad4975f6f83080f8a7c` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix heap use after free error in FilePrefetchBuffer (#12211)
+- `f6fd4b9dbd15dba36f7e5ad23de407b5c26b1460` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Print stack traces more reliably with concurrency (#12086)
+- `662a4b978c775e8f9b5432708a61c4dca9f8b0ee` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a race condition between recovery and backup (#11955)
+- `0bed170c192bf2b2c752e5f2aa92ad983a108482` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix data race in accessing `recovery_in_prog_` (#11950)
+- `695e06ac63995ce5d72da57138e9e4b9d3e91516` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix two `ErrorHandler` race conditions (#11939)
+- `e4d7b59293268166805ef2dd22475b44ee0362ff` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Consolidate `ErrorHandler`'s recovery status variables (#11937)
+- `933ee295f4e2bb9a3c970d964e82a473e88bdd0c` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix a race condition between recovery and backup (#11955)
+- `2fd850c7ebb6498a972a7b528408bca2ec697b9e` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Remove write queue synchronization from WriteOptionsFile (#11951)
+- `6e3429b8a6a53d5e477074057b5f27218063b5f2` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix data race in accessing `recovery_in_prog_` (#11950)
+- `d367b34cc921f4ac2aa358c324a8a8f1f47589f0` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix TSAN crash test false positive (#11941)
+- `4bd5aa4f5541d22ae52ff1ee2f6c9b782cf5ccdc` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix two `ErrorHandler` race conditions (#11939)
+- `77d160ef476caac76e8f271526c0d0dcadba8b48` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Consolidate `ErrorHandler`'s recovery status variables (#11937)
+- `1d5bddbc58c6987e8a0a0feefd1fb475caa54ab6` facebook/rocksdb — 8 non-test source files; 481 changed lines. Bootstrap, pre-populate seqno_to_time_mapping (#11922)
+- `1c6faf35871a236222bcbf0b69718ee43376a951` facebook/rocksdb — 7 non-test source files; 224 changed lines. Make RibbonFilterPolicy::bloom_before_level mutable (SetOptions()) (#11838)
+- `e1fd348b92a0c82637c4def968a421150247c7c1` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a bug in multiget for cleaning up SuperVersion (#11830)
+- `39a4ff2cab9131c3f28b1fffefeae0812fbe70c5` facebook/rocksdb — 13 non-test source files; 766 changed lines. Track full_history_ts_low per SuperVersion (#11784)
+- `3285ba7a29166377557acb47f576d6fe0ea69a43` facebook/rocksdb — no non-test source files. Fix unit test tsan failure (#11828)
+- `e67ee46642cbb29ec39d9365225cd4dec15ccff7` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Suppress TSAN reports on AutoHyperClockTable::Lookup (#11806)
+- `d01b1215bd8b879b07bca33d5668cf1fc621c7f7` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix TSAN reports on AutoHCC (#11792)
+- `fe3405e80f9f8a35975077e58cef899e682510ef` facebook/rocksdb — 2438 changed lines. Automatic table sizing for HyperClockCache (AutoHCC) (#11738)
+- `e95cc1217d0a59c438f8a16e17a90b467aaaa4e1` facebook/rocksdb — 242 changed lines. `CompactRange()` always compacts to bottommost level for leveled compaction (#11468)
+- `e1c7209bebfde34a03b397cf6cb6e02aeb864118` facebook/rocksdb — no non-test source files. Fix flaky test: `DBCompactionTest.WaitForCompactShutdownWhileWaiting` (#11488)
+- `6cac4c79d457f199271e05caca07539fc588e7d0` facebook/rocksdb — no non-test source files. Fix race condition in db_stress checkpoint cleanup (#11389)
+- `f3818948e8166a0ff123f7a44eb537abcd998c81` facebook/rocksdb — no non-test source files. Deflake DBWriteTest.LockWALInEffect (#11382)
+- `e168c1b1a4fe59b55a4250076e67e560b811f88a` facebook/rocksdb — no non-test source files. Use FaultInjectionTestFS in DBWriteTest.LockWALInEffect (#11271)
+- `fa13962e0c5e79250eec2c4a68676c10bc8bb8d5` facebook/rocksdb — 8 non-test source files; 333 changed lines. Fix data race on `ColumnFamilyData::flush_reason` by letting FlushRequest/Job owns flush_reason instead of CFD (#11111)
+- `4c464fa6faed73310bebbacded3bcaccd284aebd` facebook/rocksdb — 8 non-test source files; 333 changed lines. Fix data race on `ColumnFamilyData::flush_reason` by letting FlushRequest/Job owns flush_reason instead of CFD (#11111)
+- `e5dcebf756960989bb5a750dffb94c851f22e7e9` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix DelayWrite() calls for two_write_queues (#11130)
+- `546e213c4f7ed3d485ae7e4365afc90d102ae8d6` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix DelayWrite() calls for two_write_queues (#11130)
+- `86fa2592be19b72eb7ffe1872af0b21c5b80a157` facebook/rocksdb — 8 non-test source files; 331 changed lines. Fix data race on `ColumnFamilyData::flush_reason` by letting FlushRequest/Job owns flush_reason instead of CFD (#11111)
+- `e9d6a0d7ce763392b695851924100b09540a70a1` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix asan failure caused by range tombstone start key use-after-free (#11106)
+- `208310ad9907465e3a9f568633fa5fcf136f5f8c` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix async prefetch heap use after free (#11049)
+- `dbf37c290ae0cbf1532f706942c098380cb9c53a` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix async prefetch heap use after free (#11049)
+- `c93ba7db5ddc33f69f8f049cc59454985b17dc46` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Revise LockWAL/UnlockWAL implementation (#11020)
+- `0547cecb8190b09089cfa28ce8facdb4be41b115` facebook/rocksdb — no non-test source files. Reduce access to atomic variables in a test (#10909)
+- `b6e33dbc0e9787213b9a0ca8f232592ded68a30f` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix HyperClockCache Rollback bug in #10801 (#10843)
+- `2564215e35f1a98cfd4ac9b862fefa4380e68523` facebook/rocksdb — no non-test source files. Bump nokogiri from 1.13.6 to 1.13.9 in /docs (#10842)
+- `5f4391dda2a9bc3ac48eb4399815a7419432d337` facebook/rocksdb — 350 changed lines. Some clean-up of secondary cache (#10730)
+- `5724348689c7b6f51a3bbca5723af2185b77653e` facebook/rocksdb — 11 non-test source files; 3130 changed lines. Revamp, optimize new experimental clock cache (#10626)
+- `be04a3b6cdaab4641e86f4af6832a33b08bcf7b0` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix data race in accessing `cached_range_tombstone_` (#10680)
+- `f79b3d19a77f649536da6321f40e1c0d269bde48` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Inject spurious wakeup and sleep before acquiring db mutex to expose race condition (#10291)
+- `8a85946f58bc8db59c35685672ead1b5cae15c23` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Add missing mutex when reading from shared variable bg_bottom_compaction_scheduled_, bg_compaction_scheduled_ (#10610)
+- `c5afbbfe4bf4ed97bf379bc605f3622c5630a5fa` facebook/rocksdb — 6 non-test source files. Don't wait for indirect flush in read-only DB (#10569)
+- `b16655a547c3a44f8dcbe09614ef7ebb8daa83ac` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Add missing synchronization in TestFSWritableFile (#10544)
+- `5d3aefb6821eef8816fdee74262702b1d9255f50` facebook/rocksdb — 650 changed lines. Migrate to docker for CI run (#10496)
+- `f060b47ee885f5494f52dd519e81f29b75cda6a1` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix the segdefault bug in CompressedSecondaryCache and its tests (#10507)
+- `f28d0c2020d0314e66aed240f379f2a795b6c940` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix data race reported on SetIsInSecondaryCache in LRUCache (#10472)
+- `d976f689770dfc1a0b47f06d176c1baa2f58eb3e` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix assertion failure and memory leak in ClockCache. (#10430)
+- `9d7de6517c087ebb856eda10c97b0bc17b07bc22` facebook/rocksdb — 543 changed lines. Towards a production-quality ClockCache (#10418)
+- `1e9bf25f61fa5b08fe2b3fe5c1fcf33e4c1c515c` facebook/rocksdb — 11 non-test source files; 548 changed lines. Do not hold mutex when write keys if not necessary (#7516)
+- `e576f2ab1920b05892d6ae330f982963e02b6a14` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix race conditions in GenericRateLimiter (#10374)
+- `66f369f91e1d05d3fbb7e1a02f0100e909e50e31` facebook/rocksdb — 465 changed lines. Make RateLimiter not Customizable (#10378)
+- `a58fae99c01349ba42d464d572b4c7561a4da56f` facebook/rocksdb — 462 changed lines. Make RateLimiter not Customizable (#10378)
+- `25cc564ff7c396e4a9728a6dfa5fd053a5181545` facebook/rocksdb — 463 changed lines. Make RateLimiter not Customizable (#10378)
+- `693714c46d416ac17bc7dfd1329bf898bab1de44` facebook/rocksdb — 7 non-test source files. Fix race condition with WAL tracking and `FlushWAL(true /* sync */)` (#10185)
+- `725df120e92c86c1ef8e0f0367613a364ba371fd` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix race condition between file purge and backup/checkpoint (#10187)
+- `d5d8920f2cfd06d1803b0976acbe8b564b88b6b1` facebook/rocksdb — 7 non-test source files. Fix race condition with WAL tracking and `FlushWAL(true /* sync */)` (#10185)
+- `bfaf8291c5e1f342cb242d78597e8cdf69965450` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a race condition in transaction stress test (#10157)
+- `693dffd8e8e9133519d3adba9cd817adc0a995ba` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Return try again when full_history_ts_low is higher than requested ts (#10126)
+- `5fa6ef7f1897b73732190c69f3ca4d3dc1795b25` facebook/rocksdb — no non-test source files. Fix fragile CacheTest::ApplyToAllEntriesDuringResize (#10145)
+- `ff32346415b147bd7d596728a645dc502af95ac8` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Set db_stress defaults for TSAN deadlock detector (#10131)
+- `0adac6f88eb5f0b68cda6b5cc8dbaa18794478e5` facebook/rocksdb — no non-test source files. Deflake Transaction stress tests (#10063)
+- `b58a1a035bac3afc11cfe0274d0572b476a35e63` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Revert "Bugfix/fix manual flush blocking bug (#9893)" (#9992)
+- `9d0cae71042be55a5429aa2e2ddc4be330995965` facebook/rocksdb — 608 changed lines. Eliminate unnecessary (slow) block cache Ref()ing in MultiGet (#9899)
+- `9ed2144ebd24fce063c2d7311f3930a90a734f29` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix GetMergeOperands() heap-use-after-free on flushed memtable (#9805)
+- `fa99e8afbc468a3a90e09a3034375f23bc0965b5` facebook/rocksdb — 6 non-test source files. Fix heap use-after-free race with DropColumnFamily (#9730)
+- `43890774edd98439602a8c528a9a7500e514c9a6` facebook/rocksdb — 7 non-test source files. Fix a race condition in WAL tracking causing DB open failure (#9715)
+- `04623e7cd4e3485761e0b44246d0957c6149bd00` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix GetMergeOperands() heap-use-after-free on flushed memtable (#9805)
+- `8b2cfef9e017068519442e264a1757b833bcc9be` facebook/rocksdb — 6 non-test source files. Fix heap use-after-free race with DropColumnFamily (#9730)
+- `2de3bfc7d12ce29527c5221e607ab72c477a0332` facebook/rocksdb — 7 non-test source files. Fix a race condition in WAL tracking causing DB open failure (#9715)
+- `1ac5d372762c74d4e563ebe3d96a1695a36345d1` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix race condition caused by concurrent accesses to forceMmapOff_ when opening Posix WritableFile (#9685)
+- `4ae8687e88a3f17e7e11437fe7bf0f275003cd74` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix TSAN caused by calling `rend()` and `pop_front()`. (#9698)
+- `3e18c47db0d72c481475aa66416290ebd3fa72c4` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a TSAN-reported bug caused by concurrent accesss to std::deque (#9686)
+- `63a39d911008caaca4995db95a77ac4e08b7e353` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a race condition when disable and enable manual compaction (#9694)
+- `e3a1707d05b60d7a6e2ed516d85e5f919321e4b3` facebook/rocksdb — 6 non-test source files. Fix heap use-after-free race with DropColumnFamily (#9730)
+- `f4790bdd1b6fc909e7f01d3f7a72bafeb6eecc48` facebook/rocksdb — 7 non-test source files. Fix a race condition in WAL tracking causing DB open failure (#9715)
+- `00191c84e60ac6822394e081d522ec781dc41c41` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix race condition caused by concurrent accesses to forceMmapOff_ when opening Posix WritableFile (#9685)
+- `02f6ebb7d4ee835a4571652a0ed1bc4c17092785` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix TSAN caused by calling `rend()` and `pop_front()`. (#9698)
+- `ccaadd8705ea7c5a6e2d0df4358791f47e6db296` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix a TSAN-reported bug caused by concurrent accesss to std::deque (#9686)
+- `cad809978ab0f80aeb3d3691f3faaa6cf6bcdae8` facebook/rocksdb — 6 non-test source files. Fix heap use-after-free race with DropColumnFamily (#9730)
+- `e0c84aa0dc93aec947bed3492648ea2e103484ca` facebook/rocksdb — 7 non-test source files. Fix a race condition in WAL tracking causing DB open failure (#9715)
+- `32ad0dcafe2b1ec35ef88d51c810b0e6d8ae748c` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix a race condition when disable and enable manual compaction (#9694)
+- `3bdbf67e1aa25b5517e2e169a0c7602fbec6279e` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix race condition caused by concurrent accesses to forceMmapOff_ when opening Posix WritableFile (#9685)
+- `2c8100e60e72718311e80f78d2e640486187d357` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix a race condition when disable and enable manual compaction (#9694)
+- `6a760083699e693136f8efad47bf306d2aeaf630` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix TSAN caused by calling `rend()` and `pop_front()`. (#9698)
+- `bbdaf63d0fccca7579936d997fa41aeabeb46ad9` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix a TSAN-reported bug caused by concurrent accesss to std::deque (#9686)
+- `529efcc5b2df802c479caacb5f9c9cf66491925f` facebook/rocksdb — 290 changed lines. Unschedule manual compaction from thread-pool queue (#9625)
+- `67542bfab5d052807e13aaaf8bcc0fa849375722` facebook/rocksdb — no non-test source files. Improve build speed (#9605)
+- `0344b1d331cbd7baa0f3d9fd9626303764158150` facebook/rocksdb — 293 changed lines. Unschedule manual compaction from thread-pool queue (#9625)
+- `db8647969d47f2b4889737b814e5fe43670e9e3f` facebook/rocksdb — 292 changed lines. Unschedule manual compaction from thread-pool queue (#9625)
+- `8ca433f912f1d90058d7174d1923d571c341257f` facebook/rocksdb — no non-test source files. Fix test race conditions with OnFlushCompleted() (#9617)
+- `96978e4d965ae1bc675ed1513240c35ff46abbce` facebook/rocksdb — no non-test source files. Enable core dumps in TSAN/UBSAN crash tests (#9616)
+- `36ce2e2a0a4d229d1805766b0e9534b1f708929f` facebook/rocksdb — no non-test source files; 443 changed lines. Update build files for java8 build (#9541)
+- `c5cd31c12bb02fa0db0a01caabede0dd9a69e7d8` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix TSAN data race in EventListenerTest.MultiCF (#9528)
+- `7cd576327415508a64442a98c0504ad04dc82c64` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a copy-paste bug related to background threads in db_stress (#9485)
+- `f07c56928f998649cfd110854a7898dad532e1d3` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Set the number of threads up front in db_stress (#9466)
+- `beb86addeb363a3cd2406cbd855c7717aa51760b` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix race condition in SstFileManagerImpl error recovery code (#9435)
+- `538d2365e97555367cd22e286e09357a3b80bb24` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix race condition in BackupEngineTest.ChangeManifestDuringBackupCreation (#9327)
+- `782fcc44e16e8263be7b0c0cfaeb7ade9dca3bcb` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix race condition in `error_handler_fs_test` (#9325)
+- `791723c1ec828baba4d2be825f6eb10541c834d8` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix race condition in db_stress thread setup (#9314)
+- `21f8a57f2a1db9c2bf90b457c1080c1feb37c808` facebook/rocksdb — no non-test source files. Fix TSAN report on MemPurge test (#9115)
+- `8e59a1dc9ace6b3033f8b2082bf41a5a16305040` facebook/rocksdb — no non-test source files. Attempt to deflake ListenerTest.MultiCF (#9084)
+- `f24c39ab3d1536285d87e57696718226d1469b50` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Prevent corruption with parallel manual compactions and `change_level == true` (#9077)
+- `140db3c44e10333de4c20b6ac7ff096b02fbab7b` facebook/rocksdb — no non-test source files. Fix rate limit for MixGraph (#9027)
+- `3ebe8658d06dbb3958036887d8601a5290c04ba1` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix race in WriteBufferManager (#9009)
+- `22d4dc5066fbfc1a9613c206ee9d8978929d7d5b` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix race in WriteBufferManager (#9009)
+- `c0ec58ecb94d276f69ccdfa956c5152d4c91a2ec` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. stop populating unused/invalid MergingIterator heaps (#8975)
+- `791bff5b4e1f0f35448eb2cffa2683e01952038b` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Prevent deadlock in db_stress with DbStressCompactionFilter (#8956)
+- `a5566d508b99c74eb6dc8e777eaaa904d8d25f34` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix flaky, dubious LdbCmdTest::*DumpFileChecksum* (#8898)
+- `32752551b97468237d2e8b8054a291feefaa6cd3` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a buffer size race condition in BackupEngine (#8732)
+- `e51db47febd5ac898532a3c8fd6127165f401b7b` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a race in LRUCacheShard::Promote (#8717)
+- `1fe5ac3468dffe760ce3b46245b90d3a7904418e` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix a race in LRUCacheShard::Promote (#8717)
+- `ec9f52ece6f40072fcdfc0d2497806b247fb2b48` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix a race in LRUCacheShard::Promote (#8717)
+- `ebaa3c8a59648fdb77ff3af66bcf8a5ac03336ad` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a race condition in DumpStats() during iteration of the ColumnFamilySet (#8714)
+- `7c393c3fc6e27e40f474060a680fc044055b4d4e` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a race in ColumnFamilyData::UnrefAndTryDelete (#8605)
+- `3f7e929865d8c1c923915359c4ee2efb7987869c` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix a race in ColumnFamilyData::UnrefAndTryDelete (#8605)
+- `74b7c0d24997e12482105c09b47c7223e7b75b96` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix use-after-free on implicit temporary FileOptions (#8571)
+- `bf117c54ef886019eb251ab783423cfcaa277cfe` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix an race condition during multiple DB opening (#8574)
+- `c4a503f3dfc297dadaf0912dbeb801bb1059b5eb` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix an race condition during multiple DB opening (#8574)
+- `84eef260de9c0dc0c7ace8e6f605a2b3efd71038` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Remove TaskLimiterToken::ReleaseOnce for fix (#8567)
+- `300b2249dc336c0c6533918d5c48126b770ad5c0` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Standardize on GCC for TSAN conditional compilation (#8543)
+- `a28f13c937de32afdaf853e1e079ab09ada4e656` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Work around falsely reported data race on LRUHandle::flags (#8539)
+- `c58a32b30d771de949cf5166b46ec7c1887595ae` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Standardize on GCC for TSAN conditional compilation (#8543)
+- `7c70ceed142944960a407986517b36a286e4d4f1` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Work around falsely reported data race on LRUHandle::flags (#8539)
+- `aeb913dd01b0dc4ccdf5f9e05316802a94c1d6f1` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Standardize on GCC for TSAN conditional compilation (#8543)
+- `5ad3227650cf0b67aa3e451a45da8bf940333b51` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Work around falsely reported data race on LRUHandle::flags (#8539)
+- `d45b8377015a2b09b4d54846fc522c34bcff0474` facebook/rocksdb — no non-test source files. Fix TSAN issue (#8477)
+- `28aa6d4e7610055fed9916b39a512a09c1d7d5ea` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a tsan warning due to reading flags in LRUHandle without holding a mutex (#8433)
+- `a50da404bebeae2006c866c4b914fba106c0c4d6` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix a tsan warning due to reading flags in LRUHandle without holding a mutex (#8433)
+- `32a4d59477cbf660e2b4343242b24dbc37124a50` facebook/rocksdb — no non-test source files. Remove TSAN crash test opt-in to platform007 (#8406)
+- `3b981eaa1d97e90d9f9a33295551a3c83cc82988` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix use-after-free threading bug in ClockCache (#8261)
+- `c70bae1b05024c19d772518e66fbba7cc771f652` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix ConcurrentTaskLimiter token release for shutdown (#8253)
+- `f2228962c5559b6e6ae9ed2d3e91774416dc5d2d` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a data race related to DB properties (#8206)
+- `0c6e4674a64d07a00f9960f72cf155b34c8f1308` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix a data race related to DB properties (#8206)
+- `ec11c23caaea21cdee4bb5e4cc29c4423cba2836` facebook/rocksdb — 657 changed lines. Add thread safety to BackupEngine, explain more (#8115)
+- `41e554da2bc059c9d1c1425f5de9e12dcb3434e8` facebook/rocksdb — no non-test source files. Fix Race condition in db_sst_test (#8092)
+- `b708b166dc7093e08dcd432edcff0b39c581ec21` facebook/rocksdb — no non-test source files. Fix a harmless data race affecting two test cases (#8055)
+- `59d91796d23006838fb973a5db70fdf712b5237b` facebook/rocksdb — no non-test source files. Attempt to speed up tests by adding test to "slow" tests (#7973)
+- `c9878baa872a1841a993680b1787337e0c93b52a` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix an assertion failure in range locking, locktree code. (#7938)
+- `0288bdbc5379c4a2965e50b222a6f6b0e85cf376` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Add the integrated BlobDB to the stress/crash tests (#7900)
+- `87983d442ceed55588ae2b09153ca53ec30c6d9a` facebook/rocksdb — no non-test source files. Skip format checks for sandcastle build (#7911)
+- `c6ff4c0b70d249d265307607e5a677961a3f2f58` facebook/rocksdb — no non-test source files. Fix deadlock in `fs_test.WALWriteRetryableErrorAutoRecover1` (#7897)
+- `1420cbf09dd04d4dad5df05b4e8db9fa13f06899` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. workaround race conditions during `PeriodicWorkScheduler` registration (#7888)
+- `ba7c46a3d873a2595cfb68ed97bc3e2710b457bf` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. workaround race conditions during `PeriodicWorkScheduler` registration (#7888)
+- `11b42f92b1bbb94b46bf37dc54df875e49cc4d02` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. workaround race conditions during `PeriodicWorkScheduler` registration (#7888)
+- `e18a4df62a78c519359b5693ddb1d1371ed3f9b9` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. workaround race conditions during `PeriodicWorkScheduler` registration (#7888)
+- `eccc47e81c34e8676daf178adbab6ac0d035f347` facebook/rocksdb — no non-test source files. Fix tsan options_test (#7845)
+- `736c6dc59fe1f860f3076e18efee07180c8eb510` facebook/rocksdb — no non-test source files. Disable BasicLockEscalation if cannot determine whether TSAN is enabled (#7814)
+- `0b06af91463d5b6068ad794ac7307075440f8e4b` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Warn about practically unfixable TSAN warnings in stack trace (#7723)
+- `1c78e4b235d3df167b3856dd4fc3b105f7a840fb` facebook/rocksdb — 604 changed lines. Make parallel compression optimization code tidier (#6888)
+- `f548a2a03cacdf1463bb4c63340569f846c73128` facebook/rocksdb — no non-test source files. Fix a flaky tsan test for DBTest2 (#7526)
+- `3e745053b7c3a5453f823b74d8479beba07d50a8` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix MSVC-related build issues (#7439)
+- `e127fe18c3ee0d99b4507f1e2b7cfcb38a653e74` facebook/rocksdb — no non-test source files. Fix TSAN failure for backupable_db_test (#7478)
+- `fa92b9dc9f927928156e91ca071eb2ebb612c4bc` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix TSAN build and re-enable the tests (#7386)
+- `c8a12aa94bc78357d008735978c6bb6c0204d4f0` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. EnableFileDeletions only read field while holding mutex (#7435)
+- `cd72f8974bfe81497f5fb94ea14623246f320d1a` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Allow mutex to be released in GetAggregatedIntProperty (#7412)
+- `6727259eb46b0899d329965d19a99326191d4911` facebook/rocksdb — no non-test source files. Possible fix to flaky db_write_test (#7418)
+- `7b1d6c438a71bab04680e066c101eabdac14540a` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix the handling of the case when a blob file with a lower number gets added in VersionBuilder (#7349)
+- `3e422ce0cae88aa25f24a932cf059e36d7c4cab1` facebook/rocksdb — 455 changed lines. Fix a timer_test deadlock (#7277)
+- `cc24ac14ebfb700706df88e442f8693790c0f8e3` facebook/rocksdb — 13 non-test source files. Store FSSequentialFilePtr object in SequenceFileReader (#7190)
+- `176063753965b04f98a5e89ce695b78a68dce47f` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. CompactRange() refit level should confirm destination level is not empty (#7261)
+- `1f9f630b2795f32c72de281d02127bbed4abdb4f` facebook/rocksdb — 20 non-test source files; 263 changed lines. Store FileSystemPtr object that contains FileSystem ptr (#7180)
+- `b79f13b2aaabb8ed74f70138905c2392841bb030` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix the potential deadlock in WriteImplWALOnly and UnorderedWriteMemtable (#7199)
+- `4496719450e5446e0fd9e0ef9271094db8a0bf75` facebook/rocksdb — no non-test source files. Fix data race warning of BackupableDBTest.TableFileWithDbChecksumCorruptedDuringBackup (#7177)
+- `1adfd729e906b0f33af21cf1df411aa585f7ff08` facebook/rocksdb — no non-test source files. Enable a few jobs in determinator (#7174)
+- `0f487cc35f76dafa1dd6707ceb8665d9eac72abb` facebook/rocksdb — no non-test source files. Exclude two tests in CircleCI TSAN tests (#7152)
+- `1cf4731dbb4ceb43451ed0996940a43a58a8b17e` facebook/rocksdb — no non-test source files. column_family_test: fix a data race related to sleeping task (#7150)
+- `9870704420a0a49ca64fe2fb0137e67caff378c1` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a minor data race in stats dumping threads initialization (#7151)
+- `ca5a069a79e5a03a5c9e6bff196c016285e6bbd1` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Suppress a TSAN warning (#7126)
+- `e930ba1d18c83a241b4dc77b23d4b3c152d73b86` facebook/rocksdb — no non-test source files. Run a subset of TSAN tests in CIrcleCI (#7122)
+- `3514cf51fa4e2941d731e4425c86276de4be7795` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix data race to VersionSet::io_status_ (#7034)
+- `52d59e0c93dfa3629cbcc2c2991a7009e3ec0595` facebook/rocksdb — no non-test source files. Revert "Whole DBTest to skip fsync (#7049)" (#7070)
+- `f045ee6422cc8cfa1bfa72a2f24846b35d539e32` facebook/rocksdb — no non-test source files. Increase transaction timeout and enable deadlock detection in stress test (#7056)
+- `d47c8711908e84e6048d7a1233b20adc831c8590` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix data race to VersionSet::io_status_ (#7034)
+- `b9d51b86842b8432d740538c31fd8596f7765f0f` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix for TSAN failure in DeleteScheduler (#7029)
+- `cef4f9178f5991c8631c31556816291212af52a9` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a bug that causes iterator to return wrong result in a rare data race (#6973)
+- `1910560c2c4f075fc6bf1ea0a73b25a5b861698b` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix a bug that causes iterator to return wrong result in a rare data race (#6973)
+- `d6b7b7712f83185714a14eed64867fa42a73517c` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix a bug that causes iterator to return wrong result in a rare data race (#6973)
+- `c7432cc3c0848ad4d2a34a3eb40ad94d37477856` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix more defects reported by Coverity Scan (#6935)
+- `b464a85e337ea801eabff0595a933c4e6fc793dd` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. fix transaction rollback in db_stress TestMultiGet (#6873)
+- `41563b61dbe53967a92d53fb407df2008ffa8480` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix data racing of BlockBasedTableBuilder::ParallelCompressionRep::first_block (#6640)
+- `d0f3894cf1429cac2c48ce6933df67c3f24ccbcd` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. In block based table builder, make variables for estimating file size atomic (#6636)
+- `5929273ea6362bffc7d682848089f8a98e57bbca` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix data race of GetCreationTimeOfOldestFile() (#6473)
+- `bba5e7bc21093d7cfa765e1280a7c4fdcd284288` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix data race of GetCreationTimeOfOldestFile() (#6473)
+- `17bef7d3a88bdd627b2c7a97cdedcf768af4da39` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix data race of GetCreationTimeOfOldestFile() (#6473)
+- `28aa09dccea2950d053e3924ac59fd14f14aad09` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Pass info_log_level to the inner logger of AutoRollLogger (#6388)
+- `23dcf2759d98bb65dbce5b7b142974d821ac2740` facebook/rocksdb — no non-test source files. Upload DB dir for all crash tests (#6344)
+- `4f6c86226ce79e3d4e35acb8f82b4a54d1d71c32` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Use the same oldest ancestor time in table properties and manifest
+- `c0a5673aa7a58487f059ba2f233b13785eb70b2e` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a data race related to memtable trimming (#6187)
+- `5709e97a74000ea688408289a17a1abf17990150` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Skip CancelAllBackgroundWork if DBImpl is already closed (#6268)
+- `1aaa145877772bff5652d06a3914d9d66364f41e` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a data race for cfd->log_number_ (#6249)
+- `74b01ac2eaf7b42cce38ebcbd837ba6177f074bb` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix use-after-free and double-deleting files in BackgroundCallPurge() (#6193)
+- `9d36c066c6a8c79b024373d775751f85e69b792a` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. db_stress: listners to implement all functions (#6197)
+- `ce63eda6f09856d22d20ff98beab247ccbdbf415` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix use-after-free and double-deleting files in BackgroundCallPurge() (#6193)
+- `509da20ae5872357d47114e010a44eec2529fa0b` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix a data race related to memtable trimming (#6187)
+- `db7c6875233f429e666e81196b5d9e35dbc866bd` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix a data race related to memtable trimming (#6187)
+- `0ce0edbe120f0ec5c17b3cf7d54a09b1f911e8db` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a data race between GetColumnFamilyMetaData and MarkFilesBeingCompacted (#6056)
+- `f65ec09ef86c8dffd20aa63a12126a23d6d3c5b4` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix IngestExternalFile's bug with two_write_queue (#5976)
+- `9781ef438abb0a31e28d508321b8ec10a7116bd6` facebook/rocksdb — no non-test source files; 227 changed lines. Add latest toolchain (gcc-8, etc.) build support for fbcode users (#4923)
+- `a81eb261de22c26a083aaf6bae64874de3d40ccf` facebook/rocksdb — no non-test source files; 227 changed lines. Add latest toolchain (gcc-8, etc.) build support for fbcode users (#4923)
+- `90a87bbf618a3c96a8ca84e8fd1ecaeb29f48b24` facebook/rocksdb — no non-test source files; 227 changed lines. Add latest toolchain (gcc-8, etc.) build support for fbcode users (#4923)
+- `a5dd5b6ac070cf1fc7e8e034e6b719f92d8aa35a` facebook/rocksdb — no non-test source files; 227 changed lines. Add latest toolchain (gcc-8, etc.) build support for fbcode users (#4923)
+- `f4c33f4d7f1c6d72c99fe5b670585b75944e2517` facebook/rocksdb — no non-test source files; 227 changed lines. Add latest toolchain (gcc-8, etc.) build support for fbcode users (#4923)
+- `6da4b446be93228cfee5325294b50e52ba15ff54` facebook/rocksdb — no non-test source files; 227 changed lines. Add latest toolchain (gcc-8, etc.) build support for fbcode users (#4923)
+- `1a9412ef4febe6dc1b2730bb0db20990c70b97a8` facebook/rocksdb — no non-test source files; 227 changed lines. Add latest toolchain (gcc-8, etc.) build support for fbcode users (#4923)
+- `44302dd00c22fd4ab4fe03f2490a20a786f01bcb` facebook/rocksdb — no non-test source files; 227 changed lines. Add latest toolchain (gcc-8, etc.) build support for fbcode users (#4923)
+- `4a5f01caa1fdacabcd1002a403553ba004baa4c5` facebook/rocksdb — no non-test source files; 227 changed lines. Add latest toolchain (gcc-8, etc.) build support for fbcode users (#4923)
+- `95dc6cd6edfeca5ddeffd21045d8118c670a00cb` facebook/rocksdb — no non-test source files; 226 changed lines. Add latest toolchain (gcc-8, etc.) build support for fbcode users (#4923)
+- `1fdb34fe99eacce4dbd0ed8965b10df69557df60` facebook/rocksdb — no non-test source files; 227 changed lines. Add latest toolchain (gcc-8, etc.) build support for fbcode users (#4923)
+- `405017bb8c23da0d061354ff16621bbff070a414` facebook/rocksdb — no non-test source files; 227 changed lines. Add latest toolchain (gcc-8, etc.) build support for fbcode users (#4923)
+- `777c0011bfaacb367614df947018325ed13cdf45` facebook/rocksdb — no non-test source files; 227 changed lines. Add latest toolchain (gcc-8, etc.) build support for fbcode users (#4923)
+- `a3960fc875233308976351f185b672e8f01296ec` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Move pipeline write waiting logic into WaitForPendingWrites() (#5716)
+- `05550569db0e5c05cf090472aa958ba73e2c433e` facebook/rocksdb — no non-test source files; 227 changed lines. Add latest toolchain (gcc-8, etc.) build support for fbcode users (#4923)
+- `ca7ccbe2ea6be042f90f31eb75ad4dca032dbed1` facebook/rocksdb — 10 non-test source files; 4308 changed lines. Misc hashing updates / upgrades (#5909)
+- `29ccf2075cdfbf80d46eb34cec2291ba71268e20` facebook/rocksdb — 8 non-test source files; 227 changed lines. Store the filter bits reader alongside the filter block contents (#5936)
+- `4c74dba5fa166bddc1e8a1b1f7488f99ffb1b458` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Bump up memory order of ref counting of ColumnFamilyData (#5723)
+- `77273d4137b4ee3be284c72f0c9dc3ce369038b0` facebook/rocksdb — no non-test source files. Fix TSAN failures in DistributedMutex tests (#5684)
+- `0a97125ec07f72c0dc0dd11d21327be070a03536` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix data races in BlobDB (#5698)
+- `12eaacb71dfdc89661b8c759a22dfd7a0d03dac6` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. WritePrepared: Fix SmallestUnCommittedSeq bug (#5683)
+- `1dfc5eaab03f998ab13a6953b53e41cdfd2c8237` facebook/rocksdb — no non-test source files. Test the various configurations in parallel in MergeOperatorPinningTest (#5659)
+- `3f89af1c39da4991ef6c544fc5e3f164a688b375` facebook/rocksdb — no non-test source files. Reduce the number of random iterations in compact_on_deletion_collector_test (#5635)
+- `3617287e0ec4593587c59909079d40a32209bbe4` facebook/rocksdb — no non-test source files. Parallelize db_bloom_filter_test (#5632)
+- `112702ac6cd14dfb2f0fbf929216deabcf2ccafc` facebook/rocksdb — no non-test source files. Parallelize file_reader_writer_test in order to reduce timeouts
+- `4f7ba3aaed08b0f29a2828a44fb9eed525f47610` facebook/rocksdb — no non-test source files. Fix tsan and valgrind failures in import_column_family_test
+- `f786b4a5b4f1f162a7e7452b33e2e5cf0d755b9b` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Improve result print on atomic flush stress test failure (#5549)
+- `ee294c24ed26a7efb6688ed165328b7da68aee0d` facebook/rocksdb — no non-test source files. Make db_bloom_filter_test parallel (#5467)
+- `f9842869cf2dc2278322a4f00ccb45a978c7a923` facebook/rocksdb — no non-test source files. Disable pipeline writes in stress test (#5445)
+- `f43edff9ac78f8f08edc15092f9e08d4bea10282` facebook/rocksdb — no non-test source files. Disable kPipelinedWrite in MultiThreaded (#5442)
+- `f7e05456927dc526538d991a885f8ec7de873c67` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Avoid deadlock between mutex_ and log_write_mutex_ (#5437)
+- `2c3eaeb4db7b7e3e64cc870d539a5ddbd2551249` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. WritePrepared: Fix deadlock in WriteRecoverableState (#5306)
+- `c8c1a549f0cf88fa3d7c82d1f0d96d4b7dcffbf1` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Avoid deadlock between mutex_ and log_write_mutex_ (#5437)
+- `a16d0cc494ea8853b84c606efc04b61e33878fff` facebook/rocksdb — no non-test source files. Fix build errors regarding const qualifier being ignored on cast result type (#5432)
+- `cb1bf09bfc912472b380d09ee2b733a6684457d7` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix tsan error (#5414)
+- `f0e821619742a8e97521d035c7e527c21743530a` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. WritePrepared: Fix deadlock in WriteRecoverableState (#5306)
+- `570d490a3de49802cdc406d5de6bfadcb83e1ea4` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a race condition caused by unlocking db mutex (#5294)
+- `3c3252a06a77c5f6877392b882014dc8c8b2bd8f` facebook/rocksdb — no non-test source files. Fix tsan complaint in ConcurrentMergeWrite test (#5308)
+- `e62601654535cdf9af46c99455af8da969efde65` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix a race condition caused by unlocking db mutex (#5294)
+- `eea1cad850c2e268b0bfde208a005e44289dea47` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. avoid updating index type during iterator creation (#5288)
+- `fe642cbee630cb90ff8d2845eb4e5fb911a02eaf` facebook/rocksdb — 8 non-test source files; 261 changed lines. WritePrepared: fix race condition in reading batch with duplicate keys (#5147)
+- `75e8b6dfcff992e091b35fc7a260c08442175349` facebook/rocksdb — no non-test source files. Fix race condition in IteratorWithLocalStatistics (#5149)
+- `106a94af1552ba6eb89cfe08fd4f92c2078af463` facebook/rocksdb — no non-test source files. Improve obsolete_files_test (#5125)
+- `04d3ac4e63cb3776193cb741b48deecadad37de7` facebook/rocksdb — no non-test source files. Fix tsan compliant on AddPreparedBeforeMax (#5052)
+- `04a2631dbe6c19959ee471af7afda99ef1ef69cd` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. WritePrepared: handle adding prepare before max_evicted_seq_ (#5025)
+- `aef763b6d6c215e9e914da410ef273de1d40406d` facebook/rocksdb — 6 non-test source files. Make statistics's stats_level change thread-safe (#5030)
+- `65b229851093f1819b42b16784fd3668e32154d4` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Use correct FileMeta for atomic flush result install (#4932)
+- `acba14b3d903bed94a3345c471bd62b282c84f33` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Make a copy of MutableCFOptions to avoid race condition (#4876)
+- `842cdc11dd2ec5bdfcfb8f5edf32f97de9636914` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Use correct FileMeta for atomic flush result install (#4932)
+- `35e5689e113febb2289f4138c8d6a6d678b06b1f` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Take snapshots once for all cf flushes (#4934)
+- `e242fa466427dce9c34f55da3d85fc805a53236a` facebook/rocksdb — no non-test source files; 228 changed lines. Add latest toolchain (gcc-8, etc.) build support for fbcode users (#4923)
+- `01013ae7666af78d4b0fc1e1baf4a735a8db5344` facebook/rocksdb — 10 non-test source files; 594 changed lines. Digest ZSTD compression dictionary once when writing SST file (#4849)
+- `301da345aed32577da649ffdcea0f3b5e2fe979f` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Make a copy of MutableCFOptions to avoid race condition (#4876)
+- `856ac244848a77bd93cb6bef70a69c8647920288` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. WritePrepared: fix race condition on GetSnapshotListFromDB (#4872)
+- `349542332a8fbfef3bcc9f6ace013919f2becd98` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix race condition on options_file_number_ (#4780)
+- `67e5b5420e8c66c6b9b0aab44342c0b741dccb47` facebook/rocksdb — no non-test source files. Reduce runtime of compact_on_deletion_collector_test (#4779)
+- `73d59f235eeb315894f8a0ac4c76a480c9a8afc5` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Allow file-ingest-triggered flush to skip waiting for write-stall clear (#4751)
+- `9be3e6b48884c80733fa791b982a02f62a199e92` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Allow file-ingest-triggered flush to skip waiting for write-stall clear (#4751)
+- `8d7bc76f364a6a613faf57ccf58d2e961bef879d` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a flaky test DBFlushTest.SyncFail (#4633)
+- `f1837595a395d2bcf5ff2a8d332a4793eaeb7d24` facebook/rocksdb — 406 changed lines. FIX #3278: Move global const object definitions from .h to .cc (#4691)
+- `09426ae1c7b6fa48d560d019297b96945d42c199` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix `DBImpl::GetColumnFamilyHandleUnlocked` data race (#4666)
+- `283a700f5de4664390494b7462fd025b643df4c8` facebook/rocksdb — no non-test source files. add locking around calls to RecalculateWriteStallConditions in column_family_test (#4474)
+- `27090ae8f68c63cde46322d64cee3acc83c4400b` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix DBImpl::GetColumnFamilyHandleUnlocked race condition (#4391)
+- `ce1fc5af09faed8219efe1bcd8926501b16dee65` facebook/rocksdb — 6 non-test source files. fix unused param `allocator` in compression.h (#4453)
+- `4e58b2ea3d6b48efd6edd3e0f9ba7aeb6a3c3efe` facebook/rocksdb — no non-test source files. Check for compression lib support before test exec (#4443)
+- `be5cc4c7b85dc48aad509deb1a285b4c556d2361` facebook/rocksdb — no non-test source files. Remove a race condition between lsdir and rm (#4440)
+- `5271d0750a077f4c9f8f82dc40327afc21198a00` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Remove sync point from Block destructor (#4370)
+- `3db584059cbb62d8d331377bac8e61f79eabc507` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Remove sync point from Block destructor (#4370)
+- `b271f956c2b1b429ae403a94f8a80d2a7b8d7a75` facebook/rocksdb — no non-test source files. Fix a TSAN failure (#4250)
+- `9e8ef45066498c2c6b81b10b2193d5d4b71ba378` facebook/rocksdb — no non-test source files. Link to FB internal build of ZSTD with -fPIC (#4249)
+- `b15379dceab5a7ef387561af35b73c1b6def93b0` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. fix use-after-free error involving a temporary string (#4240)
+- `853a5cd3b242db61608b962206be988b80cd6b08` facebook/rocksdb — no non-test source files. Fix sandcastle rocksdb-contrun-tsan_crash job json (#4243)
+- `37e0fdc8247b3726c009ff9d88e39966f8438e3a` facebook/rocksdb — no non-test source files. DBSSTTest.DeleteSchedulerMultipleDBPaths data race (#4146)
+- `f912a80c15f1dabb31ffeaff63d358f9fdb0e787` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Store timestamp in deadlock detection (#4060)
+- `331cb6364102e98e8572778188332d342b472233` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. SetOptions Backup Race Condition (#4108)
+- `818c84e116c75ffd4db8020b50d1b42e98cc9c8a` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Store timestamp in deadlock detection (#4060)
+- `189f0c27aaecdf17ae7fc1f826a423a28b77984f` facebook/rocksdb — 10 non-test source files. Make BlockBasedTableIterator compaction-aware (#4048)
+- `c726f7fda84fbd047ed86bf650198c14c16321a6` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix dangling checkpoint pointer in db_stress (#4042)
+- `a35451eaa4fd0d08094035233bfd526ffe281f5a` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. fix deadlock with enable_pipelined_write=true and max_successive_merges > 0
+- `46fde6b65336c5e176d347b80422fd5f6a7ae7c2` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix race condition between log_.erase and log_.back
+- `12ad711247af50a16b4d2ad2012bde1c1eb4ca8a` facebook/rocksdb — no non-test source files. Suppress tsan lock-order-inversion on FlushWAL
+- `d72a51e9e1fbe57a29c7eb3669626a4551890a9b` facebook/rocksdb — no non-test source files. Split FaultInjectionTest.FaultTest to avoid timeout
+- `6fc1bccef528fb06f1bfa971530290aa188dbda7` facebook/rocksdb — no non-test source files. Fix crash test allocation error under TSAN
+- `a8d77ca3819b098a2e0e7d69b15cef576e6b21ff` facebook/rocksdb — no non-test source files. Speedup ManualCompactionTest.Test
+- `cfb86659bf96bc45c5c748f6b650b9145d8da97a` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. WritePrepared Txn: enable rollback in stress test
+- `5bed8a0065af2f85c3d69f15f1b3dd3e5d04b656` facebook/rocksdb — no non-test source files. WritePrepared Txn: split SeqAdvanceConcurrentTest
+- `2770a94c4281643c92a785a0dd711013920c2d35` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. make MockTimeEnv::current_time_ atomic to fix data race
+- `f3a1d9e049e8858a6ab9d0cf627573e203109734` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. fix data race
+- `1f5def16530b36125c91c4a259b6a26dc9237a5f` facebook/rocksdb — 320 changed lines. Fix race condition causing double deletion of ssts
+- `35a4469bbfa9a5360d600d4c3c1a5a87178ac171` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix race condition via concurrent FlushWAL
+- `7429b20e3901e0bcc7e028b37536a262cf11a448` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. WritePrepared Txn: fix race condition on publishing seq
+- `582d0119451e9743a72f05e83b661617fb2dde01` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix WAL corruption from checkpoint/backup race condition
+- `8b99935452bd132686111638eca7a819af3f55bf` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix WAL corruption from checkpoint/backup race condition
+- `06858ac58d94e01e5447c7f1c02210bc7cc80650` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix WAL corruption from checkpoint/backup race condition
+- `34ccab0210d709f39496a52f02c6b7c7b829d241` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix WAL corruption from checkpoint/backup race condition
+- `0cdaa1a804d69f24a8193bc48117af5cce3eb576` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix WAL corruption from checkpoint/backup race condition
+- `15f55e5e06feb931fe951a4a57092859d2a6d72e` facebook/rocksdb — no non-test source files. Fix TSAN timeout in MergeOperatorPinningTest.Randomized/x test
+- `ee6f4fa6f544630a33a3f3dc713536103b245a9e` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix deadlock in ColumnFamilyData::InstallSuperVersion()
+- `0493719649c4ea4dbf1f859763809beedee0fdb9` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix deadlock in ColumnFamilyData::InstallSuperVersion()
+- `97307d888f7b256b1dfc25e8942efa20203ec138` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix deadlock in ColumnFamilyData::InstallSuperVersion()
+- `3f1bb07351fb0e5cd40894d434a6957066bde292` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. make flush_reason_ atomic to keep TSAN happy
+- `cb5b8f2090777019e3bc415181567472aa95f214` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix use-after-free in tailing iterator with merge operator
+- `5568aec421eff60944f1e7a88677c97c52e4ef19` facebook/rocksdb — no non-test source files. Fix DBTest::SoftLimit TSAN failure
+- `0faa026db66cac0b2aae85f84b04395ba3c7a376` facebook/rocksdb — no non-test source files. WritePrepared Txn: make buck tests parallel
+- `9a27ac5d893d588354963f6c4b37fa138343f0b8` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix drop column family data race
+- `fe608e32abc166de10671af71ed95e701cd103a8` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a race condition in WindowsThread (port::Thread)
+- `5fac4729ccaa72ff5500c525e7ff014523182588` facebook/rocksdb — no non-test source files. make compaction_readahead_size_ thread safe
+- `e58d377182f44d76dc6c313d5cf06be3718cc800` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Blob DB: Fix race condition between flush and write
+- `5d928c795af796140a0937515c14d0e0a1e77f30` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Blob DB: Fix race condition between flush and write
+- `5e9e5a4702d121e65c547b2e0ed1321e09462494` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Blob DB: Fix race condition between flush and write
+- `3ef55d2c7c0e40422b52e53e4e3e958580f61d09` facebook/rocksdb — no non-test source files. Split CompactionFilterWithValueChange
+- `aa67bae6cfff29114d543a8ffea3d5eddea06b09` facebook/rocksdb — no non-test source files. Break down PinnedDataIteratorRandomized
+- `6b3c71f6ed40236b33d1fc3cf3db7b99a29f87eb` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix DBImpl::NotifyOnCompactionCompleted data race
+- `a843df668bc14c6d549216fcfe9a7b8280f3f18b` facebook/rocksdb — no non-test source files. Fix use-after-free in c_tset
+- `92bfd6c5078fa7bbf7a2caacfddbec255e9098ba` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix DropColumnFamily data race
+- `bddd5d3630694a6abecec02050d7d5bf55189c64` facebook/rocksdb — 342 changed lines. Added mechanism to track deadlock chain
+- `b87ee6f7736a0e22cb72b188c1167eab38b25a09` facebook/rocksdb — no non-test source files. Use more keys per lock in daily TSAN crash test
+- `2b259c9d496af4c2a48a6664d9df32010f594264` facebook/rocksdb — no non-test source files. Lower num of iterations in DeadlockCycle test
+- `36651d14eeefaa3b17740e70bceacb3e096fde1a` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Moving static AdaptationContext to outside function
+- `02e3611b3481eac7d7a22af6fb804feca3fc04ba` facebook/rocksdb — no non-test source files. Fix cassandra ASAN use-after-free
+- `1097ddbe419b6f8a3cddd4a404037376c8300915` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix Data Race Between CreateColumnFamily() and GetAggregatedIntProperty()
+- `6837a17621a045a468c5606a01da6ad5c483f763` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix Data Race Between CreateColumnFamily() and GetAggregatedIntProperty()
+- `9467eb6141a6043f9ab1f225b9096e79104a3952` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix flush assertion with tsan
+- `048446fc7412d5201bbceac234eb3c18cf31e4c5` facebook/rocksdb — no non-test source files. Fix cassandra ASAN use-after-free
+- `f68d88be51cc2ed7d9f0e4f09800b3b3320f2ffb` facebook/rocksdb — no non-test source files. Fix DBWriteTest::ReturnSequenceNumberMultiThreaded data race
+- `215076ef06eaa3d47771836a39c22160fbe05635` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix TSAN: avoid arena mode with range deletions
+- `135ee6a3fcdfab12ab357a29ab358d14974caf04` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. fix tsan crash data race
+- `228f49d20a01b1419d609861c69022309fc40d44` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix data races caught by tsan
+- `217b866f4710b20cc46501d9c7a79e693c43f48c` facebook/rocksdb — no non-test source files. column_family_test: EnvCounter::num_new_writable_file_ to be atomic
+- `9bbba4fec16a1d32af44c4fa395b2b849f3eee08` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Remoe unused BlockBasedTable::compaction_optimized_
+- `8032f4cb31fca6438ba85a94daabe56fc1b9dbdc` facebook/rocksdb — no non-test source files. Remove -pie in TSAN
+- `dc0bbf78f7d343b9d782e8f2a9ba9257edbecfe9` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix an issue of manual / auto compaction data race
+- `af6fe69e4c2efb2c99744fb9cdba780690f36aaf` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix an issue of manual / auto compaction data race
+- `aeaba07b2a85771b8f3261eae984281516585abd` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Remove an assert that causes TSAN failure.
+- `a2b05210ef5f617b32a761d2bdd53b4488f9eefc` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Make PosixLogger::flush_pending_ atomic
+- `3e56c7e0c40eac3657be7cb6b3572cab5485762e` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. make total_log_size_ atomic
+- `58b12dfe37784ce1bd67a03643147ab94f590451` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Set logs as getting flushed before releasing lock, race condition fix
+- `a618a16f44f4390a1591ca898f4cd54474a30192` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. New subcode for IOError to detect the ESTALE errno
+- `036d668b19d41419bff7507f99365f0ddc2a51fa` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix wrong result in data race case related to Get()
+- `f25f1ec60b1bd1de48a4db42f7ceda660fb419bb` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Add test DBTest2.GetRaceFlush which can expose a data race bug
+- `5dad9d6d28cef6a3df1070a6f2f09de170b22bf2` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Avoid logs_ operation out of DB mutex
+- `76711b6e771a925125c75457b2f25acacd8bb142` facebook/rocksdb — no non-test source files. Make ExternalSSTFileTest::CompactionDeadlock more deterministic
+- `8e68ffb872f3ead8b0fc3bb6353c04008a049d8d` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix deadlock when calling getMergedHistogram
+- `2005c88a756b0f88b92086a323b87ba4a7254dad` facebook/rocksdb — 13 non-test source files; 591 changed lines. Implement non-exclusive locks
+- `a0deec960f3a8190831c673e5ba998fe6fb7ea90` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix deadlock when calling getMergedHistogram
+- `e63350e726d62144037d889c348cf007deda7a80` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Use more efficient hash map for deadlock detection
+- `f39452e81fe77649b8fd1f0898d42418ac267bdd` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix heap use after free ASAN/Valgrind
+- `f74f512df9928d93d793ed6f8fc10f4ea1851241` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix deadlock between (WriterThread/Compaction/IngestExternalFile)
+- `9bd191d2f40bd775f010585025e47acde8e288c7` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix deadlock between (WriterThread/Compaction/IngestExternalFile)
+- `4dfaa6610ac97efe2ba01a91fe6ab57337bdb386` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Make IsDeadlockDetect() virtual member of Transaction
+- `4edd39fda22f5e281efeb04ca14f5bb4dfdee5a1` facebook/rocksdb — 6 non-test source files; 289 changed lines. Implement deadlock detection
+- `5af651db24beffa019a0721e3e57b001e2275e21` facebook/rocksdb — no non-test source files. fix data race in compact_files_test
+- `21f4bb5a89756cf44615745b7d0638983005fa4a` facebook/rocksdb — no non-test source files; 418 changed lines. cmake support for linux and osx (#1358)
+- `80c75593edca7a649ca8c2aa3ef88da1ce4da586` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix data race in AddFile() with multiple files + custom comparator bug
+- `5051755e35854651725d72844b003f6c24e74b60` facebook/rocksdb — no non-test source files. Fix db_bench memory use after free (detected by clang_analyze)
+- `6a14d55bd913490dbd61d682567e6e0625756c0d` facebook/rocksdb — no non-test source files. add prefix_seek_mode to db_iter_test
+- `db74b1a21905336e2c178ff1f2ffd12c7852b7b8` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. fix bug in merge_iterator when data race happens
+- `c75f4faa9d50fa7aa3a15f2bff8df921ea23894e` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. fix data race in NewIndexIterator() in block_based_table_reader.cc
+- `56f497bb21efe3a2d74fcc5ed2969edd0a659230` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Mitigate regression bug of options.max_successive_merges hit during DB Recovery
+- `a31b8cb7a78a26e5fa7a4fde30295e3e63caa15e` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Mitigate regression bug of options.max_successive_merges hit during DB Recovery
+- `dade61ac2699b9f669871d437c1783cbb10b5901` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Mitigate regression bug of options.max_successive_merges hit during DB Recovery
+- `d76ddf327d4d3cffa89681977c4a903b212537d7` facebook/rocksdb — no non-test source files. Disable ClockCache db_crashtest
+- `cec2c6436b999c8b6bd6f3b8d8f8c012d554cc40` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. fix data race in NewIndexIterator() in block_based_table_reader.cc
+- `99c4af7160a69021e7e5aeb7faf3c4b07fd9c5c5` facebook/rocksdb — no non-test source files. Make ClockCache available with TSAN build
+- `236756f2cf10984db3320ccedf444a74969b81ea` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Make SyncPoint return immediately when disabled
+- `4beffe001db952a7a842b7068fd4939e696e91b9` facebook/rocksdb — no non-test source files. Fix test data race in two FaultInjectionTest tests
+- `1b0069ce2d8ea7a03affb026227ed0f99cb78f8f` facebook/rocksdb — no non-test source files. Remove non-gtest from parallelized tests
+- `f85df120f28c5e5c13002a021ae9edf51b8bcec3` facebook/rocksdb — no non-test source files. Re-enable tsan crash white-box test with reduced killing odds
+- `2462cebfe8f0099d3ed9adf031efac6762d59d8c` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix flush not being commit while writing manifest
+- `32604e6601be84b771ad1ab03ee02284c982d945` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix flush not being commit while writing manifest
+- `f9b14be4951e9aad73b7fcbc120b04127fe8511f` facebook/rocksdb — no non-test source files. Re-enable TSAN crash test but only with black box crash test
+- `6ea41f852708cf09d861894d33e1b65cd1d81c45` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix deadlock when trying update options when write stalls
+- `81f6b33d93dc797bd3f241fc175c1ab154129bd2` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix tsan error
+- `8ff59b2b40434f3a589c46056ac24d77cd06d5a9` facebook/rocksdb — no non-test source files. Disable PersistentCacheTierTest.VolatileCacheInsertWithEviction test under TSAN temporarily
+- `842958651f804e2cfa0d3ddee0d14e8dfda20dfa` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix race condition in SwitchMemtable
+- `2ead11511674d64abdd185ec8466e4ae08a31916` facebook/rocksdb — no non-test source files. Fix TransactionTest.TwoPhaseMultiThreadTest under TSAN
+- `560358dc9354009747c5e612ce4e4b4f92b8c10d` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix data race in GetObsoleteFiles()
+- `0a5502754e0e8d02b7f69d92db6318704c0d6391` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fixed a dependency issue of ThreadLocalPtr
+- `be9816b3d970e0eceb931c2643a976dbea068da2` facebook/rocksdb — 7 non-test source files. Fix data race issue when sub-compaction is used in CompactionJob
+- `69c471bd9b665cecbf58aee7f3dc4d31a8e9ff29` facebook/rocksdb — 355 changed lines. Handle concurrent manifest update and backup creation
+- `69c98f043185f49ee1d83465b2eafe2afdef7c98` facebook/rocksdb — no non-test source files. Reorder instance variables in backup test for proper destruction order
+- `9199b1da4c4c870a831b52f5aed41f90cc5a1a2a` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Redo SyncPoints for flush while rolling test
+- `61120a3fcff6d22b5f20e7b4d87624e58f31db98` facebook/rocksdb — no non-test source files. Use condition variable in log roller test
+- `e6feb1dc1d100949ed8a4146a724c483688b1e08` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix race conditions in auto-rolling logger
+- `b0469166564cb4a686ef33f8209513fdd8606be8` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Redo SyncPoints for flush while rolling test
+- `d825fc70d4995527a8daebc64c51515baf2670ad` facebook/rocksdb — no non-test source files. Use condition variable in log roller test
+- `3943d16780b66881fd3d3e62ab47525b7957a4f7` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix race conditions in auto-rolling logger
+- `4860bfdeab4d240dd88ce2930e48f8bbcfbc9332` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fixed a dependency issue of ThreadLocalPtr
+- `908100399cdc8855980ca9f8c05d37836857ab79` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fixed a dependency issue of ThreadLocalPtr
+- `0c2bd5cb4b4911c1bfd88f9f614fa2306c909c8f` facebook/rocksdb — 6 non-test source files. Removing data race from expirable transactions
+- `955ecf8b49ba71666548fefd2d9aeb5f43b8ab9e` facebook/rocksdb — no non-test source files. Fix an ASAN error in compact_files_test
+- `22ecb752dbab4d134fe9891e244924aaae1ff07a` facebook/rocksdb — no non-test source files. Add valgrind to pre-commit sandcastle testing
+- `a2422f05339736fbed275656ca491c50932b4a22` facebook/rocksdb — no non-test source files. fix potential test SleepingTask race condition
+- `c9e2490bc6320ef66fb4a237b65292ce7ab0f99c` facebook/rocksdb — no non-test source files. Fix DynamicBloomTest.concurrent_with_perf to pass TSAN
+- `7d87f02799bd0a8fd36df24fab5baa4968615c86` facebook/rocksdb — 34 non-test source files; 2307 changed lines. support for concurrent adds to memtable
+- `a48382399d7682f7e1d10dd5b3f9c91f7c526f7a` facebook/rocksdb — no non-test source files. Fix use-after free in db_bench
+- `774b80e99e2ec89987cdc8b5c6b449efa413ec50` facebook/rocksdb — 210 changed lines. Resubmit the fix for a race condition in persisting options
+- `f307036bde57ad6f2520ad6cf7d51cc245f0387c` facebook/rocksdb — 207 changed lines. Revert "Fix a race condition in persisting options"
+- `2fa3ed5180340e485a1caf6fa71cc400ea599278` facebook/rocksdb — 207 changed lines. Fix a race condition in persisting options
+- `e8180f9901e79ebb1dc6b95fd057210f0c041c7c` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. added public api to schedule flush/compaction, code to prevent race with db::open
+- `c5b467306d34b87eded191330fdd5eea0d74de96` facebook/rocksdb — no non-test source files. Fix race condition that causes valgrind failures
+- `986230b8c8631ef60059b7177eb656780fdef87d` facebook/rocksdb — no non-test source files. Revert "Fix TSAN build for fbcode"
+- `c745f1d2c4b72a58874605c5da4180a4cb9a0366` facebook/rocksdb — no non-test source files. Fix TSAN build for fbcode
+- `bb64d6da46a86ec20b3b9965c1927771131e0290` facebook/rocksdb — no non-test source files. Disabling TSAN crash test
+- `e29a73b89ecfcdafe9884909ecb3bd24cc8c656e` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fixed a tsan warning in db_stress.cc
+- `a263002a361fccd3a53f0a7df38b0065af405c56` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fixed a tsan warning in db_stress.cc
+- `297241e056debd50b53fa585f4238dacefb1c4ff` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix deadlock in WAL sync
+- `effd9dd1e1eaadb6109dde0eb6dabc07c8ac2fec` facebook/rocksdb — duplicate cherry-pick of the same commit subject on another branch. Fix deadlock in WAL sync
+- `205083297452c1b206d2eb192b6e5f7580045e53` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fixing race condition in DBTest.DynamicMemtableOptions
+- `c8529684659b23465a796daadaa793d57af59fd8` facebook/rocksdb — 234 changed lines. db_iter_test: add more test cases for the data race bug
+- `a203b913c1851897e9ebf0f669d5f56e422dac8a` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fixed a rare deadlock in DBTest.ThreadStatusFlush
+- `b7198c3afe089d8a5058ca08fbd2cfdac342b8c6` facebook/rocksdb — 384 changed lines. reduce db mutex contention for write batch groups
+- `4637207120685b694cc18f1e342ed012f01b6882` facebook/rocksdb — 219 changed lines. Add test case to repro the mispositional iterator in a low-chance data race case
+- `cee1e8a0807229e7575aa9a77ae843a4dbd61398` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Parallelize LoadTableHandlers
+- `29b028b0edacf6d8545251dfed22700f469d513a` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Make DeleteScheduler tests more reliable
+- `9aec75fbb932fa7e1782436d28e490c554788608` facebook/rocksdb — no non-test source files. Enable DBTest.FlushSchedule under TSAN
+- `bd2fc5f5fbe637bfacb0813be52aa9a8bc48b70c` facebook/rocksdb — no non-test source files. Fix TSAN for delete_scheduler_test
+- `e06cf1a0986e18e5f92f66135a24655b6f329ec9` facebook/rocksdb — 9 non-test source files; 228 changed lines. [wal changes 3/3] method in DB to sync WAL without blocking writers
+- `fe09a6dae39e2f5a73ae6914ad530f036152728c` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. [wal changes 2/3] write with sync=true syncs previous unsynced wals to prevent illegal data loss
+- `e94c510c3fb83f2af155844668ed509e2ffc19ad` facebook/rocksdb — no non-test source files. Make ldb_test not depend on compression
+- `a69bc91e37c715e7cb7f6ab0e3661500c3387d32` facebook/rocksdb — 442 changed lines. Multithreaded backup and restore in BackupEngineImpl
+- `6199cba9987e4c57481b053e9764bbaaafe3de65` facebook/rocksdb — no non-test source files. Fix race in unit test.
+- `7647df8f9ea71d0cf06334b3177c8ffbafeffc9e` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fixed the tsan failure in util/compaction_job_stats_impl.cc
+- `3083ed2129df7ff7ec5b44f939a5c2412f27e8b5` facebook/rocksdb — no non-test source files. Fixed heap-use-after-free error in compaction_job_test.cc
+- `7ea769487f9fbc447f24425c702f5eba34e68d1d` facebook/rocksdb — no non-test source files. Fix flakiness in column_family_test
+- `f12614070fb233402062ccd30454b6d2247b7ac2` facebook/rocksdb — no non-test source files. Fix TSAN build error of D36447
+- `ff1ff7c62460f5d019f20997ef2a37191b7a5276` facebook/rocksdb — no non-test source files. TSAN: avoid new link failure with -pg
+- `51301b869fc5aa332ebf6a401542a64052e0c581` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Enable dynamic changing of rate limiter's bytes_per_second
+- `230e68727ab7e0570623e8ab9f00e96f090508b4` facebook/rocksdb — no non-test source files. Fix TSAN failue in env_test
+- `8c12426c9376b8cd2cdf5f5c6c57d7dd8870400a` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix the deadlock issue in ThreadStatusSingleCompaction.
+- `8984e5f848b1b78071d71722b72f9d08375bcb02` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix race in sync point.
+- `218c3ecea3de9b0ced9e9ab7b68810e5e2e1b337` facebook/rocksdb — no non-test source files. Fix std::cout data race
+- `53ae09c398921a4eec63e5d92550bb8e0f49afd0` facebook/rocksdb — no non-test source files. db_test: fix a data race in SpecialEnv
+- `e39f4f6cf9d63b14c0f23bee222540a523698c36` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix data race #3
+- `4bdf38b16e7d4cc044740ad3ff2ce7093b7262a8` facebook/rocksdb — no non-test source files. Disable FlushSchedule when running TSAN
+- `e5aab4c2b230b8e3171fb571c614a6f81121608d` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix data race in HashLinkList
+- `0c4d1053dfe7e9ff2b2e936b9a4a09c35969504c` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix data race #5
+- `e919ecedfc18d1e2007711ddf2dc0f641f689528` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. SuperVersion::Unref() to use sequential consistency to decrease ref counting
+- `4c49fedaf15bca9f8cb82d92a8dc934e7d1a3309` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Use ustricter consistency in thread local operations
+- `f1c8862479a9eebbfca7ca27ff51c8b3014c14dc` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix data race #1
+- `42189612c3b6ce6557337b8e1b78dbfb47485764` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix data race #2
+- `f5a839835263ec3a296b731a89ddbdb65d580a80` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix archive WAL race conditions
+- `401d4205efb24c03739e1dc7a7f60b228620fb8b` facebook/rocksdb — no non-test source files. Add thread sanitizer
+- `c1273533bd95c08caf64507c1c113b1718e73e34` facebook/rocksdb — no non-test source files. Merge pull request #333 from nbougalis/cleanups
+- `a213971d8a59d2b0533eed898df1d867bbd8a868` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Don't return (or dereference) dangling pointer
+- `0a42295a248742fe5058492095d4ea59e543aa34` facebook/rocksdb — no non-test source files. Fix SimpleWriteTimeoutTest
+- `48bc0c6ad39b69ba118435e1bcfc69b23606cb10` facebook/rocksdb — 260 changed lines. [RocksDB] Fix a race condition in GetSortedWalFiles
+- `fcd5c5e8289d88f1100d24e7331020ee3d280464` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. ComputeCompactionScore in CompactionPicker
+- `758fa8c35920071c0dd59624d9c9740deff83083` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Don't Finalize in CompactionPicker
+- `ae25742af9cf05f3bf2289a25f8fc0d87c25b19c` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix race condition in manifest roll
+- `fb2346fc1f700a255f31427ddbbbf2e5759a9ad4` facebook/rocksdb — 12 non-test source files; 504 changed lines. [CF] Code cleanup part 1
+- `bd45633b7105c469773333bafffe9079ea2df583` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix data race against logging data structure because of LogBuffer
+- `4209516359860ed4da676f217a648c5ce932d743` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Schedule flush when waiting on flush
+- `6ed450a58cd0bf9f299b0e279ce762125b79deea` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. DeleteFile should schedule Flush or Compaction
+- `9f690ec62c16592dc6bc80ddf9d227632db51441` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a deadlock in CompactRange()
+- `469a9f32a7583b1650e904b8e5d603dc81f762b7` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix two nasty use-after-free-bugs
+- `fe4a4494726f706bd531b4ed0e47c1be670bfbef` facebook/rocksdb — no non-test source files; 228 changed lines. [RocksDB] prefixhash memtable test
+- `17991cd5a04950555e985d3aef67c18ddd12a096` facebook/rocksdb — no non-test source files. Fix data race in BlobStore benchmark
+- `38671c4d54f1508af4368c6617517143e1617b66` facebook/rocksdb — not accepted: the twelve-instance quota was already met from smaller repositories, and this commit was not fetched or built. Fix a race condition while processing tasks by background threads.
+- `80e5b0d944b7651046f8b0e795065eca02a01e59` facebook/rocksdb — sync with upstream, not a local bug fix. sync with upstream @21706995
+- `740d8b3d009462eed28a94ea516d667e735b0dfc` facebook/rocksdb — 9 non-test source files; 426 changed lines. Update from upstream @21551990

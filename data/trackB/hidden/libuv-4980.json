@@ -1,0 +1,14 @@
+{
+  "schema": "proofsmith.hidden/1",
+  "id": "libuv-4980",
+  "fixed": {
+    "kind": "git",
+    "commit": "3e9ae1bca07f8155bc4249a21ec41ca2c86fdb93"
+  },
+  "bug_class": "lifetime",
+  "fix_files": [
+    "src/unix/process.c"
+  ],
+  "dev_tests": [],
+  "notes": "Only a pull request exists. The description names the repair.\n\noriginal_title:\nunix: remove handle from queue on uv_spawn() error\n\noriginal_body:\nIf uv_spawn() fails after uv__handle_init() has been called, the handle remains in loop->handle_queue. This causes bug if the handle is stack-allocated or freed, and a subsequent loop operation like uv_walk() accesses it.\r\n\r\nThis follows the same pattern as uv_tcp_init_ex() which explicitly removes the handle from the queue on error."
+}

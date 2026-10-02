@@ -1,0 +1,14 @@
+{
+  "schema": "proofsmith.hidden/1",
+  "id": "onetbb-1117",
+  "fixed": {
+    "kind": "git",
+    "commit": "c7865c1be098ba2c2a033f67ff74ac0ef4b16374"
+  },
+  "bug_class": "deadlock",
+  "fix_files": [
+    "src/tbbmalloc/backend.cpp"
+  ],
+  "dev_tests": [],
+  "notes": "Only a pull request exists. Its description says both locks must be released.\n\noriginal_title:\nfix deadlock in tbbmalloc raportFreeBlocks function\n\noriginal_body:\n### Description \r\ntrylockblock() locks mutex in the current element and mutex in right\r\nneighbor, so we have to free both locks.\r\n\r\n\r\nFixes # - _issue number(s) if exists_\r\n\r\n- [x] - git commit message contains an appropriate signed-off-by string _(see [CONTRIBUTING.md](https://github.com/oneapi-src/oneTBB/blob/master/CONTRIBUTING.md#pull-requests) for details)_\r\n\r\n### Type of change\r\n\r\n_Choose one or multiple, leave empty if none of the other choices apply_\r\n\r\n_Add a respective label(s) to PR if you have permissions_\r\n\r\n- [x] bug fix - _change that fixes an issue_\r\n- [ ] new feature - _change that adds functionality_\r\n- [ ] tests - _change in tests_\r\n- [ ] infrastructure - _change in infrastructure and CI_\r\n- [ ] documentation - _documentation update_\r\n\r\n### Tests\r\n\r\n- [ ] added - _required for new features and some bug fixes_\r\n- [x] not needed\r\n\r\n### Documentation\r\n\r\n- [ ] updated in # - _add PR number_\r\n- [ ] needs to be updated\r\n- [x] not needed\r\n\r\n### Breaks backward compatibility\r\n- [ ] Yes\r\n- [x] No\r\n- [ ] Unknown\r\n\r\n### Notify the following users\r\n@ldorau @KFilipek \r\n\r\n### Other information\r\n"
+}

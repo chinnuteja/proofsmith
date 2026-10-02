@@ -1,0 +1,16 @@
+{
+  "schema": "proofsmith.hidden/1",
+  "id": "concurrentqueue-288",
+  "fixed": {
+    "kind": "git",
+    "commit": "3e72a150ac1f560ac5a21df2def1aae3e8e45b66"
+  },
+  "bug_class": "lifetime",
+  "fix_files": [
+    "concurrentqueue.h"
+  ],
+  "dev_tests": [
+    "tests/unittests/unittests.cpp"
+  ],
+  "notes": "Commit message points at issue 288. The diff guards thread-exit notification against use-after-free. The project is header-only, so the recipe compiles one translation unit that instantiates the queue."
+}

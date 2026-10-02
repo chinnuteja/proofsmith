@@ -1,0 +1,16 @@
+{
+  "schema": "proofsmith.hidden/1",
+  "id": "onetbb-518",
+  "fixed": {
+    "kind": "git",
+    "commit": "4df48f98506570fc5a035d9b16366436c97825e9"
+  },
+  "bug_class": "race",
+  "fix_files": [
+    "src/tbbmalloc/backend.cpp"
+  ],
+  "dev_tests": [
+    "test/tbbmalloc/test_malloc_overload.cpp"
+  ],
+  "notes": "Only a pull request exists. It names moving unregistration before the remap.\n\noriginal_title:\nFix a race condition in AddrRange in tbbmalloc\n\noriginal_body:\nThe issue affect only `realloc` when overloaded with `tbbmalloc_proxy` on Linux. The root cause that memory range is unregistered after returning memory back to the OS. It leads to a race condition that memory can be reused for another thread and memory range will not be registered (because unregister might be not performed yet).\r\n\r\nThe patch moves the unregistration before memory deallocation to the OS."
+}

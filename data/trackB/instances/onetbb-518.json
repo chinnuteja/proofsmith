@@ -1,0 +1,30 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "onetbb-518",
+  "track": "B",
+  "source": {
+    "kind": "git",
+    "url": "https://github.com/uxlfoundation/oneTBB",
+    "commit": "552f342b260e2403f368f1f5a6bccd4c608240c3"
+  },
+  "issue": {
+    "title": "Concurrent realloc through the allocator proxy can crash",
+    "body": "Several threads calling realloc on large blocks at the same time can crash when the allocator proxy is installed. The crash is a segfault during those overlapping reallocations.",
+    "url": "https://github.com/uxlfoundation/oneTBB/pull/518",
+    "rewritten": true,
+    "mentions_fix": true
+  },
+  "build": {
+    "system": "cmake",
+    "cmake_args": [
+      "-DTBB_TEST=OFF",
+      "-DTBB_EXAMPLES=OFF",
+      "-DTBB_STRICT=OFF",
+      "-DTBB_ENABLE_IPO=OFF",
+      "-DTBB4PY_BUILD=OFF"
+    ],
+    "targets": [],
+    "jobs": 4,
+    "test_command": null
+  }
+}

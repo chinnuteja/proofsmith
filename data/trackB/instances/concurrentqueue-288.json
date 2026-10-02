@@ -1,0 +1,25 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "concurrentqueue-288",
+  "track": "B",
+  "source": {
+    "kind": "git",
+    "url": "https://github.com/cameron314/concurrentqueue",
+    "commit": "d3a1e7542bdf1d19c22732cc8168da7e73191f7a"
+  },
+  "issue": {
+    "title": "Endless loop in ImplicitProducer* get_or_add_implicit_producer()",
+    "body": "I've been using this nice queue for a while now; one of my usages is as part of a log file writing system. I have a blocking concurrent queue where a thread waits for items before writing them to a text file.\r\n\r\nI'm getting a fairly rare situation where about half a dozen or so \"producer\" threads all need to write at the same time, typically during a shutdown sequence and they all seem to be stuck going round and round in this function.\r\n\r\nNot sure how to debug this!",
+    "url": "https://github.com/cameron314/concurrentqueue/issues/288",
+    "rewritten": false,
+    "mentions_fix": false
+  },
+  "build": {
+    "system": "custom",
+    "cmake_args": [],
+    "targets": [],
+    "jobs": 4,
+    "custom_script": "scripts/trackb_smoke_concurrentqueue.sh",
+    "test_command": null
+  }
+}

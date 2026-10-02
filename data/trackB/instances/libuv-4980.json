@@ -1,0 +1,33 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "libuv-4980",
+  "track": "B",
+  "source": {
+    "kind": "git",
+    "url": "https://github.com/libuv/libuv",
+    "commit": "309b28bdbedeeb52f0d3791bee0a1df3e4bc9c68"
+  },
+  "issue": {
+    "title": "A failed uv_spawn is followed by a crash in uv_walk",
+    "body": "If uv_spawn fails after it has started setting up the process handle, a later uv_walk crashes. This shows up when that process handle is freed, or when it was allocated on the stack.",
+    "url": "https://github.com/libuv/libuv/pull/4980",
+    "rewritten": true,
+    "mentions_fix": true
+  },
+  "build": {
+    "system": "cmake",
+    "cmake_args": [
+      "-DBUILD_TESTING=OFF",
+      "-DLIBUV_BUILD_TESTS=OFF",
+      "-DLIBUV_BUILD_BENCH=OFF",
+      "-DLIBUV_BUILD_SHARED=OFF",
+      "-DASAN=OFF",
+      "-DTSAN=OFF",
+      "-DUBSAN=OFF",
+      "-DENABLE_CLANG_TIDY=OFF"
+    ],
+    "targets": [],
+    "jobs": 4,
+    "test_command": null
+  }
+}

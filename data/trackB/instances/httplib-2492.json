@@ -1,0 +1,35 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "httplib-2492",
+  "track": "B",
+  "source": {
+    "kind": "git",
+    "url": "https://github.com/yhirose/cpp-httplib",
+    "commit": "b40937cea80d674fa67e50c3690b6b5056f05d47"
+  },
+  "issue": {
+    "title": "Use after free with mbedTLS",
+    "body": "## Title\n\n`SSLClient::~SSLClient` frees TLS context before `close_notify` (UAF with mbedTLS keep-alive)\n\nReproducer:\nhttps://github.com/daveisfera/cpp-httplib-sslclient-dtor-uaf\n\n## Summary\n\nWith `CPPHTTPLIB_MBEDTLS_SUPPORT`, destroying an `SSLClient` that still has a\nlive keep-alive session use-after-frees the mbedTLS `mbedtls_ssl_config`\n(`conf`).\n\n`~SSLClient` currently does (v0.47.0 and current `master`):\n\n```cpp\ninline SSLClient::~SSLClient() {\n  if (ctx_) { tls::free_context(ctx_); }   // delete MbedTlsContext → mbedtls_ssl_config_free\n  shutdown_ssl_impl(socket_, true);         // mbedtls_ssl_close_notify still uses ssl->conf\n}\n```\n\n`mbedtls_ssl_setup(&ssl, &ctx->conf)` binds the session to that config by\npointer (not by owning/refcount). `tls::shutdown` then calls\n`mbedtls_ssl_close_notify`, which reads through the freed `conf`.\n\n## ASan stack (from the attached repro)\n\n```\nERROR: AddressSanitizer: heap-use-after-free\nREAD of size 8\n    #0 mbedtls_debug_print_msg          (or mbedtls_ssl_write_record if DEBUG_C is off)\n    #1 mbedtls_ssl_close_notify\n    #2 httplib::tls::shutdown\n    #3 httplib::SSLClient::shutdown_ssl_impl\n    #4 httplib::SSLClient::~SSLClient\n\nfreed by:\n    #0 operator delete\n    #1 httplib::tls::free_context\n    #2 httplib::SSLClient::~SSLClient\n\npreviously allocated by:\n    #0 operator new\n    #1 httplib::tls::create_client_context\n    #2 httplib::SSLClient::init_ctx / SSLClient::SSLClient\n```\n\n## Why OpenSSL often looks fine\n\nThe OpenSSL backend’s `free_context` is `SSL_CTX_free`. `SSL` holds a\nreference on `SSL_CTX`, so freeing the context first only drops a refcount;\nthe real free happens later in `free_session` / `SSL_free`. mbedTLS does not\nget that safety net: `free_context` immediately `delete`s the context object\nthat owns `conf`. The same destructor order is used for wolfSSL.\n\n## Suggested fix\n\nShut down / free the session before freeing the context:\n\n```cpp\ninline SSLClient::~SSLClient() {\n  shutdown_ssl_impl(socket_, true);\n  if (ctx_) {\n    tls::free_context(ctx_);\n    ctx_ = nullptr;\n  }\n}\n```\n\n(Keep calling `shutdown_ssl_impl` from `~SSLClient` so SSL cleanup still\nhappens; `ClientImpl`’s virtual `shutdown_ssl` will not dispatch once the\nderived destructor has finished.)\n\n## Reproducer\n\n```sh\n./run.sh\n```\n\nBuilds mbedTLS 3.6 with ASan, compiles a tiny keep-alive `SSLClient` +\nin-process `SSLServer`, and expects ASan to abort on destructor teardown.\n\nSingle-threaded is enough. Without ASan, the UAF is often silent until heap\nreuse (more likely with several short-lived clients).\n\nNote: ASan must instrument mbedTLS itself. Linking an ASan binary against a\ndistro `libmbedtls.so` will not reliably detect the read inside\n`mbedtls_ssl_close_notify`.\n\n## Environment where we hit it in production\n\n- cpp-httplib v0.47.0 (`CPPHTTPLIB_MBEDTLS_SUPPORT`)\n- mbedTLS 3.6 (Alpine 3.23 packages)\n- Static musl `linux/arm/v7` under qemu-user → SIGSEGV in\n  `mbedtls_ssl_close_notify` / `mbedtls_ssl_write_record`\n- Multiple short-lived `SSLClient`s with keep-alive (upload + health check)\n\n## Related code\n\n- `SSLClient::~SSLClient` — frees `ctx_` then `shutdown_ssl_impl`\n- mbedTLS `tls::free_context` → `delete MbedTlsContext` → `mbedtls_ssl_config_free(&conf)`\n- mbedTLS `tls::shutdown` → `mbedtls_ssl_close_notify`\n- `mbedtls_ssl_setup(&session->ssl, &mctx->conf)` — session borrows `conf`",
+    "url": "https://github.com/yhirose/cpp-httplib/issues/2492",
+    "rewritten": false,
+    "mentions_fix": true
+  },
+  "build": {
+    "system": "cmake",
+    "cmake_args": [
+      "-DHTTPLIB_COMPILE=ON",
+      "-DHTTPLIB_TEST=OFF",
+      "-DHTTPLIB_INSTALL=OFF",
+      "-DHTTPLIB_REQUIRE_OPENSSL=OFF",
+      "-DHTTPLIB_USE_OPENSSL_IF_AVAILABLE=OFF",
+      "-DHTTPLIB_REQUIRE_MBEDTLS=OFF",
+      "-DHTTPLIB_USE_MBEDTLS_IF_AVAILABLE=OFF",
+      "-DHTTPLIB_USE_BROTLI_IF_AVAILABLE=OFF",
+      "-DHTTPLIB_USE_ZLIB_IF_AVAILABLE=OFF",
+      "-DHTTPLIB_USE_ZSTD_IF_AVAILABLE=OFF"
+    ],
+    "targets": [],
+    "jobs": 4,
+    "test_command": null
+  }
+}

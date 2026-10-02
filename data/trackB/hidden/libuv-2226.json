@@ -1,0 +1,14 @@
+{
+  "schema": "proofsmith.hidden/1",
+  "id": "libuv-2226",
+  "fixed": {
+    "kind": "git",
+    "commit": "37042a5bca8b392f71d7da6e01457ece5a148e99"
+  },
+  "bug_class": "race",
+  "fix_files": [
+    "src/unix/async.c"
+  ],
+  "dev_tests": [],
+  "notes": "Single-parent fix. Issue 2226 is the report; pull 2231 is the patch."
+}

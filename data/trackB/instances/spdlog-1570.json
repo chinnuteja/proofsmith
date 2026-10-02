@@ -1,0 +1,34 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "spdlog-1570",
+  "track": "B",
+  "source": {
+    "kind": "git",
+    "url": "https://github.com/gabime/spdlog",
+    "commit": "3dedb52163c4aa052dee61ea3de126c72faa02a8"
+  },
+  "issue": {
+    "title": "daily_file_sink has deadlock bug",
+    "body": "The `sink_it` function of `daily_file_sink` runs under a lock, however it can call `delete_old_`, which internally calls `filename()`. `filename()` tries to acquire the lock, which is already held open. This leads to deadlock.\r\n\r\nHappy to fix.",
+    "url": "https://github.com/gabime/spdlog/issues/1570",
+    "rewritten": false,
+    "mentions_fix": false
+  },
+  "build": {
+    "system": "cmake",
+    "cmake_args": [
+      "-DSPDLOG_BUILD_EXAMPLE=OFF",
+      "-DSPDLOG_BUILD_EXAMPLE_HO=OFF",
+      "-DSPDLOG_BUILD_TESTS=OFF",
+      "-DSPDLOG_BUILD_TESTS_HO=OFF",
+      "-DSPDLOG_BUILD_BENCH=OFF",
+      "-DSPDLOG_BUILD_SHARED=OFF",
+      "-DSPDLOG_BUILD_WARNINGS=OFF",
+      "-DSPDLOG_INSTALL=OFF",
+      "-DSPDLOG_TIDY=OFF"
+    ],
+    "targets": [],
+    "jobs": 4,
+    "test_command": null
+  }
+}

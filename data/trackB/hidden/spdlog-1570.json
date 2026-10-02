@@ -1,0 +1,16 @@
+{
+  "schema": "proofsmith.hidden/1",
+  "id": "spdlog-1570",
+  "fixed": {
+    "kind": "git",
+    "commit": "0b86d6a451ce74adcb79d72b567f40ea04b26092"
+  },
+  "bug_class": "deadlock",
+  "fix_files": [
+    "include/spdlog/sinks/daily_file_sink.h",
+    "include/spdlog/sinks/rotating_file_sink-inl.h",
+    "include/spdlog/sinks/rotating_file_sink.h"
+  ],
+  "dev_tests": [],
+  "notes": "Issue 1570. The fixing commit is pull 1571."
+}

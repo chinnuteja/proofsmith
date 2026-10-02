@@ -166,7 +166,12 @@ def build_variant(repo: Path, variant: str, recipe: BuildRecipe, out_root: Path)
             child["PS_CXXFLAGS"] = spec.cxxflags
             child["PS_LDFLAGS"] = spec.ldflags
             child["PS_VARIANT"] = variant
-            ok = _run(["bash", recipe.custom_script], src, log_path, child) == 0
+            script = recipe.custom_script
+            if not Path(script).is_absolute():
+                from proofsmith.config import REPO
+
+                script = str((REPO / script).resolve())
+            ok = _run(["bash", script], src, log_path, child) == 0
     else:
         _log(log_path, f"unknown build system {recipe.system}\n")
 

@@ -1,0 +1,30 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "onetbb-1117",
+  "track": "B",
+  "source": {
+    "kind": "git",
+    "url": "https://github.com/uxlfoundation/oneTBB",
+    "commit": "3f657a343897a2ae1300d3d5f86468caaa4cb710"
+  },
+  "issue": {
+    "title": "Printing malloc block statistics can hang",
+    "body": "Calling the allocator's block-statistics report can hang the process. The hang shows up while another thread is allocating or freeing at the same time.",
+    "url": "https://github.com/uxlfoundation/oneTBB/pull/1117",
+    "rewritten": true,
+    "mentions_fix": true
+  },
+  "build": {
+    "system": "cmake",
+    "cmake_args": [
+      "-DTBB_TEST=OFF",
+      "-DTBB_EXAMPLES=OFF",
+      "-DTBB_STRICT=OFF",
+      "-DTBB_ENABLE_IPO=OFF",
+      "-DTBB4PY_BUILD=OFF"
+    ],
+    "targets": [],
+    "jobs": 4,
+    "test_command": null
+  }
+}

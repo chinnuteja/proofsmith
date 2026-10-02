@@ -1,0 +1,56 @@
+diff --git a/include/spdlog/sinks/daily_file_sink.h b/include/spdlog/sinks/daily_file_sink.h
+index a3843af7..9fae2c30 100644
+--- a/include/spdlog/sinks/daily_file_sink.h
++++ b/include/spdlog/sinks/daily_file_sink.h
+@@ -70,12 +70,6 @@ public:
+         }
+     }
+ 
+-    filename_t filename()
+-    {
+-        std::lock_guard<Mutex> lock(base_sink<Mutex>::mutex_);
+-        return file_helper_.filename();
+-    }
+-
+ protected:
+     void sink_it_(const details::log_msg &msg) override
+     {
+@@ -155,7 +149,7 @@ private:
+         using details::os::filename_to_str;
+         using details::os::remove_if_exists;
+ 
+-        filename_t current_file = filename();
++        filename_t current_file = file_helper_.filename();
+         if (filenames_q_.full())
+         {
+             auto old_filename = std::move(filenames_q_.front());
+diff --git a/include/spdlog/sinks/rotating_file_sink-inl.h b/include/spdlog/sinks/rotating_file_sink-inl.h
+index d715ebf3..3add7854 100644
+--- a/include/spdlog/sinks/rotating_file_sink-inl.h
++++ b/include/spdlog/sinks/rotating_file_sink-inl.h
+@@ -53,13 +53,6 @@ SPDLOG_INLINE filename_t rotating_file_sink<Mutex>::calc_filename(const filename
+     return fmt::format(SPDLOG_FILENAME_T("{}.{}{}"), basename, index, ext);
+ }
+ 
+-template<typename Mutex>
+-SPDLOG_INLINE filename_t rotating_file_sink<Mutex>::filename()
+-{
+-    std::lock_guard<Mutex> lock(base_sink<Mutex>::mutex_);
+-    return file_helper_.filename();
+-}
+-
+ template<typename Mutex>
+ SPDLOG_INLINE void rotating_file_sink<Mutex>::sink_it_(const details::log_msg &msg)
+ {
+diff --git a/include/spdlog/sinks/rotating_file_sink.h b/include/spdlog/sinks/rotating_file_sink.h
+index e1e85a7d..25a1d495 100644
+--- a/include/spdlog/sinks/rotating_file_sink.h
++++ b/include/spdlog/sinks/rotating_file_sink.h
+@@ -24,7 +24,6 @@ class rotating_file_sink final : public base_sink<Mutex>
+ public:
+     rotating_file_sink(filename_t base_filename, std::size_t max_size, std::size_t max_files, bool rotate_on_open = false);
+     static filename_t calc_filename(const filename_t &filename, std::size_t index);
+-    filename_t filename();
+ 
+ protected:
+     void sink_it_(const details::log_msg &msg) override;

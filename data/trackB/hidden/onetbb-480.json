@@ -1,0 +1,17 @@
+{
+  "schema": "proofsmith.hidden/1",
+  "id": "onetbb-480",
+  "fixed": {
+    "kind": "git",
+    "commit": "8e7f9e14ba3a533efc612ac004dcde0f74130603"
+  },
+  "bug_class": "race",
+  "fix_files": [
+    "cmake/compilers/GNU.cmake",
+    "src/tbb/allocator.cpp"
+  ],
+  "dev_tests": [
+    "test/conformance/conformance_parallel_for.cpp"
+  ],
+  "notes": "Only a pull request exists. It names the race on handler-pointer initialization. The diff also disables LTO when ThreadSanitizer is on.\n\noriginal_title:\nFix internal allocator related issues\n\noriginal_body:\n* For some reason, GCC does not instrument `tbbmalloc` with TSan when `lto` is enabled. \r\n* Fix race in internal allocator on handler pointer initialization. \r\n* Simplify checks in `conformance_parallel_for`"
+}

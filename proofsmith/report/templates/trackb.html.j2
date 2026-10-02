@@ -1,0 +1,44 @@
+{% extends "base.html.j2" %}
+{% block title %}Proofsmith Track B{% endblock %}
+{% block body %}
+<h1>Track B</h1>
+<p class="lede">Lifetime and concurrency instances that build here under both sanitizer variants. Bug classes on this page stay out of prompts.</p>
+<ul class="summary-strip" data-testid="class-strip">
+  {% for name in ["deadlock", "race", "lifetime", "ub"] %}
+  <li>{{ name }} <span data-testid="class-{{ name }}" data-source="results/trackB_check.json#/counts/{{ name }}">{{ counts[name] | fmt }}</span></li>
+  {% endfor %}
+  <li>mentions fix <span data-testid="mentions-fix" data-source="results/trackB_check.json#/mentions_fix">{{ mentions_fix | fmt }}</span></li>
+  <li>instances <span data-testid="instance-total" data-source="results/trackB_check.json#/total">{{ total | fmt }}</span></li>
+</ul>
+<table class="trackb" data-testid="trackb-table">
+  <thead>
+    <tr>
+      <th>Instance</th>
+      <th>Repo</th>
+      <th>Issue</th>
+      <th>Rewritten</th>
+      <th>Mentions fix</th>
+      <th>Fix size</th>
+      <th>b asan</th>
+      <th>b tsan</th>
+      <th>f asan</th>
+      <th>f tsan</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in rows %}
+    <tr data-testid="trackb-row" data-instance="{{ row.id }}">
+      <td data-label="Instance"><span data-testid="instance-id">{{ row.id }}</span></td>
+      <td data-label="Repo"><span data-testid="repo">{{ row.repo | replace("/", "/​") }}</span></td>
+      <td data-label="Issue"><a data-testid="issue-link" href="{{ row.issue_url }}">link</a></td>
+      <td data-label="Rewritten"><span data-testid="rewritten" data-source="{{ row.base }}/rewritten">{{ row.rewritten | fmt }}</span></td>
+      <td data-label="Mentions fix"><span data-testid="mentions-fix" data-source="{{ row.base }}/mentions_fix">{{ row.mentions_fix | fmt }}</span></td>
+      <td data-label="Fix size"><span data-testid="fix-size"><span data-source="{{ row.base }}/fix_files">{{ row.fix_files | fmt }}</span> files, <span data-source="{{ row.base }}/fix_lines">{{ row.fix_lines | fmt }}</span> lines</span></td>
+      {% for cell in row.builds %}
+      <td data-label="{{ cell.side }} {{ cell.variant }}"><span class="{{ cell.pill }}" data-testid="build-{{ cell.side }}-{{ cell.variant }}" data-source="{{ cell.source }}">{{ cell.ok | fmt }}</span></td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

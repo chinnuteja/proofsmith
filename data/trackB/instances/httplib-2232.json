@@ -1,0 +1,35 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "httplib-2232",
+  "track": "B",
+  "source": {
+    "kind": "git",
+    "url": "https://github.com/yhirose/cpp-httplib",
+    "commit": "f72b4582e60051e582543872377dd4223a8e1c33"
+  },
+  "issue": {
+    "title": "A timed-out DNS lookup can crash the client",
+    "body": "A request whose name lookup runs longer than the connection timeout can crash after the call has already returned. The crash shows up a few seconds later, often while another thread is still finishing the lookup. A short timeout against a name that does not resolve is enough to hit it.",
+    "url": "https://github.com/yhirose/cpp-httplib/pull/2232",
+    "rewritten": true,
+    "mentions_fix": true
+  },
+  "build": {
+    "system": "cmake",
+    "cmake_args": [
+      "-DHTTPLIB_COMPILE=ON",
+      "-DHTTPLIB_TEST=OFF",
+      "-DHTTPLIB_INSTALL=OFF",
+      "-DHTTPLIB_REQUIRE_OPENSSL=OFF",
+      "-DHTTPLIB_USE_OPENSSL_IF_AVAILABLE=OFF",
+      "-DHTTPLIB_REQUIRE_MBEDTLS=OFF",
+      "-DHTTPLIB_USE_MBEDTLS_IF_AVAILABLE=OFF",
+      "-DHTTPLIB_USE_BROTLI_IF_AVAILABLE=OFF",
+      "-DHTTPLIB_USE_ZLIB_IF_AVAILABLE=OFF",
+      "-DHTTPLIB_USE_ZSTD_IF_AVAILABLE=OFF"
+    ],
+    "targets": [],
+    "jobs": 4,
+    "test_command": null
+  }
+}

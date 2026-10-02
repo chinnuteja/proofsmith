@@ -1,0 +1,14 @@
+{
+  "schema": "proofsmith.hidden/1",
+  "id": "libuv-4321",
+  "fixed": {
+    "kind": "git",
+    "commit": "a7c44d674833e8dec66b8730b5635fcad0f81162"
+  },
+  "bug_class": "lifetime",
+  "fix_files": [
+    "src/unix/udp.c"
+  ],
+  "dev_tests": [],
+  "notes": "Only a pull request exists. Its title names the repair.\n\noriginal_title:\nDON'T sendmsg with udp closed\n\noriginal_body:\nIssue:\r\n1. uv__io_poll calls uv__udp_io with revents == POLLIN + POLLOUT\r\n2. uv__udp_io calls your recv_cb\r\n3. you close the handle in callback\r\n4. uv__udp_io calls uv__udp_sendmsg\r\n5. uv__udp_sendmsg calls uv__io_feed\r\n6. kaboom!"
+}

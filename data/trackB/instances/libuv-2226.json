@@ -1,0 +1,33 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "libuv-2226",
+  "track": "B",
+  "source": {
+    "kind": "git",
+    "url": "https://github.com/libuv/libuv",
+    "commit": "87a116c4d0d4287da06301579773a2a3f6da8da8"
+  },
+  "issue": {
+    "title": "Threading bug - race condition in uv_async_send",
+    "body": "* **Version**: 1.27\r\n* **Platform**: linux / maybe macos\r\n\r\nI've spent the last few days tracking down [a race condition in the foundationdb node bindings](https://github.com/josephg/node-foundationdb/issues/28). Foundationdb owns a networking thread. Behaviour is like this:\r\n\r\n1. Nodejs calls an async database function (fetch data / whatever)\r\n2. We create a `uv_async`, associated with a foundationdb future object\r\n3. Foundationdb signals that the work is completed by calling a method on its networking thread\r\n4. We call `uv_async_send` on the associated async object\r\n5. In the main thread, data is returned to nodejs and the async object is deallocated\r\n\r\n[relevant code in node-foundationdb is here](https://github.com/josephg/node-foundationdb/blob/d24483918a45e56572c88e804444c158d354b734/src/future.cpp#L16-L47).\r\n\r\n(I know this is an inefficient use of `uv_async` - I'll rewrite all this code when we move to napi).\r\n\r\nThis code is crashing sometimes, and I can't figure out exactly why. The call to `uv_async_send` has a use-after-free bug - sometimes the `uv_async` has been deleted before `uv_async_send` returns, and the call to `uv_async_send` crashes. (But reading the code, I don't understand how this is possible). The original bug (in the linked issue) only seems to trigger on linux after running for about 20 minutes.\r\n\r\nI made a [pure C / libuv repro](https://gist.github.com/josephg/d646cc4fdbb89ff0a19ec6c5c5550969) of this issue which crashes reliably in less than a minute on macos and linux. I'm not 100% sure this repro code is correct, but it crashes in the same way so I think so.\r\n\r\nAm I using libuv correctly? It seems weird that I'm the first person to run into this bug.",
+    "url": "https://github.com/libuv/libuv/issues/2226",
+    "rewritten": false,
+    "mentions_fix": false
+  },
+  "build": {
+    "system": "cmake",
+    "cmake_args": [
+      "-DBUILD_TESTING=OFF",
+      "-DLIBUV_BUILD_TESTS=OFF",
+      "-DLIBUV_BUILD_BENCH=OFF",
+      "-DLIBUV_BUILD_SHARED=OFF",
+      "-DASAN=OFF",
+      "-DTSAN=OFF",
+      "-DUBSAN=OFF",
+      "-DENABLE_CLANG_TIDY=OFF"
+    ],
+    "targets": [],
+    "jobs": 4,
+    "test_command": null
+  }
+}

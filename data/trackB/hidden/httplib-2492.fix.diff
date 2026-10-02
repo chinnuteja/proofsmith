@@ -1,0 +1,68 @@
+diff --git a/httplib.h b/httplib.h
+index 3b89e01..ed699c0 100644
+--- a/httplib.h
++++ b/httplib.h
+@@ -16107,11 +16107,18 @@ inline bool SSLServer::update_certs_pem(const char *cert_pem,
+ 
+ // SSL HTTP client implementation
+ inline SSLClient::~SSLClient() {
+-  if (ctx_) { tls::free_context(ctx_); }
+   // Make sure to shut down SSL since shutdown_ssl will resolve to the
+   // base function rather than the derived function once we get to the
+   // base class destructor, and won't free the SSL (causing a leak).
++  // This must happen before the context is freed below: some backends
++  // (e.g. mbedTLS) have the SSL session borrow a raw pointer into the
++  // context, so freeing the context first leaves close_notify reading
++  // freed memory.
+   shutdown_ssl_impl(socket_, true);
++  if (ctx_) {
++    tls::free_context(ctx_);
++    ctx_ = nullptr;
++  }
+ }
+ 
+ inline bool SSLClient::is_valid() const { return ctx_ != nullptr; }
+diff --git a/test/test.cc b/test/test.cc
+index ef6e328..c22fb55 100644
+--- a/test/test.cc
++++ b/test/test.cc
+@@ -18293,6 +18293,39 @@ TEST(SSLClientServerTest, CustomizeServerSSLCtxMbedTLS) {
+   ASSERT_TRUE(res);
+   ASSERT_EQ(StatusCode::OK_200, res->status);
+ }
++
++// Regression test for a use-after-free where ~SSLClient freed the mbedTLS
++// context (owning mbedtls_ssl_config) before shutting down a still-open
++// keep-alive SSL session, which reads through that config in
++// mbedtls_ssl_close_notify.
++TEST(SSLClientServerTest, DestructWithLiveKeepAliveSessionMbedTLS) {
++  SSLServer svr(SERVER_CERT_FILE, SERVER_PRIVATE_KEY_FILE);
++  ASSERT_TRUE(svr.is_valid());
++
++  svr.Get("/test", [&](const Request & /*req*/, Response &res) {
++    res.set_content("test", "text/plain");
++  });
++
++  thread t = thread([&]() { ASSERT_TRUE(svr.listen(HOST, PORT)); });
++  auto se = detail::scope_exit([&] {
++    svr.stop();
++    t.join();
++    ASSERT_FALSE(svr.is_running());
++  });
++
++  svr.wait_until_ready();
++
++  {
++    SSLClient cli(HOST, PORT);
++    cli.enable_server_certificate_verification(false);
++    cli.set_keep_alive(true);
++
++    auto res = cli.Get("/test");
++    ASSERT_TRUE(res);
++    ASSERT_EQ(StatusCode::OK_200, res->status);
++    // cli is destructed here with the keep-alive SSL session still open.
++  }
++}
+ #endif
+ 
+ // WebSocket Tests

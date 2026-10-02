@@ -1,0 +1,33 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "libuv-4321",
+  "track": "B",
+  "source": {
+    "kind": "git",
+    "url": "https://github.com/libuv/libuv",
+    "commit": "e8458b2402e7a068f25f01d0b72e6aed73ca2138"
+  },
+  "issue": {
+    "title": "Closing a UDP handle from its receive callback crashes",
+    "body": "Closing a UDP handle inside its receive callback crashes the process. The crash happens on the same poll wakeup that also reports the socket as writable.",
+    "url": "https://github.com/libuv/libuv/pull/4321",
+    "rewritten": true,
+    "mentions_fix": true
+  },
+  "build": {
+    "system": "cmake",
+    "cmake_args": [
+      "-DBUILD_TESTING=OFF",
+      "-DLIBUV_BUILD_TESTS=OFF",
+      "-DLIBUV_BUILD_BENCH=OFF",
+      "-DLIBUV_BUILD_SHARED=OFF",
+      "-DASAN=OFF",
+      "-DTSAN=OFF",
+      "-DUBSAN=OFF",
+      "-DENABLE_CLANG_TIDY=OFF"
+    ],
+    "targets": [],
+    "jobs": 4,
+    "test_command": null
+  }
+}
