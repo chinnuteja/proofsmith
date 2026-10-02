@@ -1,0 +1,9 @@
+{
+  "schema": "proofsmith.hidden/1",
+  "id": "rounding-ticks",
+  "fixed": {"kind": "patch", "path": "cases/rounding-ticks/hidden/fix.patch"},
+  "bug_class": "behavioral",
+  "fix_files": ["ticks.cpp"],
+  "dev_tests": [],
+  "notes": "truncation toward zero. The fix uses std::llround."
+}

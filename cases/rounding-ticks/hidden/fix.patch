@@ -1,0 +1,13 @@
+--- a/ticks.cpp
++++ b/ticks.cpp
+@@ -1,7 +1,9 @@
+ #include "ticks.h"
+ 
++#include <cmath>
++
+ std::int64_t to_ticks(double price, double tick) {
+-  return static_cast<std::int64_t>(price / tick);
++  return std::llround(price / tick);
+ }
+ 
+ double resting_price(double price, double tick) {

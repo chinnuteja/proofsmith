@@ -1,0 +1,43 @@
+{
+  "abstain_reason": null,
+  "buggy_tree_sha256": "804d8b4ae7fb668475c37745d307b555ddd5f7da57b49573f8fe6d2e4b7b76c0",
+  "cost_usd": 0.031497224,
+  "created_at": "2026-10-02T06:04:44Z",
+  "files": {
+    "harness/build.sh": "d6fff8fa6753391896f737651096ca1a2ce110c726dd42c8c5a91bd95098564a",
+    "harness/harness.cpp": "88c9dd94063728074221443be8c7592b4f8618e6ad262fb943a862b5e1a05a33"
+  },
+  "flags": {
+    "cxxflags": "-g -O1 -fno-omit-frame-pointer -fsanitize=address,undefined -fno-sanitize-recover=undefined",
+    "env": {
+      "ASAN_OPTIONS": "halt_on_error=1:abort_on_error=0:detect_leaks=0:exitcode=23:symbolize=1:allocator_may_return_null=1",
+      "ASAN_SYMBOLIZER_PATH": "/usr/bin/llvm-symbolizer",
+      "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1:exitcode=24:symbolize=1"
+    },
+    "ldflags": "-fsanitize=address,undefined"
+  },
+  "instance_id": "uaf-lru",
+  "model": "deepseek-v4-pro",
+  "oracle": "asan_ubsan",
+  "runtime": {
+    "fails": 10,
+    "k": 8,
+    "n": 10,
+    "signatures": {
+      "asan:heap-use-after-free|PriceCache::put@price_cache.cpp|PriceCache::put@price_cache.cpp": 10
+    }
+  },
+  "schema": "proofsmith.verifier/1",
+  "signature": "asan:heap-use-after-free|PriceCache::put@price_cache.cpp|PriceCache::put@price_cache.cpp",
+  "status": "accepted",
+  "system": "proofsmith",
+  "trajectory": "runs/uaf-lru-asan_ubsan-7b120ab2/trajectory.jsonl",
+  "usage": {
+    "cache_hit_tokens": 54016,
+    "completion_tokens": 4648,
+    "prompt_tokens": 62133,
+    "reasoning_tokens": 3066
+  },
+  "variant": "asan_ubsan",
+  "wall_s": 93.40376922299993
+}

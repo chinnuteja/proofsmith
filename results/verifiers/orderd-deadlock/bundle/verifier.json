@@ -1,0 +1,41 @@
+{
+  "abstain_reason": null,
+  "buggy_tree_sha256": "2ddb72e3844a29586591fbb181bca5fa24c280be0afeed42006d2c476f589faa",
+  "cost_usd": 0.034670328,
+  "created_at": "2026-10-02T06:03:00Z",
+  "files": {
+    "harness/build.sh": "65029abc1f52f1e2b0213fdcfa76eeed6bcac3eb51e0bd55ddb9d742abeb2b7f",
+    "harness/harness.cpp": "8dc71ec2e7f64295704c2514cb7b4936aff4d585b9a3f2811f8721b7e2c03c0d"
+  },
+  "flags": {
+    "cxxflags": "-g -O1 -fno-omit-frame-pointer -fsanitize=thread",
+    "env": {
+      "TSAN_OPTIONS": "halt_on_error=1:exitcode=66:second_deadlock_stack=1:symbolize=1:external_symbolizer_path=/usr/bin/llvm-symbolizer"
+    },
+    "ldflags": "-fsanitize=thread"
+  },
+  "instance_id": "orderd-deadlock",
+  "model": "deepseek-v4-pro",
+  "oracle": "tsan",
+  "runtime": {
+    "fails": 10,
+    "k": 8,
+    "n": 10,
+    "signatures": {
+      "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp": 10
+    }
+  },
+  "schema": "proofsmith.verifier/1",
+  "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+  "status": "accepted",
+  "system": "proofsmith",
+  "trajectory": "runs/orderd-deadlock-tsan-9eb3d44a/trajectory.jsonl",
+  "usage": {
+    "cache_hit_tokens": 64512,
+    "completion_tokens": 3915,
+    "prompt_tokens": 76882,
+    "reasoning_tokens": 2436
+  },
+  "variant": "tsan",
+  "wall_s": 204.92482979599993
+}

@@ -1,0 +1,21 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "race-stats",
+  "track": "micro",
+  "source": {"kind": "dir", "path": "cases/race-stats/buggy"},
+  "issue": {
+    "title": "Request counter is sometimes lower than requests served",
+    "body": "The request counter in metrics is sometimes lower than the number of requests served.\nSeveral workers record latencies at the same time. After they finish, the counter should equal the number of records.\n",
+    "url": null,
+    "rewritten": false,
+    "mentions_fix": false
+  },
+  "build": {
+    "system": "cmake",
+    "cmake_args": [],
+    "targets": [],
+    "jobs": 4,
+    "custom_script": null,
+    "test_command": "ctest --output-on-failure -j4"
+  }
+}

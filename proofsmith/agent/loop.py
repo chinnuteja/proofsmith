@@ -110,7 +110,15 @@ def _cost(llm: object) -> float:
     return float(sum(costs))
 
 
-def run_agent(llm, system_prompt: str, user_prompt: str, tools, budget: Budget, run_dir: Path) -> AgentResult:
+def run_agent(
+    llm,
+    system_prompt: str,
+    user_prompt: str,
+    tools,
+    budget: Budget,
+    run_dir: Path,
+    on_finish=None,
+) -> AgentResult:
     run_dir = Path(run_dir)
     run_dir.mkdir(parents=True, exist_ok=True)
     trajectory = run_dir / "trajectory.jsonl"
@@ -255,9 +263,17 @@ def run_agent(llm, system_prompt: str, user_prompt: str, tools, budget: Budget, 
 
         if terminal:
             if terminal.get("tool") == "finish":
+                finished = dict(terminal)
+                feedback = None
+                if on_finish is not None:
+                    feedback = on_finish(finished)
+                    tools.terminal = None
+                if feedback:
+                    messages.append({"role": "user", "content": str(feedback)})
+                    continue
                 return end(
                     "finished",
-                    {"variant": terminal.get("variant"), "summary": terminal.get("summary")},
+                    {"variant": finished.get("variant"), "summary": finished.get("summary")},
                 )
             return end("abstained", {"reason": terminal.get("reason")})
 

@@ -1,0 +1,22 @@
+{% extends "base.html.j2" %}
+{% block title %}Proofsmith verifiers{% endblock %}
+{% block body %}
+<h1>Verifiers</h1>
+<p class="lede">Each row is a frozen Proofsmith bundle. The status is what the judge recorded, not what the model claimed.</p>
+<table class="matrix" data-testid="verifier-index">
+  <thead>
+    <tr>
+      <th>Instance</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in rows %}
+    <tr data-testid="verifier-row" data-instance="{{ row.id }}">
+      <td data-label="Instance"><a href="/verifiers/{{ row.id }}/">{{ row.id }}</a></td>
+      <td data-label="Status"><span class="{{ row.pill }}" data-testid="status-pill" data-source="{{ row.source }}">{{ row.status }}</span></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,78 @@
+--- a/price_cache.h
++++ b/price_cache.h
+@@ -1,6 +1,7 @@
+ #pragma once
+ 
+ #include <cstddef>
++#include <optional>
+ #include <string>
+ #include <unordered_map>
+ 
+@@ -12,7 +13,7 @@
+   PriceCache& operator=(const PriceCache&) = delete;
+ 
+   void put(const std::string& symbol, double price);
+-  const double& get(const std::string& symbol);
++  std::optional<double> get(const std::string& symbol);
+ 
+  private:
+   struct Node {
+--- a/price_cache.cpp
++++ b/price_cache.cpp
+@@ -1,4 +1,6 @@
+ #include "price_cache.h"
++
++#include <optional>
+ 
+ PriceCache::PriceCache(std::size_t capacity)
+     : capacity_(capacity), newest_(nullptr), oldest_(nullptr) {}
+@@ -69,14 +71,14 @@
+   push_front(node);
+ }
+ 
+-const double& PriceCache::get(const std::string& symbol) {
++std::optional<double> PriceCache::get(const std::string& symbol) {
+   auto found = index_.find(symbol);
+   if (found == index_.end()) {
+-    static double missing = 0.0;
+-    return missing;
++    return std::nullopt;
+   }
+   Node* node = found->second;
++  double price = node->price;
+   detach(node);
+   push_front(node);
+-  return node->price;
++  return price;
+ }
+--- a/tests/cache_test.cpp
++++ b/tests/cache_test.cpp
+@@ -4,20 +4,22 @@
+   PriceCache cache(2);
+   cache.put("AAA", 10.0);
+   cache.put("BBB", 11.0);
+-  double first = cache.get("AAA");
+-  double second = cache.get("BBB");
+-  if (first != 10.0 || second != 11.0) {
++  auto first = cache.get("AAA");
++  auto second = cache.get("BBB");
++  if (!first || !second || *first != 10.0 || *second != 11.0) {
+     return 1;
+   }
+   cache.put("AAA", 12.0);
+-  if (cache.get("AAA") != 12.0) {
++  auto updated = cache.get("AAA");
++  if (!updated || *updated != 12.0) {
+     return 1;
+   }
+   PriceCache small(1);
+   small.put("AAA", 1.0);
+-  double held = small.get("AAA");
++  double held = small.get("AAA").value();
+   small.put("BBB", 2.0);
+-  if (held != 1.0 || small.get("BBB") != 2.0) {
++  auto next = small.get("BBB");
++  if (held != 1.0 || !next || *next != 2.0) {
+     return 1;
+   }
+   return 0;

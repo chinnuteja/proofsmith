@@ -1,0 +1,9 @@
+{
+  "schema": "proofsmith.hidden/1",
+  "id": "vague-perf",
+  "fixed": {"kind": "dir", "path": "cases/vague-perf/buggy"},
+  "bug_class": "none",
+  "fix_files": [],
+  "dev_tests": [],
+  "notes": "Correct library. No fix patch. Proofsmith should abstain."
+}

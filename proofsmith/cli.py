@@ -21,6 +21,9 @@ def main(argv: list[str] | None = None) -> None:
     agent = sub.add_parser("agent")
     agent_sub = agent.add_subparsers(dest="agent_command", required=True)
     agent_sub.add_parser("smoke", help="live deepseek-flash tool-calling smoke")
+    make = sub.add_parser("make-verifier", help="build a verifier bundle for one instance")
+    make.add_argument("--instance", required=True, help="path to instance.json")
+    make.add_argument("--out", required=True, help="directory for the verifier bundle")
     args = parser.parse_args(argv)
 
     if args.command == "doctor":
@@ -57,6 +60,34 @@ def main(argv: list[str] | None = None) -> None:
         from proofsmith.ledger import print_status
 
         print_status()
+        return
+
+    if args.command == "make-verifier":
+        from pathlib import Path
+
+        from proofsmith.agent.loop import Budget
+        from proofsmith.config import EVAL_MODEL, MAX_STEPS, MAX_TOTAL_TOKENS, MAX_WALL_S
+        from proofsmith.datasets.schema import Instance
+        from proofsmith.ledger import LEDGER_PATH, Ledger
+        from proofsmith.llm import LLMClient
+        from proofsmith.pipeline import make_verifier
+
+        instance = Instance.model_validate_json(Path(args.instance).read_text(encoding="utf-8"))
+        ledger = Ledger(LEDGER_PATH)
+        client = LLMClient(EVAL_MODEL, ledger, f"make-{instance.id}")
+        client.system_name = "proofsmith"
+        result = make_verifier(
+            instance,
+            client,
+            Budget(MAX_STEPS, MAX_TOTAL_TOKENS, MAX_WALL_S),
+            Path(args.out),
+        )
+        print(f"status: {result.status}")
+        print(f"oracle: {result.oracle}")
+        print(f"signature: {result.signature}")
+        print(f"reason: {result.reason}")
+        print(f"cost_usd: {result.cost_usd:.6f}")
+        print(result.bundle_dir or "")
         return
 
     if args.command == "agent" and args.agent_command == "smoke":

@@ -1,0 +1,21 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "rounding-ticks",
+  "track": "micro",
+  "source": {"kind": "dir", "path": "cases/rounding-ticks/buggy"},
+  "issue": {
+    "title": "An order at 0.29 with tick 0.01 rests at 0.28",
+    "body": "An order at 0.29 with tick 0.01 rests at 0.28.\nExpected: that order rests at 0.29.\n",
+    "url": null,
+    "rewritten": false,
+    "mentions_fix": false
+  },
+  "build": {
+    "system": "cmake",
+    "cmake_args": [],
+    "targets": [],
+    "jobs": 4,
+    "custom_script": null,
+    "test_command": "ctest --output-on-failure -j4"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "vague-perf",
+  "track": "micro",
+  "source": {"kind": "dir", "path": "cases/vague-perf/buggy"},
+  "issue": {
+    "title": "The matcher feels slower since last week's deploy",
+    "body": "The matcher feels slower since last week's deploy. Nothing specific.\nNo wrong result, no crash, and no hang has been observed.\n",
+    "url": null,
+    "rewritten": false,
+    "mentions_fix": false
+  },
+  "build": {
+    "system": "cmake",
+    "cmake_args": [],
+    "targets": [],
+    "jobs": 4,
+    "custom_script": null,
+    "test_command": "ctest --output-on-failure -j4"
+  }
+}

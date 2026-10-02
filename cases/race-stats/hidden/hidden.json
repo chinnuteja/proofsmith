@@ -1,0 +1,9 @@
+{
+  "schema": "proofsmith.hidden/1",
+  "id": "race-stats",
+  "fixed": {"kind": "patch", "path": "cases/race-stats/hidden/fix.patch"},
+  "bug_class": "race",
+  "fix_files": ["metrics.cpp", "metrics.h"],
+  "dev_tests": [],
+  "notes": "plain uint64_t counters incremented from several threads. The fix uses std::atomic."
+}

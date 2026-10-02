@@ -1,0 +1,41 @@
+{
+  "abstain_reason": null,
+  "buggy_tree_sha256": "7d8fa5f46c3b635a9b1abf7865df9a44ea7da0a7754a38cb0223a51725622fea",
+  "cost_usd": 0.029148328,
+  "created_at": "2026-10-02T06:05:59Z",
+  "files": {
+    "harness/build.sh": "043e5b0bf99150c1476648bbcf74e8e2e874e68704563744bc0472017d67d94d",
+    "harness/harness.cpp": "eb746be9c9f9c303e1af0ffcd92c432750d7755ea8db041c366246a48abc2b8c"
+  },
+  "flags": {
+    "cxxflags": "-g -O1 -fno-omit-frame-pointer -fsanitize=thread",
+    "env": {
+      "TSAN_OPTIONS": "halt_on_error=1:exitcode=66:second_deadlock_stack=1:symbolize=1:external_symbolizer_path=/usr/bin/llvm-symbolizer"
+    },
+    "ldflags": "-fsanitize=thread"
+  },
+  "instance_id": "race-stats",
+  "model": "deepseek-v4-pro",
+  "oracle": "tsan",
+  "runtime": {
+    "fails": 10,
+    "k": 8,
+    "n": 10,
+    "signatures": {
+      "tsan:data-race|Stats::record@metrics.cpp|WorkerPool::serve(Stats&, int, int)::$_::operator()@metrics.cpp|Stats::record@metrics.cpp": 10
+    }
+  },
+  "schema": "proofsmith.verifier/1",
+  "signature": "tsan:data-race|Stats::record@metrics.cpp|WorkerPool::serve(Stats&, int, int)::$_::operator()@metrics.cpp|Stats::record@metrics.cpp",
+  "status": "accepted",
+  "system": "proofsmith",
+  "trajectory": "runs/race-stats-tsan-a14c953d/trajectory.jsonl",
+  "usage": {
+    "cache_hit_tokens": 48512,
+    "completion_tokens": 4194,
+    "prompt_tokens": 56395,
+    "reasoning_tokens": 2821
+  },
+  "variant": "tsan",
+  "wall_s": 76.52195213999994
+}

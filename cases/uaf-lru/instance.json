@@ -1,0 +1,21 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "uaf-lru",
+  "track": "micro",
+  "source": {"kind": "dir", "path": "cases/uaf-lru/buggy"},
+  "issue": {
+    "title": "Prices read after the cache fills are sometimes garbage",
+    "body": "After the cache fills up, prices read right after inserting new symbols are sometimes garbage.\nWe read a price, then insert enough new symbols to push older ones out, and the price we are still holding comes back as garbage or the process crashes.\nExpected: a price that was read stays the value it had when it was read.\n",
+    "url": null,
+    "rewritten": false,
+    "mentions_fix": false
+  },
+  "build": {
+    "system": "cmake",
+    "cmake_args": [],
+    "targets": [],
+    "jobs": 4,
+    "custom_script": null,
+    "test_command": "ctest --output-on-failure -j4"
+  }
+}

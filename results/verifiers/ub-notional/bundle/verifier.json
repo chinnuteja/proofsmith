@@ -1,0 +1,43 @@
+{
+  "abstain_reason": null,
+  "buggy_tree_sha256": "ee625712d6026bdce746bcf5b2a18b6ed06f3df394dd67e7796a30488fbcb5cf",
+  "cost_usd": 0.033169664,
+  "created_at": "2026-10-02T06:09:25Z",
+  "files": {
+    "harness/build.sh": "fe5b5a5688694c7ffbe2bdb9313020775125e7f9c16796c3a880a2c9c2b2c524",
+    "harness/harness.cpp": "5c5d51aa4a201169cd975f529e6c0fc1efba097e91943f36c905311bd9f64928"
+  },
+  "flags": {
+    "cxxflags": "-g -O1 -fno-omit-frame-pointer -fsanitize=address,undefined -fno-sanitize-recover=undefined",
+    "env": {
+      "ASAN_OPTIONS": "halt_on_error=1:abort_on_error=0:detect_leaks=0:exitcode=23:symbolize=1:allocator_may_return_null=1",
+      "ASAN_SYMBOLIZER_PATH": "/usr/bin/llvm-symbolizer",
+      "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1:exitcode=24:symbolize=1"
+    },
+    "ldflags": "-fsanitize=address,undefined"
+  },
+  "instance_id": "ub-notional",
+  "model": "deepseek-v4-pro",
+  "oracle": "asan_ubsan",
+  "runtime": {
+    "fails": 10,
+    "k": 8,
+    "n": 10,
+    "signatures": {
+      "ubsan:signed-integer-overflow|notional@pricing.cpp": 10
+    }
+  },
+  "schema": "proofsmith.verifier/1",
+  "signature": "ubsan:signed-integer-overflow|notional@pricing.cpp",
+  "status": "accepted",
+  "system": "proofsmith",
+  "trajectory": "runs/ub-notional-asan_ubsan-d9b7d9de/trajectory.jsonl",
+  "usage": {
+    "cache_hit_tokens": 71296,
+    "completion_tokens": 5755,
+    "prompt_tokens": 76783,
+    "reasoning_tokens": 4138
+  },
+  "variant": "asan_ubsan",
+  "wall_s": 210.86411587399994
+}

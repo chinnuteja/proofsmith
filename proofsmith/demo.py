@@ -71,6 +71,14 @@ def _stress(repo: Path, build_dir: Path, work: Path) -> tuple[int, int]:
     return fails, 20
 
 
+def _generated_bundle() -> Path | None:
+    marker = RESULTS / "verifiers" / "orderd-deadlock" / "proofsmith.json"
+    bundle = RESULTS / "verifiers" / "orderd-deadlock" / "bundle"
+    if marker.is_file() and (bundle / "verifier.json").is_file() and (bundle / "harness").is_dir():
+        return bundle
+    return None
+
+
 def _install_harness(repo: Path) -> None:
     src = REPO / "cases" / "orderd" / "reference_harness"
     dest = repo / "proofsmith_harness"
@@ -94,8 +102,11 @@ def run_orderd() -> Path:
         apply_patch(dest, REPO / "cases" / "orderd" / "variants" / f"{name}.patch")
         trees[name] = dest
 
-    _install_harness(trees["buggy"])
-    bundle = freeze(
+    generated = _generated_bundle()
+    harness_source = "proofsmith" if generated is not None else "reference"
+    if generated is None:
+        _install_harness(trees["buggy"])
+    bundle = generated if generated is not None else freeze(
         trees["buggy"],
         {
             "schema": "proofsmith.verifier/1",
@@ -159,49 +170,65 @@ def run_orderd() -> Path:
 
     if buggy_runs is None:
         raise RuntimeError("buggy verifier produced no runs")
-    sample = buggy_runs[:10]
-    decision = decide(sample, RUNTIME_K, "tsan")
-    fail_count = sum(1 for run in sample if run.timed_out or run.exit_code != 0)
-    signatures = Counter(
-        run.evidence.signature
-        for run in sample
-        if run.evidence.kind.startswith("tsan:") and run.evidence.app_frames
-    )
     loaded = load_bundle(bundle)
-    loaded["signature"] = decision.signature or ""
-    loaded["runtime"] = {
-        "n": 10,
-        "k": RUNTIME_K,
-        "fails": fail_count,
-        "signatures": dict(signatures),
-    }
-    loaded["status"] = "accepted" if decision.accepted else "submitted"
-    _write_json(bundle / "verifier.json", loaded)
-
-    strip = [
-        bool(
-            decision.signature
-            and run.evidence.signature == decision.signature
-            and run.evidence.kind.startswith("tsan:")
+    if harness_source == "reference":
+        sample = buggy_runs[:10]
+        decision = decide(sample, RUNTIME_K, "tsan")
+        fail_count = sum(1 for run in sample if run.timed_out or run.exit_code != 0)
+        signatures = Counter(
+            run.evidence.signature
+            for run in sample
+            if run.evidence.kind.startswith("tsan:") and run.evidence.app_frames
         )
-        for run in sample
-    ]
-    payload = {
-        "schema": "proofsmith.demo/1",
-        "instance_id": instance.id,
-        "harness_source": "reference",
-        "oracle": "tsan",
-        "issue": {"title": instance.issue.title, "body": instance.issue.body},
-        "decision": {
+        loaded["signature"] = decision.signature or ""
+        loaded["runtime"] = {
+            "n": 10,
+            "k": RUNTIME_K,
+            "fails": fail_count,
+            "signatures": dict(signatures),
+        }
+        loaded["status"] = "accepted" if decision.accepted else "submitted"
+        _write_json(bundle / "verifier.json", loaded)
+        strip = [
+            bool(
+                decision.signature
+                and run.evidence.signature == decision.signature
+                and run.evidence.kind.startswith("tsan:")
+            )
+            for run in sample
+        ]
+        decision_payload = {
             "accepted": decision.accepted,
             "signature": decision.signature,
             "count": decision.count,
             "n": decision.n,
             "reason": decision.reason,
-        },
+        }
+        runtime_payload = {"n": 10, "k": RUNTIME_K, "fails": fail_count, "signatures": dict(signatures)}
+        signature = decision.signature or ""
+    else:
+        runtime_payload = dict(loaded.get("runtime") or {})
+        signature = loaded.get("signature") or ""
+        fail_count = int(runtime_payload.get("fails") or 0)
+        n_runs = int(runtime_payload.get("n") or 10)
+        strip = [True] * min(fail_count, n_runs) + [False] * max(0, n_runs - fail_count)
+        decision_payload = {
+            "accepted": loaded.get("status") == "accepted",
+            "signature": signature,
+            "count": fail_count,
+            "n": n_runs,
+            "reason": "frozen bundle",
+        }
+    payload = {
+        "schema": "proofsmith.demo/1",
+        "instance_id": instance.id,
+        "harness_source": harness_source,
+        "oracle": loaded.get("oracle") or "tsan",
+        "issue": {"title": instance.issue.title, "body": instance.issue.body},
+        "decision": decision_payload,
         "verifier": {
-            "signature": decision.signature or "",
-            "runtime": {"n": 10, "k": RUNTIME_K, "fails": fail_count, "signatures": dict(signatures)},
+            "signature": signature,
+            "runtime": runtime_payload,
             "files": loaded["files"],
         },
         "strip": strip,

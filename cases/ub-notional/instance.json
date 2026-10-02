@@ -1,0 +1,21 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "ub-notional",
+  "track": "micro",
+  "source": {"kind": "dir", "path": "cases/ub-notional/buggy"},
+  "issue": {
+    "title": "Very large orders show a negative notional",
+    "body": "Very large orders show a negative notional.\nAn order with price 100000 and quantity 100000 should not produce a negative number.\n",
+    "url": null,
+    "rewritten": false,
+    "mentions_fix": false
+  },
+  "build": {
+    "system": "cmake",
+    "cmake_args": [],
+    "targets": [],
+    "jobs": 4,
+    "custom_script": null,
+    "test_command": "ctest --output-on-failure -j4"
+  }
+}

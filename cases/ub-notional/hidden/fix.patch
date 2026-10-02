@@ -1,0 +1,17 @@
+--- a/pricing.h
++++ b/pricing.h
+@@ -2,4 +2,4 @@
+ 
+ #include <cstdint>
+ 
+-std::int32_t notional(std::int32_t px, std::int32_t qty);
++std::int64_t notional(std::int32_t px, std::int32_t qty);
+--- a/pricing.cpp
++++ b/pricing.cpp
+@@ -1,3 +1,5 @@
+ #include "pricing.h"
+ 
+-std::int32_t notional(std::int32_t px, std::int32_t qty) { return px * qty; }
++std::int64_t notional(std::int32_t px, std::int32_t qty) {
++  return static_cast<std::int64_t>(px) * static_cast<std::int64_t>(qty);
++}

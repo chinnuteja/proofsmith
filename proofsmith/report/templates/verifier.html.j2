@@ -1,0 +1,50 @@
+{% extends "base.html.j2" %}
+{% block title %}Verifier {{ instance_id }}{% endblock %}
+{% block body %}
+<h1 class="wrap-text">{{ instance_id }}</h1>
+<p class="lede">
+  <span class="{{ pill }}" data-testid="verifier-status" data-source="results/verifiers/{{ instance_id }}/proofsmith.json#/status">{{ status | fmt }}</span>
+</p>
+
+{% if abstain_reason %}
+<p class="abstain-banner" data-testid="abstain-banner" data-source="results/verifiers/{{ instance_id }}/proofsmith.json#/abstain_reason">{{ abstain_reason }}</p>
+{% endif %}
+
+<section class="section">
+  <h2>Oracle</h2>
+  <p>Oracle <span data-testid="oracle" data-source="results/verifiers/{{ instance_id }}/proofsmith.json#/oracle">{{ oracle | fmt }}</span></p>
+  <p class="wrap-text">Signature <code class="wrap" data-testid="signature" data-source="results/verifiers/{{ instance_id }}/proofsmith.json#/signature">{{ signature | fmt }}</code></p>
+  {% if strip %}
+  <p>Runs <span data-source="results/verifiers/{{ instance_id }}/proofsmith.json#/runtime/fails">{{ runtime.fails | fmt }}</span>/<span data-source="results/verifiers/{{ instance_id }}/proofsmith.json#/runtime/n">{{ runtime.n | fmt }}</span>
+    threshold <span data-source="results/verifiers/{{ instance_id }}/proofsmith.json#/runtime/k">{{ runtime.k | fmt }}</span>.</p>
+  <div data-testid="run-strip" class="run-strip" aria-label="acceptance runs">
+    {% for failed in strip %}
+    <span class="dot {{ 'dot-fail' if failed else 'dot-pass' }}"></span>
+    {% endfor %}
+  </div>
+  {% endif %}
+  <p>Cost <span data-testid="cost" data-source="results/verifiers/{{ instance_id }}/proofsmith.json#/cost_usd">{{ cost | fmt }}</span>
+    · wall <span data-testid="wall" data-source="results/verifiers/{{ instance_id }}/proofsmith.json#/wall_s">{{ wall | fmt }}</span></p>
+  {% if run_id %}
+  <p><a data-testid="trajectory-link" href="/runs/{{ run_id }}/">trajectory</a></p>
+  {% endif %}
+</section>
+
+{% if files %}
+<section class="section">
+  <h2>Files</h2>
+  <ul data-testid="file-hashes">
+    {% for row in files %}
+    <li class="wrap-text"><code>{{ row.name }}</code> <code class="wrap" data-testid="file-sha" data-source="{{ row.source }}">{{ row.digest }}</code></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+{% if harness_text %}
+<section class="section">
+  <h2>Harness</h2>
+  <pre class="report" data-testid="harness-source"><code>{{ harness_text }}</code></pre>
+</section>
+{% endif %}
+{% endblock %}

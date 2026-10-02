@@ -1,0 +1,9 @@
+{
+  "schema": "proofsmith.hidden/1",
+  "id": "uaf-lru",
+  "fixed": {"kind": "patch", "path": "cases/uaf-lru/hidden/fix.patch"},
+  "bug_class": "lifetime",
+  "fix_files": ["price_cache.cpp", "price_cache.h"],
+  "dev_tests": [],
+  "notes": "get returns a reference into a heap node that put deletes on eviction. The fix returns std::optional by value."
+}

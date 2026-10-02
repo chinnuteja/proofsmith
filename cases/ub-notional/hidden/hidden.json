@@ -1,0 +1,9 @@
+{
+  "schema": "proofsmith.hidden/1",
+  "id": "ub-notional",
+  "fixed": {"kind": "patch", "path": "cases/ub-notional/hidden/fix.patch"},
+  "bug_class": "ub",
+  "fix_files": ["pricing.cpp", "pricing.h"],
+  "dev_tests": [],
+  "notes": "int32 multiply. The fix widens the product to int64."
+}
