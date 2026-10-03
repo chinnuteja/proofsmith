@@ -455,6 +455,18 @@ table.trackb td:nth-child(10) { width: 6%; }
   gap: 12px;
   margin: 0 0 20px;
 }
+.table-scroll { overflow-x: auto; max-width: 100%; }
+td small { display: block; font-size: .75rem; overflow-wrap: anywhere; }
+.oracle-chart { max-width: 100%; height: auto; }
+.hero { max-width: 850px; padding: 12px 0 16px; }
+.hero h1 { font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.1; margin: 10px 0; }
+.eyebrow { color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+.action { display: inline-flex; align-items: center; min-height: 44px; margin-right: 16px; }
+nav a { display: inline-flex; align-items: center; min-height: 44px; }
+th { overflow-wrap: anywhere; }
+.pill { white-space: normal; max-width: 100%; overflow-wrap: anywhere; }
+pre:not(.report) { max-width: 100%; overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+code { overflow-wrap: anywhere; }
 
 .eval-card {
   background: var(--card);

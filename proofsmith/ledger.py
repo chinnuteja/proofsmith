@@ -95,6 +95,16 @@ class Ledger:
         if spent >= MAX_USD:
             raise BudgetExceeded(f"spent ${spent:.6f} >= cap ${MAX_USD:.2f}")
 
+    def ensure_request_budget(self, model: str, prompt_upper_bound: int, max_completion_tokens: int) -> None:
+        """Reserve a cache-miss upper bound before sending a billable request."""
+        from proofsmith.llm import Usage
+
+        self.ensure_budget()
+        worst = cost_usd(model, Usage(prompt_upper_bound, max_completion_tokens, 0, 0))
+        remaining = MAX_USD - self.spent_usd()
+        if worst > remaining:
+            raise BudgetExceeded(f"request upper bound ${worst:.6f} exceeds remaining ledger cap ${remaining:.6f}")
+
     def record(self, run_id: str, model: str, usage: Usage) -> float:  # noqa: F821
         cost = cost_usd(model, usage)
         row = {

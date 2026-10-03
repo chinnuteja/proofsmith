@@ -17,6 +17,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8", "pytest-timeout>=2.3", "playwright>=1.45"]
+mcp = ["mcp>=1.28,<2"]
 
 [project.scripts]
 proofsmith = "proofsmith.cli:main"

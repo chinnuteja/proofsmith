@@ -1,0 +1,11 @@
+{% extends "base.html.j2" %}
+{% block title %}Proofsmith integration{% endblock %}
+{% block body %}
+<h1>Freeze, patch, verify</h1><p>A stdio MCP server exposes <code>make_verifier</code> and <code>verify</code>. Live generation uses the metered model client; verification uses the frozen harness and needs no key.</p>
+<p data-claim="C4">ByteAsk documents MCP connectivity (<a href="https://docs.byteask.ai/docs/overview">C4</a>). The snippet below is a generic MCP client configuration. It has not been tested against a signed-in ByteAsk installation.</p>
+<pre><code>{"mcpServers": {"proofsmith": {"command": "/path/to/venv/bin/proofsmith", "args": ["mcp"]}}}</code></pre>
+<p>Run inside Linux or WSL. A CMake project works directly; other build systems need a <code>.proofsmith-build.json</code> containing the documented BuildRecipe.</p>
+{% if transcript %}<h2>Recorded reference run</h2><p>This is a hand-written orderd reference harness exercised through the real SDK and stdio transport. It demonstrates integration plumbing; it is separate from model-generated evaluation evidence.</p>
+{% for side in ['buggy', 'fixed'] %}<p>{{ side }} failures <span data-source="results/integration/reference_transcript.json#/{{ side }}/fails">{{ transcript[side].fails | fmt }}</span> / <span data-source="results/integration/reference_transcript.json#/{{ side }}/n">{{ transcript[side].n | fmt }}</span>; passes <span data-source="results/integration/reference_transcript.json#/{{ side }}/passes">{{ transcript[side].passes | fmt }}</span>.</p>{% endfor %}
+{% else %}<p>Integration transcript pending.</p>{% endif %}
+{% endblock %}

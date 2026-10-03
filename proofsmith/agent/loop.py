@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from proofsmith.llm import LLMResponse, Usage
+from proofsmith.ledger import BudgetExceeded
 
 # Live round-trip rule. Stay False unless a real DeepSeek follow-up rejects
 # the assistant message when reasoning_content is omitted. The phase log
@@ -195,6 +196,9 @@ def run_agent(
         )
         try:
             response = llm.chat(messages, schemas, MAX_RESPONSE_TOKENS)
+        except BudgetExceeded:
+            end("interrupted", {"error": "global spending cap reached"})
+            raise
         except Exception as exc:
             detail = f"{type(exc).__name__}: {exc}"
             _emit(trajectory, {"t": _now(), "step": step, "type": "llm_response", "error": detail})

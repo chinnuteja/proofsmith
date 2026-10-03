@@ -67,10 +67,12 @@ def _hunk_range(old_start: int, old_len: int) -> tuple[int, int]:
 def _diff_ranges(fix_diff: str) -> dict[str, list[tuple[int, int]]]:
     ranges: dict[str, list[tuple[int, int]]] = {}
     current: str | None = None
+    old_line: int | None = None
     for line in fix_diff.splitlines():
         if line.startswith("diff --git "):
             parts = line.split()
             current = None
+            old_line = None
             if parts and parts[-1].startswith("b/"):
                 current = parts[-1][2:]
             continue
@@ -82,12 +84,20 @@ def _diff_ranges(fix_diff: str) -> dict[str, list[tuple[int, int]]]:
                 current = name
             continue
         match = _HUNK.match(line)
-        if match is None or not current or _is_test_path(current):
-            continue
-        old_start = int(match.group(1))
-        old_len = int(match.group(2)) if match.group(2) is not None else 1
-        lo, hi = _hunk_range(old_start, old_len)
-        ranges.setdefault(current, []).append((lo, hi))
+        if match:
+            old_line = int(match.group(1))
+        elif current and old_line is not None and not _is_test_path(current):
+            if line.startswith("-"):
+                ranges.setdefault(current, []).append((old_line, old_line + 1))
+                old_line += 1
+            elif line.startswith("+"):
+                # An insertion maps to the preceding line in the buggy tree.
+                # This avoids attributing a change to a neighbouring function
+                # merely because it occurs in diff context.
+                anchor = max(1, old_line - 1)
+                ranges.setdefault(current, []).append((anchor, anchor + 1))
+            elif line.startswith(" "):
+                old_line += 1
     return ranges
 
 

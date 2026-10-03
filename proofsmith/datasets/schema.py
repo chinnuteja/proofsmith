@@ -85,24 +85,20 @@ def materialize(instance: Instance, dest: Path) -> Path:
         return dest
     if not source.url or not source.commit:
         raise ValueError("git source requires url and commit")
-    clone = subprocess.run(
-        ["git", "clone", "--quiet", source.url, str(dest)],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
+    from proofsmith.datasets.check import ensure_worktree
+    from proofsmith.datasets.mine import mirror_path
+
+    wt = dest.parent / f"{dest.name}.wt"
+    ensure_worktree(source.url, source.commit, wt)
+    if dest.exists():
+        shutil.rmtree(dest)
+    shutil.copytree(wt, dest, ignore=shutil.ignore_patterns(".git"))
+    subprocess.run(
+        ["git", "-C", str(mirror_path(source.url)), "worktree", "remove", "--force", str(wt)],
         check=False,
-        text=True,
     )
-    if clone.returncode != 0:
-        raise RuntimeError(clone.stdout)
-    checkout = subprocess.run(
-        ["git", "-C", str(dest), "checkout", "--quiet", source.commit],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        check=False,
-        text=True,
-    )
-    if checkout.returncode != 0:
-        raise RuntimeError(checkout.stdout)
+    if wt.exists():
+        shutil.rmtree(wt, ignore_errors=True)
     return dest
 
 

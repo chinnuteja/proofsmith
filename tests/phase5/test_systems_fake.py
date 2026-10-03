@@ -95,7 +95,10 @@ def test_systems_share_schemas_budgets_and_freeze_b0(tmp_path: Path, monkeypatch
     b0_budget, b1_budget, proof_budget = seen
     assert (b0_budget.max_steps, b0_budget.max_total_tokens, b0_budget.max_wall_s) == (8, 4000, 120)
     assert (b1_budget.max_steps, b1_budget.max_total_tokens, b1_budget.max_wall_s) == (8, 4000, 120)
-    assert (proof_budget.max_steps, proof_budget.max_total_tokens) == (8, 4000)
+    # The classifier consumed one of the shared eight steps. Giving the
+    # child eight more would grant Proofsmith an unfair extra model call.
+    assert (proof_budget.max_steps, proof_budget.max_total_tokens) == (7, 4000)
+    assert proof_budget.max_steps + len([r for r in proof.requests if r["tools"] is None]) == budget.max_steps
 
     loaded = load_bundle(b0_dir)
     assert loaded["status"] == "submitted"

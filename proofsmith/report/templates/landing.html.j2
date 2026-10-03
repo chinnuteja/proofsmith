@@ -1,0 +1,20 @@
+{% extends "base.html.j2" %}
+{% block title %}Proofsmith — earn the green checkmark{% endblock %}
+{% block body %}
+<section class="hero"><p class="eyebrow">Evidence before patches</p><h1>Make the agent earn its green checkmark.</h1><p class="lede">Turn a C/C++ bug report into a failing toolchain-backed check. Freeze it before patching. Abstain when the evidence is insufficient.</p>
+<p class="pill pill-warn" data-source="results/summary.json#/tracks/B/verdict">{{ summary.tracks.B.verdict }}</p><p>Evaluation status is visible here. Performance against the strong baseline is established only after the complete experiment.</p>
+<a class="action" href="/results/">Inspect measured results</a> <a class="action" href="/integrate/">Try the stdio integration</a></section>
+<section><h2>Tests can pass while the bug survives</h2><p>Controlled order-book fixture, separate from benchmark results. <a href="/demo/">Inspect the full evidence</a>.</p>
+<table class="demo-matrix"><thead><tr><th>Variant</th><th>Existing tests</th><th>Stress failures</th><th>Frozen check failures</th></tr></thead><tbody>
+{% for row in demo_rows %}<tr><th data-label="Variant">{{ row.label }}</th>{% for cell in row.cells %}<td data-label="{{ cell.label }}"><span data-source="{{ cell.left_source }}">{{ cell.left | fmt }}</span>/<span data-source="{{ cell.right_source }}">{{ cell.right | fmt }}</span></td>{% endfor %}</tr>{% endfor %}
+</tbody></table></section>
+<section><h2>The experiment</h2>{% for track, payload in summary.tracks.items() %}<p>Track {{ track }}: <span data-source="results/summary.json#/tracks/{{ track }}/verdict">{{ payload.verdict }}</span>. Full definitions and paired comparisons are on the <a href="/results/">results page</a>.</p>{% endfor %}</section>
+<section><h2>What this offers ByteAsk</h2><ul>
+<li data-claim="C2"><a href="https://byteask.ai/">C2: the documented deadlock demonstration</a> motivates a failing check before the patch is written.</li>
+<li data-claim="C3"><a href="https://byteask.ai/">C3: the documented sanitizer and passing-test example</a> motivates checking the reported failure independently of existing tests.</li>
+<li data-claim="C4"><a href="https://docs.byteask.ai/docs/overview">C4: documented MCP connectivity</a> provides an integration point for the local stdio server.</li>
+</ul></section>
+<section><h2>Reproduce the artifacts</h2><pre><code>bash scripts/reproduce.sh</code></pre><p>Linux or WSL toolchain required. Offline replay needs no model key and fails when recomputed outcomes differ from stored evidence. Source commits may need an initial network checkout. A clean-clone pass is required before calling the package send-ready.</p></section>
+<section><h2>Worked cases and limits</h2><p>Worked cases are pending the frozen-protocol comparison. Small samples, a single model, and a single attempt constrain the conclusion. Runtime acceptance alone does not establish patch correctness. The developer-test gate experiment is conditional on the evaluation outcome. rr is outside local scope.</p></section>
+<section><h2>Toolchain evidence</h2><p><a href="/toolchain/">Compiler probes and raw reports</a>. The complete historical toolchain panel remains below for inspection.</p>{{ toolchain_panel | safe }}</section>
+{% endblock %}

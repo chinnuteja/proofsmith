@@ -33,7 +33,11 @@ def _sha256(path: Path) -> str:
 
 def _harness_files(harness: Path) -> dict[str, str]:
     files: dict[str, str] = {}
+    if harness.is_symlink():
+        raise TamperError("harness directory must not be a symlink")
     for path in sorted(harness.rglob("*")):
+        if path.is_symlink():
+            raise TamperError(f"harness symlink is not allowed: {path.name}")
         if path.is_file() and not path.is_symlink():
             rel = "harness/" + path.relative_to(harness).as_posix()
             files[rel] = _sha256(path)
@@ -43,6 +47,7 @@ def _harness_files(harness: Path) -> dict[str, str]:
 def freeze(repo: Path, meta: dict, out_dir: Path) -> Path:
     repo = Path(repo)
     out_dir = Path(out_dir)
+    _harness_files(repo / "proofsmith_harness")
     if out_dir.exists():
         shutil.rmtree(out_dir)
     out_dir.mkdir(parents=True)
@@ -103,6 +108,7 @@ def verify_bundle(bundle_dir: Path, repo: Path, recipe: BuildRecipe, n: int, wor
         repo,
         str(repo.resolve()),
         work / "logs",
+        read_paths=[build.build_dir.resolve()],
     )
     fails = sum(1 for run in runs if _failed(run))
     return VerifyResult(True, fails, n, runs)

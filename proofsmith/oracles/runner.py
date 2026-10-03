@@ -10,6 +10,7 @@ from pathlib import Path
 
 from proofsmith.oracles.signature import Evidence, parse_evidence
 from proofsmith.oracles.variants import VARIANTS
+from proofsmith.isolation import isolated_command
 
 _KEEP = ("PATH", "HOME", "LANG", "LC_ALL", "USER", "LOGNAME", "LD_LIBRARY_PATH", "TMPDIR")
 
@@ -42,6 +43,7 @@ def run_n(
     cwd: Path,
     repo_root: str,
     log_dir: Path,
+    read_paths: list[Path] = (),
 ) -> list[RunResult]:
     log_dir.mkdir(parents=True, exist_ok=True)
     env = variant_env(variant)
@@ -52,7 +54,8 @@ def run_n(
         timed_out = False
         try:
             proc = subprocess.run(
-                [str(binary)],
+                isolated_command([str(binary.resolve())], cwd,
+                                 read=[binary.resolve().parent, *read_paths], write=[cwd]),
                 cwd=cwd,
                 env=env,
                 stdout=subprocess.PIPE,

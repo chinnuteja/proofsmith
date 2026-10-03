@@ -12,13 +12,15 @@
     <div class="wrap header-row">
       <a class="brand" href="/" data-testid="brand">Proofsmith</a>
       <nav data-testid="nav" aria-label="Primary">
-        <a href="/" data-testid="nav-toolchain">Toolchain</a>
+        <a href="{{ '/toolchain/' if show_results else '/' }}" data-testid="nav-toolchain">Toolchain</a>
         {% if show_demo %}<a href="/demo/" data-testid="nav-demo">Demo</a>{% endif %}
         {% if show_runs %}<a href="/runs/" data-testid="nav-runs">Runs</a>{% endif %}
         {% if show_verifiers %}<a href="/verifiers/" data-testid="nav-verifiers">Verifiers</a>{% endif %}
         {% if show_trackb %}<a href="/trackb/" data-testid="nav-trackb">Track B</a>{% endif %}
         {% if show_tracka %}<a href="/tracka/" data-testid="nav-tracka">Track A</a>{% endif %}
         {% if show_eval %}<a href="/eval/dryrun/" data-testid="nav-eval">Dry run</a>{% endif %}
+        {% if show_results %}<a href="/results/">Results</a>{% endif %}
+        {% if show_results %}<a href="/integrate/">Integrate</a>{% endif %}
       </nav>
     </div>
   </header>

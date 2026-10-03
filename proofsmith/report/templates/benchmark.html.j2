@@ -1,0 +1,10 @@
+{% extends "base.html.j2" %}
+{% block title %}Proofsmith benchmark package{% endblock %}
+{% block body %}
+<h1>C/C++ reproduction benchmark</h1><p>Visible issue inputs and hidden evaluator answers are separate directories. Keep the hidden split outside the agent's filesystem.</p><p><a href="/downloads/proofsmith-benchmark.zip">Download the local source package</a></p><p>These artifacts are exploratory until the frozen-protocol evaluation is complete. License notes and preserved upstream license files are included. Publication review is outstanding.</p>
+<h2>Pinned instances</h2><ul>{% for row in manifest.instances %}<li><span data-source="benchmark/manifest.json#/instances/{{ loop.index0 }}/id">{{ row.id }}</span> — <a href="{{ row.repo }}">upstream repository</a></li>{% endfor %}</ul>
+<h2>Reproduce one frozen observation</h2><pre><code>python -m pip install -e .
+proofsmith evaluate --bundle results/eval/B/spdlog-1570/b1 \
+  --instance data/trackB/instances/spdlog-1570.json \
+  --hidden data/trackB/hidden/spdlog-1570.json --out verdict.json</code></pre>
+{% endblock %}

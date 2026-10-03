@@ -194,10 +194,18 @@ def _repo_summary(repo: Path, compile_commands: Path | None) -> str:
 def _tests_fail(sandbox: Sandbox, recipe, work: Path) -> tuple[bool, str]:
     build = build_variant(sandbox.repo, "plain", recipe, work / "existing")
     if not build.ok:
-        return True, _SKIP_REASON
+        raise RuntimeError(f"existing project failed to build: {build.log_path}")
+    sandbox.read_paths.append(build.build_dir.resolve())
     if not recipe.test_command:
         return False, ""
-    command = f"cd {_shell_quote(str(build.build_dir))} && {recipe.test_command}"
+    # CTest writes Testing/ even for a passing suite. Keep those writes in a
+    # disposable copy; the compiler cache remains read-only to generated code.
+    tests_dir = work / "existing-tests"
+    shutil.copytree(build.build_dir.resolve(), tests_dir)
+    for path in tests_dir.rglob("CTestTestfile.cmake"):
+        path.write_text(path.read_text().replace(str(build.build_dir.resolve()), str(tests_dir.resolve())))
+    sandbox.write_paths.append(tests_dir)
+    command = f"cd {_shell_quote(str(tests_dir))} && {recipe.test_command}"
     result = sandbox.exec(command, RUN_TIMEOUT_S)
     if result.timed_out or result.exit_code != 0:
         return True, _SKIP_REASON
@@ -304,6 +312,7 @@ def _judge(sandbox: Sandbox, recipe, oracle: str, work: Path) -> dict:
         sandbox.repo,
         str(sandbox.repo.resolve()),
         work / "judge-runs" / oracle,
+        read_paths=[built.build_dir.resolve()],
     )
     decision = decide(runs, RUNTIME_K, oracle)
     fails = sum(1 for run in runs if run.timed_out or run.exit_code != 0)
@@ -360,13 +369,18 @@ def make_verifier(instance: Instance, llm, budget: Budget, out_dir: Path) -> Ver
         sandbox = Sandbox.create(tree, f"{instance.id}-{run_token}")
         failed, skip_reason = _tests_fail(sandbox, instance.build, work)
         if failed:
-            return _blank("skipped", skip_reason, usage, cost(), wall(), attempts)
+            bundle = _freeze_abstain(sandbox, instance, llm, usage, cost(), wall(), [skip_reason], None, out_dir)
+            meta = json.loads((bundle / "verifier.json").read_text())
+            meta["status"] = "skipped"
+            (bundle / "verifier.json").write_text(json.dumps(meta, indent=2) + "\n")
+            return VerifierResult("skipped", bundle, None, None, skip_reason, attempts, usage, cost(), wall())
 
         summary = _repo_summary(sandbox.repo, _find_commands(work / "existing" / "plain"))
         issue = instance.issue.model_dump()
         before_calls = _chat_usage(llm)
         classification = classify(issue, summary, llm)
         usage = _add(usage, _usage_since(llm, before_calls))
+        steps += _chat_usage(llm) - before_calls
 
         if not classification.oracles:
             reasons.append("classifier returned no oracle")

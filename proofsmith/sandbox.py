@@ -11,6 +11,8 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from proofsmith.config import WORK
+from proofsmith.isolation import child_env, isolated_command
+from proofsmith.oracles.builds import snapshot_sha256
 
 _HEAD = 8000
 _TAIL = 12000
@@ -60,6 +62,9 @@ class Sandbox:
     def __init__(self, repo: Path, run_id: str):
         self.repo = Path(repo)
         self.run_id = run_id
+        self.read_paths: list[Path] = []
+        self.write_paths: list[Path] = []
+        self.initial_hash = snapshot_sha256(self.repo)
 
     @classmethod
     def create(cls, src_repo: Path, run_id: str) -> Sandbox:
@@ -83,13 +88,11 @@ class Sandbox:
     def exec(self, cmd: str, timeout_s: int) -> ExecResult:
         script = self.repo.parent / "cmd.sh"
         script.write_text(cmd if cmd.endswith("\n") else cmd + "\n", encoding="utf-8", newline="\n")
-        inner = (
-            "ip link set lo up 2>/dev/null; "
-            f"cd { _shell_quote(str(self.repo)) } && bash { _shell_quote(str(script)) }"
-        )
         started = time.monotonic()
         proc = subprocess.Popen(
-            ["unshare", "-rn", "bash", "-c", inner],
+            isolated_command(["bash", str(script)], self.repo,
+                             read=self.read_paths, write=[self.repo.parent, *self.write_paths]),
+            env=child_env(),
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             start_new_session=True,
@@ -128,6 +131,8 @@ class Sandbox:
             if norm == "proofsmith_harness" or norm.startswith("proofsmith_harness/"):
                 continue
             bad.append(path)
+        if snapshot_sha256(self.repo) != self.initial_hash and not bad:
+            bad.append("source snapshot changed (including ignored files)")
         return bad
 
     def destroy(self) -> None:

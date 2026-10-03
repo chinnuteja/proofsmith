@@ -1,0 +1,9 @@
+{% if not summary or not summary.complete %}
+Draft only — evaluation incomplete; do not send as a performance claim.
+
+Built Proofsmith: it turns a C/C++ bug report into a failing toolchain-backed check before patching, then freezes the check. The controlled demo and stdio integration are implemented. The comparison with a strong reproduce-first baseline is pending. ByteAsk documents MCP and headless execution support ([C4/C5](https://docs.byteask.ai/docs/overview)). I’ll share the measured result and key-free reproduction once the evaluation is complete.
+{% elif summary.tracks.B.verdict == 'KILL_OR_RETHINK' %}
+Built Proofsmith and tested it against a strong reproduce-first baseline. The result is negative: {{ number('results/summary.json#/tracks/B/systems/proofsmith/aligned_f2p_strict/count') }} vs {{ number('results/summary.json#/tracks/B/systems/b1/aligned_f2p_strict/count') }} aligned fail→pass checks. I’m releasing the benchmark, frozen artifacts, and reproduction commands. ByteAsk documents MCP support ([C4](https://docs.byteask.ai/docs/overview)); the local stdio adapter is included. The value here is inspectable evidence and an honest comparison, rather than an unsupported performance claim.
+{% else %}
+Built Proofsmith: it freezes a failing C/C++ check before an agent patches the code. On {{ number('results/summary.json#/tracks/B/systems/proofsmith/n_instances') }} real issues, the same model and tools produced {{ number('results/summary.json#/tracks/B/systems/proofsmith/aligned_f2p_strict/count') }} vs {{ number('results/summary.json#/tracks/B/systems/b1/aligned_f2p_strict/count') }} aligned fail→pass checks against a strong reproduce-first baseline. Track A’s verdict is {{ summary.tracks.A.verdict }}. ByteAsk documents MCP support ([C4](https://docs.byteask.ai/docs/overview)); a tested stdio adapter and key-free reproduction commands are included. The small sample and single attempt per pair limit the conclusion.
+{% endif %}

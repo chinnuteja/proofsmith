@@ -1,0 +1,14 @@
+{% extends "base.html.j2" %}
+{% block title %}Proofsmith evidence: {{ instance_id }}{% endblock %}
+{% block body %}
+<h1>{{ instance_id }}</h1><p>Frozen-protocol observation. Fail-to-pass and alignment are reported separately.</p>
+<div class="eval-columns">{% for row in rows %}<section class="eval-card" data-system="{{ row.system }}"><h2>{{ row.system }}</h2>
+{% if row.value %}{% set v = row.value %}
+<p>Status <span data-source="{{ row.source }}/bundle_status">{{ v.bundle_status | fmt }}</span></p>
+{% for key in ['f2p', 'buggy_fails', 'fixed_fails', 'n', 'oracle', 'cost_usd', 'wall_s', 'error'] %}<p>{{ key }}: <span data-source="{{ row.source }}/{{ key }}">{{ v[key] | fmt }}</span></p>{% endfor %}
+{% for key in ['strict', 'relaxed', 'unknown'] %}<p>Alignment {{ key }}: <span data-source="{{ row.source }}/alignment/{{ key }}">{{ v.alignment[key] | fmt }}</span></p>{% endfor %}
+{% if row.trajectory %}<p><a href="{{ row.trajectory }}">Generation trajectory</a></p>{% endif %}
+<h3>Changed functions</h3><ul>{% for fn in v.alignment.get('changed', []) %}<li><span data-source="{{ row.source }}/alignment/changed/{{ loop.index0 }}/function">{{ fn.function }}</span> {{ fn.file }}</li>{% endfor %}</ul>
+<h3>Alignment evidence</h3><ul>{% for hit in v.alignment.get('hits', []) %}<li><span data-source="{{ row.source }}/alignment/hits/{{ loop.index0 }}/evidence">{{ hit.evidence }}</span></li>{% endfor %}</ul>
+{% else %}<p class="pill pill-warn">Not run</p>{% endif %}</section>{% endfor %}</div>
+{% endblock %}

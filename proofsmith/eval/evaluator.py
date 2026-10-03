@@ -21,6 +21,7 @@ from proofsmith.harness import compile_harness
 from proofsmith.oracles.builds import build_variant
 from proofsmith.oracles.runner import run_n, variant_env
 from proofsmith.oracles.signature import Frame
+from proofsmith.isolation import isolated_command
 
 
 @dataclass
@@ -119,12 +120,26 @@ def _resolve(path: str) -> Path:
     return candidate
 
 
-def _read_fix_diff(hidden: HiddenInstance) -> str:
+def _read_fix_diff(hidden: HiddenInstance, instance: Instance | None = None) -> str:
     if hidden.fixed.kind == "patch" and hidden.fixed.path:
         path = _resolve(hidden.fixed.path)
         if path.is_file():
             return path.read_text(encoding="utf-8", errors="replace")
-    return ""
+    if instance is not None and instance.track in {"A", "B"}:
+        path = REPO / "data" / f"track{instance.track}" / "hidden" / f"{hidden.id}.fix.diff"
+        if path.is_file():
+            return path.read_text(encoding="utf-8", errors="replace")
+    if hidden.fixed.kind == "git" and instance is not None:
+        from proofsmith.datasets.mine import mirror_path
+
+        proc = subprocess.run(
+            ["git", "-C", str(mirror_path(instance.source.url or "")), "diff",
+             instance.source.commit or "", hidden.fixed.commit or "", "--"],
+            capture_output=True, text=True, check=False,
+        )
+        if proc.returncode == 0 and proc.stdout.strip():
+            return proc.stdout
+    raise RuntimeError("fix diff unavailable; alignment cannot be scored")
 
 
 def _changed_payload(ranges: list[FuncRange]) -> list[dict]:
@@ -177,15 +192,15 @@ def _failed(run) -> bool:
 def _coverage_hits(repo: Path, recipe, work: Path) -> list[FuncRange] | None:
     """Functions executed by one coverage run.
 
-    None means the run timed out. An empty list means coverage produced no
-    executed functions, or the coverage tools could not be read.
+    None means coverage is unavailable. An empty list means a valid profile
+    contains no executed application functions.
     """
     built = build_variant(repo, "coverage", recipe, work / "coverage-build")
     if not built.ok:
-        return []
+        return None
     compiled = compile_harness(repo, built, "coverage", work / "coverage-harness")
     if not compiled.ok or compiled.binary is None:
-        return []
+        return None
     profraw = work / "coverage.profraw"
     if profraw.exists():
         profraw.unlink()
@@ -193,7 +208,8 @@ def _coverage_hits(repo: Path, recipe, work: Path) -> list[FuncRange] | None:
     env["LLVM_PROFILE_FILE"] = str(profraw)
     try:
         subprocess.run(
-            [str(compiled.binary)],
+            isolated_command([str(compiled.binary.resolve())], repo,
+                             read=[compiled.binary.parent, built.build_dir.resolve()], write=[repo, work]),
             cwd=repo,
             env=env,
             stdout=subprocess.PIPE,
@@ -204,7 +220,7 @@ def _coverage_hits(repo: Path, recipe, work: Path) -> list[FuncRange] | None:
     except subprocess.TimeoutExpired:
         return None
     if not profraw.is_file():
-        return []
+        return None
     profdata = work / "coverage.profdata"
     merged = subprocess.run(
         ["llvm-profdata", "merge", "-sparse", str(profraw), "-o", str(profdata)],
@@ -214,7 +230,7 @@ def _coverage_hits(repo: Path, recipe, work: Path) -> list[FuncRange] | None:
         text=True,
     )
     if merged.returncode != 0 or not profdata.is_file():
-        return []
+        return None
     exported = subprocess.run(
         [
             "llvm-cov",
@@ -242,36 +258,38 @@ def _coverage_hits(repo: Path, recipe, work: Path) -> list[FuncRange] | None:
     try:
         payload = json.loads(payload_text)
     except json.JSONDecodeError:
-        return []
+        return None
+    return _parse_coverage(payload, repo)
+
+
+def _parse_coverage(payload: dict, repo: Path) -> list[FuncRange] | None:
+    """LLVM export stores functions beside files, with filename-indexed regions."""
     hits: list[FuncRange] = []
     blocks = payload.get("data") if isinstance(payload, dict) else None
     if not isinstance(blocks, list):
-        return []
+        return None
     for block in blocks:
         if not isinstance(block, dict):
             continue
-        for item in block.get("files") or []:
-            if not isinstance(item, dict):
+        for fn in block.get("functions") or []:
+            if not isinstance(fn, dict) or int(fn.get("count") or 0) <= 0:
                 continue
-            filename = str(item.get("filename") or "")
-            try:
-                rel = Path(filename).resolve().relative_to(repo.resolve()).as_posix()
-            except ValueError:
-                rel = Path(filename).as_posix()
-            for fn in item.get("functions") or []:
-                if not isinstance(fn, dict):
+            filenames = fn.get("filenames") or []
+            ranges: dict[str, list[int]] = {}
+            for region in fn.get("regions") or []:
+                if not isinstance(region, list) or len(region) < 7 or region[4] <= 0:
                     continue
                 try:
-                    count = int(fn.get("count") or 0)
-                except (TypeError, ValueError):
-                    count = 0
-                if count <= 0:
+                    filename = filenames[int(region[5])]
+                    rel = Path(filename).resolve().relative_to(repo.resolve()).as_posix()
+                except (IndexError, TypeError, ValueError):
                     continue
-                start, end = 1, 1
-                regions = fn.get("regions") or []
-                if regions and isinstance(regions[0], list) and len(regions[0]) >= 3:
-                    start = int(regions[0][0])
-                    end = int(regions[0][2])
+                if rel.startswith("proofsmith_harness/"):
+                    continue
+                span = ranges.setdefault(rel, [int(region[0]), int(region[2])])
+                span[0] = min(span[0], int(region[0]))
+                span[1] = max(span[1], int(region[2]))
+            for rel, (start, end) in ranges.items():
                 hits.append(FuncRange(str(fn.get("name") or ""), rel, start, end))
     return hits
 
@@ -292,6 +310,7 @@ def _run_tree(repo: Path, bundle_dir: Path, variant: str, recipe, work: Path) ->
         repo,
         str(repo.resolve()),
         work / "logs",
+        read_paths=[built.build_dir.resolve()],
     )
     return True, runs
 
@@ -374,7 +393,7 @@ def evaluate(bundle_dir: Path, instance: Instance, hidden: HiddenInstance, work:
     fixed_fails = sum(1 for run in fixed_runs if _failed(run))
     kinds = Counter(run.evidence.kind for run in buggy_runs if _failed(run))
     try:
-        alignment = _alignment(buggy, _read_fix_diff(hidden), buggy_runs, instance.build, root / "align")
+        alignment = _alignment(buggy, _read_fix_diff(hidden, instance), buggy_runs, instance.build, root / "align")
     except Exception as exc:
         alignment = _empty_alignment(unknown=True)
         alignment["error"] = str(exc)

@@ -204,14 +204,10 @@ def ensure_worktree(url: str, commit: str, dest: Path) -> Path:
     return dest
 
 
-def _cache_ready(repo: Path, variant: str) -> bool:
-    from proofsmith.oracles.builds import _source_dir, snapshot_sha256
-    import hashlib
+def _cache_ready(repo: Path, variant: str, recipe: BuildRecipe) -> bool:
+    from proofsmith.oracles.builds import build_key
 
-    tree_hash = snapshot_sha256(repo)
-    src = _source_dir(repo, tree_hash)
-    path_tag = hashlib.sha256(str(src.resolve()).encode()).hexdigest()[:8]
-    cache = WORK / "cache" / "builds" / f"{tree_hash[:16]}-{path_tag}-{variant}"
+    cache = WORK / "cache" / "builds" / build_key(repo, variant, recipe)
     return (cache / ".proofsmith-ok").is_file() and (cache / "compile_commands.json").is_file()
 
 
@@ -224,7 +220,7 @@ def _log_oom(log_path: Path | None) -> bool:
 
 
 def build_tree(repo: Path, variant: str, recipe: BuildRecipe, out_root: Path) -> tuple[bool, str]:
-    if _cache_ready(repo, variant):
+    if _cache_ready(repo, variant, recipe):
         result = build_variant(repo, variant, recipe, out_root)
         return result.ok, ""
     recipe_path = out_root / f".recipe-{variant}.json"

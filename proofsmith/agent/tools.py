@@ -166,6 +166,7 @@ class ToolSet:
         self.recipe = recipe
         self.work = Path(work)
         self.work.mkdir(parents=True, exist_ok=True)
+        self.sandbox.write_paths.append(self.work)
         self.terminal: dict | None = None
         self.instance_id = ""
         self._builds: dict[str, BuildResult] = {}
@@ -256,11 +257,15 @@ class ToolSet:
         return "\n".join(sorted(names)) if names else "(empty)"
 
     def _build_variant(self, args: dict) -> str:
+        if self.sandbox.illegal_changes():
+            return "error: source modifications outside proofsmith_harness/ must be reverted before building"
         variant = args.get("variant")
         if variant not in _VARIANTS:
             return "error: variant must be plain, asan_ubsan, or tsan"
         result = build_variant(self.sandbox.repo, variant, self.recipe, self.work / "builds")
         self._builds[variant] = result
+        if result.ok:
+            self.sandbox.read_paths.append(result.build_dir.resolve())
         log = ""
         if result.log_path.is_file():
             log = result.log_path.read_text(encoding="utf-8", errors="replace")
@@ -305,6 +310,7 @@ class ToolSet:
             self.sandbox.repo,
             str(self.sandbox.repo.resolve()),
             self.work / "harness-runs" / variant,
+            read_paths=[build.build_dir.resolve()],
         )
         lines = [f"runs: {len(runs)}"]
         first_fail = None

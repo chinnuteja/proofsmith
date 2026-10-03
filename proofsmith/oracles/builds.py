@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import os
 import shutil
 import subprocess
@@ -28,12 +29,15 @@ def snapshot_sha256(repo: Path) -> str:
     root = Path(repo).resolve()
     rows: list[str] = []
     for path in sorted(root.rglob("*")):
-        if not path.is_file() or path.is_symlink():
-            continue
         rel = path.relative_to(root).as_posix()
         if rel == ".git" or rel.startswith(".git/") or rel.startswith("proofsmith_harness/"):
             continue
-        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        if path.is_symlink():
+            digest = "symlink:" + os.readlink(path)
+        elif path.is_file():
+            digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        else:
+            continue
         rows.append(f"{rel}\t{digest}")
     payload = "\n".join(rows) + ("\n" if rows else "")
     return hashlib.sha256(payload.encode()).hexdigest()
@@ -72,11 +76,13 @@ def _log(path: Path, text: str) -> None:
 
 
 def _run(cmd: list[str], cwd: Path, log_path: Path, env: dict[str, str] | None = None) -> int:
+    from proofsmith.isolation import child_env
+
     _log(log_path, "$ " + " ".join(cmd))
     proc = subprocess.run(
         cmd,
         cwd=cwd,
-        env=env,
+        env=env if env is not None else child_env(),
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
         check=False,
@@ -96,6 +102,22 @@ def _link_build(dest: Path, cache: Path) -> None:
     dest.symlink_to(cache, target_is_directory=True)
 
 
+def build_key(repo: Path, variant: str, recipe: BuildRecipe, src: Path | None = None) -> str:
+    from proofsmith.config import REPO
+
+    tree_hash = snapshot_sha256(repo)
+    src = src or _source_dir(repo, tree_hash)
+    script_hash = None
+    if recipe.custom_script:
+        script = Path(recipe.custom_script)
+        script = script if script.is_absolute() else REPO / script
+        script_hash = hashlib.sha256(script.read_bytes()).hexdigest() if script.is_file() else "missing"
+    spec = VARIANTS[variant]
+    inputs = {"tree": tree_hash, "source": str(src.resolve()), "recipe": recipe.model_dump(),
+              "script": script_hash, "flags": spec.cxxflags, "ldflags": spec.ldflags, "variant": variant}
+    return hashlib.sha256(json.dumps(inputs, sort_keys=True).encode()).hexdigest()[:32] + "-" + variant
+
+
 def build_variant(repo: Path, variant: str, recipe: BuildRecipe, out_root: Path) -> BuildResult:
     started = time.monotonic()
     spec = VARIANTS[variant]
@@ -103,8 +125,7 @@ def build_variant(repo: Path, variant: str, recipe: BuildRecipe, out_root: Path)
     src = _source_dir(repo, tree_hash)
     # The source directory is part of the key. A content-only cache reused objects
     # whose debug paths lived in a different tree, so the report had no app frames.
-    path_tag = hashlib.sha256(str(src.resolve()).encode()).hexdigest()[:8]
-    cache = WORK / "cache" / "builds" / f"{tree_hash[:16]}-{path_tag}-{variant}"
+    cache = WORK / "cache" / "builds" / build_key(repo, variant, recipe, src)
     log_path = cache / "build.log"
     dest = Path(out_root) / variant
     commands = cache / "compile_commands.json"
@@ -117,7 +138,9 @@ def build_variant(repo: Path, variant: str, recipe: BuildRecipe, out_root: Path)
     if cache.exists():
         shutil.rmtree(cache)
     cache.mkdir(parents=True)
-    env = os.environ.copy()
+    from proofsmith.isolation import child_env
+
+    env = child_env()
     ok = False
     if recipe.system == "cmake":
         configure = [

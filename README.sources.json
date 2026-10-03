@@ -1,0 +1,245 @@
+{
+  "schema": "proofsmith.sources/1",
+  "values": [
+    {
+      "rendered": "3",
+      "source": "results/demo/orderd.json#/rows/buggy/ctest/passed"
+    },
+    {
+      "rendered": "3",
+      "source": "results/demo/orderd.json#/rows/buggy/ctest/total"
+    },
+    {
+      "rendered": "20",
+      "source": "results/demo/orderd.json#/rows/buggy/stress/fails"
+    },
+    {
+      "rendered": "20",
+      "source": "results/demo/orderd.json#/rows/buggy/stress/n"
+    },
+    {
+      "rendered": "20",
+      "source": "results/demo/orderd.json#/rows/buggy/verifier/fails"
+    },
+    {
+      "rendered": "20",
+      "source": "results/demo/orderd.json#/rows/buggy/verifier/n"
+    },
+    {
+      "rendered": "3",
+      "source": "results/demo/orderd.json#/rows/timing_backoff/ctest/passed"
+    },
+    {
+      "rendered": "3",
+      "source": "results/demo/orderd.json#/rows/timing_backoff/ctest/total"
+    },
+    {
+      "rendered": "20",
+      "source": "results/demo/orderd.json#/rows/timing_backoff/stress/fails"
+    },
+    {
+      "rendered": "20",
+      "source": "results/demo/orderd.json#/rows/timing_backoff/stress/n"
+    },
+    {
+      "rendered": "20",
+      "source": "results/demo/orderd.json#/rows/timing_backoff/verifier/fails"
+    },
+    {
+      "rendered": "20",
+      "source": "results/demo/orderd.json#/rows/timing_backoff/verifier/n"
+    },
+    {
+      "rendered": "3",
+      "source": "results/demo/orderd.json#/rows/scoped_cancel/ctest/passed"
+    },
+    {
+      "rendered": "3",
+      "source": "results/demo/orderd.json#/rows/scoped_cancel/ctest/total"
+    },
+    {
+      "rendered": "0",
+      "source": "results/demo/orderd.json#/rows/scoped_cancel/stress/fails"
+    },
+    {
+      "rendered": "20",
+      "source": "results/demo/orderd.json#/rows/scoped_cancel/stress/n"
+    },
+    {
+      "rendered": "0",
+      "source": "results/demo/orderd.json#/rows/scoped_cancel/verifier/fails"
+    },
+    {
+      "rendered": "20",
+      "source": "results/demo/orderd.json#/rows/scoped_cancel/verifier/n"
+    },
+    {
+      "rendered": "3",
+      "source": "results/demo/orderd.json#/rows/consistent_order/ctest/passed"
+    },
+    {
+      "rendered": "3",
+      "source": "results/demo/orderd.json#/rows/consistent_order/ctest/total"
+    },
+    {
+      "rendered": "0",
+      "source": "results/demo/orderd.json#/rows/consistent_order/stress/fails"
+    },
+    {
+      "rendered": "20",
+      "source": "results/demo/orderd.json#/rows/consistent_order/stress/n"
+    },
+    {
+      "rendered": "0",
+      "source": "results/demo/orderd.json#/rows/consistent_order/verifier/fails"
+    },
+    {
+      "rendered": "20",
+      "source": "results/demo/orderd.json#/rows/consistent_order/verifier/n"
+    },
+    {
+      "rendered": "0",
+      "source": "results/summary.json#/tracks/A/systems/b0/n_instances"
+    },
+    {
+      "rendered": "12",
+      "source": "results/summary.json#/tracks/A/systems/b0/expected_instances"
+    },
+    {
+      "rendered": "0",
+      "source": "results/summary.json#/tracks/A/systems/b0/raw_f2p/count"
+    },
+    {
+      "rendered": "0",
+      "source": "results/summary.json#/tracks/A/systems/b0/aligned_f2p_strict/count"
+    },
+    {
+      "rendered": "0",
+      "source": "results/summary.json#/tracks/A/systems/b0/aligned_f2p_relaxed/count"
+    },
+    {
+      "rendered": "pending",
+      "source": "results/summary.json#/tracks/A/systems/b0/median_cost_usd"
+    },
+    {
+      "rendered": "0",
+      "source": "results/summary.json#/tracks/A/systems/b1/n_instances"
+    },
+    {
+      "rendered": "12",
+      "source": "results/summary.json#/tracks/A/systems/b1/expected_instances"
+    },
+    {
+      "rendered": "0",
+      "source": "results/summary.json#/tracks/A/systems/b1/raw_f2p/count"
+    },
+    {
+      "rendered": "0",
+      "source": "results/summary.json#/tracks/A/systems/b1/aligned_f2p_strict/count"
+    },
+    {
+      "rendered": "0",
+      "source": "results/summary.json#/tracks/A/systems/b1/aligned_f2p_relaxed/count"
+    },
+    {
+      "rendered": "pending",
+      "source": "results/summary.json#/tracks/A/systems/b1/median_cost_usd"
+    },
+    {
+      "rendered": "0",
+      "source": "results/summary.json#/tracks/A/systems/proofsmith/n_instances"
+    },
+    {
+      "rendered": "12",
+      "source": "results/summary.json#/tracks/A/systems/proofsmith/expected_instances"
+    },
+    {
+      "rendered": "0",
+      "source": "results/summary.json#/tracks/A/systems/proofsmith/raw_f2p/count"
+    },
+    {
+      "rendered": "0",
+      "source": "results/summary.json#/tracks/A/systems/proofsmith/aligned_f2p_strict/count"
+    },
+    {
+      "rendered": "0",
+      "source": "results/summary.json#/tracks/A/systems/proofsmith/aligned_f2p_relaxed/count"
+    },
+    {
+      "rendered": "pending",
+      "source": "results/summary.json#/tracks/A/systems/proofsmith/median_cost_usd"
+    },
+    {
+      "rendered": "0",
+      "source": "results/summary.json#/tracks/B/systems/b0/n_instances"
+    },
+    {
+      "rendered": "11",
+      "source": "results/summary.json#/tracks/B/systems/b0/expected_instances"
+    },
+    {
+      "rendered": "0",
+      "source": "results/summary.json#/tracks/B/systems/b0/raw_f2p/count"
+    },
+    {
+      "rendered": "0",
+      "source": "results/summary.json#/tracks/B/systems/b0/aligned_f2p_strict/count"
+    },
+    {
+      "rendered": "0",
+      "source": "results/summary.json#/tracks/B/systems/b0/aligned_f2p_relaxed/count"
+    },
+    {
+      "rendered": "pending",
+      "source": "results/summary.json#/tracks/B/systems/b0/median_cost_usd"
+    },
+    {
+      "rendered": "0",
+      "source": "results/summary.json#/tracks/B/systems/b1/n_instances"
+    },
+    {
+      "rendered": "11",
+      "source": "results/summary.json#/tracks/B/systems/b1/expected_instances"
+    },
+    {
+      "rendered": "0",
+      "source": "results/summary.json#/tracks/B/systems/b1/raw_f2p/count"
+    },
+    {
+      "rendered": "0",
+      "source": "results/summary.json#/tracks/B/systems/b1/aligned_f2p_strict/count"
+    },
+    {
+      "rendered": "0",
+      "source": "results/summary.json#/tracks/B/systems/b1/aligned_f2p_relaxed/count"
+    },
+    {
+      "rendered": "pending",
+      "source": "results/summary.json#/tracks/B/systems/b1/median_cost_usd"
+    },
+    {
+      "rendered": "0",
+      "source": "results/summary.json#/tracks/B/systems/proofsmith/n_instances"
+    },
+    {
+      "rendered": "11",
+      "source": "results/summary.json#/tracks/B/systems/proofsmith/expected_instances"
+    },
+    {
+      "rendered": "0",
+      "source": "results/summary.json#/tracks/B/systems/proofsmith/raw_f2p/count"
+    },
+    {
+      "rendered": "0",
+      "source": "results/summary.json#/tracks/B/systems/proofsmith/aligned_f2p_strict/count"
+    },
+    {
+      "rendered": "0",
+      "source": "results/summary.json#/tracks/B/systems/proofsmith/aligned_f2p_relaxed/count"
+    },
+    {
+      "rendered": "pending",
+      "source": "results/summary.json#/tracks/B/systems/proofsmith/median_cost_usd"
+    }
+  ]
+}

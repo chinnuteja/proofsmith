@@ -1,0 +1,33 @@
+{% extends "base.html.j2" %}
+{% macro number(path, value) -%}<span data-source="results/summary.json#{{ path }}">{{ value | fmt }}</span>{%- endmacro %}
+{% block title %}Proofsmith results{% endblock %}
+{% block body %}
+<h1>Measured results</h1>
+<p class="lede">Complete experiment: <span data-source="results/summary.json#/complete">{{ summary.complete | fmt }}</span>. Missing runs remain missing. Exploratory samples and the demo are separate.</p>
+{% if not summary.complete %}<p class="pill pill-warn">Evaluation incomplete — no comparative claim is ready.</p>{% endif %}
+{% for track, payload in summary.tracks.items() %}
+{% set base = '/tracks/' ~ track %}
+<section>
+<h2>Track {{ track }}</h2>
+<p class="pill pill-info" data-source="results/summary.json#{{ base }}/verdict">{{ payload.verdict }}</p>
+<div class="table-scroll"><table><thead><tr><th>System</th><th>Observed / expected</th><th>Raw F→P %</th><th>Aligned strict %</th><th>Aligned relaxed %</th><th>Abstentions</th><th>Flake on fixed %</th><th>Median $</th><th>Median seconds</th></tr></thead><tbody>
+{% for system, row in payload.systems.items() %}{% set p = base ~ '/systems/' ~ system %}
+<tr><th>{{ system }}</th><td data-label="Observed / expected">{{ number(p ~ '/n_instances', row.n_instances) }} / {{ number(p ~ '/expected_instances', row.expected_instances) }}</td>
+{% for metric in ['raw_f2p', 'aligned_f2p_strict', 'aligned_f2p_relaxed'] %}
+<td data-label="{{ metric.replace('_', ' ') }} %">{{ number(p ~ '/' ~ metric ~ '/pct', row[metric].pct) }}{% if row[metric].ci95 %}<small>95% Wilson interval (proportion): {{ number(p ~ '/' ~ metric ~ '/ci95/0', row[metric].ci95[0]) }} – {{ number(p ~ '/' ~ metric ~ '/ci95/1', row[metric].ci95[1]) }}</small>{% else %}<small>No observations</small>{% endif %}</td>
+{% endfor %}
+<td data-label="Abstentions">{{ number(p ~ '/abstentions', row.abstentions) }}</td><td data-label="Flake on fixed %">{{ number(p ~ '/flake_on_fixed/pct', row.flake_on_fixed.pct) }}</td><td data-label="Median USD">{{ number(p ~ '/median_cost_usd', row.median_cost_usd) }}</td><td data-label="Median seconds">{{ number(p ~ '/median_wall_s', row.median_wall_s) }}</td></tr>
+{% endfor %}</tbody></table></div>
+<p>Paired observations {{ number(base ~ '/comparison/paired', payload.comparison.paired) }}. Proofsmith only {{ number(base ~ '/comparison/proofsmith_only', payload.comparison.proofsmith_only) }}; baseline only {{ number(base ~ '/comparison/b1_only', payload.comparison.b1_only) }}. Exact McNemar p {{ number(base ~ '/comparison/mcnemar_p', payload.comparison.mcnemar_p) }}.</p>
+<p>Abstention precision {{ number(base ~ '/abstention_precision/value', payload.abstention_precision.value) }}, from {{ number(base ~ '/abstention_precision/paired', payload.abstention_precision.paired) }} paired abstentions.</p>
+<h3>Successful checks by oracle</h3>
+{% for system, row in payload.systems.items() %}
+<p>{{ system }}</p>
+{% if row.per_oracle %}<svg role="img" aria-label="Successful checks by oracle for {{ system }}" viewBox="0 0 500 120" class="oracle-chart">
+{% for oracle, count in row.per_oracle.items() %}<g transform="translate({{ loop.index0 * 120 }},0)"><rect x="0" y="{{ 100 - count * 5 }}" width="70" height="{{ count * 5 }}" data-count-source="results/summary.json#{{ base }}/systems/{{ system }}/per_oracle/{{ oracle }}" fill="currentColor"/><text y="115">{{ oracle }}</text></g>{% endfor %}
+</svg>{% else %}<p>No observed successes.</p>{% endif %}
+{% endfor %}
+<h3>Instance evidence</h3><ul>{% for name in instances.get(track, []) %}<li><a href="/results/{{ track }}/{{ name }}/">{{ name }}</a></li>{% endfor %}</ul>
+</section>
+{% endfor %}
+{% endblock %}

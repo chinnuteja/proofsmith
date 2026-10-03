@@ -10,6 +10,7 @@ from pathlib import Path
 from proofsmith.config import REPO
 from proofsmith.oracles.builds import BuildResult
 from proofsmith.oracles.variants import VARIANTS
+from proofsmith.isolation import child_env, isolated_command
 
 
 @dataclass
@@ -28,7 +29,7 @@ def compile_harness(repo: Path, build: BuildResult, variant: str, out_dir: Path)
         log_path.write_text("missing proofsmith_harness/build.sh\n", encoding="utf-8", newline="\n")
         return HarnessBuild(False, None, log_path)
     spec = VARIANTS[variant]
-    env = os.environ.copy()
+    env = child_env()
     env.update(
         {
             "PS_REPO": str(Path(repo).resolve()),
@@ -42,17 +43,28 @@ def compile_harness(repo: Path, build: BuildResult, variant: str, out_dir: Path)
             "PS_OUT": str(out_dir.resolve()),
         }
     )
-    proc = subprocess.run(
-        ["bash", "proofsmith_harness/build.sh"],
+    try:
+        proc = _compile(repo, build, out_dir, env)
+    except subprocess.TimeoutExpired:
+        log_path.write_text("harness build exceeded 120 seconds\n", encoding="utf-8")
+        return HarnessBuild(False, None, log_path)
+    log_path.write_text(proc.stdout, encoding="utf-8", newline="\n")
+    binary = out_dir / "harness"
+    if proc.returncode != 0 or not binary.is_file() or not os.access(binary, os.X_OK):
+        return HarnessBuild(False, None, log_path)
+    return HarnessBuild(True, binary, log_path)
+
+
+def _compile(repo: Path, build: BuildResult, out_dir: Path, env: dict):
+    return subprocess.run(
+        isolated_command(["bash", "proofsmith_harness/build.sh"], Path(repo),
+                         read=[build.build_dir.resolve(), REPO / "proofsmith/runtime"],
+                         write=[Path(repo), out_dir]),
         cwd=repo,
         env=env,
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
         check=False,
         text=True,
+        timeout=120,
     )
-    log_path.write_text(proc.stdout, encoding="utf-8", newline="\n")
-    binary = out_dir / "harness"
-    if proc.returncode != 0 or not binary.is_file() or not os.access(binary, os.X_OK):
-        return HarnessBuild(False, None, log_path)
-    return HarnessBuild(True, binary, log_path)

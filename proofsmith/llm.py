@@ -139,9 +139,15 @@ class LLMClient:
             "model": self.model,
             "messages": messages,
             "max_tokens": max_tokens,
+            "temperature": 0,
         }
         if tools:
             kwargs["tools"] = tools
+        # Every tokenizer token encodes at least part of a byte. Serialized
+        # request bytes plus structural allowance conservatively bound input;
+        # completion is capped by max_tokens. Assume no input cache discount.
+        upper_bound = len(json.dumps(kwargs, ensure_ascii=False).encode("utf-8")) + 4096
+        self.ledger.ensure_request_budget(self.model, upper_bound, max_tokens)
         response = None
         for attempt in range(5):
             try:

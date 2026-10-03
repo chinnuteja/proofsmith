@@ -672,6 +672,7 @@ def build_site() -> None:
     env.globals["show_trackb"] = trackb is not None
     env.globals["show_tracka"] = tracka is not None
     env.globals["show_eval"] = dryrun is not None
+    env.globals["show_results"] = (RESULTS / "summary.json").is_file()
     sha = git_short_sha()
     runs = _load_run_summaries()
     verifiers = _load_verifiers()
@@ -694,3 +695,37 @@ def build_site() -> None:
     _render_trackb(env, sha, trackb)
     _render_tracka(env, sha, tracka)
     _render_dryrun(env, sha, dryrun)
+    from proofsmith.report.results import render_results
+    common = {"git_sha": sha, "show_demo": show_demo,
+              "show_runs": show_runs, "show_verifiers": show_verifiers}
+    summary = render_results(env, common)
+    if summary:
+        toolchain = SITE / "toolchain"
+        toolchain.mkdir(parents=True, exist_ok=True)
+        (toolchain / "index.html").write_text(html, encoding="utf-8")
+        panel = html.split('<table class="toolchain"', 1)[1].split('</table>', 1)[0]
+        panel = '<table class="toolchain"' + panel + '</table>'
+        demo = _load_demo()
+        landing_rows = _demo_rows(demo) if demo else []
+        for row in landing_rows:
+            if row["id"] == "scoped_cancel":
+                row["label"] = "scoped cancellation"
+        landing = env.get_template("landing.html.j2").render(summary=summary,
+            demo_rows=landing_rows, toolchain_panel=panel, **common)
+        (SITE / "index.html").write_text(landing, encoding="utf-8")
+    transcript_path = RESULTS / "integration/reference_transcript.json"
+    transcript = json.loads(transcript_path.read_text()) if transcript_path.is_file() else None
+    integration = SITE / "integrate"
+    integration.mkdir(parents=True, exist_ok=True)
+    (integration / "index.html").write_text(env.get_template("integrate.html.j2").render(
+        transcript=transcript, **common), encoding="utf-8")
+    benchmark = REPO / "benchmark"
+    if (benchmark / "manifest.json").is_file():
+        archive = SITE / "downloads"
+        archive.mkdir(exist_ok=True)
+        shutil.make_archive(str(archive / "proofsmith-benchmark"), "zip", root_dir=benchmark)
+        page = SITE / "benchmark"
+        page.mkdir(exist_ok=True)
+        manifest = json.loads((benchmark / "manifest.json").read_text())
+        (page / "index.html").write_text(env.get_template("benchmark.html.j2").render(
+            manifest=manifest, **common), encoding="utf-8")

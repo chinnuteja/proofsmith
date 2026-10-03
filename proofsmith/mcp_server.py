@@ -1,0 +1,90 @@
+"""Stdio integration using the official MCP SDK's supported v1 interface."""
+from __future__ import annotations
+
+import os
+import uuid
+from collections import Counter
+from pathlib import Path
+
+from proofsmith import config
+from proofsmith.agent.loop import Budget
+from proofsmith.datasets.schema import BuildRecipe, Instance, Issue, Source
+from proofsmith.freeze import verify_bundle
+from proofsmith.pipeline import make_verifier as generate
+
+
+def local_instance(repo: Path, title: str, body: str) -> Instance:
+    repo = repo.resolve()
+    if not repo.is_dir():
+        raise ValueError("repo_path must be an existing directory")
+    recipe_file = repo / ".proofsmith-build.json"
+    if recipe_file.exists():
+        recipe = BuildRecipe.model_validate_json(recipe_file.read_text())
+    elif (repo / "CMakeLists.txt").is_file():
+        recipe = BuildRecipe(system="cmake", test_command="ctest --output-on-failure")
+    else:
+        raise ValueError("provide a .proofsmith-build.json BuildRecipe for a repository without CMake")
+    return Instance(schema="proofsmith.instance/1", id="local-" + uuid.uuid4().hex[:12], track="demo",
+                    source=Source(kind="dir", path=str(repo)), issue=Issue(title=title, body=body), build=recipe)
+
+
+def reference_client(repo: Path):
+    """Explicit fixture mode; never represents a model-generated benchmark win."""
+    from proofsmith.llm import FakeLLM, LLMResponse, ToolCall, Usage
+    from proofsmith.oracles.builds import snapshot_sha256
+
+    fixture = config.REPO / "cases/orderd"
+    if snapshot_sha256(repo) != snapshot_sha256(fixture / "buggy"):
+        raise ValueError("reference mode supports only the unchanged orderd fixture")
+    def reply(content, calls):
+        return LLMResponse(content, None, calls, Usage(0, 0, 0, 0), "tool_calls" if calls else "stop")
+    import json
+    calls = [ToolCall(name, "write_file", {"path": "proofsmith_harness/" + name,
+              "content": (fixture / "reference_harness" / name).read_text()}) for name in ("build.sh", "harness.cpp")]
+    calls.append(ToolCall("finish", "finish", {"variant": "tsan", "summary": "Explicit hand-written reference fixture"}))
+    return FakeLLM([reply(json.dumps({"oracles": ["tsan"], "rationale": "reference fixture", "suspects": []}), []),
+                    reply(None, calls)])
+
+
+def create_server():
+    from mcp.server.fastmcp import FastMCP
+
+    server = FastMCP("Proofsmith")
+
+    @server.tool()
+    def make_verifier(repo_path: str, issue_title: str, issue_body: str) -> dict:
+        """Generate and freeze a failing check before patching. Live mode incurs metered model cost."""
+        from proofsmith.llm import LLMClient
+        from proofsmith.ledger import Ledger, LEDGER_PATH
+
+        repo = Path(repo_path).resolve()
+        instance = local_instance(repo, issue_title, issue_body)
+        fake = os.environ.get("PROOFSMITH_FAKE_LLM") == "reference"
+        client = reference_client(repo) if fake else LLMClient(config.EVAL_MODEL, Ledger(LEDGER_PATH), instance.id)
+        client.system_name = "proofsmith"
+        bundle = config.RESULTS / "integration" / instance.id / "bundle"
+        result = generate(instance, client, Budget(config.MAX_STEPS, config.MAX_TOTAL_TOKENS, config.MAX_WALL_S), bundle)
+        return {"status": result.status, "oracle": result.oracle, "signature": result.signature,
+                "bundle_path": str(result.bundle_dir) if result.bundle_dir else None,
+                "reason": result.reason, "cost_usd": result.cost_usd,
+                "harness_source": "hand-written reference fixture" if fake else "model generated"}
+
+    @server.tool()
+    def verify(bundle_path: str, repo_path: str) -> dict:
+        """Replay a frozen check on a repository after patching. No model or key is required."""
+        instance = local_instance(Path(repo_path), "Replay", "")
+        result = verify_bundle(Path(bundle_path), Path(repo_path), instance.build, config.EVAL_N,
+                               config.WORK / "integration" / instance.id)
+        return {"build_ok": result.build_ok, "fails": result.fails, "n": result.n,
+                "evidence_kinds": dict(Counter(r.evidence.kind for r in result.runs)),
+                "passes": result.build_ok and result.fails == 0}
+
+    return server
+
+
+def main():
+    create_server().run(transport="stdio")
+
+
+if __name__ == "__main__":
+    main()
