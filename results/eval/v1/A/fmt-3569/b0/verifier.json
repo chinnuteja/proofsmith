@@ -1,0 +1,39 @@
+{
+  "abstain_reason": "budget exhausted",
+  "buggy_tree_sha256": "c95455ddd115f29fd68fd1bee3d08f4020ff2ac1f07a3d0d7d1e9e8ebf9776fe",
+  "cost_usd": 0.089271688,
+  "created_at": "2026-10-03T13:31:09Z",
+  "files": {
+    "harness/build.sh": "5b9ca7c5f138d49dabd73c6c4b068f5fd29bdaecdfbe1b63767d79ed3158a05d",
+    "harness/harness.cpp": "4ad1cde07a6db3ddf1e81d93594abe4aef7c2154bfea73091bc17890e9b915d5",
+    "harness/repro.cpp": "cf6fb114abb34810fba2a01c8b87051c75e1137c3ce484a08fe314321ca6ffd0"
+  },
+  "flags": {
+    "cxxflags": "",
+    "env": {},
+    "ldflags": ""
+  },
+  "instance_id": "fmt-3569",
+  "model": "deepseek-v4-pro",
+  "oracle": null,
+  "protocol_sha256": "691c69bb89f54d1e20f74997451394cf58612ec858af004bdb99306a4977cca1",
+  "runtime": {
+    "fails": 0,
+    "k": 0,
+    "n": 0,
+    "signatures": {}
+  },
+  "schema": "proofsmith.verifier/1",
+  "signature": null,
+  "status": "gave_up",
+  "system": "b0",
+  "trajectory": "runs/fmt-3569-b0-7501fbdf/trajectory.jsonl",
+  "usage": {
+    "cache_hit_tokens": 499712,
+    "completion_tokens": 10553,
+    "prompt_tokens": 519026,
+    "reasoning_tokens": 7225
+  },
+  "variant": null,
+  "wall_s": 152.83548123699984
+}

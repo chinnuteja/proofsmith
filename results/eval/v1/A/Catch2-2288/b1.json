@@ -1,0 +1,38 @@
+{
+  "alignment": {
+    "changed": [
+      {
+        "end": 42,
+        "file": "include/internal/catch_approx.h",
+        "function": "operator ()",
+        "start": 36
+      }
+    ],
+    "hits": [],
+    "relaxed": false,
+    "strict": false,
+    "unknown": false
+  },
+  "buggy_fails": 20,
+  "build_ok_buggy": true,
+  "build_ok_fixed": true,
+  "bundle_status": "submitted",
+  "cost_usd": 0.043217416,
+  "error": null,
+  "evidence_kinds": {
+    "exit:1": 20
+  },
+  "f2p": false,
+  "fixed_fails": 20,
+  "instance_id": "Catch2-2288",
+  "mentions_fix": false,
+  "n": 20,
+  "oracle": null,
+  "protocol_sha256": "691c69bb89f54d1e20f74997451394cf58612ec858af004bdb99306a4977cca1",
+  "schema": "proofsmith.verdict/1",
+  "system": "b1",
+  "track": "A",
+  "trajectory": "runs/Catch2-2288-b1-9ed19e48/trajectory.jsonl",
+  "variant": "plain",
+  "wall_s": 104.2446174669999
+}

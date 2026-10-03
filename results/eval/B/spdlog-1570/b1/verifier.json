@@ -1,0 +1,37 @@
+{
+  "abstain_reason": null,
+  "buggy_tree_sha256": "79b7b6f96cd05489c26c049081b3e0918c483384723b9e498512723a9300fb27",
+  "cost_usd": 0.060373896,
+  "created_at": "2026-10-02T13:42:17Z",
+  "files": {
+    "harness/build.sh": "b7e107ca2bf04c3ed17bf9b216deaa4e0401ab16ca07e92bd66f3a7ffca85529",
+    "harness/harness.cpp": "4e1f08143eaedf5052cee923e01366a86c8deedfcf6baac4736ce74d11576377"
+  },
+  "flags": {
+    "cxxflags": "-g -O1 -fno-omit-frame-pointer",
+    "env": {},
+    "ldflags": ""
+  },
+  "instance_id": "spdlog-1570",
+  "model": "deepseek-v4-pro",
+  "oracle": null,
+  "runtime": {
+    "fails": 0,
+    "k": 0,
+    "n": 0,
+    "signatures": {}
+  },
+  "schema": "proofsmith.verifier/1",
+  "signature": null,
+  "status": "submitted",
+  "system": "b1",
+  "trajectory": "runs/spdlog-1570-b1-8fb00ba4/trajectory.jsonl",
+  "usage": {
+    "cache_hit_tokens": 249984,
+    "completion_tokens": 7013,
+    "prompt_tokens": 266350,
+    "reasoning_tokens": 4736
+  },
+  "variant": "plain",
+  "wall_s": 219.82303165099984
+}

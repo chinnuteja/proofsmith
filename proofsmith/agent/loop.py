@@ -80,6 +80,11 @@ def _tokens(usage: Usage) -> int:
     return usage.prompt_tokens + usage.completion_tokens
 
 
+def input_token_upper_bound(messages: list[dict], tools: list[dict] | None) -> int:
+    """Conservative UTF-8 bound including serialized tools and chat framing."""
+    return len(json.dumps({"messages": messages, "tools": tools}, ensure_ascii=False).encode("utf-8")) + 4096
+
+
 def assistant_message(response: LLMResponse) -> dict:
     """Assistant turn sent back to the API.
 
@@ -181,6 +186,11 @@ def run_agent(
         if _tokens(usage) >= budget.max_total_tokens:
             return end("budget_exhausted", {}, "tokens")
 
+        remaining = budget.max_total_tokens - _tokens(usage)
+        completion_tokens = min(MAX_RESPONSE_TOKENS, remaining - input_token_upper_bound(messages, schemas))
+        if completion_tokens <= 0:
+            return end("budget_exhausted", {}, "tokens: next request cannot fit")
+
         step += 1
         _emit(
             trajectory,
@@ -189,13 +199,13 @@ def run_agent(
                 "step": step,
                 "type": "llm_request",
                 "model": getattr(llm, "model", "") or "",
-                "max_tokens": MAX_RESPONSE_TOKENS,
+                "max_tokens": completion_tokens,
                 "messages": messages,
                 "tools": schemas,
             },
         )
         try:
-            response = llm.chat(messages, schemas, MAX_RESPONSE_TOKENS)
+            response = llm.chat(messages, schemas, completion_tokens)
         except BudgetExceeded:
             end("interrupted", {"error": "global spending cap reached"})
             raise
@@ -221,6 +231,8 @@ def run_agent(
                 "finish_reason": response.finish_reason,
             },
         )
+        if _tokens(usage) > budget.max_total_tokens:
+            return end("budget_exhausted", {}, "tokens: provider usage exceeded reservation")
         messages.append(assistant_message(response))
 
         calls_terminal = any(call.name in _TERMINAL for call in response.tool_calls)

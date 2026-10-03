@@ -1,0 +1,41 @@
+{
+  "schema": "proofsmith.verdict/1",
+  "instance_id": "rounding-ticks",
+  "system": "proofsmith",
+  "track": "micro",
+  "bundle_status": "accepted",
+  "build_ok_buggy": true,
+  "build_ok_fixed": true,
+  "buggy_fails": 20,
+  "fixed_fails": 0,
+  "n": 20,
+  "f2p": true,
+  "alignment": {
+    "strict": false,
+    "relaxed": false,
+    "unknown": false,
+    "hits": [],
+    "changed": [
+      {
+        "function": "to_ticks",
+        "file": "ticks.cpp",
+        "start": 3,
+        "end": 5
+      },
+      {
+        "function": "resting_price",
+        "file": "ticks.cpp",
+        "start": 7,
+        "end": 9
+      }
+    ]
+  },
+  "oracle": "assertion",
+  "evidence_kinds": {
+    "assert": 20
+  },
+  "cost_usd": 0.028651568000000002,
+  "wall_s": 186.66234645099985,
+  "error": null,
+  "trajectory": "runs/rounding-ticks-assertion-ccca7589/trajectory.jsonl"
+}

@@ -97,3 +97,22 @@ def test_full_evaluation_requires_recorded_approval(experiment, monkeypatch, tmp
     with pytest.raises(RuntimeError, match="human budget approval"):
         runner.run_eval(protocol_path=path)
     assert not calls
+
+
+@pytest.mark.parametrize('audit', [
+    {'observed_bundles': 3, 'expected_bundles': 3, 'violations': [{'token_overrun': 1}]},
+    {'observed_bundles': 0, 'expected_bundles': 3, 'violations': []},
+])
+def test_full_run_rejects_invalid_pilot_even_with_approval(experiment, monkeypatch, tmp_path, audit):
+    protocol, path, calls = experiment
+    monkeypatch.setattr(runner.config, 'REPO', tmp_path)
+    digest = fingerprint(protocol)
+    approval = tmp_path / 'docs/evaluation-approval.json'
+    approval.parent.mkdir()
+    approval.write_text(json.dumps({'protocol_sha256': digest}))
+    runner.config.RESULTS.mkdir()
+    (runner.config.RESULTS / 'pilot_cost.json').write_text(json.dumps({'complete': True, 'protocol_sha256': digest}))
+    (runner.config.RESULTS / 'pilot_budget_audit.json').write_text(json.dumps({**audit, 'protocol_sha256': digest}))
+    with pytest.raises(RuntimeError, match='budget violations or incomplete audit'):
+        runner.run_eval(protocol_path=path)
+    assert not calls

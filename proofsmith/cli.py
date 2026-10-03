@@ -26,6 +26,7 @@ def main(argv: list[str] | None = None) -> None:
     make.add_argument("--out", required=True, help="directory for the verifier bundle")
     protocol = sub.add_parser("protocol", help="freeze the experiment before any paid run")
     protocol.add_argument("action", choices=["freeze", "validate"])
+    protocol.add_argument("--id", help="freeze a new unique protocol and archive completed prior observations")
     evaluate = sub.add_parser("evaluate", help="run the protocol-bound experiment")
     evaluate.add_argument("--pilot", action="store_true")
     evaluate.add_argument("--track", choices=["all", "A", "B"], default="all")
@@ -67,7 +68,7 @@ def main(argv: list[str] | None = None) -> None:
         from proofsmith import config
         from proofsmith.eval.protocol import PROTOCOL_PATH, freeze_protocol, validate_protocol
         if args.command == "protocol":
-            payload = freeze_protocol() if args.action == "freeze" else json.loads(PROTOCOL_PATH.read_text())
+            payload = freeze_protocol(protocol_id=args.id) if args.action == "freeze" else json.loads(PROTOCOL_PATH.read_text())
             validate_protocol(payload)
             print(PROTOCOL_PATH)
         elif args.command == "evaluate":

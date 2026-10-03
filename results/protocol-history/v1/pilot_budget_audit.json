@@ -1,0 +1,201 @@
+{
+  "expected_bundles": 12,
+  "limitation": "The current agent loop checks token usage after a response; its final request can overshoot the nominal token limit. Do not claim a strict hard token cap or advance a full experiment until this is repaired under a new frozen protocol.",
+  "observed_bundles": 12,
+  "protocol_sha256": "691c69bb89f54d1e20f74997451394cf58612ec858af004bdb99306a4977cca1",
+  "records": [
+    {
+      "instance_id": "concurrentqueue-288",
+      "max_total_tokens": 500000,
+      "system": "proofsmith",
+      "token_overrun": 28942,
+      "total_tokens": 528942,
+      "track": "B",
+      "wall_overrun_s": 0,
+      "wall_s": 169.85537013199996
+    },
+    {
+      "instance_id": "concurrentqueue-288",
+      "max_total_tokens": 500000,
+      "system": "b1",
+      "token_overrun": 41907,
+      "total_tokens": 541907,
+      "track": "B",
+      "wall_overrun_s": 0,
+      "wall_s": 307.73803935
+    },
+    {
+      "instance_id": "concurrentqueue-288",
+      "max_total_tokens": 500000,
+      "system": "b0",
+      "token_overrun": 6428,
+      "total_tokens": 506428,
+      "track": "B",
+      "wall_overrun_s": 0,
+      "wall_s": 199.83367997100004
+    },
+    {
+      "instance_id": "httplib-2232",
+      "max_total_tokens": 500000,
+      "system": "b0",
+      "token_overrun": 12509,
+      "total_tokens": 512509,
+      "track": "B",
+      "wall_overrun_s": 0,
+      "wall_s": 278.312256446
+    },
+    {
+      "instance_id": "httplib-2232",
+      "max_total_tokens": 500000,
+      "system": "proofsmith",
+      "token_overrun": 342,
+      "total_tokens": 500342,
+      "track": "B",
+      "wall_overrun_s": 0,
+      "wall_s": 171.2315058329998
+    },
+    {
+      "instance_id": "httplib-2232",
+      "max_total_tokens": 500000,
+      "system": "b1",
+      "token_overrun": 19802,
+      "total_tokens": 519802,
+      "track": "B",
+      "wall_overrun_s": 0,
+      "wall_s": 139.57373315899986
+    },
+    {
+      "instance_id": "Catch2-2288",
+      "max_total_tokens": 500000,
+      "system": "b1",
+      "token_overrun": 0,
+      "total_tokens": 128203,
+      "track": "A",
+      "wall_overrun_s": 0,
+      "wall_s": 104.2446174669999
+    },
+    {
+      "instance_id": "Catch2-2288",
+      "max_total_tokens": 500000,
+      "system": "proofsmith",
+      "token_overrun": 0,
+      "total_tokens": 1724,
+      "track": "A",
+      "wall_overrun_s": 0,
+      "wall_s": 11.66400657999975
+    },
+    {
+      "instance_id": "Catch2-2288",
+      "max_total_tokens": 500000,
+      "system": "b0",
+      "token_overrun": 0,
+      "total_tokens": 161657,
+      "track": "A",
+      "wall_overrun_s": 0,
+      "wall_s": 134.8926139529999
+    },
+    {
+      "instance_id": "fmt-3569",
+      "max_total_tokens": 500000,
+      "system": "b1",
+      "token_overrun": 0,
+      "total_tokens": 392033,
+      "track": "A",
+      "wall_overrun_s": 0,
+      "wall_s": 182.24556322700028
+    },
+    {
+      "instance_id": "fmt-3569",
+      "max_total_tokens": 500000,
+      "system": "b0",
+      "token_overrun": 29579,
+      "total_tokens": 529579,
+      "track": "A",
+      "wall_overrun_s": 0,
+      "wall_s": 152.83548123699984
+    },
+    {
+      "instance_id": "fmt-3569",
+      "max_total_tokens": 500000,
+      "system": "proofsmith",
+      "token_overrun": 0,
+      "total_tokens": 1043,
+      "track": "A",
+      "wall_overrun_s": 0,
+      "wall_s": 14.095004818000234
+    }
+  ],
+  "schema": "proofsmith.budget-audit/1",
+  "violations": [
+    {
+      "instance_id": "concurrentqueue-288",
+      "max_total_tokens": 500000,
+      "system": "proofsmith",
+      "token_overrun": 28942,
+      "total_tokens": 528942,
+      "track": "B",
+      "wall_overrun_s": 0,
+      "wall_s": 169.85537013199996
+    },
+    {
+      "instance_id": "concurrentqueue-288",
+      "max_total_tokens": 500000,
+      "system": "b1",
+      "token_overrun": 41907,
+      "total_tokens": 541907,
+      "track": "B",
+      "wall_overrun_s": 0,
+      "wall_s": 307.73803935
+    },
+    {
+      "instance_id": "concurrentqueue-288",
+      "max_total_tokens": 500000,
+      "system": "b0",
+      "token_overrun": 6428,
+      "total_tokens": 506428,
+      "track": "B",
+      "wall_overrun_s": 0,
+      "wall_s": 199.83367997100004
+    },
+    {
+      "instance_id": "httplib-2232",
+      "max_total_tokens": 500000,
+      "system": "b0",
+      "token_overrun": 12509,
+      "total_tokens": 512509,
+      "track": "B",
+      "wall_overrun_s": 0,
+      "wall_s": 278.312256446
+    },
+    {
+      "instance_id": "httplib-2232",
+      "max_total_tokens": 500000,
+      "system": "proofsmith",
+      "token_overrun": 342,
+      "total_tokens": 500342,
+      "track": "B",
+      "wall_overrun_s": 0,
+      "wall_s": 171.2315058329998
+    },
+    {
+      "instance_id": "httplib-2232",
+      "max_total_tokens": 500000,
+      "system": "b1",
+      "token_overrun": 19802,
+      "total_tokens": 519802,
+      "track": "B",
+      "wall_overrun_s": 0,
+      "wall_s": 139.57373315899986
+    },
+    {
+      "instance_id": "fmt-3569",
+      "max_total_tokens": 500000,
+      "system": "b0",
+      "token_overrun": 29579,
+      "total_tokens": 529579,
+      "track": "A",
+      "wall_overrun_s": 0,
+      "wall_s": 152.83548123699984
+    }
+  ]
+}

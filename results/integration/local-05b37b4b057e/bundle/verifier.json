@@ -1,0 +1,41 @@
+{
+  "abstain_reason": null,
+  "buggy_tree_sha256": "2ddb72e3844a29586591fbb181bca5fa24c280be0afeed42006d2c476f589faa",
+  "cost_usd": 0.0,
+  "created_at": "2026-10-03T13:52:26Z",
+  "files": {
+    "harness/build.sh": "4fc6fc09b168a7d3f330a53f1b2ea3540ebd32c74aa1ee6aacc3e5b76e83faf2",
+    "harness/harness.cpp": "c1c16d189abd26a63e45e9194029228e3c8f23f7dd9e7834368de26b6525ebcb"
+  },
+  "flags": {
+    "cxxflags": "-g -O1 -fno-omit-frame-pointer -fsanitize=thread",
+    "env": {
+      "TSAN_OPTIONS": "halt_on_error=1:exitcode=66:second_deadlock_stack=1:symbolize=1:external_symbolizer_path=/usr/bin/llvm-symbolizer"
+    },
+    "ldflags": "-fsanitize=thread"
+  },
+  "instance_id": "local-05b37b4b057e",
+  "model": "",
+  "oracle": "tsan",
+  "runtime": {
+    "fails": 10,
+    "k": 8,
+    "n": 10,
+    "signatures": {
+      "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp": 10
+    }
+  },
+  "schema": "proofsmith.verifier/1",
+  "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+  "status": "accepted",
+  "system": "proofsmith",
+  "trajectory": "/home/chinnu/psw/pipeline/local-05b37b4b057e-2167725a/runs/local-05b37b4b057e-tsan-e1e80ddf/trajectory.jsonl",
+  "usage": {
+    "cache_hit_tokens": 0,
+    "completion_tokens": 0,
+    "prompt_tokens": 0,
+    "reasoning_tokens": 0
+  },
+  "variant": "tsan",
+  "wall_s": 19.29128890199999
+}

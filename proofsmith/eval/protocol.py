@@ -4,6 +4,8 @@ from __future__ import annotations
 import hashlib
 import json
 import random
+import re
+import shutil
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -16,9 +18,35 @@ def fingerprint(payload: dict) -> str:
     return hashlib.sha256(json.dumps(payload, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
 
 
-def freeze_protocol(path: Path = PROTOCOL_PATH) -> dict:
+def freeze_protocol(path: Path = PROTOCOL_PATH, *, protocol_id: str | None = None) -> dict:
+    if protocol_id is not None and not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]{0,63}", protocol_id):
+        raise ValueError("protocol ID must be a simple unique name")
     if path.exists():
-        return json.loads(path.read_text())
+        previous = json.loads(path.read_text())
+        if protocol_id is None or protocol_id == previous['id']:
+            return previous
+        old_root = config.RESULTS / 'eval' / previous['id']
+        for attempt in old_root.rglob('*.attempt.json'):
+            if not attempt.with_name(attempt.name.replace('.attempt.json', '.json')).is_file():
+                raise RuntimeError('cannot change protocol while a generation attempt is unresolved')
+        if any((config.RESULTS / 'eval' / protocol_id).rglob('*')):
+            raise RuntimeError('protocol ID already has artifacts; choose a new ID')
+        for archived in (config.REPO / 'docs/protocol-history').glob('*.json'):
+            if json.loads(archived.read_text()).get('id') == protocol_id:
+                raise RuntimeError('protocol ID has already been used; choose a new ID')
+        history = config.REPO / 'docs/protocol-history'
+        history.mkdir(parents=True, exist_ok=True)
+        digest = fingerprint(previous)
+        if not (history / (digest + '.json')).exists():
+            shutil.copy2(path, history / (digest + '.json'))
+        if path.with_suffix('.md').exists():
+            shutil.copy2(path.with_suffix('.md'), history / (digest + '.md'))
+        for name in ('summary', 'pilot_cost', 'pilot_budget_audit'):
+            source = config.RESULTS / (name + '.json')
+            if source.exists() and json.loads(source.read_text()).get('protocol_sha256') == digest:
+                target = config.RESULTS / 'protocol-history' / previous['id'] / source.name
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(source, target)
     excluded = set()
     exclusion_file = config.REPO / "data/trackB/EXCLUDED.md"
     if exclusion_file.exists():
@@ -43,12 +71,13 @@ def freeze_protocol(path: Path = PROTOCOL_PATH) -> dict:
     files += [config.REPO / "pyproject.toml", config.REPO / "config/pricing.json",
               config.REPO / "data/trackB/EXCLUDED.md"]
     hashes = {p.relative_to(config.REPO).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in files if p.is_file()}
-    payload = {"schema": "proofsmith.protocol/1", "id": "v1", "created_at": datetime.now(timezone.utc).isoformat(),
+    payload = {"schema": "proofsmith.protocol/1", "id": protocol_id or "v1", "created_at": datetime.now(timezone.utc).isoformat(),
         "model": config.EVAL_MODEL, "temperature": 0, "seed": 20261001,
         "budget": {"max_steps": config.MAX_STEPS, "max_total_tokens": config.MAX_TOTAL_TOKENS, "max_wall_s": config.MAX_WALL_S},
         "constants": {name: getattr(config, name) for name in ("RUNTIME_N", "RUNTIME_K", "EVAL_N", "EVAL_BUGGY_K", "EVAL_FIXED_MAX_FAILS", "RUN_TIMEOUT_S")},
         "tracks": tracks, "excluded": sorted(excluded), "order": order,
-        "pilot": {track: ids[:2] for track, ids in tracks.items()}, "files": hashes}
+        "pilot": {track: ids[:2] for track, ids in tracks.items()}, "files": hashes,
+        "token_accounting": "Reserve serialized UTF-8 input plus chat framing before every request, then clamp completion to the remaining shared budget. This conservative bound may stop before actual tokens are exhausted."}
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
     write_protocol_document(payload, path.with_suffix(".md"))
@@ -81,6 +110,8 @@ Frozen at `{payload['created_at']}` before new observations. Historical explorat
 
 Model: `{payload['model']}`, temperature `{payload['temperature']}`, randomized system order with seed `{payload['seed']}`.
 Shared budget: `{payload['budget']['max_steps']}` steps, `{payload['budget']['max_total_tokens']}` total prompt plus completion tokens, `{payload['budget']['max_wall_s']}` seconds. Classifier calls count toward Proofsmith's budget. All systems receive the same tools, model, and budget.
+
+Token accounting: {payload.get('token_accounting', 'Legacy post-response checks; see the pilot usage audit for overruns.')}
 
 Runtime acceptance requires stable eligible evidence in {payload['constants']['RUNTIME_K']} of {payload['constants']['RUNTIME_N']} runs.
 Evaluation raw F→P requires successful builds on both trees, at least {payload['constants']['EVAL_BUGGY_K']} buggy failures in {payload['constants']['EVAL_N']} runs and {payload['constants']['EVAL_FIXED_MAX_FAILS']} fixed failures. Timeout per run: {payload['constants']['RUN_TIMEOUT_S']} seconds.

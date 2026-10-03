@@ -1,11 +1,13 @@
 # Frozen evaluation protocol
 
-Protocol ID: `v1`. SHA-256: `691c69bb89f54d1e20f74997451394cf58612ec858af004bdb99306a4977cca1`.
+Protocol ID: `v2`. SHA-256: `d254e46348c3a417f83f4f43902338aa1c20e77cb1110c276cd578baa498c395`.
 The complete population, execution order, constants, budgets, source hashes and exclusions are in [protocol.json](protocol.json).
-Frozen at `2026-10-03T12:36:12.929427+00:00` before new observations. Historical exploratory samples are retained separately and cannot enter this protocol's metrics.
+Frozen at `2026-10-03T13:48:23.414832+00:00` before new observations. Historical exploratory samples are retained separately and cannot enter this protocol's metrics.
 
 Model: `deepseek-v4-pro`, temperature `0`, randomized system order with seed `20261001`.
 Shared budget: `50` steps, `500000` total prompt plus completion tokens, `1800` seconds. Classifier calls count toward Proofsmith's budget. All systems receive the same tools, model, and budget.
+
+Token accounting: Reserve serialized UTF-8 input plus chat framing before every request, then clamp completion to the remaining shared budget. This conservative bound may stop before actual tokens are exhausted.
 
 Runtime acceptance requires stable eligible evidence in 8 of 10 runs.
 Evaluation raw F→P requires successful builds on both trees, at least 16 buggy failures in 20 runs and 0 fixed failures. Timeout per run: 60 seconds.

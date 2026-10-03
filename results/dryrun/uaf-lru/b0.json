@@ -1,288 +1,37 @@
 {
-  "schema": "proofsmith.verdict/1",
-  "instance_id": "uaf-lru",
-  "system": "b0",
-  "track": "micro",
-  "bundle_status": "submitted",
-  "build_ok_buggy": true,
-  "build_ok_fixed": false,
-  "buggy_fails": 20,
-  "fixed_fails": 0,
-  "n": 20,
-  "f2p": false,
   "alignment": {
-    "strict": true,
-    "relaxed": true,
-    "unknown": false,
-    "hits": [
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:65 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:67 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:65 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:67 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:65 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:67 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:65 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:67 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:65 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:67 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:65 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:67 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:65 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:67 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:65 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:67 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:65 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:67 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:65 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:67 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:65 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:67 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:65 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:67 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:65 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:67 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:65 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:67 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:65 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:67 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:65 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:67 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:65 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:67 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:65 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:67 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:65 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:67 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:65 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "via": "frame",
-        "evidence": "price_cache.cpp:67 PriceCache::put(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, double)"
-      }
-    ],
     "changed": [
       {
-        "function": "PriceCache",
+        "end": 82,
         "file": "price_cache.cpp",
-        "start": 3,
-        "end": 4
-      },
-      {
-        "function": "put",
-        "file": "price_cache.cpp",
-        "start": 52,
-        "end": 70
-      },
-      {
         "function": "get",
-        "file": "price_cache.cpp",
-        "start": 72,
-        "end": 82
+        "start": 72
       }
-    ]
+    ],
+    "hits": [],
+    "relaxed": true,
+    "strict": false,
+    "unknown": false
   },
-  "oracle": null,
+  "buggy_fails": 20,
+  "build_ok_buggy": true,
+  "build_ok_fixed": false,
+  "bundle_status": "submitted",
+  "cost_usd": 0.017673128,
+  "error": null,
+  "evaluator_revision": "4fff7ffa35ab9b27b413337fb2a10923c1991382",
   "evidence_kinds": {
     "asan:heap-use-after-free": 20
   },
-  "cost_usd": 0.017673128,
-  "wall_s": 46.87219985899992,
-  "error": null,
-  "trajectory": "runs/uaf-lru-b0-bd441230/trajectory.jsonl"
+  "f2p": false,
+  "fixed_fails": 0,
+  "instance_id": "uaf-lru",
+  "n": 20,
+  "oracle": null,
+  "previous_verdict": "results/history/evaluator-v0/dryrun/uaf-lru/b0.json",
+  "schema": "proofsmith.verdict/1",
+  "system": "b0",
+  "track": "micro",
+  "trajectory": "runs/uaf-lru-b0-bd441230/trajectory.jsonl",
+  "wall_s": 46.87219985899992
 }

@@ -1,0 +1,34 @@
+{
+  "abstain_reason": "NO VERIFIER: budget exhausted",
+  "buggy_tree_sha256": "79b7b6f96cd05489c26c049081b3e0918c483384723b9e498512723a9300fb27",
+  "cost_usd": 0.132409112,
+  "created_at": "2026-10-02T13:52:21Z",
+  "files": {},
+  "flags": {
+    "cxxflags": "",
+    "env": {},
+    "ldflags": ""
+  },
+  "instance_id": "spdlog-1570",
+  "model": "deepseek-v4-pro",
+  "oracle": null,
+  "runtime": {
+    "fails": 0,
+    "k": 8,
+    "n": 0,
+    "signatures": {}
+  },
+  "schema": "proofsmith.verifier/1",
+  "signature": null,
+  "status": "abstained",
+  "system": "proofsmith",
+  "trajectory": "runs/spdlog-1570-tsan-93b34931/trajectory.jsonl",
+  "usage": {
+    "cache_hit_tokens": 477568,
+    "completion_tokens": 18485,
+    "prompt_tokens": 506504,
+    "reasoning_tokens": 15174
+  },
+  "variant": null,
+  "wall_s": 433.2671515909997
+}

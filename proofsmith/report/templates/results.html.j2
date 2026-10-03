@@ -1,15 +1,17 @@
 {% extends "base.html.j2" %}
-{% macro number(path, value) -%}<span data-source="results/summary.json#{{ path }}">{{ value | fmt }}</span>{%- endmacro %}
+{% macro number(path, value) -%}<span data-source="{{ summary_source }}#{{ path }}">{{ value | fmt }}</span>{%- endmacro %}
 {% block title %}Proofsmith results{% endblock %}
 {% block body %}
 <h1>Measured results</h1>
-<p class="lede">Complete experiment: <span data-source="results/summary.json#/complete">{{ summary.complete | fmt }}</span>. Missing runs remain missing. Exploratory samples and the demo are separate.</p>
+<p class="lede">Complete experiment: <span data-source="{{ summary_source }}#/complete">{{ summary.complete | fmt }}</span>. Missing runs remain missing. Exploratory samples and the demo are separate.</p>
+{% if history_links %}<p>Earlier protocols: {% for old in history_links %}<a href="{{ old.href }}">{{ old.id }} measured observations</a>{% endfor %}.</p>{% endif %}
 {% if not summary.complete %}<p class="pill pill-warn">Evaluation incomplete — no comparative claim is ready.</p>{% endif %}
+{% if summary.protocol_id == 'v1' %}<p>The pilot exposed final-request token-budget overruns. Its recorded outcomes remain visible, but they cannot certify strict budget compliance. A tested repair and a new frozen protocol are required before advancing the full experiment.</p>{% endif %}
 {% for track, payload in summary.tracks.items() %}
 {% set base = '/tracks/' ~ track %}
 <section>
 <h2>Track {{ track }}</h2>
-<p class="pill pill-info" data-source="results/summary.json#{{ base }}/verdict">{{ payload.verdict }}</p>
+<p class="pill pill-info" data-source="{{ summary_source }}#{{ base }}/verdict">{{ payload.verdict }}</p>
 <div class="table-scroll"><table><thead><tr><th>System</th><th>Observed / expected</th><th>Raw F→P %</th><th>Aligned strict %</th><th>Aligned relaxed %</th><th>Abstentions</th><th>Flake on fixed %</th><th>Median $</th><th>Median seconds</th></tr></thead><tbody>
 {% for system, row in payload.systems.items() %}{% set p = base ~ '/systems/' ~ system %}
 <tr><th>{{ system }}</th><td data-label="Observed / expected">{{ number(p ~ '/n_instances', row.n_instances) }} / {{ number(p ~ '/expected_instances', row.expected_instances) }}</td>
@@ -24,10 +26,10 @@
 {% for system, row in payload.systems.items() %}
 <p>{{ system }}</p>
 {% if row.per_oracle %}<svg role="img" aria-label="Successful checks by oracle for {{ system }}" viewBox="0 0 500 120" class="oracle-chart">
-{% for oracle, count in row.per_oracle.items() %}<g transform="translate({{ loop.index0 * 120 }},0)"><rect x="0" y="{{ 100 - count * 5 }}" width="70" height="{{ count * 5 }}" data-count-source="results/summary.json#{{ base }}/systems/{{ system }}/per_oracle/{{ oracle }}" fill="currentColor"/><text y="115">{{ oracle }}</text></g>{% endfor %}
+{% for oracle, count in row.per_oracle.items() %}<g transform="translate({{ loop.index0 * 120 }},0)"><rect x="0" y="{{ 100 - count * 5 }}" width="70" height="{{ count * 5 }}" data-count-source="{{ summary_source }}#{{ base }}/systems/{{ system }}/per_oracle/{{ oracle }}" fill="currentColor"/><text y="115">{{ oracle }}</text></g>{% endfor %}
 </svg>{% else %}<p>No observed successes.</p>{% endif %}
 {% endfor %}
-<h3>Instance evidence</h3><ul>{% for name in instances.get(track, []) %}<li><a href="/results/{{ track }}/{{ name }}/">{{ name }}</a></li>{% endfor %}</ul>
+<h3>Instance evidence</h3><ul>{% for name in instances.get(track, []) %}<li><a href="{{ results_prefix }}/{{ track }}/{{ name }}/">{{ name }}</a></li>{% endfor %}</ul>
 </section>
 {% endfor %}
 {% endblock %}

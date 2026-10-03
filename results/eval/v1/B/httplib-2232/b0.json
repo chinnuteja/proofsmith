@@ -1,0 +1,29 @@
+{
+  "alignment": {
+    "changed": [],
+    "hits": [],
+    "relaxed": false,
+    "strict": false,
+    "unknown": false
+  },
+  "buggy_fails": 0,
+  "build_ok_buggy": false,
+  "build_ok_fixed": false,
+  "bundle_status": "gave_up",
+  "cost_usd": 0.133951752,
+  "error": "bundle has no build variant",
+  "evidence_kinds": {},
+  "f2p": false,
+  "fixed_fails": 0,
+  "instance_id": "httplib-2232",
+  "mentions_fix": true,
+  "n": 0,
+  "oracle": null,
+  "protocol_sha256": "691c69bb89f54d1e20f74997451394cf58612ec858af004bdb99306a4977cca1",
+  "schema": "proofsmith.verdict/1",
+  "system": "b0",
+  "track": "B",
+  "trajectory": "runs/httplib-2232-b0-8822c599/trajectory.jsonl",
+  "variant": null,
+  "wall_s": 278.312256446
+}

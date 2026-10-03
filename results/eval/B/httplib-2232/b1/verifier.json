@@ -1,0 +1,37 @@
+{
+  "abstain_reason": "budget exhausted",
+  "buggy_tree_sha256": "43e2977e7aabf21d16711bd670386378015a2d0c4f289aaedf51193e02a17d5e",
+  "cost_usd": 0.11413116,
+  "created_at": "2026-10-02T13:57:09Z",
+  "files": {
+    "harness/build.sh": "4af1494fee9fd3df11cc64e8eec0026415ab25eefda046f8cf53f43655a0d04d",
+    "harness/harness.cpp": "715757893f9c4d09bbd306a500412172e55cde1d73f20a6fa442b7771507e091"
+  },
+  "flags": {
+    "cxxflags": "",
+    "env": {},
+    "ldflags": ""
+  },
+  "instance_id": "httplib-2232",
+  "model": "deepseek-v4-pro",
+  "oracle": null,
+  "runtime": {
+    "fails": 0,
+    "k": 0,
+    "n": 0,
+    "signatures": {}
+  },
+  "schema": "proofsmith.verifier/1",
+  "signature": null,
+  "status": "gave_up",
+  "system": "b1",
+  "trajectory": "runs/httplib-2232-b1-99bdabe1/trajectory.jsonl",
+  "usage": {
+    "cache_hit_tokens": 466560,
+    "completion_tokens": 18014,
+    "prompt_tokens": 483429,
+    "reasoning_tokens": 12514
+  },
+  "variant": null,
+  "wall_s": 300.86100462299964
+}

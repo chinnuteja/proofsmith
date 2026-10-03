@@ -1,0 +1,26 @@
+{
+  "schema": "proofsmith.verdict/1",
+  "instance_id": "libuv-2226",
+  "system": "proofsmith",
+  "track": "B",
+  "bundle_status": "abstained",
+  "build_ok_buggy": false,
+  "build_ok_fixed": false,
+  "buggy_fails": 0,
+  "fixed_fails": 0,
+  "n": 0,
+  "f2p": false,
+  "alignment": {
+    "strict": false,
+    "relaxed": false,
+    "unknown": false,
+    "hits": [],
+    "changed": []
+  },
+  "oracle": null,
+  "evidence_kinds": {},
+  "cost_usd": 0.10297231999999999,
+  "wall_s": 209.62279311099974,
+  "error": null,
+  "trajectory": "runs/libuv-2226-asan_ubsan-e82a6cf3/trajectory.jsonl"
+}

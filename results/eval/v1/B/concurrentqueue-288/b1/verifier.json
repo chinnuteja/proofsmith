@@ -1,0 +1,35 @@
+{
+  "abstain_reason": "budget exhausted",
+  "buggy_tree_sha256": "81ccb6240833f386c06955b3a42d1194aa87f3f1dd609f5c1d94256706b8e37d",
+  "cost_usd": 0.138898056,
+  "created_at": "2026-10-03T13:04:54Z",
+  "files": {},
+  "flags": {
+    "cxxflags": "",
+    "env": {},
+    "ldflags": ""
+  },
+  "instance_id": "concurrentqueue-288",
+  "model": "deepseek-v4-pro",
+  "oracle": null,
+  "protocol_sha256": "691c69bb89f54d1e20f74997451394cf58612ec858af004bdb99306a4977cca1",
+  "runtime": {
+    "fails": 0,
+    "k": 0,
+    "n": 0,
+    "signatures": {}
+  },
+  "schema": "proofsmith.verifier/1",
+  "signature": null,
+  "status": "gave_up",
+  "system": "b1",
+  "trajectory": "runs/concurrentqueue-288-b1-f7723d46/trajectory.jsonl",
+  "usage": {
+    "cache_hit_tokens": 495744,
+    "completion_tokens": 21269,
+    "prompt_tokens": 520638,
+    "reasoning_tokens": 19386
+  },
+  "variant": null,
+  "wall_s": 307.73803935
+}

@@ -1,0 +1,26 @@
+{
+  "schema": "proofsmith.verdict/1",
+  "instance_id": "spdlog-1570",
+  "system": "proofsmith",
+  "track": "B",
+  "bundle_status": "abstained",
+  "build_ok_buggy": false,
+  "build_ok_fixed": false,
+  "buggy_fails": 0,
+  "fixed_fails": 0,
+  "n": 0,
+  "f2p": false,
+  "alignment": {
+    "strict": false,
+    "relaxed": false,
+    "unknown": false,
+    "hits": [],
+    "changed": []
+  },
+  "oracle": null,
+  "evidence_kinds": {},
+  "cost_usd": 0.132409112,
+  "wall_s": 433.2671515909997,
+  "error": null,
+  "trajectory": "runs/spdlog-1570-tsan-93b34931/trajectory.jsonl"
+}

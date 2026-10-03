@@ -1,0 +1,26 @@
+{
+  "schema": "proofsmith.verdict/1",
+  "instance_id": "onetbb-1117",
+  "system": "b1",
+  "track": "B",
+  "bundle_status": "gave_up",
+  "build_ok_buggy": false,
+  "build_ok_fixed": false,
+  "buggy_fails": 0,
+  "fixed_fails": 0,
+  "n": 0,
+  "f2p": false,
+  "alignment": {
+    "strict": false,
+    "relaxed": false,
+    "unknown": false,
+    "hits": [],
+    "changed": []
+  },
+  "oracle": null,
+  "evidence_kinds": {},
+  "cost_usd": 0.090540296,
+  "wall_s": 97.61796890500045,
+  "error": "bundle has no build variant",
+  "trajectory": "runs/onetbb-1117-b1-ecaff72f/trajectory.jsonl"
+}

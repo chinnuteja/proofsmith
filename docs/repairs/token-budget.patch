@@ -1,0 +1,227 @@
+--- a/proofsmith/agent/loop.py
++++ b/proofsmith/agent/loop.py
+@@ -78,6 +78,11 @@
+ 
+ def _tokens(usage: Usage) -> int:
+     return usage.prompt_tokens + usage.completion_tokens
++
++
++def input_token_upper_bound(messages: list[dict], tools: list[dict] | None) -> int:
++    """Conservative UTF-8 bound including serialized tools and chat framing."""
++    return len(json.dumps({"messages": messages, "tools": tools}, ensure_ascii=False).encode("utf-8")) + 4096
+ 
+ 
+ def assistant_message(response: LLMResponse) -> dict:
+@@ -181,6 +186,11 @@
+         if _tokens(usage) >= budget.max_total_tokens:
+             return end("budget_exhausted", {}, "tokens")
+ 
++        remaining = budget.max_total_tokens - _tokens(usage)
++        completion_tokens = min(MAX_RESPONSE_TOKENS, remaining - input_token_upper_bound(messages, schemas))
++        if completion_tokens <= 0:
++            return end("budget_exhausted", {}, "tokens: next request cannot fit")
++
+         step += 1
+         _emit(
+             trajectory,
+@@ -189,13 +199,13 @@
+                 "step": step,
+                 "type": "llm_request",
+                 "model": getattr(llm, "model", "") or "",
+-                "max_tokens": MAX_RESPONSE_TOKENS,
++                "max_tokens": completion_tokens,
+                 "messages": messages,
+                 "tools": schemas,
+             },
+         )
+         try:
+-            response = llm.chat(messages, schemas, MAX_RESPONSE_TOKENS)
++            response = llm.chat(messages, schemas, completion_tokens)
+         except BudgetExceeded:
+             end("interrupted", {"error": "global spending cap reached"})
+             raise
+@@ -221,6 +231,8 @@
+                 "finish_reason": response.finish_reason,
+             },
+         )
++        if _tokens(usage) > budget.max_total_tokens:
++            return end("budget_exhausted", {}, "tokens: provider usage exceeded reservation")
+         messages.append(assistant_message(response))
+ 
+         calls_terminal = any(call.name in _TERMINAL for call in response.tool_calls)
+--- a/proofsmith/pipeline.py
++++ b/proofsmith/pipeline.py
+@@ -13,7 +13,7 @@
+ 
+ from pydantic import BaseModel, ValidationError
+ 
+-from proofsmith.agent.loop import Budget, run_agent
++from proofsmith.agent.loop import Budget, input_token_upper_bound, run_agent
+ from proofsmith.agent.tools import ToolSet
+ from proofsmith.config import REPO, RUNS, RUNTIME_K, RUNTIME_N, RUN_TIMEOUT_S, WORK
+ from proofsmith.datasets.schema import Instance, materialize
+@@ -110,7 +110,7 @@
+     return parsed
+ 
+ 
+-def classify(issue: dict, repo_summary: str, llm) -> Classification:
++def classify(issue: dict, repo_summary: str, llm, budget: Budget | None = None) -> Classification:
+     system = _read("classify.md")
+     title = str(issue.get("title") or "")
+     body = str(issue.get("body") or "")
+@@ -119,8 +119,18 @@
+         {"role": "system", "content": system},
+         {"role": "user", "content": user},
+     ]
+-    for _ in range(2):
+-        response = llm.chat(messages, None, 1024)
++    used_tokens = 0
++    classify_started = time.monotonic()
++    for attempt in range(2):
++        maximum = 1024
++        if budget is not None:
++            maximum = min(maximum, budget.max_total_tokens - used_tokens - input_token_upper_bound(messages, None))
++            if maximum <= 0 or attempt >= budget.max_steps or time.monotonic() - classify_started >= budget.max_wall_s:
++                return Classification(oracles=[], rationale="classifier budget exhausted", suspects=[])
++        response = llm.chat(messages, None, maximum)
++        used_tokens += _tokens(response.usage)
++        if budget is not None and used_tokens > budget.max_total_tokens:
++            return Classification(oracles=[], rationale="classifier budget exhausted: provider usage exceeded reservation", suspects=[])
+         parsed = _parse_classification(response.content)
+         if parsed is None:
+             messages.append({"role": "assistant", "content": response.content or ""})
+@@ -378,12 +388,14 @@
+         summary = _repo_summary(sandbox.repo, _find_commands(work / "existing" / "plain"))
+         issue = instance.issue.model_dump()
+         before_calls = _chat_usage(llm)
+-        classification = classify(issue, summary, llm)
++        classifier_budget = _child_budget(budget, usage, steps, started)
++        classification = (classify(issue, summary, llm, classifier_budget) if classifier_budget is not None
++                          else Classification(oracles=[], rationale="classifier budget exhausted", suspects=[]))
+         usage = _add(usage, _usage_since(llm, before_calls))
+         steps += _chat_usage(llm) - before_calls
+ 
+         if not classification.oracles:
+-            reasons.append("classifier returned no oracle")
++            reasons.append(classification.rationale if "budget" in classification.rationale else "classifier returned no oracle")
+             bundle = _freeze_abstain(
+                 sandbox, instance, llm, usage, cost(), wall(), reasons, None, out_dir
+             )
+--- a/tests/phase3/test_pipeline_fake.py
++++ b/tests/phase3/test_pipeline_fake.py
+@@ -146,4 +146,4 @@
+     result = make_verifier(_orderd(), llm, Budget(MAX_STEPS, 30, MAX_WALL_S), tmp_path / "bundle")
+     assert result.status == "abstained", result.reason
+     assert "budget" in result.reason
+-    assert len(llm.requests) == 2
++    assert len(llm.requests) == 0
+--- a/tests/phase5/test_systems_fake.py
++++ b/tests/phase5/test_systems_fake.py
+@@ -73,7 +73,7 @@
+ 
+     monkeypatch.setattr(pipeline, "run_agent", wrap(real_pipeline))
+     monkeypatch.setattr(systems, "run_agent", wrap(real_systems))
+-    budget = Budget(8, 4000, 120)
++    budget = Budget(8, 40000, 120)
+     instance = _orderd()
+     b0 = FakeLLM([_reply(None, _harness_calls("plain"))])
+     b1 = FakeLLM([_reply(None, _harness_calls("asan_ubsan"))])
+@@ -93,11 +93,11 @@
+ 
+     assert len(seen) == 3
+     b0_budget, b1_budget, proof_budget = seen
+-    assert (b0_budget.max_steps, b0_budget.max_total_tokens, b0_budget.max_wall_s) == (8, 4000, 120)
+-    assert (b1_budget.max_steps, b1_budget.max_total_tokens, b1_budget.max_wall_s) == (8, 4000, 120)
++    assert (b0_budget.max_steps, b0_budget.max_total_tokens, b0_budget.max_wall_s) == (8, 40000, 120)
++    assert (b1_budget.max_steps, b1_budget.max_total_tokens, b1_budget.max_wall_s) == (8, 40000, 120)
+     # The classifier consumed one of the shared eight steps. Giving the
+     # child eight more would grant Proofsmith an unfair extra model call.
+-    assert (proof_budget.max_steps, proof_budget.max_total_tokens) == (7, 4000)
++    assert (proof_budget.max_steps, proof_budget.max_total_tokens) == (7, 40000)
+     assert proof_budget.max_steps + len([r for r in proof.requests if r["tools"] is None]) == budget.max_steps
+ 
+     loaded = load_bundle(b0_dir)
+--- /dev/null
++++ b/tests/phase6/test_token_reservation.py
+@@ -0,0 +1,81 @@
++import json
++
++from proofsmith.agent.loop import Budget, input_token_upper_bound, run_agent
++from proofsmith.llm import FakeLLM, LLMResponse, ToolCall, Usage
++from proofsmith.pipeline import classify
++
++
++class Tools:
++    terminal = None
++    calls = 0
++    output = "ok"
++
++    def schemas(self):
++        return []
++
++    def dispatch(self, name, args):
++        self.calls += 1
++        if name == 'finish':
++            self.terminal = {'tool': name, **args}
++        return self.output
++
++
++def reply(name='finish', usage=None, content=None):
++    calls = [ToolCall('1', name, {'variant': 'plain', 'summary': 'done'})] if name else []
++    return LLMResponse(content, None, calls, usage or Usage(10, 5, 0, 0), 'tool_calls')
++
++
++def test_unaffordable_input_makes_no_request(tmp_path):
++    llm = FakeLLM([])
++    result = run_agent(llm, 'system', '界' * 10000, Tools(), Budget(50, 10000, 60), tmp_path)
++    assert result.status == 'budget_exhausted' and result.steps == 0
++    assert not llm.requests
++
++
++def test_completion_is_reduced_to_fit_input_and_remaining_budget(tmp_path):
++    llm = FakeLLM([reply()])
++    result = run_agent(llm, 'system', 'user', Tools(), Budget(50, 6000, 60), tmp_path)
++    request = llm.requests[0]
++    bound = input_token_upper_bound(request['messages'], request['tools'])
++    assert 0 < request['max_tokens'] < 16384
++    assert bound + request['max_tokens'] == 6000
++    assert result.status == 'finished'
++
++
++def test_overrun_cannot_finish_or_call_acceptance_hook(tmp_path):
++    llm = FakeLLM([reply(usage=Usage(50001, 0, 0, 0))])
++    tools = Tools()
++    judged = []
++    result = run_agent(llm, 'system', 'user', tools, Budget(50, 50000, 60), tmp_path,
++                       on_finish=lambda value: judged.append(value))
++    assert result.status == 'budget_exhausted'
++    assert not tools.calls and not judged
++
++
++def test_growing_tool_context_stops_before_another_request(tmp_path):
++    llm = FakeLLM([reply('list_dir')])
++    tools = Tools()
++    tools.output = 'x' * 30000
++    result = run_agent(llm, 'system', 'user', tools, Budget(50, 30000, 60), tmp_path)
++    assert result.status == 'budget_exhausted' and result.steps == 1
++    assert len(llm.requests) == 1
++    assert result.usage.prompt_tokens + result.usage.completion_tokens <= 30000
++
++
++def test_classifier_reserves_input_before_first_request():
++    llm = FakeLLM([])
++    result = classify({'title': 't', 'body': 'b'}, 'summary', llm, Budget(2, 100, 60))
++    assert not result.oracles and 'budget' in result.rationale
++    assert not llm.requests
++
++
++def test_classifier_retry_reserves_expanded_context():
++    llm = FakeLLM([reply(None, content='x' * 30000)])
++    result = classify({'title': 't', 'body': 'b'}, 'summary', llm, Budget(2, 20000, 60))
++    assert not result.oracles and len(llm.requests) == 1
++
++
++def test_classifier_respects_zero_steps():
++    llm = FakeLLM([])
++    result = classify({'title': 't'}, 'summary', llm, Budget(0, 500000, 60))
++    assert not result.oracles and not llm.requests

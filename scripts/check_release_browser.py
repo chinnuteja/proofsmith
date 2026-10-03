@@ -27,7 +27,10 @@ def main():
                 page = browser.new_page(viewport={"width": width, "height": height})
                 errors = []
                 page.on("pageerror", lambda error: errors.append(str(error)))
-                for route in ("/", "/results/", "/integrate/", "/toolchain/", "/demo/", "/benchmark/"):
+                for route in ("/", "/results/", "/integrate/", "/toolchain/", "/demo/", "/benchmark/",
+                              "/results/history/v1/", "/results/history/v1/B/concurrentqueue-288/",
+                              "/results/history/v1/B/httplib-2232/", "/results/history/v1/A/Catch2-2288/",
+                              "/results/history/v1/A/fmt-3569/"):
                     response = page.goto(base + route, wait_until="load")
                     assert response.status == 200, route
                     assert not errors, errors
@@ -39,7 +42,7 @@ def main():
                         source, suffix = item.get_attribute("data-source").split("#", 1)
                         actual = pointer(json.loads((config.REPO / source).read_text()), suffix)
                         assert item.inner_text().strip() == format_number(actual).strip(), (route, source, suffix)
-                    if route == "/results/":
+                    if route in {"/results/", "/results/history/v1/"}:
                         for rect in page.locator("rect[data-count-source]").all():
                             source, suffix = rect.get_attribute("data-count-source").split("#", 1)
                             count = pointer(json.loads((config.REPO / source).read_text()), suffix)
@@ -52,7 +55,7 @@ def main():
                     if route == "/" and width == 1280:
                         first = page.locator(".demo-matrix tbody tr").first.bounding_box()
                         assert first["y"] + first["height"] <= height, first
-                    label = route.strip("/") or "landing"
+                    label = route.strip("/").replace('/', '-') or "landing"
                     page.screenshot(path=str(evidence / f"{label}-{width}.png"), full_page=True)
                 page.close()
             browser.close()

@@ -13,7 +13,7 @@ from pathlib import Path
 
 from pydantic import BaseModel, ValidationError
 
-from proofsmith.agent.loop import Budget, run_agent
+from proofsmith.agent.loop import Budget, input_token_upper_bound, run_agent
 from proofsmith.agent.tools import ToolSet
 from proofsmith.config import REPO, RUNS, RUNTIME_K, RUNTIME_N, RUN_TIMEOUT_S, WORK
 from proofsmith.datasets.schema import Instance, materialize
@@ -110,7 +110,7 @@ def _parse_classification(content: str | None) -> Classification | None:
     return parsed
 
 
-def classify(issue: dict, repo_summary: str, llm) -> Classification:
+def classify(issue: dict, repo_summary: str, llm, budget: Budget | None = None) -> Classification:
     system = _read("classify.md")
     title = str(issue.get("title") or "")
     body = str(issue.get("body") or "")
@@ -119,8 +119,18 @@ def classify(issue: dict, repo_summary: str, llm) -> Classification:
         {"role": "system", "content": system},
         {"role": "user", "content": user},
     ]
-    for _ in range(2):
-        response = llm.chat(messages, None, 1024)
+    used_tokens = 0
+    classify_started = time.monotonic()
+    for attempt in range(2):
+        maximum = 1024
+        if budget is not None:
+            maximum = min(maximum, budget.max_total_tokens - used_tokens - input_token_upper_bound(messages, None))
+            if maximum <= 0 or attempt >= budget.max_steps or time.monotonic() - classify_started >= budget.max_wall_s:
+                return Classification(oracles=[], rationale="classifier budget exhausted", suspects=[])
+        response = llm.chat(messages, None, maximum)
+        used_tokens += _tokens(response.usage)
+        if budget is not None and used_tokens > budget.max_total_tokens:
+            return Classification(oracles=[], rationale="classifier budget exhausted: provider usage exceeded reservation", suspects=[])
         parsed = _parse_classification(response.content)
         if parsed is None:
             messages.append({"role": "assistant", "content": response.content or ""})
@@ -378,12 +388,14 @@ def make_verifier(instance: Instance, llm, budget: Budget, out_dir: Path) -> Ver
         summary = _repo_summary(sandbox.repo, _find_commands(work / "existing" / "plain"))
         issue = instance.issue.model_dump()
         before_calls = _chat_usage(llm)
-        classification = classify(issue, summary, llm)
+        classifier_budget = _child_budget(budget, usage, steps, started)
+        classification = (classify(issue, summary, llm, classifier_budget) if classifier_budget is not None
+                          else Classification(oracles=[], rationale="classifier budget exhausted", suspects=[]))
         usage = _add(usage, _usage_since(llm, before_calls))
         steps += _chat_usage(llm) - before_calls
 
         if not classification.oracles:
-            reasons.append("classifier returned no oracle")
+            reasons.append(classification.rationale if "budget" in classification.rationale else "classifier returned no oracle")
             bundle = _freeze_abstain(
                 sandbox, instance, llm, usage, cost(), wall(), reasons, None, out_dir
             )

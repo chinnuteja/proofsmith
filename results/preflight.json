@@ -1,0 +1,58 @@
+{
+  "cap_usd": 4.5,
+  "full_estimate_usd": 8.5158610394,
+  "limitation": "Historical Track B samples only; ordinary bugs and the corrected pipeline may cost differently. This is not the pilot.",
+  "pilot_estimate_usd": 1.4810193112000003,
+  "provisional": true,
+  "recorded_spend_usd": 2.5949919079999986,
+  "remaining_cap_usd": 1.9050080920000014,
+  "safety_multiplier": 1.3,
+  "schema": "proofsmith.preflight/1",
+  "systems": {
+    "b0": {
+      "full_estimate_usd": 2.6434508672000003,
+      "full_pairs": 23,
+      "mean_cost_usd": 0.088409728,
+      "pilot_estimate_usd": 0.4597305856000001,
+      "pilot_pairs": 4,
+      "proxy": "b1 exploratory samples; no real b0 pilot observation",
+      "sample_count": 4,
+      "source_files": [
+        "results/eval/B/httplib-2232/b1.json",
+        "results/eval/B/libuv-2226/b1.json",
+        "results/eval/B/onetbb-1117/b1.json",
+        "results/eval/B/spdlog-1570/b1.json"
+      ]
+    },
+    "b1": {
+      "full_estimate_usd": 2.6434508672000003,
+      "full_pairs": 23,
+      "mean_cost_usd": 0.088409728,
+      "pilot_estimate_usd": 0.4597305856000001,
+      "pilot_pairs": 4,
+      "proxy": null,
+      "sample_count": 4,
+      "source_files": [
+        "results/eval/B/httplib-2232/b1.json",
+        "results/eval/B/libuv-2226/b1.json",
+        "results/eval/B/onetbb-1117/b1.json",
+        "results/eval/B/spdlog-1570/b1.json"
+      ]
+    },
+    "proofsmith": {
+      "full_estimate_usd": 3.228959305,
+      "full_pairs": 23,
+      "mean_cost_usd": 0.10799195,
+      "pilot_estimate_usd": 0.56155814,
+      "pilot_pairs": 4,
+      "proxy": null,
+      "sample_count": 4,
+      "source_files": [
+        "results/eval/B/httplib-2232/proofsmith.json",
+        "results/eval/B/libuv-2226/proofsmith.json",
+        "results/eval/B/onetbb-1117/proofsmith.json",
+        "results/eval/B/spdlog-1570/proofsmith.json"
+      ]
+    }
+  }
+}

@@ -5,6 +5,9 @@ Proofsmith makes a C/C++ coding agent earn its green checkmark. Before touching 
 **Status: evaluation incomplete. Comparative performance has not been established.**
 
 
+The earlier pilot recorded 12 observations, 0 fail-to-pass successes, and 7 token-limit violations. [Original outcomes and cost](docs/phase-logs/pilot-outcome-2026-10-03.md) are preserved. The repaired protocol is prepared offline; its pilot has not been authorized or run. [Repair and limitations](docs/repairs/README.md).
+
+
 The intended integration is relevant to ByteAsk's documented MCP support ([C4](https://docs.byteask.ai/docs/overview)) and headless `exec` interface ([C5](https://docs.byteask.ai/docs/overview)). The local stdio integration is tested separately from the comparative experiment.
 
 ## A controlled demonstration
@@ -60,7 +63,7 @@ proofsmith replay --check --bundle results/eval/B/spdlog-1570/b1
 proofsmith mcp
 ```
 
-Offline replay requires no model credentials. It exits nonzero when the recomputed outcome differs, including changes from corrected evaluator logic. Inspect [replay_summary.json](results/replay_summary.json) instead of replacing historical evidence. A passing clean-clone replay is required before calling this release send-ready.
+Offline replay requires no model credentials. It exits nonzero when the recomputed outcome differs. Corrected historical alignment references are documented in [alignment_migration.json](results/alignment_migration.json), with original verdicts archived byte for byte and raw outcomes preserved. Inspect [replay_summary.json](results/replay_summary.json). A passing clean-clone replay is required before calling this release send-ready.
 
 Live generation uses the configured model and ledger. `proofsmith evaluate --pilot` is the pilot; a full run requires the pilot projection and a recorded budget approval. See [protocol](docs/protocol.md).
 

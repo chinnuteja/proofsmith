@@ -1,0 +1,26 @@
+{
+  "schema": "proofsmith.verdict/1",
+  "instance_id": "onetbb-1117",
+  "system": "proofsmith",
+  "track": "B",
+  "bundle_status": "abstained",
+  "build_ok_buggy": false,
+  "build_ok_fixed": false,
+  "buggy_fails": 0,
+  "fixed_fails": 0,
+  "n": 0,
+  "f2p": false,
+  "alignment": {
+    "strict": false,
+    "relaxed": false,
+    "unknown": false,
+    "hits": [],
+    "changed": []
+  },
+  "oracle": null,
+  "evidence_kinds": {},
+  "cost_usd": 0.092404048,
+  "wall_s": 112.91598890299974,
+  "error": null,
+  "trajectory": "runs/onetbb-1117-tsan-6971e872/trajectory.jsonl"
+}

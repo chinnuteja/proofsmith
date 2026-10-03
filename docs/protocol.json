@@ -1,7 +1,7 @@
 {
   "schema": "proofsmith.protocol/1",
-  "id": "v1",
-  "created_at": "2026-10-03T12:36:12.929427+00:00",
+  "id": "v2",
+  "created_at": "2026-10-03T13:48:23.414832+00:00",
   "model": "deepseek-v4-pro",
   "temperature": 0,
   "seed": 20261001,
@@ -410,11 +410,11 @@
   "files": {
     "proofsmith/__init__.py": "98d4ba9a82e6ed5bf613af65a21fa200d77e5acaf0e7ac2b07d67db45d1d56bb",
     "proofsmith/agent/__init__.py": "14e5943ecfed3683e03c0d9051df3f3d7889c4ef2c0c00f1617cf33695272ad7",
-    "proofsmith/agent/loop.py": "19a70fe9dae9316deb62945a024390c295863d3d05179a6a8575a7b637e26cf1",
+    "proofsmith/agent/loop.py": "2dc7c13de019c3be34bfacc4179fbefd88984bb23706cc8d705d07c7a1c101a0",
     "proofsmith/agent/smoke.py": "3e3c35b39cd870883e0dbfd3d453d0fe11f0a258526c3b08b86cba00068c0457",
     "proofsmith/agent/tools.py": "09f4138ef79aaec6b641eebfb1190882b5b473ffea0653c31c93450f198ff9fa",
     "proofsmith/benchmark.py": "a11fab6e40966f62ab7d3888bef5df2699e8671e1e2f1a933cd370501cf02295",
-    "proofsmith/cli.py": "b9947e099af51c179fe637e70fe4da76e3284625217077bdab9d32a02c5390f3",
+    "proofsmith/cli.py": "a6c29663aa8838b44eecca7a8f2d1ba042f95d5cd098bfbc77c01aa9b44b2e47",
     "proofsmith/config.py": "e4f4761bfd01add5eefe64320c26918df3e9b177bbd0cbd93ef326b540dd5abb",
     "proofsmith/datasets/__init__.py": "e7f650de0a207ec03dba8c8513bde5d85e7e98af16f416247d7276d808ed651c",
     "proofsmith/datasets/check.py": "8fa3ff23813514b787db68de0a6f102b23b91f6ddedeeaa97047e24fbb0acbaa",
@@ -428,9 +428,9 @@
     "proofsmith/eval/evaluator.py": "261d7dbc71252269758c62fbeb602c32048c32136df67d7794aaabe1a29b31f6",
     "proofsmith/eval/metrics.py": "131d04999bb479c053a013837854fd7cabebb901ac8279b9d80336f6bb837fc2",
     "proofsmith/eval/preflight.py": "422d266984a5a14adeeb68d3fc4a96c31369b0aa23b7a7bfa3698d7868f98371",
-    "proofsmith/eval/protocol.py": "6984757d5be25aa6c23ff9fc580d2b7e7b801cf4d9b7fb02730dc3c7769bd948",
+    "proofsmith/eval/protocol.py": "500bcd3cbd088ab2fbd99be6b32ca86e78b4a11eb8278d23fcb1be0129ea7563",
     "proofsmith/eval/replay.py": "fb66491713cc91c2360b1868699d18e1f5eae637bf916a36cf141391c182796d",
-    "proofsmith/eval/runner.py": "49f6dd96d683ff3a1748e588cd5a208e9d1b743047e215bdb3a8e69a4df366e8",
+    "proofsmith/eval/runner.py": "02dc919413546b71e0aeea73caea538d26fe50ecf8af59ccc848d03c54de8ec8",
     "proofsmith/freeze.py": "f9abf3fb484933a592852e6180e9b7cec469811553973bad1e42f5f5293fc001",
     "proofsmith/harness.py": "b171f5bc1e9915257f41c13634e40b6132b5a2dd7de6ed8fbd2e73a9d6129e06",
     "proofsmith/integration.py": "89f8dc0771ea55bafa6f9c9c9de0a1c87d4c03e523e20ca71d631de6417e1370",
@@ -444,10 +444,10 @@
     "proofsmith/oracles/runner.py": "6fa57ce35975895762a78ba80b28642249772b567bd3cda1cb7f31d97a5e8101",
     "proofsmith/oracles/signature.py": "0a0ccda665b422d2283a7db9aaf83dd17114d9013844748c94f88f592779d78f",
     "proofsmith/oracles/variants.py": "361108dcf3cc4d31d68eac3ccc3ab1f6fbdceceadee0eef548a417e0cf17fabb",
-    "proofsmith/pipeline.py": "d03349d70db90f3bd76f3864e5a0370b179640dd4c3252ea1f52c46181f21c65",
+    "proofsmith/pipeline.py": "1eab162eedf2c7c4166c3e436053045eb9af5b6683680123c74afbc504c8aea4",
     "proofsmith/report/__init__.py": "4d8f7ccf794623976517f4d5aad9c109d4d9c17266690660778a0e4357dd07b7",
     "proofsmith/report/readme.py": "c6d4c48658861f8bb3d00f630f9f9dc8f4c558ae1baea0d7c148e7040ce4acf6",
-    "proofsmith/report/results.py": "2d42dfc11fe37dc68533f4026b5f388c758a5777a34daf875bb497283987ef42",
+    "proofsmith/report/results.py": "dfdc04b3123b9d4f37a476267a572e4ed06e04235bda0a123eb792a21db5a168",
     "proofsmith/report/site.py": "b2ecf139c5816d19768544d5bd2c51d618d18dac9267d945bdb024a2594cbd32",
     "proofsmith/sandbox.py": "16e191c3a0174edc10a32e275ec10b67b5f19cf354f0bfc9cf76279d497ae4ea",
     "proofsmith/systems.py": "2bb9abccc2793e3620d4bcde16936a7488c3798d803a534c3cd9f71004e65300",
@@ -539,5 +539,6 @@
     "pyproject.toml": "8c3f92eb46dd960ef12cb90100aea0561831489533d53c67bfb7351571826ec1",
     "config/pricing.json": "2fd5d6d431ed6c1b382d6cc2c5dabb79a2f653770241453e31edde3644d22e68",
     "data/trackB/EXCLUDED.md": "760f15fa0ed7f6ca144238f28363f6f37f35166d971dee135bf4beed075dceea"
-  }
+  },
+  "token_accounting": "Reserve serialized UTF-8 input plus chat framing before every request, then clamp completion to the remaining shared budget. This conservative bound may stop before actual tokens are exhausted."
 }

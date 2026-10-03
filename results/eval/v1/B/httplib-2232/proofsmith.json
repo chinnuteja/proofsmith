@@ -1,0 +1,29 @@
+{
+  "alignment": {
+    "changed": [],
+    "hits": [],
+    "relaxed": false,
+    "strict": false,
+    "unknown": false
+  },
+  "buggy_fails": 0,
+  "build_ok_buggy": false,
+  "build_ok_fixed": false,
+  "bundle_status": "abstained",
+  "cost_usd": 0.097778208,
+  "error": null,
+  "evidence_kinds": {},
+  "f2p": false,
+  "fixed_fails": 0,
+  "instance_id": "httplib-2232",
+  "mentions_fix": true,
+  "n": 0,
+  "oracle": null,
+  "protocol_sha256": "691c69bb89f54d1e20f74997451394cf58612ec858af004bdb99306a4977cca1",
+  "schema": "proofsmith.verdict/1",
+  "system": "proofsmith",
+  "track": "B",
+  "trajectory": "runs/httplib-2232-asan_ubsan-d6dfa6e0/trajectory.jsonl",
+  "variant": null,
+  "wall_s": 171.2315058329998
+}

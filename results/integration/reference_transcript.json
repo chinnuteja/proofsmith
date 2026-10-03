@@ -1,0 +1,31 @@
+{
+  "schema": "proofsmith.integration/1",
+  "mode": "reference fixture over real MCP stdio",
+  "make": {
+    "status": "accepted",
+    "oracle": "tsan",
+    "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+    "bundle_path": "/mnt/c/Users/Profile 1/ByteAskEval/results/integration/local-05b37b4b057e/bundle",
+    "reason": "stable signature in 10/10 runs",
+    "cost_usd": 0.0,
+    "harness_source": "hand-written reference fixture"
+  },
+  "buggy": {
+    "build_ok": true,
+    "fails": 20,
+    "n": 20,
+    "evidence_kinds": {
+      "tsan:lock-order-inversion": 20
+    },
+    "passes": false
+  },
+  "fixed": {
+    "build_ok": true,
+    "fails": 0,
+    "n": 20,
+    "evidence_kinds": {
+      "none": 20
+    },
+    "passes": true
+  }
+}

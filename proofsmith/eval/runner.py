@@ -58,6 +58,16 @@ def run_eval(track: str = "all", systems: list[str] | None = None,
         approval = config.REPO / "docs/evaluation-approval.json"
         if not approval.is_file() or json.loads(approval.read_text()).get("protocol_sha256") != digest:
             raise RuntimeError("full evaluation requires a human budget approval for this protocol after the pilot")
+        pilot_path = config.RESULTS / 'pilot_cost.json'
+        audit_path = config.RESULTS / 'pilot_budget_audit.json'
+        if not pilot_path.is_file() or not audit_path.is_file():
+            raise RuntimeError('full evaluation requires a completed and budget-audited pilot for this protocol')
+        pilot_record, audit = json.loads(pilot_path.read_text()), json.loads(audit_path.read_text())
+        if not pilot_record.get('complete') or pilot_record.get('protocol_sha256') != digest or audit.get('protocol_sha256') != digest:
+            raise RuntimeError('pilot or budget audit does not match the approved protocol')
+        expected_audit = sum(map(len, protocol['pilot'].values())) * len(SYSTEMS)
+        if audit.get('violations') or audit.get('observed_bundles') != expected_audit or audit.get('expected_bundles') != expected_audit:
+            raise RuntimeError('pilot budget violations or incomplete audit block the full experiment')
     selected = set(systems or SYSTEMS)
     if not selected.issubset(SYSTEMS):
         raise ValueError("unknown system")

@@ -1,0 +1,38 @@
+{
+  "abstain_reason": null,
+  "buggy_tree_sha256": "d41a2bf5bfc2983a7c1cd2d9456e54812b4576d2fd1ed4fff6079d343a743103",
+  "cost_usd": 0.043217416,
+  "created_at": "2026-10-03T13:19:52Z",
+  "files": {
+    "harness/build.sh": "e3ec9087223d11f5f47adfa706877064a092c88fa56004d1e586fb9e27dee359",
+    "harness/main.cpp": "7d0898ff464be7eda40408db065e81b5b9b3004bf5b315ee1fc14a7824fdf2d1"
+  },
+  "flags": {
+    "cxxflags": "-g -O1 -fno-omit-frame-pointer",
+    "env": {},
+    "ldflags": ""
+  },
+  "instance_id": "Catch2-2288",
+  "model": "deepseek-v4-pro",
+  "oracle": null,
+  "protocol_sha256": "691c69bb89f54d1e20f74997451394cf58612ec858af004bdb99306a4977cca1",
+  "runtime": {
+    "fails": 0,
+    "k": 0,
+    "n": 0,
+    "signatures": {}
+  },
+  "schema": "proofsmith.verifier/1",
+  "signature": null,
+  "status": "submitted",
+  "system": "b1",
+  "trajectory": "runs/Catch2-2288-b1-9ed19e48/trajectory.jsonl",
+  "usage": {
+    "cache_hit_tokens": 114944,
+    "completion_tokens": 7825,
+    "prompt_tokens": 120378,
+    "reasoning_tokens": 6209
+  },
+  "variant": "plain",
+  "wall_s": 104.2446174669999
+}

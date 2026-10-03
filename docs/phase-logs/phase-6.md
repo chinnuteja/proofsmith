@@ -18,10 +18,22 @@ The final protocol is re-prepared after pre-observation implementation fixes. Ea
 
 The four missing dry-runs completed: one live plumbing test passed in 954.70 seconds. Their generation cost was $0.123041688. Ledger spend before the pilot: $1.646448620; remaining under the $4.50 cap: $2.853551380. Full outcomes are in `dryrun-continuation-2026-10-03.md`.
 
-Protocol SHA-256: `691c69bb89f54d1e20f74997451394cf58612ec858af004bdb99306a4977cca1`. Implementation and protocol commit: `4fff7ffa35ab9b27b413337fb2a10923c1991382`, created before any pilot attempt. The approved pilot is running. No `GATE 6: PASS` or comparative win has been claimed.
+Original v1 protocol SHA-256: `691c69bb89f54d1e20f74997451394cf58612ec858af004bdb99306a4977cca1`. Implementation and protocol commit: `4fff7ffa35ab9b27b413337fb2a10923c1991382`, created before any pilot attempt. This pilot subsequently completed; its findings and offline repair are recorded below. No `GATE 6: PASS` or comparative win has been claimed.
 
 Final offline regression suite: **85 passed in 224.15 seconds**. Desktop and mobile implementation-preview browser checks passed with source values verified against JSON and all protocol instance links returning HTTP 200.
 
 Automatic approval review blocked the paid command twice. The user then explicitly answered: **"Yes, I authorize sending those reports, source excerpts, harnesses and logs to https://api.deepseek.com within the $4.50 cap"**, in response to the question naming `deepseek-v4-pro`, visible C/C++ excerpts, bug reports, generated harnesses and compile/test logs. The authorized dry-run continuation is now running. The cap and full-run stop remain in force.
 
 The approved cap is guarded before each model request using a cache-miss input and maximum-completion cost reservation. A cap stop can leave the pilot incomplete; missing pairs remain missing and no estimate is substituted for an observation.
+
+## Pilot-discovered limitation
+
+The first Proofsmith bundle used 528,942 prompt plus completion tokens against the nominal 500,000 limit. The common loop checks usage after a response, allowing a final-request overrun. The active frozen code is preserved and the actual usage is audited in `results/pilot_budget_audit.json`. This is separate from the protected dollar cap. A full comparative experiment must not advance under the unrepaired strict token-limit claim.
+
+An isolated candidate token guard and regression tests passed **21 checks in 80.25 seconds**. Reviewable repair: `docs/repairs/token-budget.patch`; limitations and application requirements are in `docs/repairs/README.md`. No new paid protocol or full run has been authorized or started.
+
+## Completed pilot and offline repair
+
+The v1 pilot subsequently completed all twelve observations. Cost: $0.948543288. Raw fail-to-pass successes: zero. Token-limit overruns: seven. Total recorded ledger spend: $2.594991908; remaining under the existing cap: $1.905008092. Old-code remaining-experiment projection: $5.8572548034 with the safety multiplier. The detailed source-linked outcome is `pilot-outcome-2026-10-03.md`. Paid execution stopped after the pilot.
+
+The token repair was then applied offline. Applied-code, protocol versioning, full-run audit rejection and reporting tests: **35 passed in 66.34 seconds**. Protocol v2 SHA-256: `d254e46348c3a417f83f4f43902338aa1c20e77cb1110c276cd578baa498c395`. It preserves the same cases, model and deterministic ordering. Original v1 metadata and outcomes are archived and exposed separately. No v2 observation or full run is authorized or started. A new pilot authorization is required at this paid stop; full-run approval still remains separate.

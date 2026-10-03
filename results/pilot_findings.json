@@ -1,0 +1,20 @@
+{
+  "budget_violations": 7,
+  "full_run_authorized": false,
+  "observations": 12,
+  "paid_execution_stopped": true,
+  "pilot_generation_cost_usd": 0.948543288,
+  "projected_remaining_under_old_code_usd": 5.8572548034,
+  "protocol_id": "v1",
+  "protocol_sha256": "691c69bb89f54d1e20f74997451394cf58612ec858af004bdb99306a4977cca1",
+  "raw_f2p_count": 0,
+  "recorded_spend_usd": 2.5949919079999986,
+  "remaining_cap_usd": 1.9050080920000014,
+  "schema": "proofsmith.pilot-findings/1",
+  "status_counts": {
+    "abstained": 4,
+    "gave_up": 5,
+    "submitted": 3
+  },
+  "strict_budget_valid": false
+}

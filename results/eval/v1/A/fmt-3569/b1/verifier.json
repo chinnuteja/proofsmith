@@ -1,0 +1,38 @@
+{
+  "abstain_reason": null,
+  "buggy_tree_sha256": "c95455ddd115f29fd68fd1bee3d08f4020ff2ac1f07a3d0d7d1e9e8ebf9776fe",
+  "cost_usd": 0.084401416,
+  "created_at": "2026-10-03T13:28:10Z",
+  "files": {
+    "harness/build.sh": "486da5cf61b1367eee8de7802ad4f1c15506188ded5c34ee06609378452666ce",
+    "harness/repro.cpp": "e5764a4ca242404845771e8ecfab4c7f40dd645ce69458bd964bc09bcb7b515d"
+  },
+  "flags": {
+    "cxxflags": "-g -O1 -fno-omit-frame-pointer",
+    "env": {},
+    "ldflags": ""
+  },
+  "instance_id": "fmt-3569",
+  "model": "deepseek-v4-pro",
+  "oracle": null,
+  "protocol_sha256": "691c69bb89f54d1e20f74997451394cf58612ec858af004bdb99306a4977cca1",
+  "runtime": {
+    "fails": 0,
+    "k": 0,
+    "n": 0,
+    "signatures": {}
+  },
+  "schema": "proofsmith.verifier/1",
+  "signature": null,
+  "status": "submitted",
+  "system": "b1",
+  "trajectory": "runs/fmt-3569-b1-a856ce54/trajectory.jsonl",
+  "usage": {
+    "cache_hit_tokens": 366464,
+    "completion_tokens": 13078,
+    "prompt_tokens": 378955,
+    "reasoning_tokens": 8880
+  },
+  "variant": "plain",
+  "wall_s": 182.24556322700028
+}

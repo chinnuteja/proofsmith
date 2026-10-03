@@ -2,6 +2,18 @@
   "schema": "proofsmith.sources/1",
   "values": [
     {
+      "rendered": "12",
+      "source": "results/pilot_findings.json#/observations"
+    },
+    {
+      "rendered": "0",
+      "source": "results/pilot_findings.json#/raw_f2p_count"
+    },
+    {
+      "rendered": "7",
+      "source": "results/pilot_findings.json#/budget_violations"
+    },
+    {
       "rendered": "3",
       "source": "results/demo/orderd.json#/rows/buggy/ctest/passed"
     },

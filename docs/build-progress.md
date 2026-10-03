@@ -19,9 +19,9 @@ Targeted offline regression sets passed; the broader regression suite and browse
 
 The four missing real baseline dry-run observations are now complete. The continuation plumbing test passed in 954.70 seconds; its generation cost was $0.123041688, within the additional $0.75 ceiling. Phase 5's historical ceiling failure is preserved, and its old tag is not treated as proof of that historical gate. Outcomes and sources are in `docs/phase-logs/dryrun-continuation-2026-10-03.md`.
 
-Phase 6's dry-run plumbing check is complete. The protocol and implementation were committed at `4fff7ff` before the approved pilot began. The pilot is running; its cost projection, explicit full-run budget approval, and complete experiment remain. The implementation preview does not pass this experimental gate.
+Phase 6's dry-run plumbing check and approved v1 pilot are complete. The protocol and implementation were committed at `4fff7ff` before its twelve observations. Pilot cost was $0.948543288; no run achieved raw fail-to-pass. Seven runs exceeded the nominal token budget. The repaired guard, protocol versioning and audit blocker passed 35 offline checks, and v2 is prepared without starting paid observations. Total recorded spend is $2.594991908, leaving $1.905008092 under the cap. The old-code remaining-experiment estimate is $5.8572548034; it must be remeasured after repair. See the pilot outcome log and archived v1 reports. No full experiment is approved or running.
 
-Phase 7 cannot be called send-ready until a clean-clone full replay passes and qualifying worked cases are filled from real outcomes. The generated outreach is a draft while the experiment is incomplete.
+Phase 7 cannot be called send-ready until a clean-clone full replay passes and qualifying worked cases are filled from real outcomes. The four erroneous historical alignment references were corrected from the audited real replay, with originals archived byte for byte and all raw outcomes preserved. Clean-clone verification is pending. The generated outreach is a draft while the experiment is incomplete.
 
 Phase 8 remains conditional on Track B PASS and separately approved spend. No patch-correctness catch count has been claimed.
 

@@ -1,0 +1,29 @@
+{
+  "alignment": {
+    "changed": [],
+    "hits": [],
+    "relaxed": false,
+    "strict": false,
+    "unknown": false
+  },
+  "buggy_fails": 0,
+  "build_ok_buggy": false,
+  "build_ok_fixed": false,
+  "bundle_status": "gave_up",
+  "cost_usd": 0.138898056,
+  "error": "bundle has no build variant",
+  "evidence_kinds": {},
+  "f2p": false,
+  "fixed_fails": 0,
+  "instance_id": "concurrentqueue-288",
+  "mentions_fix": false,
+  "n": 0,
+  "oracle": null,
+  "protocol_sha256": "691c69bb89f54d1e20f74997451394cf58612ec858af004bdb99306a4977cca1",
+  "schema": "proofsmith.verdict/1",
+  "system": "b1",
+  "track": "B",
+  "trajectory": "runs/concurrentqueue-288-b1-f7723d46/trajectory.jsonl",
+  "variant": null,
+  "wall_s": 307.73803935
+}

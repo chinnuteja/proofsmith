@@ -146,4 +146,4 @@ def test_budget_is_shared_across_oracles(tmp_path: Path):
     result = make_verifier(_orderd(), llm, Budget(MAX_STEPS, 30, MAX_WALL_S), tmp_path / "bundle")
     assert result.status == "abstained", result.reason
     assert "budget" in result.reason
-    assert len(llm.requests) == 2
+    assert len(llm.requests) == 0
