@@ -1,0 +1,865 @@
+{
+  "check": true,
+  "matches": false,
+  "records": [
+    {
+      "bundle": "results/dryrun/orderd-deadlock/b0",
+      "matches": true,
+      "previous": {
+        "alignment": {
+          "relaxed": false,
+          "strict": false,
+          "unknown": false
+        },
+        "buggy_fails": 0,
+        "build_ok_buggy": false,
+        "build_ok_fixed": false,
+        "bundle_status": "gave_up",
+        "f2p": false,
+        "fixed_fails": 0,
+        "instance_id": "orderd-deadlock",
+        "n": 0,
+        "system": "b0",
+        "track": "demo"
+      },
+      "recomputed": {
+        "alignment": {
+          "relaxed": false,
+          "strict": false,
+          "unknown": false
+        },
+        "buggy_fails": 0,
+        "build_ok_buggy": false,
+        "build_ok_fixed": false,
+        "bundle_status": "gave_up",
+        "f2p": false,
+        "fixed_fails": 0,
+        "instance_id": "orderd-deadlock",
+        "n": 0,
+        "system": "b0",
+        "track": "demo"
+      },
+      "stored": "results/dryrun/orderd-deadlock/b0.json"
+    },
+    {
+      "bundle": "results/dryrun/orderd-deadlock/b1",
+      "matches": true,
+      "previous": {
+        "alignment": {
+          "relaxed": true,
+          "strict": true,
+          "unknown": false
+        },
+        "buggy_fails": 20,
+        "build_ok_buggy": true,
+        "build_ok_fixed": true,
+        "bundle_status": "submitted",
+        "f2p": true,
+        "fixed_fails": 0,
+        "instance_id": "orderd-deadlock",
+        "n": 20,
+        "system": "b1",
+        "track": "demo"
+      },
+      "recomputed": {
+        "alignment": {
+          "relaxed": true,
+          "strict": true,
+          "unknown": false
+        },
+        "buggy_fails": 20,
+        "build_ok_buggy": true,
+        "build_ok_fixed": true,
+        "bundle_status": "submitted",
+        "f2p": true,
+        "fixed_fails": 0,
+        "instance_id": "orderd-deadlock",
+        "n": 20,
+        "system": "b1",
+        "track": "demo"
+      },
+      "stored": "results/dryrun/orderd-deadlock/b1.json"
+    },
+    {
+      "bundle": "results/dryrun/race-stats/b0",
+      "matches": true,
+      "previous": {
+        "alignment": {
+          "relaxed": true,
+          "strict": true,
+          "unknown": false
+        },
+        "buggy_fails": 20,
+        "build_ok_buggy": true,
+        "build_ok_fixed": true,
+        "bundle_status": "submitted",
+        "f2p": true,
+        "fixed_fails": 0,
+        "instance_id": "race-stats",
+        "n": 20,
+        "system": "b0",
+        "track": "micro"
+      },
+      "recomputed": {
+        "alignment": {
+          "relaxed": true,
+          "strict": true,
+          "unknown": false
+        },
+        "buggy_fails": 20,
+        "build_ok_buggy": true,
+        "build_ok_fixed": true,
+        "bundle_status": "submitted",
+        "f2p": true,
+        "fixed_fails": 0,
+        "instance_id": "race-stats",
+        "n": 20,
+        "system": "b0",
+        "track": "micro"
+      },
+      "stored": "results/dryrun/race-stats/b0.json"
+    },
+    {
+      "bundle": "results/dryrun/race-stats/b1",
+      "matches": true,
+      "previous": {
+        "alignment": {
+          "relaxed": true,
+          "strict": true,
+          "unknown": false
+        },
+        "buggy_fails": 20,
+        "build_ok_buggy": true,
+        "build_ok_fixed": true,
+        "bundle_status": "submitted",
+        "f2p": true,
+        "fixed_fails": 0,
+        "instance_id": "race-stats",
+        "n": 20,
+        "system": "b1",
+        "track": "micro"
+      },
+      "recomputed": {
+        "alignment": {
+          "relaxed": true,
+          "strict": true,
+          "unknown": false
+        },
+        "buggy_fails": 20,
+        "build_ok_buggy": true,
+        "build_ok_fixed": true,
+        "bundle_status": "submitted",
+        "f2p": true,
+        "fixed_fails": 0,
+        "instance_id": "race-stats",
+        "n": 20,
+        "system": "b1",
+        "track": "micro"
+      },
+      "stored": "results/dryrun/race-stats/b1.json"
+    },
+    {
+      "bundle": "results/dryrun/uaf-lru/b0",
+      "matches": false,
+      "previous": {
+        "alignment": {
+          "relaxed": true,
+          "strict": true,
+          "unknown": false
+        },
+        "buggy_fails": 20,
+        "build_ok_buggy": true,
+        "build_ok_fixed": false,
+        "bundle_status": "submitted",
+        "f2p": false,
+        "fixed_fails": 0,
+        "instance_id": "uaf-lru",
+        "n": 20,
+        "system": "b0",
+        "track": "micro"
+      },
+      "recomputed": {
+        "alignment": {
+          "relaxed": true,
+          "strict": false,
+          "unknown": false
+        },
+        "buggy_fails": 20,
+        "build_ok_buggy": true,
+        "build_ok_fixed": false,
+        "bundle_status": "submitted",
+        "f2p": false,
+        "fixed_fails": 0,
+        "instance_id": "uaf-lru",
+        "n": 20,
+        "system": "b0",
+        "track": "micro"
+      },
+      "stored": "results/dryrun/uaf-lru/b0.json"
+    },
+    {
+      "bundle": "results/dryrun/uaf-lru/b1",
+      "matches": false,
+      "previous": {
+        "alignment": {
+          "relaxed": true,
+          "strict": true,
+          "unknown": false
+        },
+        "buggy_fails": 20,
+        "build_ok_buggy": true,
+        "build_ok_fixed": false,
+        "bundle_status": "submitted",
+        "f2p": false,
+        "fixed_fails": 0,
+        "instance_id": "uaf-lru",
+        "n": 20,
+        "system": "b1",
+        "track": "micro"
+      },
+      "recomputed": {
+        "alignment": {
+          "relaxed": true,
+          "strict": false,
+          "unknown": false
+        },
+        "buggy_fails": 20,
+        "build_ok_buggy": true,
+        "build_ok_fixed": false,
+        "bundle_status": "submitted",
+        "f2p": false,
+        "fixed_fails": 0,
+        "instance_id": "uaf-lru",
+        "n": 20,
+        "system": "b1",
+        "track": "micro"
+      },
+      "stored": "results/dryrun/uaf-lru/b1.json"
+    },
+    {
+      "bundle": "results/dryrun/ub-notional/b0",
+      "matches": true,
+      "previous": {
+        "alignment": {
+          "relaxed": true,
+          "strict": true,
+          "unknown": false
+        },
+        "buggy_fails": 20,
+        "build_ok_buggy": true,
+        "build_ok_fixed": true,
+        "bundle_status": "submitted",
+        "f2p": true,
+        "fixed_fails": 0,
+        "instance_id": "ub-notional",
+        "n": 20,
+        "system": "b0",
+        "track": "micro"
+      },
+      "recomputed": {
+        "alignment": {
+          "relaxed": true,
+          "strict": true,
+          "unknown": false
+        },
+        "buggy_fails": 20,
+        "build_ok_buggy": true,
+        "build_ok_fixed": true,
+        "bundle_status": "submitted",
+        "f2p": true,
+        "fixed_fails": 0,
+        "instance_id": "ub-notional",
+        "n": 20,
+        "system": "b0",
+        "track": "micro"
+      },
+      "stored": "results/dryrun/ub-notional/b0.json"
+    },
+    {
+      "bundle": "results/dryrun/ub-notional/b1",
+      "matches": true,
+      "previous": {
+        "alignment": {
+          "relaxed": false,
+          "strict": false,
+          "unknown": false
+        },
+        "buggy_fails": 0,
+        "build_ok_buggy": false,
+        "build_ok_fixed": false,
+        "bundle_status": "gave_up",
+        "f2p": false,
+        "fixed_fails": 0,
+        "instance_id": "ub-notional",
+        "n": 0,
+        "system": "b1",
+        "track": "micro"
+      },
+      "recomputed": {
+        "alignment": {
+          "relaxed": false,
+          "strict": false,
+          "unknown": false
+        },
+        "buggy_fails": 0,
+        "build_ok_buggy": false,
+        "build_ok_fixed": false,
+        "bundle_status": "gave_up",
+        "f2p": false,
+        "fixed_fails": 0,
+        "instance_id": "ub-notional",
+        "n": 0,
+        "system": "b1",
+        "track": "micro"
+      },
+      "stored": "results/dryrun/ub-notional/b1.json"
+    },
+    {
+      "bundle": "results/eval/B/httplib-2232/b1",
+      "matches": true,
+      "previous": {
+        "alignment": {
+          "relaxed": false,
+          "strict": false,
+          "unknown": false
+        },
+        "buggy_fails": 0,
+        "build_ok_buggy": false,
+        "build_ok_fixed": false,
+        "bundle_status": "gave_up",
+        "f2p": false,
+        "fixed_fails": 0,
+        "instance_id": "httplib-2232",
+        "n": 0,
+        "system": "b1",
+        "track": "B"
+      },
+      "recomputed": {
+        "alignment": {
+          "relaxed": false,
+          "strict": false,
+          "unknown": false
+        },
+        "buggy_fails": 0,
+        "build_ok_buggy": false,
+        "build_ok_fixed": false,
+        "bundle_status": "gave_up",
+        "f2p": false,
+        "fixed_fails": 0,
+        "instance_id": "httplib-2232",
+        "n": 0,
+        "system": "b1",
+        "track": "B"
+      },
+      "stored": "results/eval/B/httplib-2232/b1.json"
+    },
+    {
+      "bundle": "results/eval/B/httplib-2232/proofsmith",
+      "matches": true,
+      "previous": {
+        "alignment": {
+          "relaxed": false,
+          "strict": false,
+          "unknown": false
+        },
+        "buggy_fails": 0,
+        "build_ok_buggy": false,
+        "build_ok_fixed": false,
+        "bundle_status": "abstained",
+        "f2p": false,
+        "fixed_fails": 0,
+        "instance_id": "httplib-2232",
+        "n": 0,
+        "system": "proofsmith",
+        "track": "B"
+      },
+      "recomputed": {
+        "alignment": {
+          "relaxed": false,
+          "strict": false,
+          "unknown": false
+        },
+        "buggy_fails": 0,
+        "build_ok_buggy": false,
+        "build_ok_fixed": false,
+        "bundle_status": "abstained",
+        "f2p": false,
+        "fixed_fails": 0,
+        "instance_id": "httplib-2232",
+        "n": 0,
+        "system": "proofsmith",
+        "track": "B"
+      },
+      "stored": "results/eval/B/httplib-2232/proofsmith.json"
+    },
+    {
+      "bundle": "results/eval/B/libuv-2226/b1",
+      "matches": true,
+      "previous": {
+        "alignment": {
+          "relaxed": false,
+          "strict": false,
+          "unknown": false
+        },
+        "buggy_fails": 0,
+        "build_ok_buggy": false,
+        "build_ok_fixed": false,
+        "bundle_status": "gave_up",
+        "f2p": false,
+        "fixed_fails": 0,
+        "instance_id": "libuv-2226",
+        "n": 0,
+        "system": "b1",
+        "track": "B"
+      },
+      "recomputed": {
+        "alignment": {
+          "relaxed": false,
+          "strict": false,
+          "unknown": false
+        },
+        "buggy_fails": 0,
+        "build_ok_buggy": false,
+        "build_ok_fixed": false,
+        "bundle_status": "gave_up",
+        "f2p": false,
+        "fixed_fails": 0,
+        "instance_id": "libuv-2226",
+        "n": 0,
+        "system": "b1",
+        "track": "B"
+      },
+      "stored": "results/eval/B/libuv-2226/b1.json"
+    },
+    {
+      "bundle": "results/eval/B/libuv-2226/proofsmith",
+      "matches": true,
+      "previous": {
+        "alignment": {
+          "relaxed": false,
+          "strict": false,
+          "unknown": false
+        },
+        "buggy_fails": 0,
+        "build_ok_buggy": false,
+        "build_ok_fixed": false,
+        "bundle_status": "abstained",
+        "f2p": false,
+        "fixed_fails": 0,
+        "instance_id": "libuv-2226",
+        "n": 0,
+        "system": "proofsmith",
+        "track": "B"
+      },
+      "recomputed": {
+        "alignment": {
+          "relaxed": false,
+          "strict": false,
+          "unknown": false
+        },
+        "buggy_fails": 0,
+        "build_ok_buggy": false,
+        "build_ok_fixed": false,
+        "bundle_status": "abstained",
+        "f2p": false,
+        "fixed_fails": 0,
+        "instance_id": "libuv-2226",
+        "n": 0,
+        "system": "proofsmith",
+        "track": "B"
+      },
+      "stored": "results/eval/B/libuv-2226/proofsmith.json"
+    },
+    {
+      "bundle": "results/eval/B/onetbb-1117/b1",
+      "matches": true,
+      "previous": {
+        "alignment": {
+          "relaxed": false,
+          "strict": false,
+          "unknown": false
+        },
+        "buggy_fails": 0,
+        "build_ok_buggy": false,
+        "build_ok_fixed": false,
+        "bundle_status": "gave_up",
+        "f2p": false,
+        "fixed_fails": 0,
+        "instance_id": "onetbb-1117",
+        "n": 0,
+        "system": "b1",
+        "track": "B"
+      },
+      "recomputed": {
+        "alignment": {
+          "relaxed": false,
+          "strict": false,
+          "unknown": false
+        },
+        "buggy_fails": 0,
+        "build_ok_buggy": false,
+        "build_ok_fixed": false,
+        "bundle_status": "gave_up",
+        "f2p": false,
+        "fixed_fails": 0,
+        "instance_id": "onetbb-1117",
+        "n": 0,
+        "system": "b1",
+        "track": "B"
+      },
+      "stored": "results/eval/B/onetbb-1117/b1.json"
+    },
+    {
+      "bundle": "results/eval/B/onetbb-1117/proofsmith",
+      "matches": true,
+      "previous": {
+        "alignment": {
+          "relaxed": false,
+          "strict": false,
+          "unknown": false
+        },
+        "buggy_fails": 0,
+        "build_ok_buggy": false,
+        "build_ok_fixed": false,
+        "bundle_status": "abstained",
+        "f2p": false,
+        "fixed_fails": 0,
+        "instance_id": "onetbb-1117",
+        "n": 0,
+        "system": "proofsmith",
+        "track": "B"
+      },
+      "recomputed": {
+        "alignment": {
+          "relaxed": false,
+          "strict": false,
+          "unknown": false
+        },
+        "buggy_fails": 0,
+        "build_ok_buggy": false,
+        "build_ok_fixed": false,
+        "bundle_status": "abstained",
+        "f2p": false,
+        "fixed_fails": 0,
+        "instance_id": "onetbb-1117",
+        "n": 0,
+        "system": "proofsmith",
+        "track": "B"
+      },
+      "stored": "results/eval/B/onetbb-1117/proofsmith.json"
+    },
+    {
+      "bundle": "results/eval/B/spdlog-1570/b1",
+      "matches": true,
+      "previous": {
+        "alignment": {
+          "relaxed": false,
+          "strict": false,
+          "unknown": false
+        },
+        "buggy_fails": 20,
+        "build_ok_buggy": true,
+        "build_ok_fixed": true,
+        "bundle_status": "submitted",
+        "f2p": true,
+        "fixed_fails": 0,
+        "instance_id": "spdlog-1570",
+        "n": 20,
+        "system": "b1",
+        "track": "B"
+      },
+      "recomputed": {
+        "alignment": {
+          "relaxed": false,
+          "strict": false,
+          "unknown": false
+        },
+        "buggy_fails": 20,
+        "build_ok_buggy": true,
+        "build_ok_fixed": true,
+        "bundle_status": "submitted",
+        "f2p": true,
+        "fixed_fails": 0,
+        "instance_id": "spdlog-1570",
+        "n": 20,
+        "system": "b1",
+        "track": "B"
+      },
+      "stored": "results/eval/B/spdlog-1570/b1.json"
+    },
+    {
+      "bundle": "results/eval/B/spdlog-1570/proofsmith",
+      "matches": true,
+      "previous": {
+        "alignment": {
+          "relaxed": false,
+          "strict": false,
+          "unknown": false
+        },
+        "buggy_fails": 0,
+        "build_ok_buggy": false,
+        "build_ok_fixed": false,
+        "bundle_status": "abstained",
+        "f2p": false,
+        "fixed_fails": 0,
+        "instance_id": "spdlog-1570",
+        "n": 0,
+        "system": "proofsmith",
+        "track": "B"
+      },
+      "recomputed": {
+        "alignment": {
+          "relaxed": false,
+          "strict": false,
+          "unknown": false
+        },
+        "buggy_fails": 0,
+        "build_ok_buggy": false,
+        "build_ok_fixed": false,
+        "bundle_status": "abstained",
+        "f2p": false,
+        "fixed_fails": 0,
+        "instance_id": "spdlog-1570",
+        "n": 0,
+        "system": "proofsmith",
+        "track": "B"
+      },
+      "stored": "results/eval/B/spdlog-1570/proofsmith.json"
+    },
+    {
+      "bundle": "results/verifiers/orderd-deadlock/bundle",
+      "matches": true,
+      "previous": {
+        "alignment": {
+          "relaxed": true,
+          "strict": true,
+          "unknown": false
+        },
+        "buggy_fails": 20,
+        "build_ok_buggy": true,
+        "build_ok_fixed": true,
+        "bundle_status": "accepted",
+        "f2p": true,
+        "fixed_fails": 0,
+        "instance_id": "orderd-deadlock",
+        "n": 20,
+        "system": "proofsmith",
+        "track": "demo"
+      },
+      "recomputed": {
+        "alignment": {
+          "relaxed": true,
+          "strict": true,
+          "unknown": false
+        },
+        "buggy_fails": 20,
+        "build_ok_buggy": true,
+        "build_ok_fixed": true,
+        "bundle_status": "accepted",
+        "f2p": true,
+        "fixed_fails": 0,
+        "instance_id": "orderd-deadlock",
+        "n": 20,
+        "system": "proofsmith",
+        "track": "demo"
+      },
+      "stored": "results/dryrun/orderd-deadlock/proofsmith.json"
+    },
+    {
+      "bundle": "results/verifiers/race-stats/bundle",
+      "matches": true,
+      "previous": {
+        "alignment": {
+          "relaxed": true,
+          "strict": true,
+          "unknown": false
+        },
+        "buggy_fails": 20,
+        "build_ok_buggy": true,
+        "build_ok_fixed": true,
+        "bundle_status": "accepted",
+        "f2p": true,
+        "fixed_fails": 0,
+        "instance_id": "race-stats",
+        "n": 20,
+        "system": "proofsmith",
+        "track": "micro"
+      },
+      "recomputed": {
+        "alignment": {
+          "relaxed": true,
+          "strict": true,
+          "unknown": false
+        },
+        "buggy_fails": 20,
+        "build_ok_buggy": true,
+        "build_ok_fixed": true,
+        "bundle_status": "accepted",
+        "f2p": true,
+        "fixed_fails": 0,
+        "instance_id": "race-stats",
+        "n": 20,
+        "system": "proofsmith",
+        "track": "micro"
+      },
+      "stored": "results/dryrun/race-stats/proofsmith.json"
+    },
+    {
+      "bundle": "results/verifiers/rounding-ticks/bundle",
+      "matches": false,
+      "previous": {
+        "alignment": {
+          "relaxed": false,
+          "strict": false,
+          "unknown": false
+        },
+        "buggy_fails": 20,
+        "build_ok_buggy": true,
+        "build_ok_fixed": true,
+        "bundle_status": "accepted",
+        "f2p": true,
+        "fixed_fails": 0,
+        "instance_id": "rounding-ticks",
+        "n": 20,
+        "system": "proofsmith",
+        "track": "micro"
+      },
+      "recomputed": {
+        "alignment": {
+          "relaxed": true,
+          "strict": true,
+          "unknown": false
+        },
+        "buggy_fails": 20,
+        "build_ok_buggy": true,
+        "build_ok_fixed": true,
+        "bundle_status": "accepted",
+        "f2p": true,
+        "fixed_fails": 0,
+        "instance_id": "rounding-ticks",
+        "n": 20,
+        "system": "proofsmith",
+        "track": "micro"
+      },
+      "stored": "results/dryrun/rounding-ticks/proofsmith.json"
+    },
+    {
+      "bundle": "results/verifiers/uaf-lru/bundle",
+      "matches": false,
+      "previous": {
+        "alignment": {
+          "relaxed": true,
+          "strict": true,
+          "unknown": false
+        },
+        "buggy_fails": 20,
+        "build_ok_buggy": true,
+        "build_ok_fixed": false,
+        "bundle_status": "accepted",
+        "f2p": false,
+        "fixed_fails": 0,
+        "instance_id": "uaf-lru",
+        "n": 20,
+        "system": "proofsmith",
+        "track": "micro"
+      },
+      "recomputed": {
+        "alignment": {
+          "relaxed": true,
+          "strict": false,
+          "unknown": false
+        },
+        "buggy_fails": 20,
+        "build_ok_buggy": true,
+        "build_ok_fixed": false,
+        "bundle_status": "accepted",
+        "f2p": false,
+        "fixed_fails": 0,
+        "instance_id": "uaf-lru",
+        "n": 20,
+        "system": "proofsmith",
+        "track": "micro"
+      },
+      "stored": "results/dryrun/uaf-lru/proofsmith.json"
+    },
+    {
+      "bundle": "results/verifiers/ub-notional/bundle",
+      "matches": true,
+      "previous": {
+        "alignment": {
+          "relaxed": true,
+          "strict": true,
+          "unknown": false
+        },
+        "buggy_fails": 20,
+        "build_ok_buggy": true,
+        "build_ok_fixed": true,
+        "bundle_status": "accepted",
+        "f2p": true,
+        "fixed_fails": 0,
+        "instance_id": "ub-notional",
+        "n": 20,
+        "system": "proofsmith",
+        "track": "micro"
+      },
+      "recomputed": {
+        "alignment": {
+          "relaxed": true,
+          "strict": true,
+          "unknown": false
+        },
+        "buggy_fails": 20,
+        "build_ok_buggy": true,
+        "build_ok_fixed": true,
+        "bundle_status": "accepted",
+        "f2p": true,
+        "fixed_fails": 0,
+        "instance_id": "ub-notional",
+        "n": 20,
+        "system": "proofsmith",
+        "track": "micro"
+      },
+      "stored": "results/dryrun/ub-notional/proofsmith.json"
+    },
+    {
+      "bundle": "results/verifiers/vague-perf/bundle",
+      "matches": true,
+      "previous": {
+        "alignment": {
+          "relaxed": false,
+          "strict": false,
+          "unknown": false
+        },
+        "buggy_fails": 0,
+        "build_ok_buggy": false,
+        "build_ok_fixed": false,
+        "bundle_status": "abstained",
+        "f2p": false,
+        "fixed_fails": 0,
+        "instance_id": "vague-perf",
+        "n": 0,
+        "system": "proofsmith",
+        "track": "micro"
+      },
+      "recomputed": {
+        "alignment": {
+          "relaxed": false,
+          "strict": false,
+          "unknown": false
+        },
+        "buggy_fails": 0,
+        "build_ok_buggy": false,
+        "build_ok_fixed": false,
+        "bundle_status": "abstained",
+        "f2p": false,
+        "fixed_fails": 0,
+        "instance_id": "vague-perf",
+        "n": 0,
+        "system": "proofsmith",
+        "track": "micro"
+      },
+      "stored": "results/dryrun/vague-perf/proofsmith.json"
+    }
+  ],
+  "schema": "proofsmith.replay/1"
+}

@@ -1,0 +1,281 @@
+{
+  "alignment": {
+    "changed": [
+      {
+        "end": 6,
+        "file": "metrics.cpp",
+        "function": "record",
+        "start": 3
+      },
+      {
+        "end": 8,
+        "file": "metrics.cpp",
+        "function": "requests",
+        "start": 8
+      }
+    ],
+    "hits": [
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      },
+      {
+        "evidence": "metrics.cpp:4 Stats::record(unsigned long)",
+        "file": "metrics.cpp",
+        "function": "record",
+        "via": "frame"
+      }
+    ],
+    "relaxed": true,
+    "strict": true,
+    "unknown": false
+  },
+  "buggy_fails": 20,
+  "build_ok_buggy": true,
+  "build_ok_fixed": true,
+  "bundle_status": "submitted",
+  "cost_usd": 0.022027544,
+  "error": null,
+  "evidence_kinds": {
+    "tsan:data-race": 20
+  },
+  "f2p": true,
+  "fixed_fails": 0,
+  "instance_id": "race-stats",
+  "n": 20,
+  "oracle": null,
+  "schema": "proofsmith.verdict/1",
+  "system": "b0",
+  "track": "micro",
+  "wall_s": 60.31812244899993
+}

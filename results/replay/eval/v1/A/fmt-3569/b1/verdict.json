@@ -1,0 +1,27 @@
+{
+  "alignment": {
+    "changed": [],
+    "hits": [],
+    "relaxed": false,
+    "strict": false,
+    "unknown": false
+  },
+  "buggy_fails": 20,
+  "build_ok_buggy": true,
+  "build_ok_fixed": true,
+  "bundle_status": "submitted",
+  "cost_usd": 0.084401416,
+  "error": null,
+  "evidence_kinds": {
+    "exit:1": 20
+  },
+  "f2p": false,
+  "fixed_fails": 20,
+  "instance_id": "fmt-3569",
+  "n": 20,
+  "oracle": null,
+  "schema": "proofsmith.verdict/1",
+  "system": "b1",
+  "track": "A",
+  "wall_s": 182.24556322700028
+}

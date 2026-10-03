@@ -1,0 +1,104 @@
+{
+  "decision": {
+    "accepted": true,
+    "count": 10,
+    "n": 10,
+    "reason": "frozen bundle",
+    "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp"
+  },
+  "generated_at": "2026-10-03T14:11:04Z",
+  "harness_source": "proofsmith",
+  "instance_id": "orderd-deadlock",
+  "issue": {
+    "body": "A few times a week in production, orderd stops responding during busy periods.\nCPU drops to ~0% and no more log lines appear; we have to kill -9 it.\nThe last log lines before a freeze always show a cancel being processed while the\nperiodic risk sweep is running. All ctest tests pass and we cannot reproduce it on\ndemand locally. Expected: cancels and the risk sweep can run at the same time\nwithout the process ever freezing.\n",
+    "title": "orderd occasionally freezes under load; process must be killed"
+  },
+  "oracle": "tsan",
+  "raw_report_buggy": "==================\nWARNING: ThreadSanitizer: lock-order-inversion (potential deadlock) (pid=2)\n  Cycle in lock order graph: M0 (0x7fffffffddb8) => M1 (0x7fffffffdde0) => M0\n\n  Mutex M1 acquired here while holding mutex M0 in thread T1:\n    #0 pthread_mutex_lock <null> (harness+0x6323e) (BuildId: 260ababf8c0c4dbda038c45bf977d8f5791cc1ee)\n    #1 __gthread_mutex_lock(pthread_mutex_t*) /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/x86_64-linux-gnu/c++/13/bits/gthr-default.h:749:12 (harness+0xe27ca) (BuildId: 260ababf8c0c4dbda038c45bf977d8f5791cc1ee)\n    #2 std::mutex::lock() /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/bits/std_mutex.h:113:17 (harness+0xe27ca)\n    #3 std::lock_guard<std::mutex>::lock_guard(std::mutex&) /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/bits/std_mutex.h:249:19 (harness+0xe27ca)\n    #4 orderd::OrderBook::cancel(unsigned long) /home/chinnu/psw/demo/orderd/buggy/order_book.cpp:31:31 (harness+0xe27ca)\n    #5 main::$_0::operator()() const /home/chinnu/psw/demo/orderd/buggy/proofsmith_harness/harness.cpp:17:40 (harness+0xe1fa8) (BuildId: 260ababf8c0c4dbda038c45bf977d8f5791cc1ee)\n    #6 void std::__invoke_impl<void, main::$_0>(std::__invoke_other, main::$_0&&) /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/bits/invoke.h:61:14 (harness+0xe1fa8)\n    #7 std::__invoke_result<main::$_0>::type std::__invoke<main::$_0>(main::$_0&&) /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/bits/invoke.h:96:14 (harness+0xe1fa8)\n    #8 void std::thread::_Invoker<std::tuple<main::$_0>>::_M_invoke<0ul>(std::_Index_tuple<0ul>) /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/bits/std_thread.h:292:13 (harness+0xe1fa8)\n    #9 std::thread::_Invoker<std::tuple<main::$_0>>::operator()() /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/bits/std_thread.h:299:11 (harness+0xe1fa8)\n    #10 std::thread::_State_impl<std::thread::_Invoker<std::tuple<main::$_0>>>::_M_run() /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/bits/std_thread.h:244:13 (harness+0xe1fa8)\n    #11 <null> <null> (libstdc++.so.6+0xecdb3) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)\n\n  Mutex M0 previously acquired by the same thread here:\n    #0 pthread_mutex_lock <null> (harness+0x6323e) (BuildId: 260ababf8c0c4dbda038c45bf977d8f5791cc1ee)\n    #1 __gthread_mutex_lock(pthread_mutex_t*) /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/x86_64-linux-gnu/c++/13/bits/gthr-default.h:749:12 (harness+0xe25c7) (BuildId: 260ababf8c0c4dbda038c45bf977d8f5791cc1ee)\n    #2 std::mutex::lock() /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/bits/std_mutex.h:113:17 (harness+0xe25c7)\n    #3 std::lock_guard<std::mutex>::lock_guard(std::mutex&) /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/bits/std_mutex.h:249:19 (harness+0xe25c7)\n    #4 orderd::OrderBook::cancel(unsigned long) /home/chinnu/psw/demo/orderd/buggy/order_book.cpp:26:31 (harness+0xe25c7)\n    #5 main::$_0::operator()() const /home/chinnu/psw/demo/orderd/buggy/proofsmith_harness/harness.cpp:17:40 (harness+0xe1fa8) (BuildId: 260ababf8c0c4dbda038c45bf977d8f5791cc1ee)\n    #6 void std::__invoke_impl<void, main::$_0>(std::__invoke_other, main::$_0&&) /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/bits/invoke.h:61:14 (harness+0xe1fa8)\n    #7 std::__invoke_result<main::$_0>::type std::__invoke<main::$_0>(main::$_0&&) /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/bits/invoke.h:96:14 (harness+0xe1fa8)\n    #8 void std::thread::_Invoker<std::tuple<main::$_0>>::_M_invoke<0ul>(std::_Index_tuple<0ul>) /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/bits/std_thread.h:292:13 (harness+0xe1fa8)\n    #9 std::thread::_Invoker<std::tuple<main::$_0>>::operator()() /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/bits/std_thread.h:299:11 (harness+0xe1fa8)\n    #10 std::thread::_State_impl<std::thread::_Invoker<std::tuple<main::$_0>>>::_M_run() /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/bits/std_thread.h:244:13 (harness+0xe1fa8)\n    #11 <null> <null> (libstdc++.so.6+0xecdb3) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)\n\n  Mutex M0 acquired here while holding mutex M1 in thread T2:\n    #0 pthread_mutex_lock <null> (harness+0x6323e) (BuildId: 260ababf8c0c4dbda038c45bf977d8f5791cc1ee)\n    #1 __gthread_mutex_lock(pthread_mutex_t*) /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/x86_64-linux-gnu/c++/13/bits/gthr-default.h:749:12 (harness+0xe28ec) (BuildId: 260ababf8c0c4dbda038c45bf977d8f5791cc1ee)\n    #2 std::mutex::lock() /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/bits/std_mutex.h:113:17 (harness+0xe28ec)\n    #3 std::lock_guard<std::mutex>::lock_guard(std::mutex&) /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/bits/std_mutex.h:249:19 (harness+0xe28ec)\n    #4 orderd::OrderBook::risk_sweep() /home/chinnu/psw/demo/orderd/buggy/order_book.cpp:38:31 (harness+0xe28ec)\n    #5 main::$_1::operator()() const /home/chinnu/psw/demo/orderd/buggy/proofsmith_harness/harness.cpp:18:38 (harness+0xe2023) (BuildId: 260ababf8c0c4dbda038c45bf977d8f5791cc1ee)\n    #6 void std::__invoke_impl<void, main::$_1>(std::__invoke_other, main::$_1&&) /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/bits/invoke.h:61:14 (harness+0xe2023)\n    #7 std::__invoke_result<main::$_1>::type std::__invoke<main::$_1>(main::$_1&&) /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/bits/invoke.h:96:14 (harness+0xe2023)\n    #8 void std::thread::_Invoker<std::tuple<main::$_1>>::_M_invoke<0ul>(std::_Index_tuple<0ul>) /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/bits/std_thread.h:292:13 (harness+0xe2023)\n    #9 std::thread::_Invoker<std::tuple<main::$_1>>::operator()() /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/bits/std_thread.h:299:11 (harness+0xe2023)\n    #10 std::thread::_State_impl<std::thread::_Invoker<std::tuple<main::$_1>>>::_M_run() /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/bits/std_thread.h:244:13 (harness+0xe2023)\n    #11 <null> <null> (libstdc++.so.6+0xecdb3) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)\n\n  Mutex M1 previously acquired by the same thread here:\n    #0 pthread_mutex_lock <null> (harness+0x6323e) (BuildId: 260ababf8c0c4dbda038c45bf977d8f5791cc1ee)\n    #1 __gthread_mutex_lock(pthread_mutex_t*) /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/x86_64-linux-gnu/c++/13/bits/gthr-default.h:749:12 (harness+0xe28d8) (BuildId: 260ababf8c0c4dbda038c45bf977d8f5791cc1ee)\n    #2 std::mutex::lock() /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/bits/std_mutex.h:113:17 (harness+0xe28d8)\n    #3 std::lock_guard<std::mutex>::lock_guard(std::mutex&) /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/bits/std_mutex.h:249:19 (harness+0xe28d8)\n    #4 orderd::OrderBook::risk_sweep() /home/chinnu/psw/demo/orderd/buggy/order_book.cpp:37:31 (harness+0xe28d8)\n    #5 main::$_1::operator()() const /home/chinnu/psw/demo/orderd/buggy/proofsmith_harness/harness.cpp:18:38 (harness+0xe2023) (BuildId: 260ababf8c0c4dbda038c45bf977d8f5791cc1ee)\n    #6 void std::__invoke_impl<void, main::$_1>(std::__invoke_other, main::$_1&&) /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/bits/invoke.h:61:14 (harness+0xe2023)\n    #7 std::__invoke_result<main::$_1>::type std::__invoke<main::$_1>(main::$_1&&) /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/bits/invoke.h:96:14 (harness+0xe2023)\n    #8 void std::thread::_Invoker<std::tuple<main::$_1>>::_M_invoke<0ul>(std::_Index_tuple<0ul>) /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/bits/std_thread.h:292:13 (harness+0xe2023)\n    #9 std::thread::_Invoker<std::tuple<main::$_1>>::operator()() /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/bits/std_thread.h:299:11 (harness+0xe2023)\n    #10 std::thread::_State_impl<std::thread::_Invoker<std::tuple<main::$_1>>>::_M_run() /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/bits/std_thread.h:244:13 (harness+0xe2023)\n    #11 <null> <null> (libstdc++.so.6+0xecdb3) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)\n\n  Thread T1 (tid=5, finished) created by main thread at:\n    #0 pthread_create <null> (harness+0x6170f) (BuildId: 260ababf8c0c4dbda038c45bf977d8f5791cc1ee)\n    #1 std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State>>, void (*)()) <null> (libstdc++.so.6+0xeceb0) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)\n    #2 __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16 (libc.so.6+0x2a1c9) (BuildId: a4a7992a8e66555c8141ab2a08a8465ff6e0ea65)\n\n  Thread T2 (tid=6, running) created by main thread at:\n    #0 pthread_create <null> (harness+0x6170f) (BuildId: 260ababf8c0c4dbda038c45bf977d8f5791cc1ee)\n    #1 std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State>>, void (*)()) <null> (libstdc++.so.6+0xeceb0) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)\n    #2 __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16 (libc.so.6+0x2a1c9) (BuildId: a4a7992a8e66555c8141ab2a08a8465ff6e0ea65)\n\nSUMMARY: ThreadSanitizer: lock-order-inversion (potential deadlock) (/home/chinnu/psw/demo/orderd/verify/buggy/harness-out/harness+0x6323e) (BuildId: 260ababf8c0c4dbda038c45bf977d8f5791cc1ee) in pthread_mutex_lock\n==================\n",
+  "rows": {
+    "buggy": {
+      "ctest": {
+        "passed": 3,
+        "total": 3
+      },
+      "stress": {
+        "fails": 20,
+        "n": 20
+      },
+      "verifier": {
+        "fails": 20,
+        "n": 20
+      }
+    },
+    "consistent_order": {
+      "ctest": {
+        "passed": 3,
+        "total": 3
+      },
+      "stress": {
+        "fails": 0,
+        "n": 20
+      },
+      "verifier": {
+        "fails": 0,
+        "n": 20
+      }
+    },
+    "scoped_cancel": {
+      "ctest": {
+        "passed": 3,
+        "total": 3
+      },
+      "stress": {
+        "fails": 0,
+        "n": 20
+      },
+      "verifier": {
+        "fails": 0,
+        "n": 20
+      }
+    },
+    "timing_backoff": {
+      "ctest": {
+        "passed": 3,
+        "total": 3
+      },
+      "stress": {
+        "fails": 20,
+        "n": 20
+      },
+      "verifier": {
+        "fails": 20,
+        "n": 20
+      }
+    }
+  },
+  "schema": "proofsmith.demo/1",
+  "strip": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "verifier": {
+    "files": {
+      "harness/build.sh": "65029abc1f52f1e2b0213fdcfa76eeed6bcac3eb51e0bd55ddb9d742abeb2b7f",
+      "harness/harness.cpp": "8dc71ec2e7f64295704c2514cb7b4936aff4d585b9a3f2811f8721b7e2c03c0d"
+    },
+    "runtime": {
+      "fails": 10,
+      "k": 8,
+      "n": 10,
+      "signatures": {
+        "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp": 10
+      }
+    },
+    "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp"
+  }
+}

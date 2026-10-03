@@ -1,0 +1,155 @@
+{
+  "alignment": {
+    "changed": [
+      {
+        "end": 3,
+        "file": "pricing.cpp",
+        "function": "notional",
+        "start": 3
+      }
+    ],
+    "hits": [
+      {
+        "evidence": "pricing.cpp:3 notional(int, int)",
+        "file": "pricing.cpp",
+        "function": "notional",
+        "via": "frame"
+      },
+      {
+        "evidence": "pricing.cpp:3 notional(int, int)",
+        "file": "pricing.cpp",
+        "function": "notional",
+        "via": "frame"
+      },
+      {
+        "evidence": "pricing.cpp:3 notional(int, int)",
+        "file": "pricing.cpp",
+        "function": "notional",
+        "via": "frame"
+      },
+      {
+        "evidence": "pricing.cpp:3 notional(int, int)",
+        "file": "pricing.cpp",
+        "function": "notional",
+        "via": "frame"
+      },
+      {
+        "evidence": "pricing.cpp:3 notional(int, int)",
+        "file": "pricing.cpp",
+        "function": "notional",
+        "via": "frame"
+      },
+      {
+        "evidence": "pricing.cpp:3 notional(int, int)",
+        "file": "pricing.cpp",
+        "function": "notional",
+        "via": "frame"
+      },
+      {
+        "evidence": "pricing.cpp:3 notional(int, int)",
+        "file": "pricing.cpp",
+        "function": "notional",
+        "via": "frame"
+      },
+      {
+        "evidence": "pricing.cpp:3 notional(int, int)",
+        "file": "pricing.cpp",
+        "function": "notional",
+        "via": "frame"
+      },
+      {
+        "evidence": "pricing.cpp:3 notional(int, int)",
+        "file": "pricing.cpp",
+        "function": "notional",
+        "via": "frame"
+      },
+      {
+        "evidence": "pricing.cpp:3 notional(int, int)",
+        "file": "pricing.cpp",
+        "function": "notional",
+        "via": "frame"
+      },
+      {
+        "evidence": "pricing.cpp:3 notional(int, int)",
+        "file": "pricing.cpp",
+        "function": "notional",
+        "via": "frame"
+      },
+      {
+        "evidence": "pricing.cpp:3 notional(int, int)",
+        "file": "pricing.cpp",
+        "function": "notional",
+        "via": "frame"
+      },
+      {
+        "evidence": "pricing.cpp:3 notional(int, int)",
+        "file": "pricing.cpp",
+        "function": "notional",
+        "via": "frame"
+      },
+      {
+        "evidence": "pricing.cpp:3 notional(int, int)",
+        "file": "pricing.cpp",
+        "function": "notional",
+        "via": "frame"
+      },
+      {
+        "evidence": "pricing.cpp:3 notional(int, int)",
+        "file": "pricing.cpp",
+        "function": "notional",
+        "via": "frame"
+      },
+      {
+        "evidence": "pricing.cpp:3 notional(int, int)",
+        "file": "pricing.cpp",
+        "function": "notional",
+        "via": "frame"
+      },
+      {
+        "evidence": "pricing.cpp:3 notional(int, int)",
+        "file": "pricing.cpp",
+        "function": "notional",
+        "via": "frame"
+      },
+      {
+        "evidence": "pricing.cpp:3 notional(int, int)",
+        "file": "pricing.cpp",
+        "function": "notional",
+        "via": "frame"
+      },
+      {
+        "evidence": "pricing.cpp:3 notional(int, int)",
+        "file": "pricing.cpp",
+        "function": "notional",
+        "via": "frame"
+      },
+      {
+        "evidence": "pricing.cpp:3 notional(int, int)",
+        "file": "pricing.cpp",
+        "function": "notional",
+        "via": "frame"
+      }
+    ],
+    "relaxed": true,
+    "strict": true,
+    "unknown": false
+  },
+  "buggy_fails": 20,
+  "build_ok_buggy": true,
+  "build_ok_fixed": true,
+  "bundle_status": "accepted",
+  "cost_usd": 0.033169664,
+  "error": null,
+  "evidence_kinds": {
+    "ubsan:signed-integer-overflow": 20
+  },
+  "f2p": true,
+  "fixed_fails": 0,
+  "instance_id": "ub-notional",
+  "n": 20,
+  "oracle": "asan_ubsan",
+  "schema": "proofsmith.verdict/1",
+  "system": "proofsmith",
+  "track": "micro",
+  "wall_s": 210.86411587399994
+}

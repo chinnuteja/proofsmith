@@ -1,0 +1,28 @@
+{
+  "alignment": {
+    "changed": [],
+    "error": "fix diff unavailable; alignment cannot be scored",
+    "hits": [],
+    "relaxed": false,
+    "strict": false,
+    "unknown": true
+  },
+  "buggy_fails": 20,
+  "build_ok_buggy": true,
+  "build_ok_fixed": true,
+  "bundle_status": "submitted",
+  "cost_usd": 0.033550704,
+  "error": null,
+  "evidence_kinds": {
+    "exit:1": 20
+  },
+  "f2p": false,
+  "fixed_fails": 20,
+  "instance_id": "vague-perf",
+  "n": 20,
+  "oracle": null,
+  "schema": "proofsmith.verdict/1",
+  "system": "b0",
+  "track": "micro",
+  "wall_s": 241.601215322
+}

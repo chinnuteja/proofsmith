@@ -1,0 +1,34 @@
+{
+  "alignment": {
+    "changed": [
+      {
+        "end": 82,
+        "file": "price_cache.cpp",
+        "function": "get",
+        "start": 72
+      }
+    ],
+    "hits": [],
+    "relaxed": true,
+    "strict": false,
+    "unknown": false
+  },
+  "buggy_fails": 20,
+  "build_ok_buggy": true,
+  "build_ok_fixed": false,
+  "bundle_status": "submitted",
+  "cost_usd": 0.025347168,
+  "error": null,
+  "evidence_kinds": {
+    "asan:heap-use-after-free": 20
+  },
+  "f2p": false,
+  "fixed_fails": 0,
+  "instance_id": "uaf-lru",
+  "n": 20,
+  "oracle": null,
+  "schema": "proofsmith.verdict/1",
+  "system": "b1",
+  "track": "micro",
+  "wall_s": 65.58672396599968
+}

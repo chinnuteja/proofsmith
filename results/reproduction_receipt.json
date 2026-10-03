@@ -1,0 +1,12 @@
+{
+  "all_verdicts_match": true,
+  "bundles_checked": 38,
+  "clean_before_execution": true,
+  "clone_path": "/home/chinnu/psw/clean-clone.65hSzV",
+  "dependency_context": "existing WSL toolchain and cached pinned upstream mirrors",
+  "env_file_absent": true,
+  "exit_code": 0,
+  "model_key_unset": true,
+  "schema": "proofsmith.clean-clone/1",
+  "source_commit": "5488133e656cf849167966954970bedef0b95423"
+}

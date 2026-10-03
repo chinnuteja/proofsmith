@@ -1,0 +1,25 @@
+{
+  "alignment": {
+    "changed": [],
+    "hits": [],
+    "relaxed": false,
+    "strict": false,
+    "unknown": false
+  },
+  "buggy_fails": 0,
+  "build_ok_buggy": false,
+  "build_ok_fixed": false,
+  "bundle_status": "gave_up",
+  "cost_usd": 0.0073562720000000005,
+  "error": "bundle has no build variant",
+  "evidence_kinds": {},
+  "f2p": false,
+  "fixed_fails": 0,
+  "instance_id": "ub-notional",
+  "n": 0,
+  "oracle": null,
+  "schema": "proofsmith.verdict/1",
+  "system": "b1",
+  "track": "micro",
+  "wall_s": 21.851769728999898
+}

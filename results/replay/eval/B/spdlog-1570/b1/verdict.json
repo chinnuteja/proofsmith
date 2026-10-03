@@ -1,0 +1,46 @@
+{
+  "alignment": {
+    "changed": [
+      {
+        "end": 77,
+        "file": "include/spdlog/sinks/daily_file_sink.h",
+        "function": "filename",
+        "start": 73
+      },
+      {
+        "end": 171,
+        "file": "include/spdlog/sinks/daily_file_sink.h",
+        "function": "delete_old_",
+        "start": 153
+      },
+      {
+        "end": 61,
+        "file": "include/spdlog/sinks/rotating_file_sink-inl.h",
+        "function": "filename",
+        "start": 57
+      }
+    ],
+    "hits": [],
+    "relaxed": false,
+    "strict": false,
+    "unknown": false
+  },
+  "buggy_fails": 20,
+  "build_ok_buggy": true,
+  "build_ok_fixed": true,
+  "bundle_status": "submitted",
+  "cost_usd": 0.060373896,
+  "error": null,
+  "evidence_kinds": {
+    "exit:1": 20
+  },
+  "f2p": true,
+  "fixed_fails": 0,
+  "instance_id": "spdlog-1570",
+  "n": 20,
+  "oracle": null,
+  "schema": "proofsmith.verdict/1",
+  "system": "b1",
+  "track": "B",
+  "wall_s": 219.82303165099984
+}

@@ -21,7 +21,9 @@ The four missing real baseline dry-run observations are now complete. The contin
 
 Phase 6's dry-run plumbing check and approved v1 pilot are complete. The protocol and implementation were committed at `4fff7ff` before its twelve observations. Pilot cost was $0.948543288; no run achieved raw fail-to-pass. Seven runs exceeded the nominal token budget. The repaired guard, protocol versioning and audit blocker passed 35 offline checks, and v2 is prepared without starting paid observations. Total recorded spend is $2.594991908, leaving $1.905008092 under the cap. The old-code remaining-experiment estimate is $5.8572548034; it must be remeasured after repair. See the pilot outcome log and archived v1 reports. No full experiment is approved or running.
 
-Phase 7 cannot be called send-ready until a clean-clone full replay passes and qualifying worked cases are filled from real outcomes. The four erroneous historical alignment references were corrected from the audited real replay, with originals archived byte for byte and all raw outcomes preserved. Clean-clone verification is pending. The generated outreach is a draft while the experiment is incomplete.
+Clean-clone offline reproduction passed at commit `5488133`: the controlled demo and all **38 frozen verifier outcomes** matched. The clone started clean, had no `.env` file, used no model key, and reused the installed WSL toolchain and cached pinned upstream mirrors. The first clone exposed one uncommitted protocol input; that exact read-only build-monitor script was included, and every recorded input was verified against its committed Git blob before the successful retry. Receipt: `results/reproduction_receipt.json`.
+
+The four erroneous historical alignment references were corrected from the audited real replay, with originals archived byte for byte and all raw outcomes preserved. Phase 7 is still not send-ready: a full valid experiment and qualifying winning worked cases remain absent. The generated outreach remains a draft.
 
 Phase 8 remains conditional on Track B PASS and separately approved spend. No patch-correctness catch count has been claimed.
 

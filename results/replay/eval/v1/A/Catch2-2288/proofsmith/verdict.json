@@ -1,0 +1,25 @@
+{
+  "alignment": {
+    "changed": [],
+    "hits": [],
+    "relaxed": false,
+    "strict": false,
+    "unknown": false
+  },
+  "buggy_fails": 0,
+  "build_ok_buggy": false,
+  "build_ok_fixed": false,
+  "bundle_status": "abstained",
+  "cost_usd": 0.0030419839999999997,
+  "error": null,
+  "evidence_kinds": {},
+  "f2p": false,
+  "fixed_fails": 0,
+  "instance_id": "Catch2-2288",
+  "n": 0,
+  "oracle": null,
+  "schema": "proofsmith.verdict/1",
+  "system": "proofsmith",
+  "track": "A",
+  "wall_s": 11.66400657999975
+}

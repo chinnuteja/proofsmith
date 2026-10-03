@@ -1,0 +1,25 @@
+{
+  "alignment": {
+    "changed": [],
+    "hits": [],
+    "relaxed": false,
+    "strict": false,
+    "unknown": false
+  },
+  "buggy_fails": 0,
+  "build_ok_buggy": false,
+  "build_ok_fixed": false,
+  "bundle_status": "gave_up",
+  "cost_usd": 0.11527067199999999,
+  "error": "bundle has no build variant",
+  "evidence_kinds": {},
+  "f2p": false,
+  "fixed_fails": 0,
+  "instance_id": "concurrentqueue-288",
+  "n": 0,
+  "oracle": null,
+  "schema": "proofsmith.verdict/1",
+  "system": "b0",
+  "track": "B",
+  "wall_s": 199.83367997100004
+}
