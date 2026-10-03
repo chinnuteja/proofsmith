@@ -1,0 +1,37 @@
+{
+  "abstain_reason": null,
+  "buggy_tree_sha256": "d3adbc1b8396725330960d92ca268cd8ebe04ee0543c5ebc5a47649a75e86324",
+  "cost_usd": 0.014685176,
+  "created_at": "2026-10-03T12:41:04Z",
+  "files": {
+    "harness/build.sh": "89cc382ce885ec4415ce053932001c3f12622e1392bf6c4fd58ed94e960b1286",
+    "harness/repro.cpp": "e1cf9ab8d9c5487d6a37af155dc73187c21df2d5fe73a5a50e6e060db0df7896"
+  },
+  "flags": {
+    "cxxflags": "-g -O1 -fno-omit-frame-pointer",
+    "env": {},
+    "ldflags": ""
+  },
+  "instance_id": "rounding-ticks",
+  "model": "deepseek-v4-pro",
+  "oracle": null,
+  "runtime": {
+    "fails": 0,
+    "k": 0,
+    "n": 0,
+    "signatures": {}
+  },
+  "schema": "proofsmith.verifier/1",
+  "signature": null,
+  "status": "submitted",
+  "system": "b0",
+  "trajectory": "runs/rounding-ticks-b0-73112636/trajectory.jsonl",
+  "usage": {
+    "cache_hit_tokens": 33664,
+    "completion_tokens": 2777,
+    "prompt_tokens": 35336,
+    "reasoning_tokens": 1434
+  },
+  "variant": "plain",
+  "wall_s": 47.215887819
+}

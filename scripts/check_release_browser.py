@@ -27,7 +27,7 @@ def main():
                 page = browser.new_page(viewport={"width": width, "height": height})
                 errors = []
                 page.on("pageerror", lambda error: errors.append(str(error)))
-                for route in ("/", "/results/", "/integrate/", "/toolchain/", "/demo/"):
+                for route in ("/", "/results/", "/integrate/", "/toolchain/", "/demo/", "/benchmark/"):
                     response = page.goto(base + route, wait_until="load")
                     assert response.status == 200, route
                     assert not errors, errors
@@ -47,6 +47,8 @@ def main():
                         links = page.locator("a[href^='/results/']").all()
                         for link in links:
                             assert page.request.get(base + link.get_attribute("href")).status == 200
+                    if route == "/benchmark/":
+                        assert page.request.get(base + "/downloads/proofsmith-benchmark.zip").status == 200
                     if route == "/" and width == 1280:
                         first = page.locator(".demo-matrix tbody tr").first.bounding_box()
                         assert first["y"] + first["height"] <= height, first

@@ -3,24 +3,27 @@
   "instance_id": "vague-perf",
   "system": "b1",
   "track": "micro",
-  "bundle_status": "gave_up",
-  "build_ok_buggy": false,
-  "build_ok_fixed": false,
-  "buggy_fails": 0,
-  "fixed_fails": 0,
-  "n": 0,
+  "bundle_status": "submitted",
+  "build_ok_buggy": true,
+  "build_ok_fixed": true,
+  "buggy_fails": 20,
+  "fixed_fails": 20,
+  "n": 20,
   "f2p": false,
   "alignment": {
     "strict": false,
     "relaxed": false,
-    "unknown": false,
+    "unknown": true,
     "hits": [],
-    "changed": []
+    "changed": [],
+    "error": "fix diff unavailable; alignment cannot be scored"
   },
   "oracle": null,
-  "evidence_kinds": {},
-  "cost_usd": 0.0,
-  "wall_s": 0.0,
-  "error": "not run: remaining DeepSeek credit reserved for Track B",
-  "trajectory": ""
+  "evidence_kinds": {
+    "exit:1": 20
+  },
+  "cost_usd": 0.0634964,
+  "wall_s": 350.73882879100006,
+  "error": null,
+  "trajectory": "runs/vague-perf-b1-7482bd96/trajectory.jsonl"
 }

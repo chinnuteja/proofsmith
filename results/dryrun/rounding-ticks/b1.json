@@ -3,24 +3,40 @@
   "instance_id": "rounding-ticks",
   "system": "b1",
   "track": "micro",
-  "bundle_status": "gave_up",
-  "build_ok_buggy": false,
-  "build_ok_fixed": false,
-  "buggy_fails": 0,
+  "bundle_status": "submitted",
+  "build_ok_buggy": true,
+  "build_ok_fixed": true,
+  "buggy_fails": 20,
   "fixed_fails": 0,
-  "n": 0,
-  "f2p": false,
+  "n": 20,
+  "f2p": true,
   "alignment": {
-    "strict": false,
-    "relaxed": false,
+    "strict": true,
+    "relaxed": true,
     "unknown": false,
-    "hits": [],
-    "changed": []
+    "hits": [
+      {
+        "function": "to_ticks",
+        "file": "ticks.cpp",
+        "via": "coverage",
+        "evidence": "ticks.cpp:3 _Z8to_ticksdd"
+      }
+    ],
+    "changed": [
+      {
+        "function": "to_ticks",
+        "file": "ticks.cpp",
+        "start": 3,
+        "end": 5
+      }
+    ]
   },
   "oracle": null,
-  "evidence_kinds": {},
-  "cost_usd": 0.0,
-  "wall_s": 0.0,
-  "error": "not run: remaining DeepSeek credit reserved for Track B",
-  "trajectory": ""
+  "evidence_kinds": {
+    "exit:1": 20
+  },
+  "cost_usd": 0.011309408,
+  "wall_s": 46.835016412,
+  "error": null,
+  "trajectory": "runs/rounding-ticks-b1-bf623875/trajectory.jsonl"
 }

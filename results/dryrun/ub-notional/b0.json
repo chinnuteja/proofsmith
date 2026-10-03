@@ -3,24 +3,154 @@
   "instance_id": "ub-notional",
   "system": "b0",
   "track": "micro",
-  "bundle_status": "gave_up",
-  "build_ok_buggy": false,
-  "build_ok_fixed": false,
-  "buggy_fails": 0,
+  "bundle_status": "submitted",
+  "build_ok_buggy": true,
+  "build_ok_fixed": true,
+  "buggy_fails": 20,
   "fixed_fails": 0,
-  "n": 0,
-  "f2p": false,
+  "n": 20,
+  "f2p": true,
   "alignment": {
-    "strict": false,
-    "relaxed": false,
+    "strict": true,
+    "relaxed": true,
     "unknown": false,
-    "hits": [],
-    "changed": []
+    "hits": [
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      },
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "via": "frame",
+        "evidence": "pricing.cpp:3 notional(int, int)"
+      }
+    ],
+    "changed": [
+      {
+        "function": "notional",
+        "file": "pricing.cpp",
+        "start": 3,
+        "end": 3
+      }
+    ]
   },
   "oracle": null,
-  "evidence_kinds": {},
-  "cost_usd": 0.0,
-  "wall_s": 0.0,
-  "error": "not run: remaining DeepSeek credit reserved for Track B",
-  "trajectory": ""
+  "evidence_kinds": {
+    "ubsan:signed-integer-overflow": 20
+  },
+  "cost_usd": 0.042979464,
+  "wall_s": 137.41094908200012,
+  "error": null,
+  "trajectory": "runs/ub-notional-b0-93ee1514/trajectory.jsonl"
 }

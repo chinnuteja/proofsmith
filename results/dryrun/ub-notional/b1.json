@@ -19,8 +19,8 @@
   },
   "oracle": null,
   "evidence_kinds": {},
-  "cost_usd": 0.0,
-  "wall_s": 0.0,
-  "error": "not run: remaining DeepSeek credit reserved for Track B",
-  "trajectory": ""
+  "cost_usd": 0.0073562720000000005,
+  "wall_s": 21.851769728999898,
+  "error": "bundle has no build variant",
+  "trajectory": "runs/ub-notional-b1-f3adc611/trajectory.jsonl"
 }

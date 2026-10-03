@@ -29,3 +29,9 @@ Final offline suite: **85 passed in 224.15 seconds**. Implementation-preview bro
 The complete controlled demo reproduced its historical matrix (all existing tests pass; buggy and backoff fail stress and verifier; both real fixes pass). Full replay reports historical alignment differences in UAF and rounding fixtures after the evaluator corrections. These are retained as differences, not silently overwritten. Clean-clone equality is therefore not yet a passed release gate.
 
 The user approved completing missing dry-runs and the pilot within the existing global cap. Automatic review separately rejected API egress. The user subsequently explicitly authorized the named reports, source excerpts, harnesses and logs to the DeepSeek endpoint within the cap. No paid request was made during the blocked attempts; the authorized continuation then started.
+
+Three additional offline headless-gate checks passed in 12.66 seconds with an explicit local patcher stub: real fix passes, unchanged buggy code fails, and patcher exit errors are retained. The actual ByteAsk product has not been used by these tests.
+
+Standalone benchmark replay passed for the actual frozen spdlog B1 harness: buggy 20/20 failures, fixed 0/20, raw F→P true, strict alignment false. It ran from the export's own package directory with the model key unset. Browser checks also passed for the benchmark page and downloadable ZIP.
+
+The four missing paid dry-runs completed and the plumbing test passed in 954.70 seconds. Cost and verdict sources are recorded in `dryrun-continuation-2026-10-03.md`. The protocol was committed at `4fff7ff` before the subsequent pilot started.

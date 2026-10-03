@@ -17,9 +17,9 @@ The project targets a reproducible C/C++ verifier-generation experiment and a us
 
 Targeted offline regression sets passed; the broader regression suite and browser preview checks are recorded in the continuation log. The existing spdlog baseline's raw fail-to-pass result was reproduced offline without changing its historical verdict.
 
-Phase 5 remains incomplete: four real baseline dry-run observations are absent. Its historical ceiling was exceeded before this continuation; no placeholders have been restored. A phase-5 tag is not proof of a valid gate.
+The four missing real baseline dry-run observations are now complete. The continuation plumbing test passed in 954.70 seconds; its generation cost was $0.123041688, within the additional $0.75 ceiling. Phase 5's historical ceiling failure is preserved, and its old tag is not treated as proof of that historical gate. Outcomes and sources are in `docs/phase-logs/dryrun-continuation-2026-10-03.md`.
 
-Phase 6 requires the completed dry-run plumbing check, a protocol commit before new observations, the real pilot, a cost projection, explicit full-run budget approval, and the complete experiment. The implementation preview does not pass this experimental gate.
+Phase 6's dry-run plumbing check is complete. The protocol and implementation were committed at `4fff7ff` before the approved pilot began. The pilot is running; its cost projection, explicit full-run budget approval, and complete experiment remain. The implementation preview does not pass this experimental gate.
 
 Phase 7 cannot be called send-ready until a clean-clone full replay passes and qualifying worked cases are filled from real outcomes. The generated outreach is a draft while the experiment is incomplete.
 

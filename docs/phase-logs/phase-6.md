@@ -16,7 +16,9 @@ The final protocol is re-prepared after pre-observation implementation fixes. Ea
 
 ## Status
 
-Pilot pending completion of the final offline checks and four missing dry-runs. No `GATE 6: PASS` or comparative win has been claimed.
+The four missing dry-runs completed: one live plumbing test passed in 954.70 seconds. Their generation cost was $0.123041688. Ledger spend before the pilot: $1.646448620; remaining under the $4.50 cap: $2.853551380. Full outcomes are in `dryrun-continuation-2026-10-03.md`.
+
+Protocol SHA-256: `691c69bb89f54d1e20f74997451394cf58612ec858af004bdb99306a4977cca1`. Implementation and protocol commit: `4fff7ffa35ab9b27b413337fb2a10923c1991382`, created before any pilot attempt. The approved pilot is running. No `GATE 6: PASS` or comparative win has been claimed.
 
 Final offline regression suite: **85 passed in 224.15 seconds**. Desktop and mobile implementation-preview browser checks passed with source values verified against JSON and all protocol instance links returning HTTP 200.
 

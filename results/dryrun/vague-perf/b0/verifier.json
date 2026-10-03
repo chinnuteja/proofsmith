@@ -1,0 +1,37 @@
+{
+  "abstain_reason": null,
+  "buggy_tree_sha256": "be006fb2232ffc0080ea5f344fcd2b8fbceb9fae5c437e5ee37fe30563fc74c4",
+  "cost_usd": 0.033550704,
+  "created_at": "2026-10-03T12:47:06Z",
+  "files": {
+    "harness/build.sh": "cfa16821b9f5b4923fecd69c99b3ac3e8e0f9731cd73c7a98aed7e388c5b9ed3",
+    "harness/harness.cpp": "6e664a15822f4aec075ee79e28695354b9331a8cc5db305c133524ef9679965c"
+  },
+  "flags": {
+    "cxxflags": "-g -O1 -fno-omit-frame-pointer",
+    "env": {},
+    "ldflags": ""
+  },
+  "instance_id": "vague-perf",
+  "model": "deepseek-v4-pro",
+  "oracle": null,
+  "runtime": {
+    "fails": 0,
+    "k": 0,
+    "n": 0,
+    "signatures": {}
+  },
+  "schema": "proofsmith.verifier/1",
+  "signature": null,
+  "status": "submitted",
+  "system": "b0",
+  "trajectory": "runs/vague-perf-b0-43847b24/trajectory.jsonl",
+  "usage": {
+    "cache_hit_tokens": 91776,
+    "completion_tokens": 6534,
+    "prompt_tokens": 94532,
+    "reasoning_tokens": 3877
+  },
+  "variant": "plain",
+  "wall_s": 241.601215322
+}

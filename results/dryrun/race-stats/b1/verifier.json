@@ -1,0 +1,39 @@
+{
+  "abstain_reason": null,
+  "buggy_tree_sha256": "7d8fa5f46c3b635a9b1abf7865df9a44ea7da0a7754a38cb0223a51725622fea",
+  "cost_usd": 0.07854264,
+  "created_at": "2026-10-02T13:49:29Z",
+  "files": {
+    "harness/build.sh": "a7df44ff3259b935dab7b84a37015bfc65a39f32c9ef573eb9fb5a0fe8471fbd",
+    "harness/harness.cc": "3b80ab866e29b084b115cf2f945f4de748ef2b4d5888f457c82781f3cdc2272c"
+  },
+  "flags": {
+    "cxxflags": "-g -O1 -fno-omit-frame-pointer -fsanitize=thread",
+    "env": {
+      "TSAN_OPTIONS": "halt_on_error=1:exitcode=66:second_deadlock_stack=1:symbolize=1:external_symbolizer_path=/usr/bin/llvm-symbolizer"
+    },
+    "ldflags": "-fsanitize=thread"
+  },
+  "instance_id": "race-stats",
+  "model": "deepseek-v4-pro",
+  "oracle": null,
+  "runtime": {
+    "fails": 0,
+    "k": 0,
+    "n": 0,
+    "signatures": {}
+  },
+  "schema": "proofsmith.verifier/1",
+  "signature": null,
+  "status": "submitted",
+  "system": "b1",
+  "trajectory": "runs/race-stats-b1-a61cf3a9/trajectory.jsonl",
+  "usage": {
+    "cache_hit_tokens": 205440,
+    "completion_tokens": 14031,
+    "prompt_tokens": 216001,
+    "reasoning_tokens": 11527
+  },
+  "variant": "tsan",
+  "wall_s": 259.1234359029995
+}
