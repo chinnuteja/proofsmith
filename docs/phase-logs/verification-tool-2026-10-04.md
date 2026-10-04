@@ -13,4 +13,8 @@ Tests:
 
 The final gate checks exercise tampered metadata, changed baseline, unpinned identity, changed recipe, source links, unrelated crashes, weak reproduction, compiler failure, self-modifying source, output overlap, altered logs, and replaced manifests. Real controlled-demo outcomes are measured by the broad run. Raw evidence and reports are preserved; report rendering changes retain measured outcomes.
 
-The offline v3 protocol archives unrun v2 and hashes current code. The pilot scope and all previous results remain preserved. No additional API spend or full experiment occurs in this continuation. CLI ByteAsk is not available on the Windows path; a real signed-in product run remains outstanding.
+The offline v4 protocol archives unrun v2 and v3 and hashes current code. The pilot scope and all previous results remain preserved. No additional API spend or full experiment occurs in this continuation. CLI ByteAsk is not available on the Windows path; a real signed-in product run remains outstanding.
+
+Final CLI error handling and gate checks: 18 passed, one intentionally deselected slow demo, in 3.15 seconds. Final generated-report checks: three passed in 5.44 seconds. Eight desktop/mobile report views matched their receipt values, had working relative links, and showed no horizontal overflow or JavaScript errors. The local evidence ZIP contains 282 entries and passed its archive integrity check.
+
+Clean-clone receipt: results/tool-reproduction.json. Source commit a7229e6; clean before execution, no .env file, no model key, valid v4 protocol, seven evidence manifests checked, and real upstream original/fixed target failures 20/0 across twenty runs per tree. The dependency context is the existing WSL toolchain and cached pinned source mirrors.

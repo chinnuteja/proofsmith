@@ -1,0 +1,17 @@
+{
+  "schema": "proofsmith.tool-clean-clone/1",
+  "source_commit": "a7229e6d0762c657ef1344b8221e79984e927ee6",
+  "clone_path": "/home/chinnu/psw/tool-clone.dLwOCt",
+  "clean_before_execution": true,
+  "env_file_absent": true,
+  "model_key_unset": true,
+  "protocol_valid": true,
+  "protocol_id": "v4",
+  "evidence_packages_checked": 7,
+  "upstream_status": "VERIFIED",
+  "upstream_original_target_failures": 20,
+  "upstream_fixed_target_failures": 0,
+  "n": 20,
+  "model_calls": 0,
+  "dependency_context": "existing WSL toolchain and cached pinned upstream source mirrors"
+}
