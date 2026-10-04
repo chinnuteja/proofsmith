@@ -29,4 +29,6 @@ Browser: 1280 and 390 widths, no horizontal overflow or JavaScript errors, rende
 
 Protocol v4 is archived. Active v5 hashes the revised source; it has no paid observations. Existing negative pilot results and the DeepSeek ledger are preserved. Additional model spend: zero.
 
-The clean-clone result will be recorded separately in results/integration-reproduction.json. No publication, push, outreach or account login is performed by this release.
+Clean-clone verification passed at source commit 2501fbc869c6c0a6f3f01275d683b802aaba63b1. The clone started clean without .env or model credentials, validated protocol v5, checked twelve evidence packages, confirmed the tested wheel identity, and freshly repeated both the CI acceptance/rejection and actual ByteAsk MCP/headless workflows using the scripted localhost provider. It reused the installed WSL toolchain, Python dependencies and ByteAsk binary; no upstream source mirrors were needed. Receipt: results/integration-reproduction.json.
+
+No publication, push, outreach or account login is performed by this release.

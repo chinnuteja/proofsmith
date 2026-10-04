@@ -1,0 +1,18 @@
+{
+  "schema": "proofsmith.integration-clean-clone/1",
+  "source_commit": "2501fbc869c6c0a6f3f01275d683b802aaba63b1",
+  "clone_path": "/home/chinnu/psw/integration-clone.rtWp44",
+  "clean_before_execution": true,
+  "env_file_absent": true,
+  "model_key_unset": true,
+  "protocol_id": "v5",
+  "protocol_valid": true,
+  "evidence_packages_checked": 12,
+  "wheel_matches_tested_identity": true,
+  "fresh_ci_fixed_status": "VERIFIED",
+  "fresh_ci_unfixed_status": "REJECTED",
+  "fresh_actual_byteask_mcp_exit_code": 0,
+  "fresh_actual_byteask_headless_exit_code": 0,
+  "model_calls": 0,
+  "dependency_context": "existing WSL Python environment, C++ toolchain and installed ByteAsk binary; scripted localhost provider; no upstream mirrors needed"
+}

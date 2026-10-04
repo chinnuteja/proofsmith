@@ -1,12 +1,12 @@
 {
   "schema": "proofsmith.integration-package/1",
   "path": "artifacts/proofsmith-integration-0.2.0.zip",
-  "sha256": "cd4dfdfc0e962e1b96bb53c0e3ad36737495e4d8155f945ef9376c161ce48d9e",
-  "bytes": 375642,
-  "entries": 325,
+  "sha256": "4264a0faf77061458780ff63edcac7a171dc1d47fa2b0c2f55f2a998ff924e85",
+  "bytes": 378463,
+  "entries": 327,
   "zip_integrity_ok": true,
   "cloud_model_calls": 0,
   "published": false,
   "byteask_binary_included": false,
-  "installation": "pip install artifacts/proofsmith-0.2.0-py3-none-any.whl; demos use the repository checkout"
+  "installation": "pip install 'artifacts/proofsmith-0.2.0-py3-none-any.whl[mcp]'; full demos use the repository checkout"
 }

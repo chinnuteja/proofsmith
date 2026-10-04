@@ -10,6 +10,12 @@ The same actual ByteAsk binary also passed the headless runner: the scripted pro
 
 ## Install in Linux or WSL
 
+The release ZIP includes the wheel, source, setup scripts and portable test evidence. From its extracted directory, install MCP support with:
+
+```bash
+python -m pip install 'artifacts/proofsmith-0.2.0-py3-none-any.whl[mcp]'
+```
+
 From the Proofsmith checkout, use Python 3.12 or newer:
 
 ```bash

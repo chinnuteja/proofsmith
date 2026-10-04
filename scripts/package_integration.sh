@@ -21,7 +21,8 @@ includes += [p for p in (root / 'proofsmith').rglob('*') if p.is_file() and '__p
 includes += [p for p in (root / 'examples/ci-smoke').rglob('*') if p.is_file()]
 includes += [p for p in transport.rglob('*') if p.is_file()]
 includes += [p for p in (config.RESULTS / 'integration/ci-smoke').rglob('*') if p.is_file()]
-includes += [root / 'results' / name for name in ('integration-wheel-check.json', 'integration-browser-check.json', 'byteask-installation.json')]
+includes += [root / 'results' / name for name in ('integration-wheel-check.json', 'integration-browser-check.json', 'byteask-installation.json', 'integration-reproduction.json')]
+includes += [root / 'docs/phase-logs/integration-2026-10-04.md']
 with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED) as package:
     for path in sorted(includes):
         package.write(path, path.relative_to(root).as_posix())
@@ -31,7 +32,7 @@ with zipfile.ZipFile(archive) as package:
 receipt = {'schema': 'proofsmith.integration-package/1', 'path': str(archive.relative_to(root)),
            'sha256': hashlib.sha256(archive.read_bytes()).hexdigest(), 'bytes': archive.stat().st_size,
            'entries': entries, 'zip_integrity_ok': True, 'cloud_model_calls': 0, 'published': False,
-           'byteask_binary_included': False, 'installation': 'pip install artifacts/proofsmith-0.2.0-py3-none-any.whl; demos use the repository checkout'}
+           'byteask_binary_included': False, 'installation': "pip install 'artifacts/proofsmith-0.2.0-py3-none-any.whl[mcp]'; full demos use the repository checkout"}
 (config.RESULTS / 'integration-package.json').write_text(json.dumps(receipt, indent=2) + '\n')
 print(json.dumps(receipt))
 PY
