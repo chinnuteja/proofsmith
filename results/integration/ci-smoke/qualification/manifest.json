@@ -1,0 +1,21 @@
+{
+  "files": {
+    "bundle/harness/build.sh": "f79ddac7e118e4c6ed67a266463963c8741b52e0160a26c48f28f872283781b8",
+    "bundle/harness/harness.cpp": "a3c56e4236b78d25a2d78f78b4d691975421b57bbb78385796c22fb1f68adee0",
+    "bundle/verifier.json": "28d1391a3dbda4ed22eda9b97bb3d58cd0d51039155518cc468caec17b7cfdaf",
+    "evidence/baseline/harness-out/harness-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/baseline/logs/run-00.log": "4e26d35252e087e727d2dbf67a6482ab050fd42575207a9cf92fdd5dd9793e61",
+    "evidence/baseline/logs/run-01.log": "4e26d35252e087e727d2dbf67a6482ab050fd42575207a9cf92fdd5dd9793e61",
+    "evidence/baseline/logs/run-02.log": "4e26d35252e087e727d2dbf67a6482ab050fd42575207a9cf92fdd5dd9793e61",
+    "evidence/baseline/logs/run-03.log": "4e26d35252e087e727d2dbf67a6482ab050fd42575207a9cf92fdd5dd9793e61",
+    "evidence/baseline/logs/run-04.log": "4e26d35252e087e727d2dbf67a6482ab050fd42575207a9cf92fdd5dd9793e61",
+    "evidence/baseline/logs/run-05.log": "4e26d35252e087e727d2dbf67a6482ab050fd42575207a9cf92fdd5dd9793e61",
+    "evidence/baseline/logs/run-06.log": "4e26d35252e087e727d2dbf67a6482ab050fd42575207a9cf92fdd5dd9793e61",
+    "evidence/baseline/logs/run-07.log": "4e26d35252e087e727d2dbf67a6482ab050fd42575207a9cf92fdd5dd9793e61",
+    "evidence/baseline/logs/run-08.log": "4e26d35252e087e727d2dbf67a6482ab050fd42575207a9cf92fdd5dd9793e61",
+    "evidence/baseline/logs/run-09.log": "4e26d35252e087e727d2dbf67a6482ab050fd42575207a9cf92fdd5dd9793e61",
+    "index.html": "d7c325bf780a8556ff2a1b959e75188e6f03908c266518c33de54b405da335b7",
+    "receipt.json": "574a4cd439cf48abd3a74e9008f75e37f0725e8a96202654c87b14e9e080ed86"
+  },
+  "schema": "proofsmith.evidence-manifest/1"
+}

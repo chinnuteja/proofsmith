@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "proofsmith"
-version = "0.1.0"
+version = "0.2.0"
 description = "Toolchain-backed failing checks for C/C++ bug reports"
 requires-python = ">=3.12"
 dependencies = [
@@ -25,6 +25,9 @@ proofsmith = "proofsmith.cli:main"
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["proofsmith*"]
+
+[tool.setuptools.package-data]
+proofsmith = ["runtime/*.h", "prompts/*.md", "report/templates/*.j2", "report/static/*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

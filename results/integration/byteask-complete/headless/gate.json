@@ -1,0 +1,15 @@
+{
+  "baseline_sha256": "54f9ccd052cc66221658f00dea42c89e4e89f93beae9d95aa30eec40c873cc0b",
+  "candidate_path": "/mnt/c/Users/Profile 1/ByteAskEval/results/integration/byteask-complete/headless/candidate",
+  "candidate_sha256": "8999e2f7cb3945834e9c8ac37d7da8842f55fdb152ace362282d555633a8779f",
+  "exit_code": 0,
+  "expected_bundle_id": "d1789b167b2284e6429e08c7331017616af3aae580881327d8be8b57e4a9e89e",
+  "model_requested": "transport-fixture",
+  "patcher_exit_code": 0,
+  "proofsmith_model_calls": 0,
+  "reason": "Original target reproduced; candidate passed every run",
+  "receipt_path": "/mnt/c/Users/Profile 1/ByteAskEval/results/integration/byteask-complete/headless/evidence/receipt.json",
+  "report_path": "/mnt/c/Users/Profile 1/ByteAskEval/results/integration/byteask-complete/headless/evidence/index.html",
+  "schema": "proofsmith.byteask-gate/1",
+  "status": "VERIFIED"
+}

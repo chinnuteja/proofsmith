@@ -59,6 +59,8 @@ proofsmith replay --check --bundle results/eval/B/spdlog-1570/b1
 proofsmith mcp
 ```
 
+The supplied-check integration is usable through CLI, MCP and CI. See [ByteAsk setup](docs/byteask-integration.md) for the tested TOML configuration, isolated local installation and headless runner. ByteAsk's documented MCP (C4) and headless mode (C5) are recorded in [the claims ledger](docs/claims.md). Its actual binary passed a [scripted localhost MCP and patching workflow](results/integration/byteask-complete/summary.json) with real C++ checks. This is an integration test; a signed-in model-generated repair remains untested. The MCP server makes no model requests by default.
+
 Offline replay requires no model credentials. It exits nonzero when the recomputed outcome differs. Corrected historical alignment references are documented in [alignment_migration.json](results/alignment_migration.json), with original verdicts archived byte for byte and raw outcomes preserved. Inspect [replay_summary.json](results/replay_summary.json). A passing clean-clone replay is required before calling this release send-ready.
 
 Live generation uses the configured model and ledger. `proofsmith evaluate --pilot` is the pilot; a full run requires the pilot projection and a recorded budget approval. See [protocol](docs/protocol.md).

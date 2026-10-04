@@ -1,0 +1,23 @@
+{
+  "schema": "proofsmith.wheel-check/1",
+  "installed_package_path": "/home/chinnu/psw/integration-wheel.hFjmVI/proofsmith",
+  "wheel_sha256": "ab3806d422cc629282904823eac8078990b6ace94817b95866a352abfa6fe847",
+  "external_to_checkout": true,
+  "packaged_runtime_and_templates_work": true,
+  "offline_tools": [
+    "check_patch",
+    "evidence_check",
+    "seal_check",
+    "verify"
+  ],
+  "gate_status": "VERIFIED",
+  "baseline_target_failures": 20,
+  "candidate_failures": 0,
+  "integrity": {
+    "matches": true,
+    "files_checked": 47,
+    "manifest_sha256": "c83ca4d1dc57e026341b9705e8b5a1de6c09b9ecc421020a24af4df11d9c2c4d"
+  },
+  "model_calls": 0,
+  "dependency_context": "wheel installed with no dependencies; existing WSL Python environment and C++ toolchain"
+}

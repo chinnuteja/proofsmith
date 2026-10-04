@@ -60,9 +60,9 @@ Retain the manifest digest separately when sharing evidence. Hashes detect chang
 {"mcpServers":{"proofsmith":{"command":"/path/to/venv/bin/proofsmith","args":["mcp"]}}}
 ```
 
-`make_verifier` is the optional metered generator and returns the bundle identity. Keep a pristine baseline, let the agent create a separate candidate checkout, then call `check_patch(bundle_path, baseline_path, candidate_path, expected_bundle_id)`. It returns the verdict, measurements, and JSON/HTML receipt paths. The simpler `verify` tool also replays on a disposable copy.
+`seal_check(repo_path, harness_path, oracle)` qualifies a supplied check and returns its bundle identity. Keep a pristine baseline, let the agent create a separate candidate checkout, then call `check_patch(bundle_path, baseline_path, candidate_path, expected_bundle_id)`. It returns the verdict, measurements, and JSON/HTML receipt paths. The simpler `verify` tool also replays on a disposable copy; `evidence_check` checks the packaged files.
 
-The official SDK stdio connection is tested locally. A signed-in end-to-end ByteAsk run remains outstanding.
+The server exposes only offline tools by default. Research generation requires the server owner to explicitly set `PROOFSMITH_ALLOW_GENERATION=1`; that enables the metered `make_verifier` tool. The official SDK connection and actual ByteAsk CLI are tested locally, using supplied checks and an explicitly scripted localhost provider. A signed-in model-generated repair remains untested. See [ByteAsk setup and CI](byteask-integration.md) for the tested TOML registration, approval settings, headless runner and local installation.
 
 ## Show it in ninety seconds
 

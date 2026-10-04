@@ -1,0 +1,8 @@
+{
+  "schema": "proofsmith.ci-check/1",
+  "mode": "local execution of workflow script; real C++ supplied fixture",
+  "github_execution_tested": false,
+  "model_calls": 0,
+  "fixed_status": "VERIFIED",
+  "unfixed_status": "REJECTED"
+}

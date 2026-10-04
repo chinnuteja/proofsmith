@@ -1,0 +1,25 @@
+name: Offline verification tool
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  gate:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install local compiler and isolation dependencies
+        run: sudo apt-get update -qq && sudo apt-get install -y clang llvm cmake ninja-build bubblewrap iproute2
+      - name: Install Proofsmith
+        run: python -m pip install -e '.[dev,mcp]'
+      - name: Verify supplied check and reject an unfixed candidate
+        run: bash scripts/ci_gate.sh "$RUNNER_TEMP/proofsmith-evidence"
+      - name: Retain receipts and raw evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: proofsmith-verification-evidence
+          path: ${{ runner.temp }}/proofsmith-evidence
+          if-no-files-found: error

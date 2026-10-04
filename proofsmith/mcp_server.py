@@ -52,7 +52,6 @@ def create_server():
 
     server = FastMCP("Proofsmith")
 
-    @server.tool()
     def make_verifier(repo_path: str, issue_title: str, issue_body: str) -> dict:
         """Generate and freeze a failing check before patching. Live mode incurs metered model cost."""
         from proofsmith.llm import LLMClient
@@ -77,6 +76,40 @@ def create_server():
                 "reason": result.reason, "cost_usd": result.cost_usd,
                 "harness_source": "hand-written reference fixture" if fake else "model generated",
                 "bundle_id": bundle_id(result.bundle_dir) if result.bundle_dir else None}
+
+    # The integration product works with supplied checks. Paid research generation
+    # must be deliberately enabled by the server owner, not requested by an agent.
+    if os.environ.get("PROOFSMITH_ALLOW_GENERATION") == "1" or os.environ.get("PROOFSMITH_FAKE_LLM") == "reference":
+        server.tool()(make_verifier)
+
+    def compact(receipt: dict, out: Path) -> dict:
+        return {k: v for k, v in receipt.items() if k not in {"baseline", "candidate"}} | {
+            side: {k: v for k, v in receipt.get(side, {}).items() if k != "runs"}
+            for side in ("baseline", "candidate")
+        } | {"receipt_path": str(out / "receipt.json"), "report_path": str(out / "index.html")}
+
+    @server.tool()
+    def seal_check(repo_path: str, harness_path: str, oracle: str) -> dict:
+        """Qualify and freeze a supplied C/C++ check before patching, without a model request.
+
+        harness_path contains build.sh producing $PS_OUT/harness. oracle is assertion,
+        asan_ubsan, or tsan. Requires 8/10 matching original failures. Retain returned
+        bundle_id before editing; keep the baseline pristine for check_patch.
+        """
+        from proofsmith.gate import seal
+        instance = local_instance(Path(repo_path), "Qualify supplied check", "")
+        out = config.RESULTS / "integration" / instance.id / "seal"
+        receipt = seal(Path(repo_path), Path(harness_path), instance.build, oracle, out)
+        return compact(receipt, out) | {"bundle_path": str(out / "bundle")}
+
+    @server.tool()
+    def evidence_check(evidence_path: str, expected_manifest_sha256: str | None = None) -> dict:
+        """Check a portable evidence directory against its manifest; no build or model request.
+
+        Pass a separately retained manifest SHA-256 to detect changes to the manifest too.
+        """
+        from proofsmith.gate import check_receipt
+        return check_receipt(Path(evidence_path), expected_manifest_sha256)
 
     @server.tool()
     def verify(bundle_path: str, repo_path: str) -> dict:
@@ -105,12 +138,7 @@ def create_server():
         out = config.RESULTS / "integration" / instance.id / "gate"
         receipt = gate(Path(bundle_path), Path(baseline_path), Path(candidate_path), instance.build,
                        out, expected_bundle_id)
-        def measurements(side):
-            return {k: v for k, v in receipt.get(side, {}).items() if k != "runs"}
-        return {"status": receipt["status"], "reason": receipt["reason"], "exit_code": receipt["exit_code"],
-                "bundle_id": receipt.get("bundle_id"), "baseline": measurements("baseline"),
-                "candidate": measurements("candidate"), "receipt_path": str(out / "receipt.json"),
-                "report_path": str(out / "index.html"), "limitation": receipt["limitation"]}
+        return compact(receipt, out)
 
     return server
 

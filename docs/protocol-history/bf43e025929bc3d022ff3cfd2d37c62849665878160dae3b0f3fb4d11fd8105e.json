@@ -1,0 +1,548 @@
+{
+  "schema": "proofsmith.protocol/1",
+  "id": "v4",
+  "created_at": "2026-10-04T07:35:33.671554+00:00",
+  "model": "deepseek-v4-pro",
+  "temperature": 0,
+  "seed": 20261001,
+  "budget": {
+    "max_steps": 50,
+    "max_total_tokens": 500000,
+    "max_wall_s": 1800
+  },
+  "constants": {
+    "RUNTIME_N": 10,
+    "RUNTIME_K": 8,
+    "EVAL_N": 20,
+    "EVAL_BUGGY_K": 16,
+    "EVAL_FIXED_MAX_FAILS": 0,
+    "RUN_TIMEOUT_S": 60
+  },
+  "tracks": {
+    "B": [
+      "concurrentqueue-288",
+      "httplib-2232",
+      "httplib-2431",
+      "libuv-2226",
+      "libuv-4321",
+      "libuv-4980",
+      "libuv-5058",
+      "onetbb-1117",
+      "onetbb-480",
+      "onetbb-518",
+      "spdlog-1570"
+    ],
+    "A": [
+      "Catch2-2288",
+      "fmt-3569",
+      "fmt-3713",
+      "fmt-3734",
+      "fmt-4057",
+      "fmt-4310",
+      "httplib-1765",
+      "json-1769",
+      "json-2332",
+      "json-4537",
+      "json-708",
+      "json-807"
+    ]
+  },
+  "excluded": [
+    "httplib-2492"
+  ],
+  "order": [
+    {
+      "track": "B",
+      "instance_id": "concurrentqueue-288",
+      "system": "proofsmith"
+    },
+    {
+      "track": "B",
+      "instance_id": "concurrentqueue-288",
+      "system": "b1"
+    },
+    {
+      "track": "B",
+      "instance_id": "concurrentqueue-288",
+      "system": "b0"
+    },
+    {
+      "track": "B",
+      "instance_id": "httplib-2232",
+      "system": "b0"
+    },
+    {
+      "track": "B",
+      "instance_id": "httplib-2232",
+      "system": "proofsmith"
+    },
+    {
+      "track": "B",
+      "instance_id": "httplib-2232",
+      "system": "b1"
+    },
+    {
+      "track": "B",
+      "instance_id": "httplib-2431",
+      "system": "b1"
+    },
+    {
+      "track": "B",
+      "instance_id": "httplib-2431",
+      "system": "proofsmith"
+    },
+    {
+      "track": "B",
+      "instance_id": "httplib-2431",
+      "system": "b0"
+    },
+    {
+      "track": "B",
+      "instance_id": "libuv-2226",
+      "system": "b1"
+    },
+    {
+      "track": "B",
+      "instance_id": "libuv-2226",
+      "system": "proofsmith"
+    },
+    {
+      "track": "B",
+      "instance_id": "libuv-2226",
+      "system": "b0"
+    },
+    {
+      "track": "B",
+      "instance_id": "libuv-4321",
+      "system": "b1"
+    },
+    {
+      "track": "B",
+      "instance_id": "libuv-4321",
+      "system": "b0"
+    },
+    {
+      "track": "B",
+      "instance_id": "libuv-4321",
+      "system": "proofsmith"
+    },
+    {
+      "track": "B",
+      "instance_id": "libuv-4980",
+      "system": "b1"
+    },
+    {
+      "track": "B",
+      "instance_id": "libuv-4980",
+      "system": "proofsmith"
+    },
+    {
+      "track": "B",
+      "instance_id": "libuv-4980",
+      "system": "b0"
+    },
+    {
+      "track": "B",
+      "instance_id": "libuv-5058",
+      "system": "b0"
+    },
+    {
+      "track": "B",
+      "instance_id": "libuv-5058",
+      "system": "proofsmith"
+    },
+    {
+      "track": "B",
+      "instance_id": "libuv-5058",
+      "system": "b1"
+    },
+    {
+      "track": "B",
+      "instance_id": "onetbb-1117",
+      "system": "proofsmith"
+    },
+    {
+      "track": "B",
+      "instance_id": "onetbb-1117",
+      "system": "b1"
+    },
+    {
+      "track": "B",
+      "instance_id": "onetbb-1117",
+      "system": "b0"
+    },
+    {
+      "track": "B",
+      "instance_id": "onetbb-480",
+      "system": "proofsmith"
+    },
+    {
+      "track": "B",
+      "instance_id": "onetbb-480",
+      "system": "b1"
+    },
+    {
+      "track": "B",
+      "instance_id": "onetbb-480",
+      "system": "b0"
+    },
+    {
+      "track": "B",
+      "instance_id": "onetbb-518",
+      "system": "b0"
+    },
+    {
+      "track": "B",
+      "instance_id": "onetbb-518",
+      "system": "proofsmith"
+    },
+    {
+      "track": "B",
+      "instance_id": "onetbb-518",
+      "system": "b1"
+    },
+    {
+      "track": "B",
+      "instance_id": "spdlog-1570",
+      "system": "proofsmith"
+    },
+    {
+      "track": "B",
+      "instance_id": "spdlog-1570",
+      "system": "b1"
+    },
+    {
+      "track": "B",
+      "instance_id": "spdlog-1570",
+      "system": "b0"
+    },
+    {
+      "track": "A",
+      "instance_id": "Catch2-2288",
+      "system": "b1"
+    },
+    {
+      "track": "A",
+      "instance_id": "Catch2-2288",
+      "system": "proofsmith"
+    },
+    {
+      "track": "A",
+      "instance_id": "Catch2-2288",
+      "system": "b0"
+    },
+    {
+      "track": "A",
+      "instance_id": "fmt-3569",
+      "system": "b1"
+    },
+    {
+      "track": "A",
+      "instance_id": "fmt-3569",
+      "system": "b0"
+    },
+    {
+      "track": "A",
+      "instance_id": "fmt-3569",
+      "system": "proofsmith"
+    },
+    {
+      "track": "A",
+      "instance_id": "fmt-3713",
+      "system": "b0"
+    },
+    {
+      "track": "A",
+      "instance_id": "fmt-3713",
+      "system": "b1"
+    },
+    {
+      "track": "A",
+      "instance_id": "fmt-3713",
+      "system": "proofsmith"
+    },
+    {
+      "track": "A",
+      "instance_id": "fmt-3734",
+      "system": "b0"
+    },
+    {
+      "track": "A",
+      "instance_id": "fmt-3734",
+      "system": "proofsmith"
+    },
+    {
+      "track": "A",
+      "instance_id": "fmt-3734",
+      "system": "b1"
+    },
+    {
+      "track": "A",
+      "instance_id": "fmt-4057",
+      "system": "proofsmith"
+    },
+    {
+      "track": "A",
+      "instance_id": "fmt-4057",
+      "system": "b1"
+    },
+    {
+      "track": "A",
+      "instance_id": "fmt-4057",
+      "system": "b0"
+    },
+    {
+      "track": "A",
+      "instance_id": "fmt-4310",
+      "system": "proofsmith"
+    },
+    {
+      "track": "A",
+      "instance_id": "fmt-4310",
+      "system": "b0"
+    },
+    {
+      "track": "A",
+      "instance_id": "fmt-4310",
+      "system": "b1"
+    },
+    {
+      "track": "A",
+      "instance_id": "httplib-1765",
+      "system": "b0"
+    },
+    {
+      "track": "A",
+      "instance_id": "httplib-1765",
+      "system": "proofsmith"
+    },
+    {
+      "track": "A",
+      "instance_id": "httplib-1765",
+      "system": "b1"
+    },
+    {
+      "track": "A",
+      "instance_id": "json-1769",
+      "system": "b0"
+    },
+    {
+      "track": "A",
+      "instance_id": "json-1769",
+      "system": "b1"
+    },
+    {
+      "track": "A",
+      "instance_id": "json-1769",
+      "system": "proofsmith"
+    },
+    {
+      "track": "A",
+      "instance_id": "json-2332",
+      "system": "b1"
+    },
+    {
+      "track": "A",
+      "instance_id": "json-2332",
+      "system": "proofsmith"
+    },
+    {
+      "track": "A",
+      "instance_id": "json-2332",
+      "system": "b0"
+    },
+    {
+      "track": "A",
+      "instance_id": "json-4537",
+      "system": "b0"
+    },
+    {
+      "track": "A",
+      "instance_id": "json-4537",
+      "system": "b1"
+    },
+    {
+      "track": "A",
+      "instance_id": "json-4537",
+      "system": "proofsmith"
+    },
+    {
+      "track": "A",
+      "instance_id": "json-708",
+      "system": "proofsmith"
+    },
+    {
+      "track": "A",
+      "instance_id": "json-708",
+      "system": "b0"
+    },
+    {
+      "track": "A",
+      "instance_id": "json-708",
+      "system": "b1"
+    },
+    {
+      "track": "A",
+      "instance_id": "json-807",
+      "system": "proofsmith"
+    },
+    {
+      "track": "A",
+      "instance_id": "json-807",
+      "system": "b0"
+    },
+    {
+      "track": "A",
+      "instance_id": "json-807",
+      "system": "b1"
+    }
+  ],
+  "pilot": {
+    "B": [
+      "concurrentqueue-288",
+      "httplib-2232"
+    ],
+    "A": [
+      "Catch2-2288",
+      "fmt-3569"
+    ]
+  },
+  "files": {
+    "proofsmith/__init__.py": "98d4ba9a82e6ed5bf613af65a21fa200d77e5acaf0e7ac2b07d67db45d1d56bb",
+    "proofsmith/agent/__init__.py": "14e5943ecfed3683e03c0d9051df3f3d7889c4ef2c0c00f1617cf33695272ad7",
+    "proofsmith/agent/loop.py": "2dc7c13de019c3be34bfacc4179fbefd88984bb23706cc8d705d07c7a1c101a0",
+    "proofsmith/agent/smoke.py": "3e3c35b39cd870883e0dbfd3d453d0fe11f0a258526c3b08b86cba00068c0457",
+    "proofsmith/agent/tools.py": "09f4138ef79aaec6b641eebfb1190882b5b473ffea0653c31c93450f198ff9fa",
+    "proofsmith/benchmark.py": "a11fab6e40966f62ab7d3888bef5df2699e8671e1e2f1a933cd370501cf02295",
+    "proofsmith/cli.py": "16c682c4f7d0ce985f0fb274f926e1613a00031eb9dd7b05ee650600631bd526",
+    "proofsmith/config.py": "e4f4761bfd01add5eefe64320c26918df3e9b177bbd0cbd93ef326b540dd5abb",
+    "proofsmith/datasets/__init__.py": "e7f650de0a207ec03dba8c8513bde5d85e7e98af16f416247d7276d808ed651c",
+    "proofsmith/datasets/check.py": "8fa3ff23813514b787db68de0a6f102b23b91f6ddedeeaa97047e24fbb0acbaa",
+    "proofsmith/datasets/mine.py": "3190a329f1b1862f1782f25acbeef2a9fdd1eccbfebf7865813247aee6fe6334",
+    "proofsmith/datasets/schema.py": "7c350c5ca2cfc6bb4213024876498de254a12434ac09e7e0b4c2ac465e2747ff",
+    "proofsmith/datasets/tracka.py": "bc7a1c58bd9559a3eadea2645b71a58d718a603eaaf12fa39f320f19f6731ce0",
+    "proofsmith/demo.py": "a5c591a8c411a76bd4a293870aa8f17747e10dc014af10f70c6e6d69f15b00ce",
+    "proofsmith/eval/__init__.py": "8de884b01161afe0f70beebf019f47bae69253dbcd56492c49dad95f9fd4a6b2",
+    "proofsmith/eval/alignment.py": "2f31d518b47e0e9c8e6306a40b4ce0f86fc939eff267042fb10ad78539fa2d7f",
+    "proofsmith/eval/completeness.py": "637e5e2d21f3afc35a1ecab46a198e14cb2112c150dc9e2baee251d951483362",
+    "proofsmith/eval/evaluator.py": "261d7dbc71252269758c62fbeb602c32048c32136df67d7794aaabe1a29b31f6",
+    "proofsmith/eval/metrics.py": "131d04999bb479c053a013837854fd7cabebb901ac8279b9d80336f6bb837fc2",
+    "proofsmith/eval/preflight.py": "422d266984a5a14adeeb68d3fc4a96c31369b0aa23b7a7bfa3698d7868f98371",
+    "proofsmith/eval/protocol.py": "500bcd3cbd088ab2fbd99be6b32ca86e78b4a11eb8278d23fcb1be0129ea7563",
+    "proofsmith/eval/replay.py": "fb66491713cc91c2360b1868699d18e1f5eae637bf916a36cf141391c182796d",
+    "proofsmith/eval/runner.py": "02dc919413546b71e0aeea73caea538d26fe50ecf8af59ccc848d03c54de8ec8",
+    "proofsmith/freeze.py": "f9abf3fb484933a592852e6180e9b7cec469811553973bad1e42f5f5293fc001",
+    "proofsmith/gate.py": "435de499adf396637c725e368c4e2d22eca82033c648ff035b48f34fa6f26a64",
+    "proofsmith/gate_demo.py": "ea593a042b49970668b99fc52b6e605bd725884bed3b659c389be55946703b3f",
+    "proofsmith/harness.py": "b171f5bc1e9915257f41c13634e40b6132b5a2dd7de6ed8fbd2e73a9d6129e06",
+    "proofsmith/integration.py": "89f8dc0771ea55bafa6f9c9c9de0a1c87d4c03e523e20ca71d631de6417e1370",
+    "proofsmith/isolation.py": "11694b8f9544c135e1aa3ea73644aa7932da7312b47e075aa03ed12d0701dcc5",
+    "proofsmith/ledger.py": "2a5c26e01ef6ac45b5b965fbdd2454b6338d1408ba029599229989ab59d38bc4",
+    "proofsmith/llm.py": "d9fb2a88a654498e2861a01ad0a41e553821afbb21d8e3a05aba8c4d14f0e101",
+    "proofsmith/mcp_server.py": "5c4e7c3136fe50d0beeb25a4411d835ff09ad15cf7847fb71e38f0f5eeddc99a",
+    "proofsmith/oracles/__init__.py": "f07f15380e45804e7ef0e9ce43ed763498d55fbdeba44f651dd7300cfb715fdb",
+    "proofsmith/oracles/acceptance.py": "d80464d109f7dd638448bfbc00b63598517b2987fef6f3944fb01a6fa07e9df2",
+    "proofsmith/oracles/builds.py": "9ff1d8ffbe4690178212d596b8979586352626883360ee38ba4286d36c54a007",
+    "proofsmith/oracles/runner.py": "6fa57ce35975895762a78ba80b28642249772b567bd3cda1cb7f31d97a5e8101",
+    "proofsmith/oracles/signature.py": "0a0ccda665b422d2283a7db9aaf83dd17114d9013844748c94f88f592779d78f",
+    "proofsmith/oracles/variants.py": "361108dcf3cc4d31d68eac3ccc3ab1f6fbdceceadee0eef548a417e0cf17fabb",
+    "proofsmith/pipeline.py": "1eab162eedf2c7c4166c3e436053045eb9af5b6683680123c74afbc504c8aea4",
+    "proofsmith/report/__init__.py": "4d8f7ccf794623976517f4d5aad9c109d4d9c17266690660778a0e4357dd07b7",
+    "proofsmith/report/gate.py": "7d130cea59260a02a914b7f4861b406c8b68bd3d8c2d5fe1682e03fd98ad38ff",
+    "proofsmith/report/readme.py": "c6d4c48658861f8bb3d00f630f9f9dc8f4c558ae1baea0d7c148e7040ce4acf6",
+    "proofsmith/report/results.py": "dfdc04b3123b9d4f37a476267a572e4ed06e04235bda0a123eb792a21db5a168",
+    "proofsmith/report/site.py": "9de880884678fda17853b0db554d5c99a3e79068c2579b01c05967ca420a121e",
+    "proofsmith/sandbox.py": "16e191c3a0174edc10a32e275ec10b67b5f19cf354f0bfc9cf76279d497ae4ea",
+    "proofsmith/systems.py": "2bb9abccc2793e3620d4bcde16936a7488c3798d803a534c3cd9f71004e65300",
+    "proofsmith/toolchain.py": "fcb4cec1b72372d5b2f8ecbe51b05aed76c3c794ceb66683606c3e08c039d0a2",
+    "proofsmith/upstream_demo.py": "a3570f23ea1080c6458664548b9f7cc2d05d94989067410a499f1d67f8d38e40",
+    "proofsmith/prompts/b0.md": "6239ffd43a50c74175111cd56080c0453a22d3b3e1e5c2676fd5cd4f0cf3cbc9",
+    "proofsmith/prompts/b1.md": "22fc828faed02c5aa89e63384723cb26b3f3b129154b8044ca4cd3a0e1f28d70",
+    "proofsmith/prompts/classify.md": "c034a8c516f49ec300df10c1f1dd09f466a31c3aefdba8ae7248eb54b2db5f01",
+    "proofsmith/prompts/harness_contract.md": "9d9348aaa3a8cdf1edc5f8eb0c69d50980d4e535b87c1aef32a825001c04df93",
+    "proofsmith/prompts/oracle_asan_ubsan.md": "36d447b97da853e49a7d3db9dd29a72b1ccba21186b8ca2d57e6fcb452db719e",
+    "proofsmith/prompts/oracle_assertion.md": "b8b08c8f603551c2f32641567011cc122a7665df6b58c121d091c19047a410c6",
+    "proofsmith/prompts/oracle_tsan.md": "6b579ccf16b8cd4a3c6c2a1ae69e23c2d8ea739196971d886d9b82ea1434cdd4",
+    "proofsmith/prompts/proofsmith_system.md": "dc9037dd3da8d4adae42195e79033c9fff67f0c018ffb6c570a567568975993b",
+    "proofsmith/prompts/retry_feedback.md": "657a4affb75dc05c78c586e9c8ddd6374aa5305c79f57f2c9d3c92c01c68d0a6",
+    "proofsmith/runtime/proofsmith_check.h": "b978387ceb74b292a8e8c7db24a3d75faa864768ee75ce12b7e37f50157648d1",
+    "data/trackB/instances/concurrentqueue-288.json": "c903880507fab07cca8decec098f2a10e2588297e0e880fe988eec3a1236a24b",
+    "data/trackB/instances/httplib-2232.json": "c8e9c5fff8026076a3c66f0e702b8aab2c58c0bdcbdaea58499ea0f6fea88e70",
+    "data/trackB/instances/httplib-2431.json": "f5b5de6a930ecec0846764bcba341d8c9110e3a4612202f53c9cc27290c7682d",
+    "data/trackB/instances/httplib-2492.json": "3666fc4a1769ef20fdaf564bd693582b5354f14b1a74bcbdff21d777f2bca92e",
+    "data/trackB/instances/libuv-2226.json": "3238a8626f3e020c7ce13368d85ec68f5875dd8cb6512a9a8228b260c7d8227c",
+    "data/trackB/instances/libuv-4321.json": "71f830c001bce52ec968072cb08a1eeffcce257dc0ab435d7dd5fbabf7b6e60d",
+    "data/trackB/instances/libuv-4980.json": "1c961c09193b9981e75e437d24068bc34e65c6326bb4192f6fd644465031518a",
+    "data/trackB/instances/libuv-5058.json": "c26b94fae60b0bafdcdf68f99db41002ca251b58abdecaec0bcd86efe792d21f",
+    "data/trackB/instances/onetbb-1117.json": "397cb25a5282e57f853b28a5a9fb9657ef70f0c2db4381879949d497af3cf6cb",
+    "data/trackB/instances/onetbb-480.json": "f2245597da85e69caa745514ba953c56dd72d56412355dfe6955965d328caab7",
+    "data/trackB/instances/onetbb-518.json": "7e1bec6e9d1b1889c32856409c7065b00c92cd834d9a2de303efcee0331c98fc",
+    "data/trackB/instances/spdlog-1570.json": "8cca8009254b1cadf6e30890539dcda7b640c38cd9127d00f62d50f4cc28b440",
+    "data/trackB/hidden/concurrentqueue-288.fix.diff": "abae4c82cb349f21f106beeef0c40bf61fbba707c68fe1c1e7e5487343702076",
+    "data/trackB/hidden/concurrentqueue-288.json": "4ac94c1119b0891b49c44b2cc0f9d20a90512fe5d9e7b7a825b85bf3a2e5e921",
+    "data/trackB/hidden/httplib-2232.fix.diff": "72ad05a2d2bbd2036ebf729691d4bd093f4442d846f34bb8fed3a7752cc46a86",
+    "data/trackB/hidden/httplib-2232.json": "b94edd5b6f13ee3c925c405d0f0342979ba3ad93e997fbba80aaad0f58185eda",
+    "data/trackB/hidden/httplib-2431.fix.diff": "900f452e97461c34ebf06b0897c852832b645bf3c8c758bfecebb677cbe64761",
+    "data/trackB/hidden/httplib-2431.json": "578d4c17969256c4741a1626f918abaf9516534933f4fe35205f66860363cb7f",
+    "data/trackB/hidden/httplib-2492.fix.diff": "903e743cdcd98b040ced9987b2edbdb92a34f9b530cc4073d422d85f9ec59006",
+    "data/trackB/hidden/httplib-2492.json": "08407c98a43ba3802c16f8146e869b09e96ff34f4cde521f58a6b4ad2fe10200",
+    "data/trackB/hidden/libuv-2226.fix.diff": "b90a62c4837523e58f4489bf8a20d997f05e9ff42667fb4e388ee5b7aa70398c",
+    "data/trackB/hidden/libuv-2226.json": "1935690eada027fe0ec9eccf9b8a64d9c0f3cf7f24a5a3ca20773c2f4bc15d37",
+    "data/trackB/hidden/libuv-4321.fix.diff": "86e69f1b82fb677816ad810ba442553a1b6dfea09ff2641d56eec875cd70867d",
+    "data/trackB/hidden/libuv-4321.json": "5cb7f17878d49ec2fe4015463638a99019f76c3cd45520d53d436dd7939ad44f",
+    "data/trackB/hidden/libuv-4980.fix.diff": "c332e7aca0ab2ce768ea6719f80580c040a9a4d23bd600c771308aa1effd16d9",
+    "data/trackB/hidden/libuv-4980.json": "5f4e61da98a96aee7a2816bc00519c3a8d3a2a67754d5af948e7b96ee20c5e3f",
+    "data/trackB/hidden/libuv-5058.fix.diff": "4f55d7462af86f5389fa842c2968fd78084a581dc41a3f3170ea67231cc5b0b9",
+    "data/trackB/hidden/libuv-5058.json": "9e1dbd8db5030c30fcae6dbde0642bea8103872f23c1f0859900a6f0ee5d2b77",
+    "data/trackB/hidden/onetbb-1117.fix.diff": "551f2b04ec4963d15772dbcef52e69d016d43fbbc54981775ff1ed1dc0466a38",
+    "data/trackB/hidden/onetbb-1117.json": "59d9481bb5a59dd2996d53b48a4bde219b72a1517a5a3acdb4c4ba0864f5fe94",
+    "data/trackB/hidden/onetbb-480.fix.diff": "4cc99352cb0c8f3ef7ddff4ea801bdbef27197bad644edf5c05d3aaea9b7f674",
+    "data/trackB/hidden/onetbb-480.json": "88efc08df78a8ef9def1fca1e2ce00d20dea1cce147661709d028cf96fab998f",
+    "data/trackB/hidden/onetbb-518.fix.diff": "00a4587ae9b54a6a5b8f2567c3e1d358be23cdd36aacc38f9f15cf276785532e",
+    "data/trackB/hidden/onetbb-518.json": "21087aecde9a05e7d79737f1ed673a22a9603858460bc7cba2ca535a6f71ee76",
+    "data/trackB/hidden/spdlog-1570.fix.diff": "db281a98375d042b0168b882f27207afb204b2e20eba254741a4a2ef11f4b022",
+    "data/trackB/hidden/spdlog-1570.json": "b9b0063bb5989b3746667502bee4e83ae0c1289185a6bf9d55618304eeb5b9a1",
+    "data/trackA/instances/Catch2-2288.json": "81b97bcae58d82db0c94818eb8704eca18535e19a17462b83ff07ff6f4edb93e",
+    "data/trackA/instances/fmt-3569.json": "c787f656273e4efa99a3207ab0e6b91a3d8670fc18fbcb3eee63b36cdc236491",
+    "data/trackA/instances/fmt-3713.json": "1df58031cbbbe0b684760ba46ba2b3e17c643d075fd046fa254a4e34dc5ee3ca",
+    "data/trackA/instances/fmt-3734.json": "46ec426c5658b892e86d8207614cc9fa7babdbe826cbdb6f09a4772cfbd57a8d",
+    "data/trackA/instances/fmt-4057.json": "0d2f1a9fc61e778b2cb7f4b2975d15a22e8a99b9bd96e07d35ba330b1d8eb7f1",
+    "data/trackA/instances/fmt-4310.json": "52284413e040433a073fc15f3ad818f415353ba449e641b5a0028834bc15eb52",
+    "data/trackA/instances/httplib-1765.json": "9b0bb1c5e353670735e0523ad3fbf137cd4c8cf5303d5fed3cd74d4167461dbf",
+    "data/trackA/instances/json-1769.json": "28bd923a45054dcfd5ef31c3a4e00b1a8b1d55196f9910c177d1ed162f5f0787",
+    "data/trackA/instances/json-2332.json": "12fd377928f2cf11bf6e5323171a13e5ada8c479e7ce53422eb973d871a124e2",
+    "data/trackA/instances/json-4537.json": "665381d2dee3b94c7e310f416b73a7f3f47366bd3d23976c342ac7f04afa84ff",
+    "data/trackA/instances/json-708.json": "f1ef6d1631c0e28051f74498b5cfd9ef0cd34896d4c143658d93719e852bdb97",
+    "data/trackA/instances/json-807.json": "58a4f82a442074bbbfe2436538f67e9296eebe921867292c342b14aa1abffc6a",
+    "data/trackA/hidden/Catch2-2288.fix.diff": "97da509ebc621330f338f4cfc2af8cd5a593fb8ce139e7f8b8284663d53ebc4b",
+    "data/trackA/hidden/Catch2-2288.json": "3db44a27843f3d474aa3a8280c387b038a826ad95390165f62957f597fcd4c5f",
+    "data/trackA/hidden/fmt-3569.fix.diff": "64a9511857dcd77f1fa36d242bea16dcf7f217e917c433ab01d8f66a6dc3384d",
+    "data/trackA/hidden/fmt-3569.json": "2a61837386370362f7e6c8d8076af67ddd28ebac2507f2dafe0812b4bbc048f4",
+    "data/trackA/hidden/fmt-3713.fix.diff": "6bce177a4ed0d1bace4568df585c707bd6aff85d729db8f4edc047d77be107f1",
+    "data/trackA/hidden/fmt-3713.json": "6598d34775e8a3620bc5bcc669299a4c7b8cc33e74c6dbcfe61a5bb0b07cdec8",
+    "data/trackA/hidden/fmt-3734.fix.diff": "8e68d6501d3613af060529a60249c04bd20400ec407d73787dac58d908b5813b",
+    "data/trackA/hidden/fmt-3734.json": "8063a626669b7f7f9fb6f69a27118a6cc0ba8faa8deb0b076273b5bf2431b1f1",
+    "data/trackA/hidden/fmt-4057.fix.diff": "8463a77c84862b6944eca1b677974668180f8e7c880d88508f5ab0316d9457d6",
+    "data/trackA/hidden/fmt-4057.json": "ef4f2fe4c5942b0a0c357f1d8dd8ad12ed83f28489d84de06772b69eb4e531ed",
+    "data/trackA/hidden/fmt-4310.fix.diff": "f3a54f9ae8cc967cda9faefc6a4b7fc2ed3da8daf5e83c6340018845018605c1",
+    "data/trackA/hidden/fmt-4310.json": "ef948c0a935a26d053108ca0003e20e5abff64da71e328a12e9698482da246ae",
+    "data/trackA/hidden/httplib-1765.fix.diff": "3d61c44f1b306bf0749ba7dc09ccf4e1be3211216bb7336218170831254d07d7",
+    "data/trackA/hidden/httplib-1765.json": "2e269aece0610f90b9e2079e3c798fb0e61535ed5c7043eab5a871d57de64c4c",
+    "data/trackA/hidden/json-1769.fix.diff": "9d49d3b931716faaf93f7b9d41b6b43a436560bf7bf5c44f94cf66002f0ea362",
+    "data/trackA/hidden/json-1769.json": "6d36af274fabbbab76180fe6f18be06b3a9ff0b18846bf66d9cc620e3318bee0",
+    "data/trackA/hidden/json-2332.fix.diff": "2afe8019952b61bec1f344edc502f1f7962f91a3052514d32b540a1a21d26863",
+    "data/trackA/hidden/json-2332.json": "f2489eb23f450445118b28847f1a66f6f15d021baf9f4d1696a3fa921a6f64e8",
+    "data/trackA/hidden/json-4537.fix.diff": "809d83d243aff95215f0f089dfb060c7e6f70bfe2158c5fb756556abcb67e9f1",
+    "data/trackA/hidden/json-4537.json": "9ef9e01eed64448784ed654aa0d36437b016be5a812fe4716817fa5328c8dac7",
+    "data/trackA/hidden/json-708.fix.diff": "c80ed62802b38caae7d146dd180ae8124c5378a28fc1ccc6d2befcd53e0bd7e2",
+    "data/trackA/hidden/json-708.json": "f2a2d02b0979c748bf63242d28c9cb16a8e977841f46c9fd8d3066f49f18a587",
+    "data/trackA/hidden/json-807.fix.diff": "c5a7eb71262a924a3557a091106e06f66ae1695096cce304e4984942aef8b4be",
+    "data/trackA/hidden/json-807.json": "4ddeb2f0d00abe1234d96d426becfda9935b779cea26b1b64534c21538d5871c",
+    "scripts/tracka_build_watch.sh": "7fdc6e183fe21236a3d14c735ae1856b25c282241c22ac9e451d9558e69f6ef8",
+    "scripts/tracka_header_build.sh": "f668f41c469248b5ae5476c2bc9c4da9be94b81409151f44ecdab90853fb4f4b",
+    "pyproject.toml": "8c3f92eb46dd960ef12cb90100aea0561831489533d53c67bfb7351571826ec1",
+    "config/pricing.json": "2fd5d6d431ed6c1b382d6cc2c5dabb79a2f653770241453e31edde3644d22e68",
+    "data/trackB/EXCLUDED.md": "760f15fa0ed7f6ca144238f28363f6f37f35166d971dee135bf4beed075dceea"
+  },
+  "token_accounting": "Reserve serialized UTF-8 input plus chat framing before every request, then clamp completion to the remaining shared budget. This conservative bound may stop before actual tokens are exhausted."
+}

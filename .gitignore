@@ -8,3 +8,5 @@ scratch/
 results/gate-demo/
 results/upstream-demo/
 results/integration/local-*/
+.tools/
+build/

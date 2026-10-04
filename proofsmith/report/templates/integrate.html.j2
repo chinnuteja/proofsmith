@@ -1,11 +1,18 @@
 {% extends "base.html.j2" %}
 {% block title %}Proofsmith integration{% endblock %}
 {% block body %}
-<h1>Freeze, patch, verify</h1><p>The stdio MCP server exposes <code>make_verifier</code>, <code>verify</code>, and <code>check_patch</code>. Live generation uses the metered model client; verification uses the frozen harness and needs no key.</p>
+<h1>Freeze, patch, verify</h1><p>The stdio MCP server exposes <code>seal_check</code>, <code>verify</code>, <code>check_patch</code> and <code>evidence_check</code>. Qualify a supplied check, retain its identity, and independently test the patch. These tools need no model key. Automatic generation is an explicit research opt-in.</p>
 <p>Keep the original source snapshot and the pre-patch bundle identity. <code>check_patch</code> reproduces the original failure, tests a separate candidate snapshot, and returns VERIFIED, REJECTED, or INCONCLUSIVE with portable JSON/HTML evidence. Source trees stay untouched.</p>
 <p><a href="/gate/">Inspect the offline patch-gate demo</a> · <a href="/upstream/">Inspect the supplied Catch2 API check</a></p>
-<p data-claim="C4">ByteAsk documents MCP connectivity (<a href="https://docs.byteask.ai/docs/overview">C4</a>). The snippet below is a generic MCP client configuration. It has not been tested against a signed-in ByteAsk installation.</p>
-<pre><code>{"mcpServers": {"proofsmith": {"command": "/path/to/venv/bin/proofsmith", "args": ["mcp"]}}}</code></pre>
+<p data-claim="C4">ByteAsk documents MCP connectivity (<a href="https://docs.byteask.ai/docs/features">C4</a>). The actual ByteAsk CLI passed a scripted localhost workflow through these tools with real C++ checks. This validates integration plumbing; a signed-in model-generated repair remains untested.</p>
+<pre><code>[mcp_servers.proofsmith]
+command = "/path/to/venv/bin/proofsmith"
+args = ["mcp"]
+env = { PROOFSMITH_ALLOW_GENERATION = "0", DEEPSEEK_API_KEY = "" }
+enabled = true
+startup_timeout_sec = 30
+tool_timeout_sec = 600</code></pre>
+<p><code>proofsmith byteask-patch</code> runs the coding agent on a separate candidate, preserves the original source, and produces a paired gate receipt. It retains JSONL logs and imposes turn and time limits. ByteAsk model usage belongs to your account; the gate itself makes no model requests.</p>
 <p>Run inside Linux or WSL. A CMake project works directly; other build systems need a <code>.proofsmith-build.json</code> containing the documented BuildRecipe.</p>
 {% if transcript %}<h2>Recorded reference run</h2><p>This is a hand-written orderd reference harness exercised through the real SDK and stdio transport. It demonstrates integration plumbing; it is separate from model-generated evaluation evidence.</p>
 {% for side in ['buggy', 'fixed'] %}<p>{{ side }} failures <span data-source="results/integration/reference_transcript.json#/{{ side }}/fails">{{ transcript[side].fails | fmt }}</span> / <span data-source="results/integration/reference_transcript.json#/{{ side }}/n">{{ transcript[side].n | fmt }}</span>; passes <span data-source="results/integration/reference_transcript.json#/{{ side }}/passes">{{ transcript[side].passes | fmt }}</span>.</p>{% endfor %}

@@ -1,0 +1,7 @@
+{"type":"thread.started","thread_id":"01a106de-b89e-7ae3-8ab0-ad34d762ff9d"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"Model metadata for `transport-fixture` not found. Defaulting to fallback metadata; this can degrade performance and cause issues."}}
+{"type":"turn.started"}
+{"type":"item.started","item":{"id":"item_1","type":"command_execution","command":"/bin/bash -lc \"printf 'int total(int a, int b) { return a + b; }\\\\n' > calculation.cpp\"","aggregated_output":"","exit_code":null,"status":"in_progress"}}
+{"type":"item.completed","item":{"id":"item_1","type":"command_execution","command":"/bin/bash -lc \"printf 'int total(int a, int b) { return a + b; }\\\\n' > calculation.cpp\"","aggregated_output":"","exit_code":0,"status":"completed"}}
+{"type":"item.completed","item":{"id":"item_2","type":"agent_message","text":"SCRIPTED TRANSPORT TEST COMPLETE: supplied check qualified, paired gate VERIFIED, evidence intact."}}
+{"type":"turn.completed","usage":{"input_tokens":2,"cached_input_tokens":0,"cache_write_input_tokens":0,"output_tokens":2,"reasoning_output_tokens":0}}

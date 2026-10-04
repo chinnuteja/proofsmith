@@ -1,0 +1,10 @@
+{
+  "schema": "proofsmith.integration-browser/1",
+  "widths": [
+    1280,
+    390
+  ],
+  "receipt_values_match": true,
+  "horizontal_overflow": false,
+  "javascript_errors": []
+}

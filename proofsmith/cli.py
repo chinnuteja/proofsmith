@@ -39,7 +39,17 @@ def main(argv: list[str] | None = None) -> None:
     evaluate.add_argument("--hidden", help="hidden fixed-tree JSON for offline evaluation")
     evaluate.add_argument("--out", help="output verdict JSON for offline evaluation")
     sub.add_parser("metrics", help="recompute metrics from frozen-protocol verdicts")
-    sub.add_parser("mcp", help="serve make_verifier and verify over stdio (install proofsmith[mcp])")
+    sub.add_parser("mcp", help="serve offline supplied-check tools over stdio (install proofsmith[mcp])")
+    patcher = sub.add_parser("byteask-patch", help="run ByteAsk on a separate candidate and gate a pinned supplied check")
+    patcher.add_argument("--bundle", required=True)
+    patcher.add_argument("--repo", required=True, help="pristine original source; stays untouched")
+    patcher.add_argument("--expect-bundle-id", required=True)
+    patcher.add_argument("--task-file", required=True, help="UTF-8 patch task sent to ByteAsk")
+    patcher.add_argument("--out", required=True, help="new directory separate from inputs")
+    patcher.add_argument("--instance", help="optional instance JSON instead of repository build configuration")
+    patcher.add_argument("--model", help="ByteAsk model; its account usage is separate from Proofsmith")
+    patcher.add_argument("--timeout", type=int, default=1800)
+    patcher.add_argument("--max-turns", type=int, default=30)
     benchmark = sub.add_parser("benchmark", help="export a self-contained Track B source package")
     benchmark.add_argument("--out", default="benchmark")
     replay = sub.add_parser("replay", help="evaluate existing frozen bundles without model calls")
@@ -71,6 +81,20 @@ def main(argv: list[str] | None = None) -> None:
     evidence.add_argument("--expect-manifest", help="trusted SHA-256 of manifest.json, retained separately")
     report_sub.add_parser("readme", help="generate traceable README and draft outreach")
     args = parser.parse_args(argv)
+
+    if args.command == "byteask-patch":
+        from pathlib import Path
+        from proofsmith.integration import gated_run
+        try:
+            code = gated_run(Path(args.bundle), Path(args.task_file).read_text(encoding="utf-8"),
+                             Path(args.repo), Path(args.out), args.expect_bundle_id,
+                             Path(args.instance) if args.instance else None, timeout_s=args.timeout, model=args.model,
+                             max_turns=args.max_turns)
+        except (ValueError, OSError, RuntimeError) as exc:
+            import json
+            print(json.dumps({"status": "INCONCLUSIVE", "exit_code": 2, "reason": str(exc)}))
+            code = 2
+        raise SystemExit(code)
 
     if args.command in {"seal", "gate", "bundle-id", "evidence-check"}:
         import json

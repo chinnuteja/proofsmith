@@ -8,9 +8,9 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 REPO = Path(__file__).resolve().parents[1]
-WORK = Path.home() / "psw"
+WORK = Path(os.environ.get("PROOFSMITH_WORK_DIR", str(Path.home() / "psw"))).expanduser().resolve()
 SITE = REPO / "site"
-RESULTS = REPO / "results"
+RESULTS = Path(os.environ.get("PROOFSMITH_RESULTS_DIR", str(REPO / "results"))).expanduser().resolve()
 RUNS = REPO / "runs"
 
 load_dotenv(REPO / ".env")

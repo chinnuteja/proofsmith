@@ -1,8 +1,8 @@
 {
   "complete": false,
-  "generated_at": "2026-10-04T07:35:36.266191+00:00",
-  "protocol_id": "v4",
-  "protocol_sha256": "bf43e025929bc3d022ff3cfd2d37c62849665878160dae3b0f3fb4d11fd8105e",
+  "generated_at": "2026-10-04T12:37:15.379294+00:00",
+  "protocol_id": "v5",
+  "protocol_sha256": "0a45f7641cbe1ff8089dd3d0fdfeaa7502bbef982db5e43af962c383879e5716",
   "schema": "proofsmith.summary/1",
   "tracks": {
     "A": {

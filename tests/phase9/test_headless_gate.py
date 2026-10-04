@@ -1,40 +1,66 @@
 """Exercise patcher exit handling and frozen checks with an explicit local stub."""
 import json
-import os
-import shlex
 import shutil
-from types import SimpleNamespace
 
 import pytest
 
 from proofsmith import config, integration
+from proofsmith.gate import seal, bundle_id, check_receipt
+from proofsmith.datasets.schema import BuildRecipe
+from proofsmith.oracles.builds import snapshot_sha256
+
+
+@pytest.fixture(scope="module")
+def supplied_check(tmp_path_factory):
+    out = tmp_path_factory.mktemp("sealed") / "qualification"
+    result = seal(config.REPO / "examples/ci-smoke/original", config.REPO / "examples/ci-smoke/harness",
+                  BuildRecipe(system="cmake"), "assertion", out)
+    assert result["status"] == "VERIFIED", result
+    return out / "bundle"
 
 
 @pytest.mark.slow
 @pytest.mark.timeout(300)
 @pytest.mark.parametrize("action,expected", [("fix", 0), ("unchanged", 1), ("error", 2)])
-def test_headless_gate_checks_patched_tree(tmp_path, monkeypatch, action, expected):
+def test_headless_gate_checks_patched_tree(tmp_path, monkeypatch, action, expected, supplied_check):
     repo = tmp_path / "repo"
-    shutil.copytree(config.REPO / "cases/orderd/buggy", repo)
-    bundle = config.RESULTS / "verifiers/orderd-deadlock/bundle"
-    monkeypatch.setattr(integration, "make_verifier", lambda *args, **kwargs:
-        SimpleNamespace(status="accepted", bundle_dir=bundle))
-    monkeypatch.setattr(integration, "reference_client", lambda repo: object())
-    monkeypatch.setenv("PROOFSMITH_FAKE_LLM", "reference")
-    monkeypatch.setattr(config, "RESULTS", tmp_path / "results")
+    shutil.copytree(config.REPO / "examples/ci-smoke/original", repo)
+    original = snapshot_sha256(repo)
     tools = tmp_path / "bin"
     tools.mkdir()
-    patch = config.REPO / "cases/orderd/variants/scoped_cancel.patch"
-    command = f"patch -p1 < {shlex.quote(str(patch))}" if action == "fix" else "exit 7" if action == "error" else ":"
+    command = "printf 'int total(int a, int b) { return a + b; }\\n' > calculation.cpp" if action == "fix" else "exit 7" if action == "error" else ":"
     patcher = tools / "byteask"
-    patcher.write_text("#!/usr/bin/env bash\nset -eu\n[[ $1 == exec && $2 == repair ]]\n" + command + "\n")
+    patcher.write_text("#!/usr/bin/env bash\nset -eu\n[[ $1 == exec && $2 == --json && $5 == workspace-write ]]\n[[ $(cat) == repair ]]\n" + command + "\n")
     patcher.chmod(0o755)
-    monkeypatch.setenv("PATH", str(tools) + os.pathsep + os.environ["PATH"])
-    issue = tmp_path / "issue.json"
-    issue.write_text(json.dumps({"title": "orderd deadlock", "body": "cancel and risk deadlock"}))
-    assert integration.gated_run(issue, "repair", repo) == expected
-    record = json.loads(next((config.RESULTS / "integration").glob("*/gate.json")).read_text())
-    assert record["status"] == {0: "PASS", 1: "FAIL", 2: "PATCHER_ERROR"}[expected]
+    out = tmp_path / "run"
+    assert integration.gated_run(supplied_check, "repair", repo, out, bundle_id(supplied_check),
+                                 instance_path=config.REPO / "examples/ci-smoke/instance.json", executable=str(patcher)) == expected
+    record = json.loads((out / "gate.json").read_text())
+    assert record["status"] == {0: "VERIFIED", 1: "REJECTED", 2: "PATCHER_ERROR"}[expected]
+    assert snapshot_sha256(repo) == original
+    assert record["proofsmith_model_calls"] == 0
     if expected != 2:
-        assert record["build_ok"] and record["reference_mode"]
-        assert record["fails"] == (0 if action == "fix" else config.EVAL_N)
+        receipt = json.loads((out / "evidence/receipt.json").read_text())
+        assert receipt["baseline"]["target_failures"] == 20
+        assert receipt["candidate"]["fails"] == (0 if action == "fix" else 20)
+        assert check_receipt(out / "evidence")["matches"]
+
+
+def test_identity_mismatch_never_calls_patcher(tmp_path, monkeypatch, supplied_check):
+    monkeypatch.setattr(integration.subprocess, "Popen", lambda *a, **k: pytest.fail("patcher must not start"))
+    assert integration.gated_run(supplied_check, "repair", config.REPO / "examples/ci-smoke/original",
+                                 tmp_path / "run", "untrusted") == 2
+
+
+def test_timeout_cannot_approve_a_candidate(tmp_path, supplied_check):
+    patcher = tmp_path / "patcher"
+    patcher.write_text("#!/usr/bin/env bash\nsleep 60\n")
+    patcher.chmod(0o755)
+    repo = config.REPO / "examples/ci-smoke/original"
+    before = snapshot_sha256(repo)
+    out = tmp_path / "timed-out"
+    assert integration.gated_run(supplied_check, "repair", repo, out, bundle_id(supplied_check),
+                                 instance_path=config.REPO / "examples/ci-smoke/instance.json",
+                                 executable=str(patcher), timeout_s=1) == 2
+    assert "TimeoutExpired" in json.loads((out / "gate.json").read_text())["reason"]
+    assert snapshot_sha256(repo) == before

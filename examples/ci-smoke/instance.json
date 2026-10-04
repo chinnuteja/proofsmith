@@ -1,0 +1,1 @@
+{"schema":"proofsmith.instance/1","id":"ci-smoke","track":"demo","source":{"kind":"dir","path":"examples/ci-smoke/original"},"issue":{"title":"CI transport fixture","body":"Supplied assertion for an intentionally wrong addition function; no research claim."},"build":{"system":"cmake"}}

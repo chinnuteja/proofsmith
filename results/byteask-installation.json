@@ -1,0 +1,11 @@
+{
+  "schema": "proofsmith.byteask-installation/1",
+  "release_tag": "v0.1.15",
+  "asset_sha256": "2c204a5f5633cdf3d44ca2dc17970a4b6020f50c49edbb560dc2488e18f9f772",
+  "release_checksum_matches": true,
+  "engine_sha256": "4082dd197e95be17c551cd086335c94659b9ef3543cbd6c7a5b90a6e94256243",
+  "launcher_sha256": "96f9a4b9a395474d354fa811506c9aa50501ae09839f5d000551586bfa1baf02",
+  "binary_version": "byteask 0.1.0",
+  "scope": "project local installation; no login or model call",
+  "binary_redistributed": false
+}
