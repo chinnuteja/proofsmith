@@ -1,0 +1,35 @@
+{
+  "abstain_reason": null,
+  "buggy_tree_sha256": "d41a2bf5bfc2983a7c1cd2d9456e54812b4576d2fd1ed4fff6079d343a743103",
+  "cost_usd": 0.0,
+  "created_at": "2026-10-04T07:18:00.865500+00:00",
+  "files": {
+    "harness/build.sh": "7a4b2eec2941eab5507e8fab6410521657fafee9d7676e53b9d2b842a79d6005",
+    "harness/harness.cpp": "7d63cb14d2302d55aeaba1f9932f60cb356d1e1fd1fabb65660d2be6e939fb2c"
+  },
+  "gate_recipe": {
+    "cmake_args": [],
+    "custom_script": "scripts/tracka_header_build.sh",
+    "jobs": 4,
+    "system": "custom",
+    "targets": [],
+    "test_command": null
+  },
+  "harness_source": "user supplied; no model generation",
+  "instance_id": "original",
+  "model": null,
+  "oracle": "assertion",
+  "runtime": {
+    "fails": 10,
+    "k": 8,
+    "n": 10,
+    "signatures": {
+      "assert|proofsmith_harness/harness.cpp:9": 10
+    }
+  },
+  "schema": "proofsmith.verifier/1",
+  "signature": "assert|proofsmith_harness/harness.cpp:9",
+  "status": "accepted",
+  "system": "supplied",
+  "variant": "plain"
+}

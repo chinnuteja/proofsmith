@@ -47,7 +47,9 @@ def _events(run_dir: Path) -> list[dict]:
     return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
 
 
-def test_three_steps_finish_and_hide_key(tmp_path: Path):
+def test_three_steps_finish_and_hide_key(tmp_path: Path, monkeypatch):
+    sentinel = "S3NT1N3L-test-secret-not-a-real-key"
+    monkeypatch.setenv("DEEPSEEK_API_KEY", sentinel)
     sandbox, tools = _tools(tmp_path, "phase2-loop-finish")
     try:
         llm = FakeLLM(
@@ -61,7 +63,7 @@ def test_three_steps_finish_and_hide_key(tmp_path: Path):
         result = run_agent(
             llm,
             "Inspect the tree.",
-            "Read hello.txt and finish.",
+            "Read hello.txt and finish. Redact this sentinel in logs: " + sentinel,
             tools,
             Budget(MAX_STEPS, MAX_TOTAL_TOKENS, MAX_WALL_S),
             run_dir,
@@ -76,6 +78,7 @@ def test_three_steps_finish_and_hide_key(tmp_path: Path):
         assert sum(1 for event in events if event["type"] == "final") == 1
         trajectory = (run_dir / "trajectory.jsonl").read_text(encoding="utf-8")
         assert _key_leaked(trajectory) is False
+        assert "[redacted]" in trajectory
         for event in events:
             if event["type"] != "llm_request":
                 continue

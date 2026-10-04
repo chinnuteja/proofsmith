@@ -1,0 +1,360 @@
+{
+  "baseline": {
+    "build_ok": true,
+    "completed_runs": 10,
+    "evidence_kinds": {
+      "tsan:lock-order-inversion": 10
+    },
+    "fails": 10,
+    "requested_runs": 10,
+    "runs": [
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.1239746910000008,
+        "exit_code": 66,
+        "index": 0,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-00.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      },
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.13303954299999532,
+        "exit_code": 66,
+        "index": 1,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-01.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      },
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.11900915799998302,
+        "exit_code": 66,
+        "index": 2,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-02.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      },
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.10459394800000155,
+        "exit_code": 66,
+        "index": 3,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-03.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      },
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.13427695499996162,
+        "exit_code": 66,
+        "index": 4,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-04.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      },
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.1257146600000283,
+        "exit_code": 66,
+        "index": 5,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-05.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      },
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.13171801999999388,
+        "exit_code": 66,
+        "index": 6,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-06.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      },
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.1636636929999895,
+        "exit_code": 66,
+        "index": 7,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-07.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      },
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.18572432199999866,
+        "exit_code": 66,
+        "index": 8,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-08.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      },
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/seal-vjc8l2la/source/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.11910073500001772,
+        "exit_code": 66,
+        "index": 9,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-09.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      }
+    ],
+    "target_failures": 10,
+    "unexpected_failures": 0
+  },
+  "baseline_sha256": "2ddb72e3844a29586591fbb181bca5fa24c280be0afeed42006d2c476f589faa",
+  "bundle_id": "5591dfcc9312557db6b4819b5bb515c69e4fe0c498f82b65d6584a43fa046065",
+  "created_at": "2026-10-04T07:22:59.460361+00:00",
+  "exit_code": 0,
+  "harness_source": "user supplied; no model generation",
+  "limitation": "Evidence covers this frozen check and these source snapshots; it does not prove the patch correct for all inputs.",
+  "operation": "seal",
+  "oracle": "tsan",
+  "policy": {
+    "n": 10,
+    "target_minimum": 8
+  },
+  "reason": "Stable application oracle qualified",
+  "recipe": {
+    "cmake_args": [],
+    "custom_script": null,
+    "jobs": 4,
+    "system": "cmake",
+    "targets": [],
+    "test_command": "ctest --output-on-failure -j4"
+  },
+  "schema": "proofsmith.patch-gate/1",
+  "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+  "source_and_harness_unchanged": true,
+  "status": "VERIFIED"
+}

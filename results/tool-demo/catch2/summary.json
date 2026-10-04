@@ -1,0 +1,16 @@
+{
+  "schema": "proofsmith.upstream-tool-demo/1",
+  "instance_id": "Catch2-2288",
+  "source_url": "https://github.com/catchorg/Catch2",
+  "source_commit": "85c9544fa4c9625b9656d9bd765e54f8e639287f",
+  "issue_url": "https://github.com/catchorg/Catch2/issues/2273",
+  "mode": "supplied development check; no model calls; outside comparative scores",
+  "check": "Whether a const Approx factory is callable with a double, tested through its source header",
+  "coverage_limit": "Type-level API check; does not establish runtime changed-function coverage",
+  "bundle_id": "6e15242270f3e6554657ca6eb97cac7ee3c000ddf9803fa4710a3933f19a7561",
+  "baseline_target_failures": 20,
+  "candidate_target_failures": 0,
+  "n": 20,
+  "status": "VERIFIED",
+  "report": "fixed/index.html"
+}

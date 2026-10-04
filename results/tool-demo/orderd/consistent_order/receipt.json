@@ -1,0 +1,916 @@
+{
+  "baseline": {
+    "build_ok": true,
+    "completed_runs": 20,
+    "evidence_kinds": {
+      "tsan:lock-order-inversion": 20
+    },
+    "fails": 20,
+    "requested_runs": 20,
+    "runs": [
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.1519943220000073,
+        "exit_code": 66,
+        "index": 0,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-00.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      },
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.15806306000001769,
+        "exit_code": 66,
+        "index": 1,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-01.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      },
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.1314797079999721,
+        "exit_code": 66,
+        "index": 2,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-02.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      },
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.13343440599999212,
+        "exit_code": 66,
+        "index": 3,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-03.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      },
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.12412292599998409,
+        "exit_code": 66,
+        "index": 4,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-04.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      },
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.11493605300000809,
+        "exit_code": 66,
+        "index": 5,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-05.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      },
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.1486276350000253,
+        "exit_code": 66,
+        "index": 6,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-06.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      },
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.1406528420000086,
+        "exit_code": 66,
+        "index": 7,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-07.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      },
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.12154667599997993,
+        "exit_code": 66,
+        "index": 8,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-08.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      },
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.1321318079999969,
+        "exit_code": 66,
+        "index": 9,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-09.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      },
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.14834115599995812,
+        "exit_code": 66,
+        "index": 10,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-10.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      },
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.12714899400003787,
+        "exit_code": 66,
+        "index": 11,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-11.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      },
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.13235349300003918,
+        "exit_code": 66,
+        "index": 12,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-12.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      },
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.13435014300000603,
+        "exit_code": 66,
+        "index": 13,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-13.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      },
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.1378894239999795,
+        "exit_code": 66,
+        "index": 14,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-14.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      },
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.15546007699998654,
+        "exit_code": 66,
+        "index": 15,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-15.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      },
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.19322201300002462,
+        "exit_code": 66,
+        "index": 16,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-16.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      },
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.16792710599997918,
+        "exit_code": 66,
+        "index": 17,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-17.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      },
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.12333564199997227,
+        "exit_code": 66,
+        "index": 18,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-18.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      },
+      {
+        "application_frames": [
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 31
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::cancel(unsigned long)",
+            "line": 26
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 38
+          },
+          {
+            "file": "/home/chinnu/psw/patch-gate-s69m0i1l/baseline/order_book.cpp",
+            "function": "orderd::OrderBook::risk_sweep()",
+            "line": 37
+          }
+        ],
+        "duration_s": 0.14590045299996746,
+        "exit_code": 66,
+        "index": 19,
+        "kind": "tsan:lock-order-inversion",
+        "log": "evidence/baseline/logs/run-19.log",
+        "matches_target": true,
+        "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+        "timed_out": false
+      }
+    ],
+    "target_failures": 20,
+    "unexpected_failures": 0
+  },
+  "baseline_sha256": "2ddb72e3844a29586591fbb181bca5fa24c280be0afeed42006d2c476f589faa",
+  "bundle_id": "5591dfcc9312557db6b4819b5bb515c69e4fe0c498f82b65d6584a43fa046065",
+  "candidate": {
+    "build_ok": true,
+    "completed_runs": 20,
+    "evidence_kinds": {
+      "none": 20
+    },
+    "fails": 0,
+    "requested_runs": 20,
+    "runs": [
+      {
+        "application_frames": [],
+        "duration_s": 0.025563350999959766,
+        "exit_code": 0,
+        "index": 0,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-00.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.02608889900000122,
+        "exit_code": 0,
+        "index": 1,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-01.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.03300452900009532,
+        "exit_code": 0,
+        "index": 2,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-02.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.031875061000050664,
+        "exit_code": 0,
+        "index": 3,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-03.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.03065375200003473,
+        "exit_code": 0,
+        "index": 4,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-04.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.0399130520000881,
+        "exit_code": 0,
+        "index": 5,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-05.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.0365505930000154,
+        "exit_code": 0,
+        "index": 6,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-06.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.025327009999955408,
+        "exit_code": 0,
+        "index": 7,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-07.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.03307427100003224,
+        "exit_code": 0,
+        "index": 8,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-08.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.041145291000020734,
+        "exit_code": 0,
+        "index": 9,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-09.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.03263697900001716,
+        "exit_code": 0,
+        "index": 10,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-10.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.019694952000008925,
+        "exit_code": 0,
+        "index": 11,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-11.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.01989553999999316,
+        "exit_code": 0,
+        "index": 12,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-12.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.028461319000030016,
+        "exit_code": 0,
+        "index": 13,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-13.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.03139581399989311,
+        "exit_code": 0,
+        "index": 14,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-14.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.02997155599996404,
+        "exit_code": 0,
+        "index": 15,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-15.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.04221973199992135,
+        "exit_code": 0,
+        "index": 16,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-16.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.03848208199997316,
+        "exit_code": 0,
+        "index": 17,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-17.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.03738903700002538,
+        "exit_code": 0,
+        "index": 18,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-18.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.02965656100002434,
+        "exit_code": 0,
+        "index": 19,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-19.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      }
+    ],
+    "target_failures": 0,
+    "unexpected_failures": 0
+  },
+  "candidate_sha256": "227d36e4963966e9353d2004c809277daf6270aa9edcee6308fd3f47f4bee891",
+  "created_at": "2026-10-04T07:24:58.694240+00:00",
+  "exit_code": 0,
+  "harness_source": "user supplied; no model generation",
+  "identity_pinned": true,
+  "limitation": "Evidence covers this frozen check and these source snapshots; it does not prove the patch correct for all inputs.",
+  "operation": "check_patch",
+  "oracle": "tsan",
+  "policy": {
+    "candidate_max_failures": 0,
+    "n": 20,
+    "target_minimum": 16
+  },
+  "reason": "Original target reproduced; candidate passed every run",
+  "recipe": {
+    "cmake_args": [],
+    "custom_script": null,
+    "jobs": 4,
+    "system": "cmake",
+    "targets": [],
+    "test_command": "ctest --output-on-failure -j4"
+  },
+  "schema": "proofsmith.patch-gate/1",
+  "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+  "source_and_harness_unchanged": true,
+  "status": "VERIFIED"
+}

@@ -1,0 +1,10 @@
+{
+  "schema": "proofsmith.tool-package/1",
+  "path": "artifacts/proofsmith-verification-demo.zip",
+  "sha256": "b283a4f01a38b45daf762c279799515836c93c48c786b76fe468cd2240da6745",
+  "bytes": 238693,
+  "entries": 282,
+  "zip_integrity_ok": true,
+  "model_calls": 0,
+  "published": false
+}

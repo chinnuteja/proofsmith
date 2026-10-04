@@ -5,10 +5,11 @@
     "status": "accepted",
     "oracle": "tsan",
     "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
-    "bundle_path": "/mnt/c/Users/Profile 1/ByteAskEval/results/integration/local-05b37b4b057e/bundle",
+    "bundle_path": "/mnt/c/Users/Profile 1/ByteAskEval/results/integration/local-64bdec686a5c/bundle",
     "reason": "stable signature in 10/10 runs",
     "cost_usd": 0.0,
-    "harness_source": "hand-written reference fixture"
+    "harness_source": "hand-written reference fixture",
+    "bundle_id": "f9a93b96481cc6f84cae1eb7116700f6003387d3912dc444978ea99122e3c402"
   },
   "buggy": {
     "build_ok": true,
@@ -27,5 +28,36 @@
       "none": 20
     },
     "passes": true
+  },
+  "patch_gate": {
+    "status": "VERIFIED",
+    "reason": "Original target reproduced; candidate passed every run",
+    "exit_code": 0,
+    "bundle_id": "f9a93b96481cc6f84cae1eb7116700f6003387d3912dc444978ea99122e3c402",
+    "baseline": {
+      "build_ok": true,
+      "requested_runs": 20,
+      "completed_runs": 20,
+      "fails": 20,
+      "target_failures": 20,
+      "unexpected_failures": 0,
+      "evidence_kinds": {
+        "tsan:lock-order-inversion": 20
+      }
+    },
+    "candidate": {
+      "build_ok": true,
+      "requested_runs": 20,
+      "completed_runs": 20,
+      "fails": 0,
+      "target_failures": 0,
+      "unexpected_failures": 0,
+      "evidence_kinds": {
+        "none": 20
+      }
+    },
+    "receipt_path": "/mnt/c/Users/Profile 1/ByteAskEval/results/integration/local-c382a27a21d2/gate/receipt.json",
+    "report_path": "/mnt/c/Users/Profile 1/ByteAskEval/results/integration/local-c382a27a21d2/gate/index.html",
+    "limitation": "Evidence covers this frozen check and these source snapshots; it does not prove the patch correct for all inputs."
   }
 }

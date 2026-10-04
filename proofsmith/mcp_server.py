@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import os
 import uuid
+import tempfile
 from collections import Counter
 from pathlib import Path
 
@@ -64,20 +65,52 @@ def create_server():
         client.system_name = "proofsmith"
         bundle = config.RESULTS / "integration" / instance.id / "bundle"
         result = generate(instance, client, Budget(config.MAX_STEPS, config.MAX_TOTAL_TOKENS, config.MAX_WALL_S), bundle)
+        if fake and result.bundle_dir:
+            import json
+            metadata_path = result.bundle_dir / "verifier.json"
+            metadata = json.loads(metadata_path.read_text())
+            metadata["harness_source"] = "hand-written reference fixture; no model calls"
+            metadata_path.write_text(json.dumps(metadata, indent=2, sort_keys=True) + "\n")
+        from proofsmith.gate import bundle_id
         return {"status": result.status, "oracle": result.oracle, "signature": result.signature,
                 "bundle_path": str(result.bundle_dir) if result.bundle_dir else None,
                 "reason": result.reason, "cost_usd": result.cost_usd,
-                "harness_source": "hand-written reference fixture" if fake else "model generated"}
+                "harness_source": "hand-written reference fixture" if fake else "model generated",
+                "bundle_id": bundle_id(result.bundle_dir) if result.bundle_dir else None}
 
     @server.tool()
     def verify(bundle_path: str, repo_path: str) -> dict:
         """Replay a frozen check on a repository after patching. No model or key is required."""
         instance = local_instance(Path(repo_path), "Replay", "")
-        result = verify_bundle(Path(bundle_path), Path(repo_path), instance.build, config.EVAL_N,
-                               config.WORK / "integration" / instance.id)
+        from proofsmith.gate import _copy_source
+        config.WORK.mkdir(parents=True, exist_ok=True)
+        with tempfile.TemporaryDirectory(prefix="mcp-verify-", dir=config.WORK) as directory:
+            work = Path(directory)
+            _copy_source(Path(repo_path), work / "source")
+            result = verify_bundle(Path(bundle_path), work / "source", instance.build, config.EVAL_N,
+                                   work / "run")
         return {"build_ok": result.build_ok, "fails": result.fails, "n": result.n,
                 "evidence_kinds": dict(Counter(r.evidence.kind for r in result.runs)),
                 "passes": result.build_ok and result.fails == 0}
+
+    @server.tool()
+    def check_patch(bundle_path: str, baseline_path: str, candidate_path: str, expected_bundle_id: str) -> dict:
+        """Gate a patch using a pinned pre-patch verifier. Source trees stay untouched; no model cost.
+
+        VERIFIED means this check passed after reproducing the original failure, not general patch correctness.
+        REJECTED means the same target still fires. INCONCLUSIVE covers build or evidence failures.
+        """
+        from proofsmith.gate import check_patch as gate
+        instance = local_instance(Path(baseline_path), "Patch verification", "")
+        out = config.RESULTS / "integration" / instance.id / "gate"
+        receipt = gate(Path(bundle_path), Path(baseline_path), Path(candidate_path), instance.build,
+                       out, expected_bundle_id)
+        def measurements(side):
+            return {k: v for k, v in receipt.get(side, {}).items() if k != "runs"}
+        return {"status": receipt["status"], "reason": receipt["reason"], "exit_code": receipt["exit_code"],
+                "bundle_id": receipt.get("bundle_id"), "baseline": measurements("baseline"),
+                "candidate": measurements("candidate"), "receipt_path": str(out / "receipt.json"),
+                "report_path": str(out / "index.html"), "limitation": receipt["limitation"]}
 
     return server
 

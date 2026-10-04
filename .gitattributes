@@ -8,6 +8,9 @@
 *.md text eol=lf
 *.txt text eol=lf
 *.patch text eol=lf
+*.diff text eol=lf
+*.toml text eol=lf
+*.j2 text eol=lf
 *.cmake text eol=lf
 CMakeLists.txt text eol=lf
 *.ps1 text eol=crlf

@@ -2,13 +2,22 @@
 
 Proofsmith makes a C/C++ coding agent earn its green checkmark. Before touching the code, it turns the bug report into a toolchain-backed failing check, freezes it, and abstains when the evidence is insufficient.
 
+The offline tool qualifies supplied checks and gates proposed patches using a pinned pre-patch verifier. It exports HTML/JSON receipts, raw compiler and runtime logs, source identities, and an integrity manifest. Source trees stay untouched. [Tool guide and CI/MCP usage](docs/verification-tool.md).
+
+```bash
+proofsmith demo gate       # passing tests, rejected workaround, accepted lock fixes
+proofsmith demo upstream   # supplied Catch2 API check; cached pinned source required
+```
+
+These demonstrate the tool with supplied checks and stay outside the model comparison.
+
 {% if not summary or not summary.complete %}**Status: evaluation incomplete. Comparative performance has not been established.**
 {% elif summary.tracks.B.verdict == 'KILL_OR_RETHINK' %}**Status: KILL_OR_RETHINK. This release is an open benchmark and an honest negative result.**
 {% else %}**Track B verdict: {{ summary.tracks.B.verdict }}.**
 {% endif %}
 
 {% if summary and summary.protocol_id == 'v1' %}The pilot exposed a final-request token-budget overrun. Its observations cannot certify strict budget compliance. The [usage audit](results/pilot_budget_audit.json) preserves actual consumption; a [tested candidate repair](docs/repairs/README.md) requires a new frozen protocol before further comparative runs.
-{% elif summary and summary.protocol_id == 'v2' %}The earlier pilot recorded {{ number('results/pilot_findings.json#/observations') }} observations, {{ number('results/pilot_findings.json#/raw_f2p_count') }} fail-to-pass successes, and {{ number('results/pilot_findings.json#/budget_violations') }} token-limit violations. [Original outcomes and cost](docs/phase-logs/pilot-outcome-2026-10-03.md) are preserved. The repaired protocol is prepared offline; its pilot has not been authorized or run. [Repair and limitations](docs/repairs/README.md).
+{% elif summary and summary.protocol_id != 'v1' %}The earlier pilot recorded {{ number('results/pilot_findings.json#/observations') }} observations, {{ number('results/pilot_findings.json#/raw_f2p_count') }} fail-to-pass successes, and {{ number('results/pilot_findings.json#/budget_violations') }} token-limit violations. [Original outcomes and cost](docs/phase-logs/pilot-outcome-2026-10-03.md) are preserved. The repaired protocol is prepared offline; its pilot has not been authorized or run. [Repair and limitations](docs/repairs/README.md).
 {% endif %}
 
 The intended integration is relevant to ByteAsk's documented MCP support ([C4](https://docs.byteask.ai/docs/overview)) and headless `exec` interface ([C5](https://docs.byteask.ai/docs/overview)). The local stdio integration is tested separately from the comparative experiment.

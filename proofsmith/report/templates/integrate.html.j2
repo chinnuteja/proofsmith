@@ -1,7 +1,9 @@
 {% extends "base.html.j2" %}
 {% block title %}Proofsmith integration{% endblock %}
 {% block body %}
-<h1>Freeze, patch, verify</h1><p>A stdio MCP server exposes <code>make_verifier</code> and <code>verify</code>. Live generation uses the metered model client; verification uses the frozen harness and needs no key.</p>
+<h1>Freeze, patch, verify</h1><p>The stdio MCP server exposes <code>make_verifier</code>, <code>verify</code>, and <code>check_patch</code>. Live generation uses the metered model client; verification uses the frozen harness and needs no key.</p>
+<p>Keep the original source snapshot and the pre-patch bundle identity. <code>check_patch</code> reproduces the original failure, tests a separate candidate snapshot, and returns VERIFIED, REJECTED, or INCONCLUSIVE with portable JSON/HTML evidence. Source trees stay untouched.</p>
+<p><a href="/gate/">Inspect the offline patch-gate demo</a> · <a href="/upstream/">Inspect the supplied Catch2 API check</a></p>
 <p data-claim="C4">ByteAsk documents MCP connectivity (<a href="https://docs.byteask.ai/docs/overview">C4</a>). The snippet below is a generic MCP client configuration. It has not been tested against a signed-in ByteAsk installation.</p>
 <pre><code>{"mcpServers": {"proofsmith": {"command": "/path/to/venv/bin/proofsmith", "args": ["mcp"]}}}</code></pre>
 <p>Run inside Linux or WSL. A CMake project works directly; other build systems need a <code>.proofsmith-build.json</code> containing the documented BuildRecipe.</p>

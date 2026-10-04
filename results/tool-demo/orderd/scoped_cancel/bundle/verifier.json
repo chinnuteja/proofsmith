@@ -1,0 +1,35 @@
+{
+  "abstain_reason": null,
+  "buggy_tree_sha256": "2ddb72e3844a29586591fbb181bca5fa24c280be0afeed42006d2c476f589faa",
+  "cost_usd": 0.0,
+  "created_at": "2026-10-04T07:22:39.614306+00:00",
+  "files": {
+    "harness/build.sh": "4fc6fc09b168a7d3f330a53f1b2ea3540ebd32c74aa1ee6aacc3e5b76e83faf2",
+    "harness/harness.cpp": "c1c16d189abd26a63e45e9194029228e3c8f23f7dd9e7834368de26b6525ebcb"
+  },
+  "gate_recipe": {
+    "cmake_args": [],
+    "custom_script": null,
+    "jobs": 4,
+    "system": "cmake",
+    "targets": [],
+    "test_command": "ctest --output-on-failure -j4"
+  },
+  "harness_source": "user supplied; no model generation",
+  "instance_id": "original",
+  "model": null,
+  "oracle": "tsan",
+  "runtime": {
+    "fails": 10,
+    "k": 8,
+    "n": 10,
+    "signatures": {
+      "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp": 10
+    }
+  },
+  "schema": "proofsmith.verifier/1",
+  "signature": "tsan:lock-order-inversion|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::cancel@order_book.cpp|orderd::OrderBook::risk_sweep@order_book.cpp",
+  "status": "accepted",
+  "system": "supplied",
+  "variant": "tsan"
+}

@@ -1,0 +1,34 @@
+{
+  "schema": "proofsmith.offline-pilot-diagnosis/1",
+  "protocol_id": "v1",
+  "compile_time_reports": [
+    "Catch2-2288",
+    "fmt-3569"
+  ],
+  "classification_finding": "Both early abstentions describe compile-time API failures. The current classification prompt restricts observable failures to runtime value, crash, hang, or sanitizer symptoms. Empty oracle selection is consistent with that policy, rather than evidence of a failed API request.",
+  "trajectory_measurements": [
+    {
+      "trajectory": "runs/concurrentqueue-288-tsan-83217464/trajectory.jsonl",
+      "llm_requests": 27,
+      "tool_results": 27,
+      "total_tool_output_characters": 74167.0,
+      "largest_tool_output_characters": 20063.0,
+      "prompt_tokens": 516348.0,
+      "completion_tokens": 9656.0,
+      "final_status": "budget_exhausted"
+    },
+    {
+      "trajectory": "runs/httplib-2232-asan_ubsan-d6dfa6e0/trajectory.jsonl",
+      "llm_requests": 19,
+      "tool_results": 20,
+      "total_tool_output_characters": 106482.0,
+      "largest_tool_output_characters": 20686.0,
+      "prompt_tokens": 489141.0,
+      "completion_tokens": 6319.0,
+      "final_status": "budget_exhausted"
+    }
+  ],
+  "interpretation": "Large tool outputs remain in subsequent model context. Measured prompt consumption dominated completion consumption. This is a diagnosis, not a claim that context reduction improves success.",
+  "supplied_example_finding": "The Catch2 development check uses the source API header. The earlier baseline harness included an amalgamated header while the recorded fix changed the source header. The new example is separate from frozen comparison results and does not rewrite them.",
+  "paid_requests_made": 0
+}

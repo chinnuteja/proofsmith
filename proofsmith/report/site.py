@@ -645,6 +645,10 @@ def _render_trackb(env: Environment, git_sha: str, payload: dict | None) -> None
 
 def build_site() -> None:
     SITE.mkdir(parents=True, exist_ok=True)
+    for source, destination in ((RESULTS / "tool-demo/orderd", SITE / "gate"),
+                                (RESULTS / "tool-demo/catch2/fixed", SITE / "upstream")):
+        if (source / "index.html").is_file():
+            shutil.copytree(source, destination, dirs_exist_ok=True)
     shutil.copyfile(STATIC_DIR / "site.css", SITE / "site.css")
     payload = _load_toolchain()
     probes = []

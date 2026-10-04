@@ -28,3 +28,13 @@ The four erroneous historical alignment references were corrected from the audit
 Phase 8 remains conditional on Track B PASS and separately approved spend. No patch-correctness catch count has been claimed.
 
 Phase 9's local stdio integration is tested. A signed-in end-to-end run with the actual headless product, and a publication/license review of the benchmark package, remain outstanding. No message has been sent and no package has been published.
+
+## Offline verification tool — 2026-10-04
+
+Implemented `seal`, `bundle-id`, `gate`, and `evidence-check`, plus the MCP `check_patch` tool. Gates require a trusted pre-patch bundle identity, the original source snapshot, the same build recipe, stable matching original failures, and a clean candidate. Unrelated failures, changed source or harness files, and build failures cannot produce VERIFIED. Input checkouts stay untouched. Evidence packages include JSON/HTML receipts, raw logs, frozen harness bytes and a manifest. Trusted manifest digests can be checked independently.
+
+The controlled order-book demonstration rejected a timing workaround despite passing existing tests: original and candidate target failures were both 20/20. Two lock fixes passed with original target failures 20/20 and candidate failures 0/20. The real Catch2 API development example also recorded 20/20 original failures and 0/20 fixed failures. It checks a type-level API property through the source header and does not establish runtime changed-function alignment. All checks are supplied; none enters the model comparison. Evidence is in `results/tool-demo/`; usage and a short demo sequence are in `docs/verification-tool.md`.
+
+The broader offline set initially passed 114 checks with one failure in a test that required a real API key. That test now supplies and deliberately logs a synthetic secret to test redaction. Eighteen focused checks passed after the repair and final safeguards; the final official-SDK MCP round trip also passed. These checks include real C++ runs. No additional model calls or paid spend occurred.
+
+Unrun protocol v2 is archived; current implementation hashes are frozen as v4 with no paid observations. The complete comparison, model-generated winning cases, signed-in ByteAsk run, and publication remain incomplete. The earlier clean-clone receipt describes its recorded commit, not this new tool release.

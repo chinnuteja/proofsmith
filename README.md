@@ -2,6 +2,15 @@
 
 Proofsmith makes a C/C++ coding agent earn its green checkmark. Before touching the code, it turns the bug report into a toolchain-backed failing check, freezes it, and abstains when the evidence is insufficient.
 
+The offline tool qualifies supplied checks and gates proposed patches using a pinned pre-patch verifier. It exports HTML/JSON receipts, raw compiler and runtime logs, source identities, and an integrity manifest. Source trees stay untouched. [Tool guide and CI/MCP usage](docs/verification-tool.md).
+
+```bash
+proofsmith demo gate       # passing tests, rejected workaround, accepted lock fixes
+proofsmith demo upstream   # supplied Catch2 API check; cached pinned source required
+```
+
+These demonstrate the tool with supplied checks and stay outside the model comparison.
+
 **Status: evaluation incomplete. Comparative performance has not been established.**
 
 

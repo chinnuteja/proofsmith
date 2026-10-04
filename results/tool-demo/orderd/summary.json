@@ -1,0 +1,37 @@
+{
+  "schema": "proofsmith.gate-demo/1",
+  "mode": "controlled fixture; hand-written reference; no model calls",
+  "bundle_id": "5591dfcc9312557db6b4819b5bb515c69e4fe0c498f82b65d6584a43fa046065",
+  "rows": [
+    {
+      "variant": "timing_backoff",
+      "existing_tests_exit_code": 0,
+      "status": "REJECTED",
+      "baseline_target_failures": 20,
+      "candidate_target_failures": 20,
+      "n": 20,
+      "report": "timing_backoff/index.html",
+      "receipt": "timing_backoff/receipt.json"
+    },
+    {
+      "variant": "scoped_cancel",
+      "existing_tests_exit_code": 0,
+      "status": "VERIFIED",
+      "baseline_target_failures": 20,
+      "candidate_target_failures": 0,
+      "n": 20,
+      "report": "scoped_cancel/index.html",
+      "receipt": "scoped_cancel/receipt.json"
+    },
+    {
+      "variant": "consistent_order",
+      "existing_tests_exit_code": 0,
+      "status": "VERIFIED",
+      "baseline_target_failures": 20,
+      "candidate_target_failures": 0,
+      "n": 20,
+      "report": "consistent_order/index.html",
+      "receipt": "consistent_order/receipt.json"
+    }
+  ]
+}

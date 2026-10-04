@@ -1,8 +1,8 @@
 # Frozen evaluation protocol
 
-Protocol ID: `v2`. SHA-256: `d254e46348c3a417f83f4f43902338aa1c20e77cb1110c276cd578baa498c395`.
+Protocol ID: `v4`. SHA-256: `bf43e025929bc3d022ff3cfd2d37c62849665878160dae3b0f3fb4d11fd8105e`.
 The complete population, execution order, constants, budgets, source hashes and exclusions are in [protocol.json](protocol.json).
-Frozen at `2026-10-03T13:48:23.414832+00:00` before new observations. Historical exploratory samples are retained separately and cannot enter this protocol's metrics.
+Frozen at `2026-10-04T07:35:33.671554+00:00` before new observations. Historical exploratory samples are retained separately and cannot enter this protocol's metrics.
 
 Model: `deepseek-v4-pro`, temperature `0`, randomized system order with seed `20261001`.
 Shared budget: `50` steps, `500000` total prompt plus completion tokens, `1800` seconds. Classifier calls count toward Proofsmith's budget. All systems receive the same tools, model, and budget.

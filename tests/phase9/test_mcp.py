@@ -32,7 +32,7 @@ def test_mcp_reference_round_trip(tmp_path):
             async with ClientSession(read, write) as session:
                 await session.initialize()
                 names = {t.name for t in (await session.list_tools()).tools}
-                assert names == {"make_verifier", "verify"}
+                assert names == {"make_verifier", "verify", "check_patch"}
                 made = payload(await session.call_tool("make_verifier", {"repo_path": str(repo),
                     "issue_title": "orderd deadlock", "issue_body": "cancel and risk paths deadlock"}))
                 assert made["status"] == "accepted", made
@@ -42,8 +42,17 @@ def test_mcp_reference_round_trip(tmp_path):
                 apply_patch(repo, config.REPO / "cases/orderd/variants/scoped_cancel.patch")
                 fixed = payload(await session.call_tool("verify", {"bundle_path": made["bundle_path"], "repo_path": str(repo)}))
                 assert fixed["passes"] and fixed["fails"] == 0
+                baseline = tmp_path / "original"
+                shutil.copytree(config.REPO / "cases/orderd/buggy", baseline)
+                gated = payload(await session.call_tool("check_patch", {"bundle_path": made["bundle_path"],
+                    "baseline_path": str(baseline), "candidate_path": str(repo),
+                    "expected_bundle_id": made["bundle_id"]}))
+                assert gated["status"] == "VERIFIED", gated
+                gate_receipt = json.loads(__import__('pathlib').Path(gated["receipt_path"]).read_text())
+                assert gate_receipt["harness_source"] == "hand-written reference fixture; no model calls"
+                assert not (repo / "proofsmith_harness").exists()
                 return {"schema": "proofsmith.integration/1", "mode": "reference fixture over real MCP stdio",
-                        "make": made, "buggy": buggy, "fixed": fixed}
+                        "make": made, "buggy": buggy, "fixed": fixed, "patch_gate": gated}
 
     transcript = asyncio.run(run())
     (config.RESULTS / "integration").mkdir(parents=True, exist_ok=True)

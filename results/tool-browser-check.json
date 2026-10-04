@@ -1,0 +1,12 @@
+{
+  "schema": "proofsmith.tool-browser-check/1",
+  "pages_checked": 8,
+  "widths": [
+    1280,
+    390
+  ],
+  "receipt_values_match": true,
+  "relative_links_work": true,
+  "horizontal_overflow": false,
+  "javascript_errors": []
+}

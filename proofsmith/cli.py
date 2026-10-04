@@ -12,6 +12,8 @@ def main(argv: list[str] | None = None) -> None:
     demo = sub.add_parser("demo")
     demo_sub = demo.add_subparsers(dest="demo_command", required=True)
     demo_sub.add_parser("orderd", help="run the orderd deadlock demo")
+    demo_sub.add_parser("gate", help="qualify a reference check and reject a bad fix without model calls")
+    demo_sub.add_parser("upstream", help="run a supplied API check on cached pinned Catch2 source; no model calls")
     report = sub.add_parser("report")
     report_sub = report.add_subparsers(dest="report_command", required=True)
     report_sub.add_parser("build", help="render the static site")
@@ -48,8 +50,52 @@ def main(argv: list[str] | None = None) -> None:
     verify.add_argument("--repo", required=True)
     verify.add_argument("--instance", required=True, help="instance JSON supplying the build recipe")
     verify.add_argument("--n", type=int, default=20)
+    seal = sub.add_parser("seal", help="qualify and freeze a supplied harness without model calls")
+    seal.add_argument("--repo", required=True)
+    seal.add_argument("--harness", required=True, help="directory containing build.sh")
+    seal.add_argument("--instance", required=True, help="instance JSON supplying the build recipe")
+    seal.add_argument("--oracle", required=True, choices=["assertion", "asan_ubsan", "tsan"])
+    seal.add_argument("--out", required=True, help="new evidence directory")
+    gate = sub.add_parser("gate", help="test a frozen check on original and candidate source snapshots")
+    gate.add_argument("--bundle", required=True)
+    gate.add_argument("--baseline", required=True)
+    gate.add_argument("--candidate", required=True)
+    gate.add_argument("--instance", required=True, help="instance JSON supplying the build recipe")
+    gate.add_argument("--expect-bundle-id", required=True, help="trusted pre-patch identity returned by seal or bundle-id")
+    gate.add_argument("--n", type=int, default=20)
+    gate.add_argument("--out", required=True, help="new evidence directory")
+    identity = sub.add_parser("bundle-id", help="print the identity of metadata and harness bytes")
+    identity.add_argument("--bundle", required=True)
+    evidence = sub.add_parser("evidence-check", help="check the file integrity of a portable gate receipt")
+    evidence.add_argument("path", help="evidence directory")
+    evidence.add_argument("--expect-manifest", help="trusted SHA-256 of manifest.json, retained separately")
     report_sub.add_parser("readme", help="generate traceable README and draft outreach")
     args = parser.parse_args(argv)
+
+    if args.command in {"seal", "gate", "bundle-id", "evidence-check"}:
+        import json
+        from pathlib import Path
+        from proofsmith.gate import bundle_id, check_patch, check_receipt, seal as qualify
+        from proofsmith.datasets.schema import Instance
+        if args.command == "bundle-id":
+            print(bundle_id(Path(args.bundle)))
+            return
+        if args.command == "evidence-check":
+            print(json.dumps(check_receipt(Path(args.path), args.expect_manifest), indent=2))
+            return
+        recipe = Instance.model_validate_json(Path(args.instance).read_text()).build
+        from proofsmith.freeze import TamperError
+        try:
+            if args.command == "seal":
+                receipt = qualify(Path(args.repo), Path(args.harness), recipe, args.oracle, Path(args.out))
+            else:
+                receipt = check_patch(Path(args.bundle), Path(args.baseline), Path(args.candidate), recipe,
+                                      Path(args.out), args.expect_bundle_id, args.n)
+        except (ValueError, OSError, RuntimeError, TamperError) as exc:
+            print(json.dumps({"status": "INCONCLUSIVE", "exit_code": 2, "reason": f"{type(exc).__name__}: {exc}"}))
+            raise SystemExit(2)
+        print(json.dumps(receipt, indent=2))
+        raise SystemExit(receipt["exit_code"])
 
     if args.command == "mcp":
         from proofsmith.mcp_server import main as serve_mcp
@@ -132,6 +178,16 @@ def main(argv: list[str] | None = None) -> None:
         from proofsmith.demo import run_orderd
 
         run_orderd()
+        return
+
+    if args.command == "demo" and args.demo_command == "gate":
+        from proofsmith.gate_demo import run_demo
+        print(run_demo())
+        return
+
+    if args.command == "demo" and args.demo_command == "upstream":
+        from proofsmith.upstream_demo import run_demo
+        print(run_demo())
         return
 
     if args.command == "report" and args.report_command == "build":
