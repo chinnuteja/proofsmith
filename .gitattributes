@@ -11,6 +11,10 @@
 *.diff text eol=lf
 *.toml text eol=lf
 *.j2 text eol=lf
+*.html text eol=lf
+*.log text eol=lf
+*.css text eol=lf
+*.jsonl text eol=lf
 *.cmake text eol=lf
 CMakeLists.txt text eol=lf
 *.ps1 text eol=crlf
