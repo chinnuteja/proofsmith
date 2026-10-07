@@ -1,0 +1,1 @@
+A cache entry is returned exactly at its expiry timestamp. The interval of validity ends at expires: return its value only while now < expires. Expired entries must not be returned, and lookups must not mutate stored state. Timestamps are unsigned 64-bit values.

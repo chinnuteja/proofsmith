@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Proofsmith: frozen C++ patch checks, independent gates and reproducible evidence. Real ByteAsk pilot results included.">
+  <title>Proofsmith — C++ patch decisions with evidence</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;background:#101820;color:#e5edf5;font:16px system-ui;line-height:1.65}main{max-width:1080px;margin:auto;padding:48px 24px}h1{font-size:clamp(32px,5vw,54px);line-height:1.12;max-width:850px}h2{font-size:24px;margin-top:36px}a{color:#8ecbff}.label{color:#a3bacd;font-size:13px;letter-spacing:.1em}.actions{display:flex;flex-wrap:wrap;gap:12px;margin:24px 0}.actions a{border:1px solid #648bab;border-radius:8px;padding:10px 16px;text-decoration:none}.actions a:first-child{background:#a8d7ff;color:#101820}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}.card{border:1px solid #344453;padding:20px;border-radius:8px}.card strong{display:block;font-size:30px}.note{border-left:4px solid #ffd280;background:#1c2935;padding:16px}.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}.steps p{margin:6px 0}pre{padding:16px;background:#1c2935;overflow:auto;border-radius:8px;font-size:14px}code{overflow-wrap:anywhere}footer{border-top:1px solid #344453;margin-top:36px;padding-top:20px;color:#a3bacd}
+  </style>
+</head>
+<body><main>
+  <p class="label">PROOFSMITH / WORKING TOOL + REPRODUCIBLE EVALUATION</p>
+  <h1>A C++ patch decision you can inspect and replay.</h1>
+  <p>Qualify a regression on the original code, freeze its identity before repair, and gate a separate candidate. Inspect every compiler log and repeated run in a portable receipt.</p>
+  <div class="actions">
+    <a href="experiments/byteask-comparison/live-v1-score/index.html">Inspect the real ByteAsk results</a>
+    <a href="https://github.com/chinnuteja/proofsmith">Read the source</a>
+    <a href="artifacts/proofsmith-byteask-evaluation-kit.zip" download>Download the working kit</a>
+  </div>
+  <div class="cards">
+    <div class="card">Real ByteAsk repairs<strong>5 / 5 passed</strong>Correct on the independent evaluators; all five preserved by the gate.</div>
+    <div class="card">Separate offline controls<strong>10 refused</strong>Incorrect authored candidates passed smoke tests and failed the frozen check.</div>
+    <div class="card">Portable reproduction<strong>19 tests passed</strong>Fresh extraction rebuilt and reproduced all five real candidate decisions.</div>
+  </div>
+  <p class="note"><strong>The measured outcome: no advantage over ByteAsk in this pilot.</strong> Its five repairs were already correct. The authored controls are separate from model scores. This is a usable verification companion and a transparent evaluation, with no broad superiority claim.</p>
+  <h2>Three steps from regression to receipt</h2>
+  <div class="steps">
+    <section><h3>1. Qualify and freeze</h3><p>Require stable original failures in at least 8/10 runs. Bind the check, original source and build recipe before repair.</p></section>
+    <section><h3>2. Gate the candidate</h3><p>Repeat the original and candidate 20 times each. Require matching original failures and zero candidate failures; report weak evidence as inconclusive.</p></section>
+    <section><h3>3. Inspect and replay</h3><p>Keep raw logs, source/check identities and HTML/JSON receipts. Use the CLI, MCP tools or CI exit code.</p></section>
+  </div>
+  <h2>Reproduce the real results offline</h2>
+  <p>Download and extract the kit. On Linux/WSL with Python 3.12+, clang++, CMake and bubblewrap, use a virtual environment and a fresh output directory:</p>
+  <pre>python -m pip install 'artifacts/proofsmith-0.2.0-py3-none-any.whl[mcp]'
+bash scripts/rescore_byteask_comparison.sh --out /tmp/proofsmith-real-recheck</pre>
+  <p>No account or model request is required. Original collector records remain intact; reproduction rebases paths in a temporary input.</p>
+  <p><a href="experiments/byteask-comparison/live-v1-score/index.html">Real repairs, diffs and receipts</a> · <a href="experiments/byteask-comparison/v1/index.html">Authored control results</a> · <a href="results/byteask-comparison-reproduction.json">Fresh-extraction receipt</a> · <a href="https://github.com/chinnuteja/proofsmith/blob/main/docs/byteask-integration.md">Integration instructions</a></p>
+  <footer>Five synthetic boundary cases; one real attempt per case with gpt-5.4 through ByteAsk. Added gate time: 135.12 seconds total. $0 additional purchases. Some optional native analysis dependencies were unavailable; the full run notes retain that limitation. Passing a frozen check records finite executions, not general correctness. Automatic verifier generation remains separate and unproven.</footer>
+</main></body></html>

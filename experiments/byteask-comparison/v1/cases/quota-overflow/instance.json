@@ -1,0 +1,19 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "quota-overflow",
+  "track": "micro",
+  "source": {
+    "kind": "dir",
+    "path": "/mnt/c/Users/Profile 1/ByteAskEval/experiments/byteask-comparison/v1/cases/quota-overflow/original"
+  },
+  "issue": {
+    "title": "quota-overflow",
+    "body": "A quota reservation near UINT64_MAX is accepted even though it exceeds the limit. Reject any amount greater than remaining capacity without changing used; valid reservations including zero must succeed. State starts with used <= limit. Keep the API and normal behavior.",
+    "rewritten": false,
+    "mentions_fix": false
+  },
+  "build": {
+    "system": "cmake",
+    "test_command": "ctest --output-on-failure"
+  }
+}

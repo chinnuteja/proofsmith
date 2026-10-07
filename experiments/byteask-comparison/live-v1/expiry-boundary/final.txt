@@ -1,0 +1,12 @@
+Changed [subject.cpp](/home/chinnu/psw/byteask-live-jyitc_ef/candidate/subject.cpp:2) so `Entry::lookup` treats `expires` as the end of the valid interval: it now returns a value only while `now < expires`. The only code change was `if (now >= expires) return std::nullopt;`, which preserves the public API and normal non-expired behavior.
+
+Verification:
+- `read_file`: `"A cache entry is returned exactly at its expiry timestamp... return its value only while now < expires."`
+- `apply_patch`: `"Success. Updated the following files: M subject.cpp"`
+- `cpp_sanitize` on `supplied/harness.cpp`: `"clean: exit 0, no sanitizer errors"`
+- `cpp_sanitize` on `smoke.cpp`: `"clean: exit 0, no sanitizer errors"`
+- `cpp_check`: `"'cppcheck' is not installed / not on PATH."`
+- `cpp_compile_db`: `"Generated compile DB ... compile_commands.json (2 entries)"`
+- `cpp_tidy`: `"'clang-tidy' is not installed / not on PATH."`
+
+BYTEASK_ACCEPTED

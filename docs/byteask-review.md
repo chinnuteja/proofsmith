@@ -1,0 +1,11 @@
+# Proofsmith: auditable C++ patch acceptance
+
+Proofsmith is a working local verification companion for C++ repair agents. Qualify a supplied regression on the original code, freeze the check and source identities before patching, then gate a separate candidate. The output is an accept/refuse/unresolved decision with compiler logs, every repeated run, source identities and a portable HTML/JSON receipt. CLI, MCP and CI entry points are included.
+
+The real ByteAsk comparison is complete: five authored C++ cases, `gpt-5.4` through the official managed provider, one repair attempt per case. ByteAsk's five repairs passed 5,419 independent evaluator checks. Proofsmith preserved all five correct acceptances. Both decisions accepted zero incorrect candidates: **no advantage over ByteAsk was demonstrated**. The additional gates took 135.12 seconds in total. This is a small synthetic pilot, not a broad superiority claim.
+
+The separate offline controls demonstrate refusal behavior: ten incorrect candidates passed their ordinary smoke checks but were refused by the frozen gate; five correct controls passed. These authored controls are excluded from the real model scores. The earlier automatic-verifier pilot did not establish a generation-quality win; this product's default workflow uses supplied checks.
+
+Extract `proofsmith-byteask-evaluation-kit.zip`, open `experiments/byteask-comparison/live-v1-score/index.html`, and inspect any patch and linked gate receipt. On Linux/WSL with Python 3.12+, clang++, CMake and bubblewrap, install the bundled wheel and run `bash scripts/rescore_byteask_comparison.sh --out /tmp/proofsmith-real-recheck` to independently rebuild and evaluate the retained candidates. No account or model request is required for that reproduction. See [integration instructions](byteask-integration.md) to use a gate with your own original/candidate pair.
+
+The practical integration point is an explicit final acceptance decision backed by a check frozen before repair. A passing receipt records finite executions, not general correctness. The kit includes the implementation, evaluator inputs, raw evidence and reproducible scores, with account credentials and the ByteAsk binary excluded. It is ready for technical review; it has not been sent or published.

@@ -1,0 +1,3 @@
+2026-10-07T07:09:25.879521Z ERROR codex_core::tools::router: error='cppcheck' is not installed / not on PATH.
+2026-10-07T07:09:29.916550Z ERROR codex_core::tools::router: error=clangd not installed
+2026-10-07T07:09:32.646998Z ERROR codex_core::tools::router: error='clang-tidy' is not installed / not on PATH. It ships in the 'clang / llvm' package.

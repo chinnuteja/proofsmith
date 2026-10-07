@@ -1,0 +1,8 @@
+{
+  "build_exit_code": 0,
+  "checks": 2082,
+  "failures": 263,
+  "run_exit_code": 1,
+  "source_sha256": "9055b31daf7d1b43ea97f979b4977011c7fc51fbb0a305e3bae795aaf7f9fb4e",
+  "status": "INCORRECT"
+}

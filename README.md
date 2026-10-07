@@ -1,89 +1,52 @@
 # Proofsmith
 
-Proofsmith makes a C/C++ coding agent earn its green checkmark. Before touching the code, it turns the bug report into a toolchain-backed failing check, freezes it, and abstains when the evidence is insufficient.
+Freeze a C++ regression check before repair. Test the original and candidate independently. Ship the decision with evidence a reviewer can replay.
 
-The offline tool qualifies supplied checks and gates proposed patches using a pinned pre-patch verifier. It exports HTML/JSON receipts, raw compiler and runtime logs, source identities, and an integrity manifest. Source trees stay untouched. [Tool guide and CI/MCP usage](docs/verification-tool.md).
+Proofsmith is a working verification companion with CLI, MCP and CI interfaces. It qualifies supplied checks, binds their identities to the original source and build recipe, and returns **VERIFIED**, **REJECTED** or **INCONCLUSIVE**, with HTML/JSON receipts, raw compiler/run logs and integrity manifests. Source trees remain untouched.
+
+**[Open the results and product overview](https://chinnuteja.github.io/proofsmith/)** · **[Download the installable evaluation kit](artifacts/proofsmith-byteask-evaluation-kit.zip)** · [Integration guide](docs/byteask-integration.md)
+
+## What the real ByteAsk run showed
+
+Five authored C++ boundary cases, one real repair attempt per case, `gpt-5.4` through the official ByteAsk provider. The agent saw the original source, issue and supplied regression; authored fixes and independent evaluators were hidden during repair.
+
+| Acceptance decision | Correct candidates accepted | Incorrect candidates accepted |
+|---|---:|---:|
+| ByteAsk | 5 | 0 |
+| Same ByteAsk repairs + Proofsmith gate | 5 | 0 |
+
+All five candidates passed 5,419 independent evaluator checks. Every gate reproduced the original failure in 20/20 runs and observed 0/20 candidate failures. **No advantage over ByteAsk was demonstrated in this pilot.** Five synthetic cases cannot establish broad superiority or general patch correctness.
+
+Repair/model wall time was 236.85 seconds; the additional gates took 135.12 seconds. Existing included allowance was used with $0 additional purchases. Optional cppcheck, clang-tidy and clangd dependencies were missing; successful native sanitizer and shell build checks, tool errors and exact execution settings are retained. [Run notes and limitations](docs/byteask-live-comparison.md).
+
+The separate fifteen authored controls validate refusal behavior: ten incorrect controls passed ordinary smoke tests but were refused by the frozen gates; five correct controls were accepted. They are **excluded from model scores**. Inspect [the live result data](experiments/byteask-comparison/live-v1-score/results.json), [patches and traces](experiments/byteask-comparison/live-v1), and [the frozen methodology](docs/byteask-comparison.md).
+
+## Install and reproduce without an account
+
+Use Linux/WSL, Python 3.12+, clang/LLVM, CMake and bubblewrap. In a virtual environment:
 
 ```bash
-proofsmith demo gate       # passing tests, rejected workaround, accepted lock fixes
-proofsmith demo upstream   # supplied Catch2 API check; cached pinned source required
+python -m pip install 'artifacts/proofsmith-0.2.0-py3-none-any.whl[mcp]'
+bash scripts/rescore_byteask_comparison.sh --out /tmp/proofsmith-real-recheck
 ```
 
-These demonstrate the tool with supplied checks and stay outside the model comparison.
+Choose a new output path. This rebuilds the retained candidates, runs the independent evaluators and frozen gates, and checks the decisions against recorded results. It makes no model requests and requires no ByteAsk credentials. The shipped ZIP passed fresh-extraction reproduction with the existing Linux toolchain and Python dependencies; all five real scores and 19 policy tests reproduced. [Reproduction receipt](results/byteask-comparison-reproduction.json).
 
-**Status: evaluation incomplete. Comparative performance has not been established.**
-
-
-The earlier pilot recorded 12 observations, 0 fail-to-pass successes, and 7 token-limit violations. [Original outcomes and cost](docs/phase-logs/pilot-outcome-2026-10-03.md) are preserved. The repaired protocol is prepared offline; its pilot has not been authorized or run. [Repair and limitations](docs/repairs/README.md).
-
-
-The intended integration is relevant to ByteAsk's documented MCP support ([C4](https://docs.byteask.ai/docs/overview)) and headless `exec` interface ([C5](https://docs.byteask.ai/docs/overview)). The local stdio integration is tested separately from the comparative experiment.
-
-## A controlled demonstration
-
-This is a synthetic order-book fixture. It demonstrates why passing existing tests can miss a failure; it is separate from real-issue benchmark scores.
-
-
-| Program variant | Existing tests passed / total | Stress failures / runs | Frozen verifier failures / runs |
-|---|---|---|---|
-| buggy | 3 / 3 | 20 / 20 | 20 / 20 |
-| timing_backoff | 3 / 3 | 20 / 20 | 20 / 20 |
-| scoped_cancel | 3 / 3 | 0 / 20 | 0 / 20 |
-| consistent_order | 3 / 3 | 0 / 20 | 0 / 20 |
-
-
-
-## Frozen-protocol experiment
-
-
-### Track A: INCOMPLETE
-
-| System | Observed / expected | Raw F→P | Aligned strict | Aligned relaxed | Median USD |
-|---|---|---|---|---|---|
-| b0 | 0 / 12 | 0 | 0 | 0 | pending |
-| b1 | 0 / 12 | 0 | 0 | 0 | pending |
-| proofsmith | 0 / 12 | 0 | 0 | 0 | pending |
-
-
-Counts use observed runs. Missing runs are not failures. Wilson intervals, paired McNemar results, abstention precision, and fixed-tree flake rates are in [summary.json](results/summary.json). Historical exploratory samples and micro-case plumbing tests never enter these tables.
-
-### Track B: INCOMPLETE
-
-| System | Observed / expected | Raw F→P | Aligned strict | Aligned relaxed | Median USD |
-|---|---|---|---|---|---|
-| b0 | 0 / 11 | 0 | 0 | 0 | pending |
-| b1 | 0 / 11 | 0 | 0 | 0 | pending |
-| proofsmith | 0 / 11 | 0 | 0 | 0 | pending |
-
-
-Counts use observed runs. Missing runs are not failures. Wilson intervals, paired McNemar results, abstention precision, and fixed-tree flake rates are in [summary.json](results/summary.json). Historical exploratory samples and micro-case plumbing tests never enter these tables.
-
-
-## Reproduce and integrate
-
-Run in Linux or WSL with clang, LLVM coverage tools, CMake, Ninja, ctags, bubblewrap, Python and the package installed. The initial checkout of upstream source commits may require network access.
+For development and a small real compiler/CI installation check:
 
 ```bash
 python -m pip install -e '.[dev,mcp]'
-bash scripts/reproduce.sh
-# Replay one bundle and preserve the old verdict:
-proofsmith replay --check --bundle results/eval/B/spdlog-1570/b1
-# Run the optional stdio server:
-proofsmith mcp
+bash scripts/ci_gate.sh /tmp/proofsmith-install-check
 ```
 
-The supplied-check integration is usable through CLI, MCP and CI. See [ByteAsk setup](docs/byteask-integration.md) for the tested TOML configuration, isolated local installation and headless runner. ByteAsk's documented MCP (C4) and headless mode (C5) are recorded in [the claims ledger](docs/claims.md). Its actual binary passed a [scripted localhost MCP and patching workflow](results/integration/byteask-complete/summary.json) with real C++ checks. This is an integration test; a signed-in model-generated repair remains untested. The MCP server makes no model requests by default.
+Use [the verification guide](docs/verification-tool.md) for your own supplied check and original/candidate pair, and [the ByteAsk guide](docs/byteask-integration.md) for MCP registration and the headless wrapper. Default MCP tools run offline; generation is disabled unless explicitly enabled by the server owner.
 
-Offline replay requires no model credentials. It exits nonzero when the recomputed outcome differs. Corrected historical alignment references are documented in [alignment_migration.json](results/alignment_migration.json), with original verdicts archived byte for byte and raw outcomes preserved. Inspect [replay_summary.json](results/replay_summary.json). A passing clean-clone replay is required before calling this release send-ready.
+## What is frozen
 
-Live generation uses the configured model and ledger. `proofsmith evaluate --pilot` is the pilot; a full run requires the pilot projection and a recorded budget approval. See [protocol](docs/protocol.md).
+Qualification requires stable eligible failure evidence in at least 8/10 original runs. The paired gate requires the retained pre-patch bundle identity, matching original source/build recipe, at least 16 matching original failures in 20 runs, and zero candidate failures. Compiler errors, changed inputs and unrelated crashes cannot earn approval. Builds and checks run on disposable filesystem allowlists with filtered environments and isolated networking.
 
-Worked cases: [sanitizer win](docs/worked_cases/sanitizer_win.md), [plain-test win](docs/worked_cases/plain_test_win.md), [honest failure](docs/worked_cases/honest_failure.md). Pending pages are explicitly labelled.
+Receipts bind recorded bytes and finite executions. They are not authorship signatures or proofs for every input. The live comparison measures final acceptance of the same repair; it does not measure MCP-guided repair or a better repair model.
 
-## Limits
+## Earlier verifier-generation research
 
-This is a small, single-model, single-attempt experiment. The comparison must beat the strong reproduce-first baseline under identical tools and shared budgets. A sanitizer report must include application frames. Assertions can be accepted without stacks, but evaluation requires real coverage to score alignment.
-
-Generated commands, harness builds and verifier executions receive an explicit filesystem allowlist, a filtered environment, and isolated networking with loopback. The evaluator alone materializes hidden fixed trees. Runtime acceptance does not establish fail-to-pass or patch correctness. Developer-test gate experiments remain conditional on a successful evaluation and separately approved spend. rr is outside the local WSL scope. Current variants use no TSan suppression file.
-
-For technical definitions, costs, and status, see [implementation plan](docs/superpowers/plans/2026-10-01-proofsmith.md), [claims ledger](docs/claims.md), and [build progress](docs/build-progress.md).
+Automatic verifier generation is a separate, incomplete experiment. The earlier 12-observation DeepSeek pilot had zero fail-to-pass successes and seven historical token-limit violations. Its outcomes remain available in [the original pilot report](docs/phase-logs/pilot-outcome-2026-10-03.md). The repaired v5 protocol has no new paid observations. No generation-quality win is claimed. [Repair details](docs/repairs/README.md) · [Original implementation plan](docs/superpowers/plans/2026-10-01-proofsmith.md).

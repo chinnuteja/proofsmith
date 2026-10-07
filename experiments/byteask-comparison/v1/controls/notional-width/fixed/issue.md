@@ -1,0 +1,1 @@
+notional(50000, 50000) returns a negative value instead of 2500000000. Compute the exact signed product of any two signed 32-bit inputs in the signed 64-bit return value. Negative quantities and negative prices are valid; do not clamp, take absolute values, or narrow before multiplication.

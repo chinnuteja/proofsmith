@@ -1,0 +1,17 @@
+Changed [subject.cpp](/home/chinnu/psw/byteask-live-5vaoolia/candidate/subject.cpp:2) to reject based on remaining capacity instead of `used + amount`. The bug was unsigned wraparound near `UINT64_MAX`: `used + amount` could overflow and look smaller than `limit`. The new check `amount > limit - used` preserves the public API, keeps normal successful reservations unchanged, allows `0`, and leaves `used` untouched on rejection.
+
+Tools called and key outputs:
+- `read_file`: issue states, `"A quota reservation near UINT64_MAX is accepted even though it exceeds the limit."`
+- `apply_patch`: `"Success. Updated the following files: M subject.cpp"`
+- `cpp_compile_db`: `"Generated compile DB .../compile_commands.json (2 entries)"`
+- `exec_command` for supplied regression: `"[exit 0 | 0.3s]"`
+- `exec_command` for direct compile check and smoke run: `"[exit 0 | 0.2s]"`
+- `cpp_check`: `"'cppcheck' is not installed / not on PATH."`
+- `cpp_tidy`: `"'clang-tidy' is not installed / not on PATH."`
+- `cpp_nav`: `"clangd not installed"`
+- `exec_command` for `git diff`: `"warning: Not a git repository"`; no effect on the fix itself
+- `read_file` final confirmation: shows `if (amount > limit - used) return false;`
+
+Verification completed with the supplied regression and the normal smoke path; both passed.
+
+BYTEASK_ACCEPTED

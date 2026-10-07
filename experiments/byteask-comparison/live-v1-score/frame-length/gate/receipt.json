@@ -1,0 +1,496 @@
+{
+  "baseline": {
+    "build_ok": true,
+    "completed_runs": 20,
+    "evidence_kinds": {
+      "assert": 20
+    },
+    "fails": 20,
+    "requested_runs": 20,
+    "runs": [
+      {
+        "application_frames": [],
+        "duration_s": 0.02398251199997503,
+        "exit_code": 134,
+        "index": 0,
+        "kind": "assert",
+        "log": "evidence/baseline/logs/run-00.log",
+        "matches_target": true,
+        "signature": "assert|proofsmith_harness/harness.cpp:7",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.03037967599999547,
+        "exit_code": 134,
+        "index": 1,
+        "kind": "assert",
+        "log": "evidence/baseline/logs/run-01.log",
+        "matches_target": true,
+        "signature": "assert|proofsmith_harness/harness.cpp:7",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.020673251000005166,
+        "exit_code": 134,
+        "index": 2,
+        "kind": "assert",
+        "log": "evidence/baseline/logs/run-02.log",
+        "matches_target": true,
+        "signature": "assert|proofsmith_harness/harness.cpp:7",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.01787494500001685,
+        "exit_code": 134,
+        "index": 3,
+        "kind": "assert",
+        "log": "evidence/baseline/logs/run-03.log",
+        "matches_target": true,
+        "signature": "assert|proofsmith_harness/harness.cpp:7",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.019591712000021744,
+        "exit_code": 134,
+        "index": 4,
+        "kind": "assert",
+        "log": "evidence/baseline/logs/run-04.log",
+        "matches_target": true,
+        "signature": "assert|proofsmith_harness/harness.cpp:7",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.022276742999963517,
+        "exit_code": 134,
+        "index": 5,
+        "kind": "assert",
+        "log": "evidence/baseline/logs/run-05.log",
+        "matches_target": true,
+        "signature": "assert|proofsmith_harness/harness.cpp:7",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.021954514000015024,
+        "exit_code": 134,
+        "index": 6,
+        "kind": "assert",
+        "log": "evidence/baseline/logs/run-06.log",
+        "matches_target": true,
+        "signature": "assert|proofsmith_harness/harness.cpp:7",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.026739178000013908,
+        "exit_code": 134,
+        "index": 7,
+        "kind": "assert",
+        "log": "evidence/baseline/logs/run-07.log",
+        "matches_target": true,
+        "signature": "assert|proofsmith_harness/harness.cpp:7",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.02658187200000839,
+        "exit_code": 134,
+        "index": 8,
+        "kind": "assert",
+        "log": "evidence/baseline/logs/run-08.log",
+        "matches_target": true,
+        "signature": "assert|proofsmith_harness/harness.cpp:7",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.03287801499999432,
+        "exit_code": 134,
+        "index": 9,
+        "kind": "assert",
+        "log": "evidence/baseline/logs/run-09.log",
+        "matches_target": true,
+        "signature": "assert|proofsmith_harness/harness.cpp:7",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.03803172300001734,
+        "exit_code": 134,
+        "index": 10,
+        "kind": "assert",
+        "log": "evidence/baseline/logs/run-10.log",
+        "matches_target": true,
+        "signature": "assert|proofsmith_harness/harness.cpp:7",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.032531216999984736,
+        "exit_code": 134,
+        "index": 11,
+        "kind": "assert",
+        "log": "evidence/baseline/logs/run-11.log",
+        "matches_target": true,
+        "signature": "assert|proofsmith_harness/harness.cpp:7",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.02943897500000503,
+        "exit_code": 134,
+        "index": 12,
+        "kind": "assert",
+        "log": "evidence/baseline/logs/run-12.log",
+        "matches_target": true,
+        "signature": "assert|proofsmith_harness/harness.cpp:7",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.025905049999948915,
+        "exit_code": 134,
+        "index": 13,
+        "kind": "assert",
+        "log": "evidence/baseline/logs/run-13.log",
+        "matches_target": true,
+        "signature": "assert|proofsmith_harness/harness.cpp:7",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.030632636000007096,
+        "exit_code": 134,
+        "index": 14,
+        "kind": "assert",
+        "log": "evidence/baseline/logs/run-14.log",
+        "matches_target": true,
+        "signature": "assert|proofsmith_harness/harness.cpp:7",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.022765706999962276,
+        "exit_code": 134,
+        "index": 15,
+        "kind": "assert",
+        "log": "evidence/baseline/logs/run-15.log",
+        "matches_target": true,
+        "signature": "assert|proofsmith_harness/harness.cpp:7",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.017118547999984912,
+        "exit_code": 134,
+        "index": 16,
+        "kind": "assert",
+        "log": "evidence/baseline/logs/run-16.log",
+        "matches_target": true,
+        "signature": "assert|proofsmith_harness/harness.cpp:7",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.019863285999974778,
+        "exit_code": 134,
+        "index": 17,
+        "kind": "assert",
+        "log": "evidence/baseline/logs/run-17.log",
+        "matches_target": true,
+        "signature": "assert|proofsmith_harness/harness.cpp:7",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.018099735000021155,
+        "exit_code": 134,
+        "index": 18,
+        "kind": "assert",
+        "log": "evidence/baseline/logs/run-18.log",
+        "matches_target": true,
+        "signature": "assert|proofsmith_harness/harness.cpp:7",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.018915557999946486,
+        "exit_code": 134,
+        "index": 19,
+        "kind": "assert",
+        "log": "evidence/baseline/logs/run-19.log",
+        "matches_target": true,
+        "signature": "assert|proofsmith_harness/harness.cpp:7",
+        "timed_out": false
+      }
+    ],
+    "target_failures": 20,
+    "unexpected_failures": 0
+  },
+  "baseline_sha256": "585ed98e193c38d0c082f459c02106395c73e314f22615f920a8808364fcae9f",
+  "bundle_id": "021d6aa15159db07f24931fd045cd733668ea7c168f5ef9d9e9fc2797dbb3c2c",
+  "candidate": {
+    "build_ok": true,
+    "completed_runs": 20,
+    "evidence_kinds": {
+      "none": 20
+    },
+    "fails": 0,
+    "requested_runs": 20,
+    "runs": [
+      {
+        "application_frames": [],
+        "duration_s": 0.01398809199997686,
+        "exit_code": 0,
+        "index": 0,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-00.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.012779647999991539,
+        "exit_code": 0,
+        "index": 1,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-01.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.011259664000021985,
+        "exit_code": 0,
+        "index": 2,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-02.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.012631388999977844,
+        "exit_code": 0,
+        "index": 3,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-03.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.012495362999970894,
+        "exit_code": 0,
+        "index": 4,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-04.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.011565809000046556,
+        "exit_code": 0,
+        "index": 5,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-05.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.011322839999991174,
+        "exit_code": 0,
+        "index": 6,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-06.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.010915641999986292,
+        "exit_code": 0,
+        "index": 7,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-07.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.013663926000049287,
+        "exit_code": 0,
+        "index": 8,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-08.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.01231910799998559,
+        "exit_code": 0,
+        "index": 9,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-09.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.010456809000004341,
+        "exit_code": 0,
+        "index": 10,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-10.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.012807834999989609,
+        "exit_code": 0,
+        "index": 11,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-11.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.01272930999999744,
+        "exit_code": 0,
+        "index": 12,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-12.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.012747236999985034,
+        "exit_code": 0,
+        "index": 13,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-13.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.011586503999978959,
+        "exit_code": 0,
+        "index": 14,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-14.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.012028453000027639,
+        "exit_code": 0,
+        "index": 15,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-15.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.012103362000004836,
+        "exit_code": 0,
+        "index": 16,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-16.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.014232656000046973,
+        "exit_code": 0,
+        "index": 17,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-17.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.011137920000010126,
+        "exit_code": 0,
+        "index": 18,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-18.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      },
+      {
+        "application_frames": [],
+        "duration_s": 0.012267482999959611,
+        "exit_code": 0,
+        "index": 19,
+        "kind": "none",
+        "log": "evidence/candidate/logs/run-19.log",
+        "matches_target": false,
+        "signature": "none",
+        "timed_out": false
+      }
+    ],
+    "target_failures": 0,
+    "unexpected_failures": 0
+  },
+  "candidate_sha256": "9da61f3e364a494e0d70f6960e8ddcf95d6ffeacf0a9de4d781e1068e28dcaf1",
+  "created_at": "2026-10-07T07:11:55.361998+00:00",
+  "exit_code": 0,
+  "harness_source": "user supplied; no model generation",
+  "identity_pinned": true,
+  "limitation": "Evidence covers this frozen check and these source snapshots; it does not prove the patch correct for all inputs.",
+  "operation": "check_patch",
+  "oracle": "assertion",
+  "policy": {
+    "candidate_max_failures": 0,
+    "n": 20,
+    "target_minimum": 16
+  },
+  "reason": "Original target reproduced; candidate passed every run",
+  "recipe": {
+    "cmake_args": [],
+    "custom_script": null,
+    "jobs": 4,
+    "system": "cmake",
+    "targets": [],
+    "test_command": "ctest --output-on-failure"
+  },
+  "schema": "proofsmith.patch-gate/1",
+  "signature": "assert|proofsmith_harness/harness.cpp:7",
+  "source_and_harness_unchanged": true,
+  "status": "VERIFIED"
+}

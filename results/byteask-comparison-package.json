@@ -1,0 +1,26 @@
+{
+  "schema": "proofsmith.byteask-evaluation-package/1",
+  "path": "artifacts/proofsmith-byteask-evaluation-kit.zip",
+  "sha256": "4abf49e4cea0886c4ee49e2ab369d049b8f6620f541187fe907b15441d582305",
+  "bytes": 998273,
+  "entries": 1512,
+  "protocol_sha256": "e9614f90886302110aeed9a71c9d3b09f931ad692a61b50fb723984f9d21238d",
+  "model_observations": 5,
+  "offline_controls": 15,
+  "published": false,
+  "zip_integrity_ok": true,
+  "byteask_binary_included": false,
+  "winning_claim": false,
+  "managed_credential_scan_passed": true,
+  "live_metrics": {
+    "augmented_correct_accepted": 5,
+    "augmented_incorrect_accepted": 0,
+    "byteask_correct_accepted": 5,
+    "byteask_incorrect_accepted": 0,
+    "claim": "no demonstrated advantage",
+    "complete": true,
+    "observations": 5,
+    "positive_pilot_signal": false,
+    "valid_for_pilot_claim": true
+  }
+}

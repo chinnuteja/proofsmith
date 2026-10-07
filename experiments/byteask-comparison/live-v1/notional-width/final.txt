@@ -1,0 +1,11 @@
+Changed [subject.cpp](/home/chinnu/psw/byteask-live-c8rpgdp9/candidate/subject.cpp:1) to widen `price` to `std::int64_t` before multiplication:
+`return static_cast<std::int64_t>(price) * quantity;`
+This preserves the public API and normal behavior, while making the product exact for any two signed 32-bit inputs that fit in signed 64-bit.
+
+Verification:
+- `cpp_sanitize` on `supplied/harness.cpp` + `subject.cpp`: `"clean: exit 0, no sanitizer errors"` and `"No findings."`
+- `cpp_sanitize` on `smoke.cpp` + `subject.cpp`: `"clean: exit 0, no sanitizer errors"` and `"No findings."`
+- `cpp_check`: `"'cppcheck' is not installed / not on PATH."`
+- `cpp_nav`: `"clangd not installed"`
+
+BYTEASK_ACCEPTED

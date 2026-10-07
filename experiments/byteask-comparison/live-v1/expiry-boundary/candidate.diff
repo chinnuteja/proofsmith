@@ -1,0 +1,9 @@
+--- original/subject.cpp
++++ candidate/subject.cpp
+@@ -1,5 +1,5 @@
+ #include "subject.h"
+ std::optional<int> Entry::lookup(std::uint64_t now) const {
+-  if (now > expires) return std::nullopt;
++  if (now >= expires) return std::nullopt;
+   return value;
+ }

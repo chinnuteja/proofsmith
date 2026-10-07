@@ -1,0 +1,26 @@
+{
+  "schema": "proofsmith.byteask-kit-reproduction/1",
+  "archive_sha256": "4abf49e4cea0886c4ee49e2ab369d049b8f6620f541187fe907b15441d582305",
+  "fresh_extraction": true,
+  "no_credentials_in_extraction": true,
+  "model_requests": 0,
+  "comparison_protocol_valid": true,
+  "original_deepseek_protocol_valid": true,
+  "policy_tests_passed": 19,
+  "fresh_gate": "VERIFIED",
+  "baseline_failures": 20,
+  "candidate_failures": 0,
+  "existing_python_dependencies_and_linux_toolchain_used": true,
+  "retained_live_candidates_independently_rescored": true,
+  "live_metrics_reproduced": {
+    "augmented_correct_accepted": 5,
+    "augmented_incorrect_accepted": 0,
+    "byteask_correct_accepted": 5,
+    "byteask_incorrect_accepted": 0,
+    "claim": "no demonstrated advantage",
+    "complete": true,
+    "observations": 5,
+    "positive_pilot_signal": false,
+    "valid_for_pilot_claim": true
+  }
+}

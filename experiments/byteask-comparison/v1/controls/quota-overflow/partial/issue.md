@@ -1,0 +1,1 @@
+A quota reservation near UINT64_MAX is accepted even though it exceeds the limit. Reject any amount greater than remaining capacity without changing used; valid reservations including zero must succeed. State starts with used <= limit. Keep the API and normal behavior.

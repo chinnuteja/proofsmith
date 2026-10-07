@@ -1,0 +1,19 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "notional-width",
+  "track": "micro",
+  "source": {
+    "kind": "dir",
+    "path": "/mnt/c/Users/Profile 1/ByteAskEval/experiments/byteask-comparison/v1/cases/notional-width/original"
+  },
+  "issue": {
+    "title": "notional-width",
+    "body": "notional(50000, 50000) returns a negative value instead of 2500000000. Compute the exact signed product of any two signed 32-bit inputs in the signed 64-bit return value. Negative quantities and negative prices are valid; do not clamp, take absolute values, or narrow before multiplication.",
+    "rewritten": false,
+    "mentions_fix": false
+  },
+  "build": {
+    "system": "cmake",
+    "test_command": "ctest --output-on-failure"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "account_usage_before": {
+    "extra_balance_usd": 0.0,
+    "extra_granted_usd": 0.0,
+    "extra_spent_usd": 0.0,
+    "plan": "pro",
+    "reset_5h_sec": 0,
+    "reset_week_sec": 0,
+    "used_5h_pct": 0,
+    "used_week_pct": 0
+  },
+  "binary_sha256": "4082dd197e95be17c551cd086335c94659b9ef3543cbd6c7a5b90a6e94256243",
+  "case_order": [
+    "quota-overflow",
+    "frame-length",
+    "expiry-boundary",
+    "queue-prefix",
+    "notional-width"
+  ],
+  "collector_sha256": "bba97cd0311b524e5ec3ff1e417b10aed6858524ea011b8fca5733fee80e7665",
+  "frozen_at": "2026-10-07T07:06:34.618737+00:00",
+  "max_additional_spend_usd": 0,
+  "max_turns_per_case": 20,
+  "max_wall_s_per_case": 600,
+  "model": "gpt-5.4",
+  "outer_isolation": {
+    "authored_fixes_accessible": false,
+    "byteask_binary_accessible": true,
+    "compiler_accessible": true,
+    "hidden_judge_accessible": false,
+    "host_home_accessible": false,
+    "model_calls": 0,
+    "repository_accessible": false,
+    "schema": "proofsmith.byteask-live-isolation/1"
+  },
+  "prompt": "Fix the C++ bug described in issue.md. Keep the public API and normal behavior.\nOnly change subject.cpp; subject.h, smoke.cpp, CMakeLists.txt and supplied/ are trusted test inputs.\nYou may create temporary build outputs or additional local tests. Investigate and verify normally.\nUse your available native C/C++ sanitizer, debugging, analysis and build/test tools when useful.\nThe supplied regression can be compiled with:\nclang++ -std=c++17 -O0 -g -I. -Isupplied supplied/harness.cpp subject.cpp -o regression && ./regression\nName each tool you call and quote its key output. Do not read account/configuration files or other workspaces.\nDo not use web search, other agents, online compiler services or a fallback provider.\nEnd your final response with exactly one of these markers on its own last line:\nBYTEASK_ACCEPTED if you consider the patch ready after verification;\nBYTEASK_UNRESOLVED if you cannot confidently finish and verify it.\n",
+  "protocol_sha256": "e9614f90886302110aeed9a71c9d3b09f931ad692a61b50fb723984f9d21238d",
+  "provider": "byteask",
+  "schema": "proofsmith.byteask-execution-lock/1",
+  "selection": "first and only attempt per case; no silent retries"
+}

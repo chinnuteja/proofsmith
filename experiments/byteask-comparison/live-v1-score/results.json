@@ -1,0 +1,242 @@
+{
+  "metrics": {
+    "augmented_correct_accepted": 5,
+    "augmented_incorrect_accepted": 0,
+    "byteask_correct_accepted": 5,
+    "byteask_incorrect_accepted": 0,
+    "claim": "no demonstrated advantage",
+    "complete": true,
+    "observations": 5,
+    "positive_pilot_signal": false,
+    "valid_for_pilot_claim": true
+  },
+  "protocol_sha256": "e9614f90886302110aeed9a71c9d3b09f931ad692a61b50fb723984f9d21238d",
+  "rows": [
+    {
+      "account_usage": {
+        "additional_purchase_usd": 0,
+        "after": {
+          "extra_balance_usd": 0.0,
+          "extra_granted_usd": 0.0,
+          "extra_spent_usd": 0.0,
+          "plan": "pro",
+          "reset_5h_sec": 17951,
+          "reset_week_sec": 604751,
+          "used_5h_pct": 1,
+          "used_week_pct": 0
+        },
+        "before": {
+          "extra_balance_usd": 0.0,
+          "extra_granted_usd": 0.0,
+          "extra_spent_usd": 0.0,
+          "plan": "pro",
+          "reset_5h_sec": 0,
+          "reset_week_sec": 0,
+          "used_5h_pct": 0,
+          "used_week_pct": 0
+        },
+        "per_case_dollar_cost": null
+      },
+      "augmented_accepted": true,
+      "byteask_accepted": true,
+      "candidate_path": "/mnt/c/Users/Profile 1/ByteAskEval/experiments/byteask-comparison/live-v1/quota-overflow/candidate",
+      "case_id": "quota-overflow",
+      "claimed_status": "ACCEPTED",
+      "execution_lock_sha256": "d2fbade3b2e5bf2aac099c9ac8c94bf000f3bde5b55ce0f328cc35c24b9f398c",
+      "gate_status": "VERIFIED",
+      "gate_wall_s": 20.22352471399995,
+      "judge_checks": 2366,
+      "judge_status": "CORRECT_ON_JUDGE",
+      "model": "gpt-5.4",
+      "origin": "byteask_model",
+      "patcher_exit_code": 0,
+      "protocol_sha256": "e9614f90886302110aeed9a71c9d3b09f931ad692a61b50fb723984f9d21238d",
+      "provider": "byteask",
+      "reason": null,
+      "transcript_path": "/mnt/c/Users/Profile 1/ByteAskEval/experiments/byteask-comparison/live-v1/quota-overflow/byteask.jsonl",
+      "transcript_sha256": "0cafd0d2d61fb07772b1ce3b1e3ffd9a2055ccd82bba3a596642603942fe5eb6",
+      "wall_s": 56.42834534800001
+    },
+    {
+      "account_usage": {
+        "additional_purchase_usd": 0,
+        "after": {
+          "extra_balance_usd": 0.0,
+          "extra_granted_usd": 0.0,
+          "extra_spent_usd": 0.0,
+          "plan": "pro",
+          "reset_5h_sec": 17905,
+          "reset_week_sec": 604705,
+          "used_5h_pct": 1,
+          "used_week_pct": 1
+        },
+        "before": {
+          "extra_balance_usd": 0.0,
+          "extra_granted_usd": 0.0,
+          "extra_spent_usd": 0.0,
+          "plan": "pro",
+          "reset_5h_sec": 17951,
+          "reset_week_sec": 604751,
+          "used_5h_pct": 1,
+          "used_week_pct": 0
+        },
+        "per_case_dollar_cost": null
+      },
+      "augmented_accepted": true,
+      "byteask_accepted": true,
+      "candidate_path": "/mnt/c/Users/Profile 1/ByteAskEval/experiments/byteask-comparison/live-v1/frame-length/candidate",
+      "case_id": "frame-length",
+      "claimed_status": "ACCEPTED",
+      "execution_lock_sha256": "d2fbade3b2e5bf2aac099c9ac8c94bf000f3bde5b55ce0f328cc35c24b9f398c",
+      "gate_status": "VERIFIED",
+      "gate_wall_s": 26.330265352000026,
+      "judge_checks": 46,
+      "judge_status": "CORRECT_ON_JUDGE",
+      "model": "gpt-5.4",
+      "origin": "byteask_model",
+      "patcher_exit_code": 0,
+      "protocol_sha256": "e9614f90886302110aeed9a71c9d3b09f931ad692a61b50fb723984f9d21238d",
+      "provider": "byteask",
+      "reason": null,
+      "transcript_path": "/mnt/c/Users/Profile 1/ByteAskEval/experiments/byteask-comparison/live-v1/frame-length/byteask.jsonl",
+      "transcript_sha256": "c7f693686217c864147d8b6763a51ce9fa5e9846729bc027ed6190c9801e775b",
+      "wall_s": 45.22533367199999
+    },
+    {
+      "account_usage": {
+        "additional_purchase_usd": 0,
+        "after": {
+          "extra_balance_usd": 0.0,
+          "extra_granted_usd": 0.0,
+          "extra_spent_usd": 0.0,
+          "plan": "pro",
+          "reset_5h_sec": 17864,
+          "reset_week_sec": 604664,
+          "used_5h_pct": 2,
+          "used_week_pct": 1
+        },
+        "before": {
+          "extra_balance_usd": 0.0,
+          "extra_granted_usd": 0.0,
+          "extra_spent_usd": 0.0,
+          "plan": "pro",
+          "reset_5h_sec": 17905,
+          "reset_week_sec": 604705,
+          "used_5h_pct": 1,
+          "used_week_pct": 1
+        },
+        "per_case_dollar_cost": null
+      },
+      "augmented_accepted": true,
+      "byteask_accepted": true,
+      "candidate_path": "/mnt/c/Users/Profile 1/ByteAskEval/experiments/byteask-comparison/live-v1/expiry-boundary/candidate",
+      "case_id": "expiry-boundary",
+      "claimed_status": "ACCEPTED",
+      "execution_lock_sha256": "d2fbade3b2e5bf2aac099c9ac8c94bf000f3bde5b55ce0f328cc35c24b9f398c",
+      "gate_status": "VERIFIED",
+      "gate_wall_s": 24.991620592000004,
+      "judge_checks": 729,
+      "judge_status": "CORRECT_ON_JUDGE",
+      "model": "gpt-5.4",
+      "origin": "byteask_model",
+      "patcher_exit_code": 0,
+      "protocol_sha256": "e9614f90886302110aeed9a71c9d3b09f931ad692a61b50fb723984f9d21238d",
+      "provider": "byteask",
+      "reason": null,
+      "transcript_path": "/mnt/c/Users/Profile 1/ByteAskEval/experiments/byteask-comparison/live-v1/expiry-boundary/byteask.jsonl",
+      "transcript_sha256": "cab23217f5ea85799c2d21319a8e5b3af722d36035b2f1f2486a0dcfb823d4c7",
+      "wall_s": 40.229431581
+    },
+    {
+      "account_usage": {
+        "additional_purchase_usd": 0,
+        "after": {
+          "extra_balance_usd": 0.0,
+          "extra_granted_usd": 0.0,
+          "extra_spent_usd": 0.0,
+          "plan": "pro",
+          "reset_5h_sec": 17812,
+          "reset_week_sec": 604612,
+          "used_5h_pct": 2,
+          "used_week_pct": 1
+        },
+        "before": {
+          "extra_balance_usd": 0.0,
+          "extra_granted_usd": 0.0,
+          "extra_spent_usd": 0.0,
+          "plan": "pro",
+          "reset_5h_sec": 17864,
+          "reset_week_sec": 604664,
+          "used_5h_pct": 2,
+          "used_week_pct": 1
+        },
+        "per_case_dollar_cost": null
+      },
+      "augmented_accepted": true,
+      "byteask_accepted": true,
+      "candidate_path": "/mnt/c/Users/Profile 1/ByteAskEval/experiments/byteask-comparison/live-v1/queue-prefix/candidate",
+      "case_id": "queue-prefix",
+      "claimed_status": "ACCEPTED",
+      "execution_lock_sha256": "d2fbade3b2e5bf2aac099c9ac8c94bf000f3bde5b55ce0f328cc35c24b9f398c",
+      "gate_status": "VERIFIED",
+      "gate_wall_s": 29.95960976500004,
+      "judge_checks": 2082,
+      "judge_status": "CORRECT_ON_JUDGE",
+      "model": "gpt-5.4",
+      "origin": "byteask_model",
+      "patcher_exit_code": 0,
+      "protocol_sha256": "e9614f90886302110aeed9a71c9d3b09f931ad692a61b50fb723984f9d21238d",
+      "provider": "byteask",
+      "reason": null,
+      "transcript_path": "/mnt/c/Users/Profile 1/ByteAskEval/experiments/byteask-comparison/live-v1/queue-prefix/byteask.jsonl",
+      "transcript_sha256": "da5cef6512c5cdcadd0b9038e075ad755347cb6e9e1ce774e973465c7bb6dc2a",
+      "wall_s": 51.73965856800001
+    },
+    {
+      "account_usage": {
+        "additional_purchase_usd": 0,
+        "after": {
+          "extra_balance_usd": 0.0,
+          "extra_granted_usd": 0.0,
+          "extra_spent_usd": 0.0,
+          "plan": "pro",
+          "reset_5h_sec": 17769,
+          "reset_week_sec": 604569,
+          "used_5h_pct": 3,
+          "used_week_pct": 1
+        },
+        "before": {
+          "extra_balance_usd": 0.0,
+          "extra_granted_usd": 0.0,
+          "extra_spent_usd": 0.0,
+          "plan": "pro",
+          "reset_5h_sec": 17812,
+          "reset_week_sec": 604612,
+          "used_5h_pct": 2,
+          "used_week_pct": 1
+        },
+        "per_case_dollar_cost": null
+      },
+      "augmented_accepted": true,
+      "byteask_accepted": true,
+      "candidate_path": "/mnt/c/Users/Profile 1/ByteAskEval/experiments/byteask-comparison/live-v1/notional-width/candidate",
+      "case_id": "notional-width",
+      "claimed_status": "ACCEPTED",
+      "execution_lock_sha256": "d2fbade3b2e5bf2aac099c9ac8c94bf000f3bde5b55ce0f328cc35c24b9f398c",
+      "gate_status": "VERIFIED",
+      "gate_wall_s": 33.61037435600002,
+      "judge_checks": 196,
+      "judge_status": "CORRECT_ON_JUDGE",
+      "model": "gpt-5.4",
+      "origin": "byteask_model",
+      "patcher_exit_code": 0,
+      "protocol_sha256": "e9614f90886302110aeed9a71c9d3b09f931ad692a61b50fb723984f9d21238d",
+      "provider": "byteask",
+      "reason": null,
+      "transcript_path": "/mnt/c/Users/Profile 1/ByteAskEval/experiments/byteask-comparison/live-v1/notional-width/byteask.jsonl",
+      "transcript_sha256": "34c6dad85ef1fa7830995c13fcf6f78697d63a359700d32b7084dac31e5d0f01",
+      "wall_s": 43.230485353999995
+    }
+  ],
+  "schema": "proofsmith.byteask-paired-results/1"
+}

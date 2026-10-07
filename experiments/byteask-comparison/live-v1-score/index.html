@@ -1,0 +1,73 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Proofsmith: real ByteAsk comparison</title><style>
+*{box-sizing:border-box}body{margin:0;background:#101820;color:#e5edf5;font:16px system-ui;line-height:1.6}main{max-width:1120px;margin:auto;padding:32px 24px}h1{font-size:clamp(26px,4vw,40px);line-height:1.2}a{color:#8ecbff}.label{color:#a3bacd;font-size:13px;letter-spacing:.08em}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}.card,details{border:1px solid #344453;border-radius:8px;padding:16px;margin:12px 0}.card strong{display:block;font-size:28px}.table{overflow:auto}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:12px;text-align:left;border-bottom:1px solid #344453}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px}code{overflow-wrap:anywhere}summary{cursor:pointer;font-weight:600}.outcome{padding:16px;border-left:4px solid #ffd280;background:#1c2935}
+</style></head><body><main><p class="label">PROOFSMITH / RECORDED LIVE COMPARISON</p><h1>Five repairs tested. No advantage demonstrated.</h1>
+<p class="outcome">no demonstrated advantage. Model: gpt-5.4 through the official ByteAsk provider. 5 / 5 recorded case attempts. Additional purchases: $0.</p>
+<div class="cards"><div class="card">Incorrect repairs accepted<strong>0 → 0</strong>ByteAsk → ByteAsk + gate</div>
+<div class="card">Correct repairs accepted<strong>5 → 5</strong>ByteAsk → ByteAsk + gate</div>
+<div class="card">Repair time<strong>236.9s</strong>Total model/CLI wall time</div>
+<div class="card">Gate overhead<strong>135.1s</strong>Total additional verification time</div></div>
+<p>Each row compares two acceptance decisions for the <strong>same repair</strong>. ByteAsk receives the supplied regression, its native tools and normal compiler tools. Proofsmith adds a frozen check after the repair. The independent evaluator uses additional inputs to assess the candidate separately.</p>
+<div class="table"><table><thead><tr><th>Case</th><th>ByteAsk decision</th><th>Independent evaluator</th><th>Frozen gate</th><th>With gate</th><th>Repair + gate</th></tr></thead><tbody><tr><th scope="row">quota-overflow</th><td>Accepted</td><td>CORRECT_ON_JUDGE</td><td><a href="quota-overflow/gate/index.html">VERIFIED</a></td><td>Accepted</td><td>56.4s + 20.2s</td></tr><tr><th scope="row">frame-length</th><td>Accepted</td><td>CORRECT_ON_JUDGE</td><td><a href="frame-length/gate/index.html">VERIFIED</a></td><td>Accepted</td><td>45.2s + 26.3s</td></tr><tr><th scope="row">expiry-boundary</th><td>Accepted</td><td>CORRECT_ON_JUDGE</td><td><a href="expiry-boundary/gate/index.html">VERIFIED</a></td><td>Accepted</td><td>40.2s + 25.0s</td></tr><tr><th scope="row">queue-prefix</th><td>Accepted</td><td>CORRECT_ON_JUDGE</td><td><a href="queue-prefix/gate/index.html">VERIFIED</a></td><td>Accepted</td><td>51.7s + 30.0s</td></tr><tr><th scope="row">notional-width</th><td>Accepted</td><td>CORRECT_ON_JUDGE</td><td><a href="notional-width/gate/index.html">VERIFIED</a></td><td>Accepted</td><td>43.2s + 33.6s</td></tr></tbody></table></div>
+<p>Stop reason: Completed all selected cases. Existing allowance usage after the last case: <code>{&quot;extra_balance_usd&quot;: 0.0, &quot;extra_granted_usd&quot;: 0.0, &quot;extra_spent_usd&quot;: 0.0, &quot;plan&quot;: &quot;pro&quot;, &quot;reset_5h_sec&quot;: 17769, &quot;reset_week_sec&quot;: 604569, &quot;used_5h_pct&quot;: 3, &quot;used_week_pct&quot;: 1}</code>. Usage percentages are not dollar costs. No purchase, top-up, upgrade or fallback provider was used.</p>
+<p>These are five authored synthetic C++ cases. They cannot establish broad superiority, novel vulnerability discovery or general patch correctness. This test evaluates final acceptance, not a better repair model or automatic verifier generation. An all-correct ByteAsk baseline gives no demonstrated advantage. Native tools may be absent from this CLI's JSONL; the final response can describe their outputs.</p>
+<p><a href="results.json">Recorded results</a> · <a href="../live-v1/execution-lock.json">Pinned execution settings</a> · <a href="../live-v1/observations.json">Collected observations</a> · <a href="../v1/index.html">Offline controls</a> · <a href="../../../docs/byteask-live-comparison.md">Run notes</a></p>
+<p>Frozen protocol SHA-256: <code>e9614f90886302110aeed9a71c9d3b09f931ad692a61b50fb723984f9d21238d</code>. Receipts bind recorded bytes; they are not authorship signatures.</p>
+<details><summary>quota-overflow: inspect the evidence</summary><p>Independent evaluator checks: 2366. Frozen gate failures: original 20/20, candidate 0/20.</p><p><a href="../live-v1/quota-overflow/candidate.diff">Candidate diff</a> · <a href="../live-v1/quota-overflow/byteask.jsonl">ByteAsk transcript</a> · <a href="../live-v1/quota-overflow/byteask.stderr">CLI stderr</a> · <a href="quota-overflow/judge/result.json">Independent judge result</a> · <a href="quota-overflow/judge/run.log">Judge output</a></p><p>Collector note: No execution error recorded</p><pre>Changed [subject.cpp](/home/chinnu/psw/byteask-live-5vaoolia/candidate/subject.cpp:2) to reject based on remaining capacity instead of `used + amount`. The bug was unsigned wraparound near `UINT64_MAX`: `used + amount` could overflow and look smaller than `limit`. The new check `amount &gt; limit - used` preserves the public API, keeps normal successful reservations unchanged, allows `0`, and leaves `used` untouched on rejection.
+
+Tools called and key outputs:
+- `read_file`: issue states, `&quot;A quota reservation near UINT64_MAX is accepted even though it exceeds the limit.&quot;`
+- `apply_patch`: `&quot;Success. Updated the following files: M subject.cpp&quot;`
+- `cpp_compile_db`: `&quot;Generated compile DB .../compile_commands.json (2 entries)&quot;`
+- `exec_command` for supplied regression: `&quot;[exit 0 | 0.3s]&quot;`
+- `exec_command` for direct compile check and smoke run: `&quot;[exit 0 | 0.2s]&quot;`
+- `cpp_check`: `&quot;&#x27;cppcheck&#x27; is not installed / not on PATH.&quot;`
+- `cpp_tidy`: `&quot;&#x27;clang-tidy&#x27; is not installed / not on PATH.&quot;`
+- `cpp_nav`: `&quot;clangd not installed&quot;`
+- `exec_command` for `git diff`: `&quot;warning: Not a git repository&quot;`; no effect on the fix itself
+- `read_file` final confirmation: shows `if (amount &gt; limit - used) return false;`
+
+Verification completed with the supplied regression and the normal smoke path; both passed.
+
+BYTEASK_ACCEPTED</pre></details><details><summary>frame-length: inspect the evidence</summary><p>Independent evaluator checks: 46. Frozen gate failures: original 20/20, candidate 0/20.</p><p><a href="../live-v1/frame-length/candidate.diff">Candidate diff</a> · <a href="../live-v1/frame-length/byteask.jsonl">ByteAsk transcript</a> · <a href="../live-v1/frame-length/byteask.stderr">CLI stderr</a> · <a href="frame-length/judge/result.json">Independent judge result</a> · <a href="frame-length/judge/run.log">Judge output</a></p><p>Collector note: No execution error recorded</p><pre>Changed [subject.cpp](/home/chinnu/psw/byteask-live-npfdq0vu/candidate/subject.cpp:6) so the frame-length check uses the full 32-bit decoded payload length instead of truncating it to `uint16_t`. The fix keeps the public API and normal behavior, and compares `bytes.size() - 4` against the declared payload length to avoid overflow in the completeness test.
+
+Verification:
+- `cpp_compile_db`: `&quot;No compile_commands.json found in the workspace&quot;`, so I did not run `clang-tidy`.
+- `exec_command` syntax check: `clang++ -std=c++17 -fsyntax-only -Wall -Wextra -I. subject.cpp` -&gt; `exit 0`.
+- `exec_command` regression: `clang++ -std=c++17 -O0 -g -I. -Isupplied supplied/harness.cpp subject.cpp -o /tmp/regression &amp;&amp; /tmp/regression` -&gt; `exit 0`.
+- `exec_command` smoke path: `clang++ -std=c++17 -O0 -g -I. smoke.cpp subject.cpp -o /tmp/smoke &amp;&amp; /tmp/smoke` -&gt; `exit 0`.
+- `cpp_check`: `&quot;cppcheck is not installed / not on PATH&quot;`.
+
+BYTEASK_ACCEPTED</pre></details><details><summary>expiry-boundary: inspect the evidence</summary><p>Independent evaluator checks: 729. Frozen gate failures: original 20/20, candidate 0/20.</p><p><a href="../live-v1/expiry-boundary/candidate.diff">Candidate diff</a> · <a href="../live-v1/expiry-boundary/byteask.jsonl">ByteAsk transcript</a> · <a href="../live-v1/expiry-boundary/byteask.stderr">CLI stderr</a> · <a href="expiry-boundary/judge/result.json">Independent judge result</a> · <a href="expiry-boundary/judge/run.log">Judge output</a></p><p>Collector note: No execution error recorded</p><pre>Changed [subject.cpp](/home/chinnu/psw/byteask-live-jyitc_ef/candidate/subject.cpp:2) so `Entry::lookup` treats `expires` as the end of the valid interval: it now returns a value only while `now &lt; expires`. The only code change was `if (now &gt;= expires) return std::nullopt;`, which preserves the public API and normal non-expired behavior.
+
+Verification:
+- `read_file`: `&quot;A cache entry is returned exactly at its expiry timestamp... return its value only while now &lt; expires.&quot;`
+- `apply_patch`: `&quot;Success. Updated the following files: M subject.cpp&quot;`
+- `cpp_sanitize` on `supplied/harness.cpp`: `&quot;clean: exit 0, no sanitizer errors&quot;`
+- `cpp_sanitize` on `smoke.cpp`: `&quot;clean: exit 0, no sanitizer errors&quot;`
+- `cpp_check`: `&quot;&#x27;cppcheck&#x27; is not installed / not on PATH.&quot;`
+- `cpp_compile_db`: `&quot;Generated compile DB ... compile_commands.json (2 entries)&quot;`
+- `cpp_tidy`: `&quot;&#x27;clang-tidy&#x27; is not installed / not on PATH.&quot;`
+
+BYTEASK_ACCEPTED</pre></details><details><summary>queue-prefix: inspect the evidence</summary><p>Independent evaluator checks: 2082. Frozen gate failures: original 20/20, candidate 0/20.</p><p><a href="../live-v1/queue-prefix/candidate.diff">Candidate diff</a> · <a href="../live-v1/queue-prefix/byteask.jsonl">ByteAsk transcript</a> · <a href="../live-v1/queue-prefix/byteask.stderr">CLI stderr</a> · <a href="queue-prefix/judge/result.json">Independent judge result</a> · <a href="queue-prefix/judge/run.log">Judge output</a></p><p>Collector note: No execution error recorded</p><pre>Changed [subject.cpp](/home/chinnu/psw/byteask-live-i98iixvq/candidate/subject.cpp:3) so `Queue::take()` removes only the consumed prefix instead of clearing the whole queue. That keeps the public API and normal behavior the same while fixing the loss of unconsumed orders and preserving the `take(0)` no-op case.
+
+Tools used and key output:
+- `read_file`: confirmed the bug from `issue.md`: `&quot;take(maximum) must remove and return exactly the oldest min(maximum, size) orders, in order.&quot;`
+- `apply_patch`: updated `subject.cpp`; key change is `values.erase(values.begin(), values.begin() + n);`
+- `cpp_check`: `&quot;cppcheck is not installed / not on PATH.&quot;`
+- `cpp_nav`: `&quot;clangd not installed&quot;`
+- `cpp_tidy`: `&quot;&#x27;clang-tidy&#x27; is not installed / not on PATH.&quot;`
+- `cpp_sanitize` on the supplied regression harness: `&quot;clean: exit 0, no sanitizer errors&quot;`
+- `cpp_sanitize` on the CMake `smoke` target: `&quot;clean: exit 0, no sanitizer errors&quot;` and `&quot;instrumentation: 2 of 2 compile command(s) carry -fsanitize=address,undefined.&quot;`
+
+BYTEASK_ACCEPTED</pre></details><details><summary>notional-width: inspect the evidence</summary><p>Independent evaluator checks: 196. Frozen gate failures: original 20/20, candidate 0/20.</p><p><a href="../live-v1/notional-width/candidate.diff">Candidate diff</a> · <a href="../live-v1/notional-width/byteask.jsonl">ByteAsk transcript</a> · <a href="../live-v1/notional-width/byteask.stderr">CLI stderr</a> · <a href="notional-width/judge/result.json">Independent judge result</a> · <a href="notional-width/judge/run.log">Judge output</a></p><p>Collector note: No execution error recorded</p><pre>Changed [subject.cpp](/home/chinnu/psw/byteask-live-c8rpgdp9/candidate/subject.cpp:1) to widen `price` to `std::int64_t` before multiplication:
+`return static_cast&lt;std::int64_t&gt;(price) * quantity;`
+This preserves the public API and normal behavior, while making the product exact for any two signed 32-bit inputs that fit in signed 64-bit.
+
+Verification:
+- `cpp_sanitize` on `supplied/harness.cpp` + `subject.cpp`: `&quot;clean: exit 0, no sanitizer errors&quot;` and `&quot;No findings.&quot;`
+- `cpp_sanitize` on `smoke.cpp` + `subject.cpp`: `&quot;clean: exit 0, no sanitizer errors&quot;` and `&quot;No findings.&quot;`
+- `cpp_check`: `&quot;&#x27;cppcheck&#x27; is not installed / not on PATH.&quot;`
+- `cpp_nav`: `&quot;clangd not installed&quot;`
+
+BYTEASK_ACCEPTED</pre></details></main></body></html>

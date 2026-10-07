@@ -1,0 +1,19 @@
+{
+  "schema": "proofsmith.instance/1",
+  "id": "queue-prefix",
+  "track": "micro",
+  "source": {
+    "kind": "dir",
+    "path": "/mnt/c/Users/Profile 1/ByteAskEval/experiments/byteask-comparison/v1/cases/queue-prefix/original"
+  },
+  "issue": {
+    "title": "queue-prefix",
+    "body": "Taking at most two orders from a queue of three loses the unconsumed third order. take(maximum) must remove and return exactly the oldest min(maximum, size) orders, in order. A zero-sized take leaves the queue unchanged; repeated takes must neither duplicate nor lose orders.",
+    "rewritten": false,
+    "mentions_fix": false
+  },
+  "build": {
+    "system": "cmake",
+    "test_command": "ctest --output-on-failure"
+  }
+}

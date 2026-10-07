@@ -1,0 +1,42 @@
+[
+  {
+    "account_usage": null,
+    "candidate_path": null,
+    "case_id": "quota-overflow",
+    "claimed_status": "UNRESOLVED",
+    "origin": "not_run",
+    "wall_s": null
+  },
+  {
+    "account_usage": null,
+    "candidate_path": null,
+    "case_id": "frame-length",
+    "claimed_status": "UNRESOLVED",
+    "origin": "not_run",
+    "wall_s": null
+  },
+  {
+    "account_usage": null,
+    "candidate_path": null,
+    "case_id": "expiry-boundary",
+    "claimed_status": "UNRESOLVED",
+    "origin": "not_run",
+    "wall_s": null
+  },
+  {
+    "account_usage": null,
+    "candidate_path": null,
+    "case_id": "queue-prefix",
+    "claimed_status": "UNRESOLVED",
+    "origin": "not_run",
+    "wall_s": null
+  },
+  {
+    "account_usage": null,
+    "candidate_path": null,
+    "case_id": "notional-width",
+    "claimed_status": "UNRESOLVED",
+    "origin": "not_run",
+    "wall_s": null
+  }
+]

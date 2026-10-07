@@ -1,0 +1,11 @@
+{
+  "schema": "proofsmith.byteask-comparison-browser/1",
+  "widths": [
+    1280,
+    390
+  ],
+  "rows_match_recorded_results": true,
+  "horizontal_overflow": false,
+  "javascript_errors": [],
+  "gate_receipt_link_checked": true
+}

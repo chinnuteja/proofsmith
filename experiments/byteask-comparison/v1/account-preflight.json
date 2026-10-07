@@ -1,0 +1,18 @@
+{
+  "schema": "proofsmith.byteask-comparison-preflight/1",
+  "model_requests": 0,
+  "profiles": [
+    {
+      "profile": "project",
+      "engine_authenticated": false,
+      "managed_credential_configured": false,
+      "status_exit_code": 1
+    },
+    {
+      "profile": "default",
+      "engine_authenticated": false,
+      "managed_credential_configured": false,
+      "status_exit_code": 1
+    }
+  ]
+}

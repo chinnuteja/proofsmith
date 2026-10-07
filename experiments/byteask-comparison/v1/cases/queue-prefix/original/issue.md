@@ -1,0 +1,1 @@
+Taking at most two orders from a queue of three loses the unconsumed third order. take(maximum) must remove and return exactly the oldest min(maximum, size) orders, in order. A zero-sized take leaves the queue unchanged; repeated takes must neither duplicate nor lose orders.

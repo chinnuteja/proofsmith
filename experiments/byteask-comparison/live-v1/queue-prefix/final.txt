@@ -1,0 +1,12 @@
+Changed [subject.cpp](/home/chinnu/psw/byteask-live-i98iixvq/candidate/subject.cpp:3) so `Queue::take()` removes only the consumed prefix instead of clearing the whole queue. That keeps the public API and normal behavior the same while fixing the loss of unconsumed orders and preserving the `take(0)` no-op case.
+
+Tools used and key output:
+- `read_file`: confirmed the bug from `issue.md`: `"take(maximum) must remove and return exactly the oldest min(maximum, size) orders, in order."`
+- `apply_patch`: updated `subject.cpp`; key change is `values.erase(values.begin(), values.begin() + n);`
+- `cpp_check`: `"cppcheck is not installed / not on PATH."`
+- `cpp_nav`: `"clangd not installed"`
+- `cpp_tidy`: `"'clang-tidy' is not installed / not on PATH."`
+- `cpp_sanitize` on the supplied regression harness: `"clean: exit 0, no sanitizer errors"`
+- `cpp_sanitize` on the CMake `smoke` target: `"clean: exit 0, no sanitizer errors"` and `"instrumentation: 2 of 2 compile command(s) carry -fsanitize=address,undefined."`
+
+BYTEASK_ACCEPTED

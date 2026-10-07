@@ -1,0 +1,2 @@
+2026-10-07T07:10:14.557273Z ERROR codex_core::tools::router: error='cppcheck' is not installed / not on PATH.
+2026-10-07T07:10:27.729340Z ERROR codex_core::tools::router: error=clangd not installed

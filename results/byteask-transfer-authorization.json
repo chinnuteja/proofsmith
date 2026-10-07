@@ -1,0 +1,12 @@
+{
+  "schema": "proofsmith.byteask-transfer-authorization/1",
+  "date": "2026-10-07",
+  "human_reply": "do it",
+  "reply_context": "Direct response to the explicit request to approve this payload, destination, model and spending limit.",
+  "payload": ["five authored C++ fixtures", "supplied checks", "task descriptions", "compile/debug/test tool output"],
+  "destination": "https://code.byteask.ai/byteask/v1",
+  "model": "gpt-5.4",
+  "allowance": "existing included ByteAsk allowance",
+  "additional_spending_usd": 0,
+  "hidden_judges_and_authored_fixes_in_payload": false
+}

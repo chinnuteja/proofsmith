@@ -8,6 +8,8 @@ The actual published ByteAsk v0.1.15 Linux binary (which reports `byteask 0.1.0`
 
 The same actual ByteAsk binary also passed the headless runner: the scripted provider requested a real sandboxed shell edit, and Proofsmith independently gated the resulting candidate. The wrapper has separate checks for accepted fixes, unchanged candidates, patcher errors, incorrect bundle identities and timeouts. CI qualification, paired gates and manifest checks also run locally with the real compiler. GitHub execution itself remains untested until the workflow runs in your repository.
 
+A separate signed-in run on October 7 used the official ByteAsk provider and `gpt-5.4` for five authored C++ cases. All five repairs passed independent evaluators and the frozen gates. This demonstrates real repair collection and preserved correct acceptances; it shows no advantage over ByteAsk on these cases. It does not test model-directed MCP repair. See [the live results](../experiments/byteask-comparison/live-v1-score/index.html) and [run notes](byteask-live-comparison.md). The existing allowance was used with $0 additional purchases.
+
 ## Install in Linux or WSL
 
 The release ZIP includes the wheel, source, setup scripts and portable test evidence. From its extracted directory, install MCP support with:

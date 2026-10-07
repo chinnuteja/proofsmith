@@ -1,0 +1,1 @@
+The decoder says a six-byte buffer contains a complete frame whose four-byte big-endian header declares 65538 payload bytes. It must return true only when the whole declared payload is available after the header. Empty payloads are valid; short headers are incomplete. Payload lengths are 32-bit unsigned values; do not introduce a smaller maximum.

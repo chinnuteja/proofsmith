@@ -1,0 +1,10 @@
+Changed [subject.cpp](/home/chinnu/psw/byteask-live-npfdq0vu/candidate/subject.cpp:6) so the frame-length check uses the full 32-bit decoded payload length instead of truncating it to `uint16_t`. The fix keeps the public API and normal behavior, and compares `bytes.size() - 4` against the declared payload length to avoid overflow in the completeness test.
+
+Verification:
+- `cpp_compile_db`: `"No compile_commands.json found in the workspace"`, so I did not run `clang-tidy`.
+- `exec_command` syntax check: `clang++ -std=c++17 -fsyntax-only -Wall -Wextra -I. subject.cpp` -> `exit 0`.
+- `exec_command` regression: `clang++ -std=c++17 -O0 -g -I. -Isupplied supplied/harness.cpp subject.cpp -o /tmp/regression && /tmp/regression` -> `exit 0`.
+- `exec_command` smoke path: `clang++ -std=c++17 -O0 -g -I. smoke.cpp subject.cpp -o /tmp/smoke && /tmp/smoke` -> `exit 0`.
+- `cpp_check`: `"cppcheck is not installed / not on PATH"`.
+
+BYTEASK_ACCEPTED

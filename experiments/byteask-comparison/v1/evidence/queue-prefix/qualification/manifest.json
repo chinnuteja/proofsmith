@@ -1,0 +1,21 @@
+{
+  "files": {
+    "bundle/harness/build.sh": "cdba59f5aee6c13b2252490f5497940ac4961d85aeac517e431b4b08cbb2f311",
+    "bundle/harness/harness.cpp": "74a1f33239c32a7b8ab41f9c67dacb05ca76897f44898cce7d291b5c7fccb6a1",
+    "bundle/verifier.json": "ac6df38c0763a4353b4c37fc04fb7bd4b973de4ec4d9d023151955430b092373",
+    "evidence/baseline/harness-out/harness-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/baseline/logs/run-00.log": "0be582fa8798a5e5069e16956b93e7d891351007430f1ebc3e6b3b934eb8cc42",
+    "evidence/baseline/logs/run-01.log": "0be582fa8798a5e5069e16956b93e7d891351007430f1ebc3e6b3b934eb8cc42",
+    "evidence/baseline/logs/run-02.log": "0be582fa8798a5e5069e16956b93e7d891351007430f1ebc3e6b3b934eb8cc42",
+    "evidence/baseline/logs/run-03.log": "0be582fa8798a5e5069e16956b93e7d891351007430f1ebc3e6b3b934eb8cc42",
+    "evidence/baseline/logs/run-04.log": "0be582fa8798a5e5069e16956b93e7d891351007430f1ebc3e6b3b934eb8cc42",
+    "evidence/baseline/logs/run-05.log": "0be582fa8798a5e5069e16956b93e7d891351007430f1ebc3e6b3b934eb8cc42",
+    "evidence/baseline/logs/run-06.log": "0be582fa8798a5e5069e16956b93e7d891351007430f1ebc3e6b3b934eb8cc42",
+    "evidence/baseline/logs/run-07.log": "0be582fa8798a5e5069e16956b93e7d891351007430f1ebc3e6b3b934eb8cc42",
+    "evidence/baseline/logs/run-08.log": "0be582fa8798a5e5069e16956b93e7d891351007430f1ebc3e6b3b934eb8cc42",
+    "evidence/baseline/logs/run-09.log": "0be582fa8798a5e5069e16956b93e7d891351007430f1ebc3e6b3b934eb8cc42",
+    "index.html": "0465bbb3c6610c64eb9a1fdefef9551e51d4dcc16d4caea52a00576bd5e9b897",
+    "receipt.json": "9cc5a67f47eb871ff9d6ce4434425bb4a4d34fa1c79342495e36b78787d6c46d"
+  },
+  "schema": "proofsmith.evidence-manifest/1"
+}

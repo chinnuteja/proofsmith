@@ -1,0 +1,10 @@
+--- original/subject.cpp
++++ candidate/subject.cpp
+@@ -3,6 +3,6 @@
+ std::vector<int> Queue::take(std::size_t maximum) {
+   auto n = std::min(maximum, values.size());
+   std::vector<int> result(values.begin(), values.begin() + n);
+-  values.clear();
++  values.erase(values.begin(), values.begin() + n);
+   return result;
+ }
