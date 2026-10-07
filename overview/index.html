@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Proofsmith is an offline C++ patch verification tool. Freeze a supplied regression check, test an original and candidate pair, and share replayable evidence.">
+  <title>Proofsmith — C++ patch verification with replayable evidence</title>
+  <style>
+    :root{color-scheme:dark;--bg:#101820;--panel:#192632;--line:#344453;--text:#e5edf5;--muted:#a3bacd;--blue:#a8d7ff;--green:#a3e1be;--amber:#ffd280}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px system-ui,sans-serif;line-height:1.65}
+    main{max-width:1120px;margin:auto;padding:28px 24px 48px}a{color:var(--blue);text-underline-offset:4px}a:focus-visible,summary:focus-visible{outline:3px solid var(--amber);outline-offset:5px}
+    nav{display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:1px solid var(--line);padding-bottom:20px}nav .brand{font-weight:750;color:var(--text);text-decoration:none;font-size:20px}nav .links{display:flex;flex-wrap:wrap;gap:20px;font-size:14px}
+    .eyebrow{color:var(--muted);font-size:12px;letter-spacing:.14em;text-transform:uppercase}header{padding:52px 0 30px}h1{font-size:clamp(34px,5vw,58px);letter-spacing:-.035em;line-height:1.12;max-width:850px;margin:14px 0 22px}header .intro{font-size:19px;color:#c3d2df;max-width:780px}
+    h2{font-size:clamp(25px,3vw,32px);letter-spacing:-.02em;line-height:1.25;margin:0 0 16px}h3{font-size:19px;line-height:1.3;margin:8px 0 12px}section{scroll-margin-top:24px}.section{padding:36px 0;border-top:1px solid var(--line)}p{margin:10px 0 18px}.muted{color:var(--muted)}
+    .actions{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 18px}.button{display:inline-block;border:1px solid #648bab;border-radius:8px;padding:11px 17px;text-decoration:none;font-weight:600;font-size:15px}.button.primary{background:var(--blue);color:var(--bg);border-color:var(--blue)}.small{font-size:14px}
+    .flow,.verdicts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.card{background:var(--panel);border:1px solid var(--line);padding:22px;border-radius:10px}.step{font:13px ui-monospace,monospace;color:var(--blue)}.card p{margin-bottom:0}.pill{display:inline-block;font:700 12px ui-monospace,monospace;letter-spacing:.05em;border:1px solid currentColor;border-radius:5px;padding:5px 9px}.verified{color:var(--green)}.rejected{color:var(--amber)}.inconclusive{color:var(--muted)}
+    .example{display:grid;grid-template-columns:1.1fr 1fr;gap:24px;align-items:start}.example .card{height:100%}pre{margin:16px 0;padding:18px;background:#0d141b;border:1px solid var(--line);border-radius:8px;overflow:auto;font:13px/1.75 ui-monospace,SFMono-Regular,Consolas,monospace}code{overflow-wrap:anywhere}pre code{overflow-wrap:normal}.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px}table{width:100%;border-collapse:collapse;text-align:left;font-size:14px}th,td{padding:13px 16px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-weight:500}tbody tr:last-child td{border-bottom:0}.result{font:700 12px ui-monospace,monospace}
+    .interfaces{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}.interfaces span{border:1px solid var(--line);padding:6px 12px;border-radius:6px;font:13px ui-monospace,monospace}.notice{border-left:3px solid var(--amber);padding:3px 0 3px 18px;color:#c3d2df;margin:22px 0}.split{display:grid;grid-template-columns:1fr 1fr;gap:26px}.links-list{display:flex;flex-wrap:wrap;gap:10px 22px}.case-study{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:24px}details{margin-top:18px}summary{cursor:pointer;color:var(--blue)}footer{border-top:1px solid var(--line);padding-top:22px;margin-top:24px;color:var(--muted);font-size:13px}
+    .flow>*,.verdicts>*,.example>*,.split>*{min-width:0}
+    @media(max-width:700px){main{padding:22px 20px 36px}header{padding-top:32px}nav{align-items:flex-start}nav .links{gap:9px 15px;justify-content:flex-end}.flow,.verdicts,.example,.split{grid-template-columns:1fr}.section{padding:30px 0}header .intro{font-size:17px}th,td{padding:11px 12px}.card{padding:20px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+<main>
+  <nav aria-label="Main navigation">
+    <a class="brand" href="./">Proofsmith</a>
+    <div class="links"><a href="#example">Evidence</a><a href="#try">Use the tool</a><a href="https://github.com/chinnuteja/proofsmith">Source</a></div>
+  </nav>
+  <header>
+    <p class="eyebrow">Offline C++ patch verification · CLI / MCP / CI</p>
+    <h1>Give a patch decision evidence you can replay.</h1>
+    <p class="intro">Freeze a supplied regression check before repair. Reproduce the target failure on the original code, test a separate candidate, and keep the compiler logs, repeated runs, and receipt behind the decision.</p>
+    <div class="actions">
+      <a class="button primary" href="#example">Inspect a concrete example</a>
+      <a class="button" href="#try">Try locally</a>
+      <a class="button" href="https://github.com/chinnuteja/proofsmith">Read the source</a>
+    </div>
+    <p class="small muted">For engineers reviewing human-written or agent-written C++ fixes. Verification runs without a model account or API request.</p>
+  </header>
+
+  <section class="section" aria-labelledby="workflow">
+    <p class="eyebrow">From supplied check to recorded decision</p>
+    <h2 id="workflow">One check. Two source snapshots. Inspectable evidence.</h2>
+    <div class="flow">
+      <div class="card"><span class="step">01 / QUALIFY &amp; FREEZE</span><h3>Establish the failure first</h3><p>Require stable eligible failures in at least 8 of 10 original runs. Bind the check, source, and build recipe; retain its identity before repair.</p></div>
+      <div class="card"><span class="step">02 / GATE THE CANDIDATE</span><h3>Replay on disposable copies</h3><p>Run the original and candidate 20 times each. Require at least 16 matching original failures and zero candidate failures for a verified decision.</p></div>
+      <div class="card"><span class="step">03 / REVIEW &amp; SHARE</span><h3>Keep the decision portable</h3><p>Inspect HTML and JSON receipts, raw logs, frozen inputs, and integrity manifests. Copy the full evidence directory to preserve its links.</p></div>
+    </div>
+  </section>
+
+  <section id="example" class="section" aria-labelledby="example-title">
+    <p class="eyebrow">Supplied regression · authored controls</p>
+    <h2 id="example-title">Passing smoke tests can leave a quota bug intact.</h2>
+    <div class="example">
+      <div>
+        <p>A C++ quota reservation must reject amounts above remaining capacity. Near <code>UINT64_MAX</code>, adding <code>used + amount</code> can wrap. An authored partial patch adds a size cutoff but retains the unsafe addition. It passes the ordinary smoke tests; the frozen check still reproduces the failure.</p>
+        <pre aria-label="Supplied correct quota check"><code>// Precondition: used &lt;= limit
+if (amount &gt; limit - used) return false;
+used += amount;
+return true;</code></pre>
+        <p class="small muted">The supplied fixed control checks remaining capacity before adding. These are controlled examples, separate from model scores.</p>
+        <div class="links-list small">
+          <a href="../experiments/byteask-comparison/v1/cases/quota-overflow/controls/partial.cpp">Partial patch</a>
+          <a href="../experiments/byteask-comparison/v1/cases/quota-overflow/controls/fixed.cpp">Supplied fix</a>
+          <a href="../experiments/byteask-comparison/v1/cases/quota-overflow/supplied/harness.cpp">Frozen check</a>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Recorded gate outcomes</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th scope="col">Authored candidate</th><th scope="col">Partial</th><th scope="col">Fixed</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Smoke tests</th><td>PASS</td><td>PASS</td></tr>
+              <tr><th scope="row">Original failures</th><td>20 / 20</td><td>20 / 20</td></tr>
+              <tr><th scope="row">Candidate failures</th><td>20 / 20</td><td>0 / 20</td></tr>
+              <tr><th scope="row">Decision</th><td><a class="result rejected" href="../experiments/byteask-comparison/v1/evidence/quota-overflow/partial/gate/index.html">REJECTED</a></td><td><a class="result verified" href="../experiments/byteask-comparison/v1/evidence/quota-overflow/fixed/gate/index.html">VERIFIED</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="small muted">Open either decision to inspect the retained logs and receipt. Across five supplied cases, ten incorrect authored controls were refused and five correct controls were accepted.</p>
+        <a class="small" href="../experiments/byteask-comparison/v1/index.html">Inspect all 15 authored controls →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="decisions">
+    <h2 id="decisions">Three outcomes, each with a reason.</h2>
+    <div class="verdicts">
+      <div class="card"><span class="pill verified">VERIFIED / EXIT 0</span><h3>Target reproduced; candidate passed</h3><p>The original meets the reproduction threshold and the candidate passes every recorded run of the frozen check.</p></div>
+      <div class="card"><span class="pill rejected">REJECTED / EXIT 1</span><h3>The target still fires</h3><p>The same target failure is observed on the proposed fix. Review the matching failure evidence.</p></div>
+      <div class="card"><span class="pill inconclusive">INCONCLUSIVE / EXIT 2</span><h3>Evidence cannot support approval</h3><p>Build failures, weak reproduction, input mismatches, or unexpected failures leave the decision unresolved.</p></div>
+    </div>
+    <p class="notice"><strong>Scope of the decision:</strong> a receipt records the supplied check and finite executions. It is not a proof of general correctness, complete test coverage, or absence of other defects.</p>
+  </section>
+
+  <section id="try" class="section" aria-labelledby="try-title">
+    <p class="eyebrow">Install and run offline</p>
+    <h2 id="try-title">Bring your own original, candidate, and check.</h2>
+    <div class="split">
+      <div>
+        <p>Use Linux or WSL with Python 3.12+, clang/LLVM, CMake, and bubblewrap. Clone the source and install in a virtual environment:</p>
+        <pre><code>git clone https://github.com/chinnuteja/proofsmith
+cd proofsmith
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -e '.[dev,mcp]'
+bash scripts/ci_gate.sh /tmp/proofsmith-first-check</code></pre>
+        <p class="small muted">Choose a new output directory. This supplied installation fixture exercises qualification and the fixed/unfixed gates with the real compiler.</p>
+      </div>
+      <div>
+        <p>For your own patch, seal the regression, retain its pre-patch identity, then gate a separate candidate using the original build recipe.</p>
+        <div class="interfaces" aria-label="Available interfaces"><span>CLI</span><span>MCP tools</span><span>CI exit codes</span><span>HTML / JSON receipts</span></div>
+        <p><a href="https://github.com/chinnuteja/proofsmith/blob/main/docs/verification-tool.md">Follow the seal → gate → evidence-check guide</a></p>
+        <p class="small muted">Default MCP tools run offline. Automatic verifier generation is separate, requires explicit enablement, and has no demonstrated generation-quality win.</p>
+        <a class="button" href="../artifacts/proofsmith-byteask-evaluation-kit.zip" download>Download the evaluation kit</a>
+        <p class="small muted">Includes an installable wheel and the labelled ByteAsk case-study data. Its retained five repair decisions were independently reproduced after fresh extraction, alongside 19 policy tests.</p>
+        <a class="small" href="../results/byteask-comparison-reproduction.json">Inspect the fresh-extraction receipt →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="evaluation">
+    <p class="eyebrow">Labelled case study</p>
+    <h2 id="evaluation">The measured outcome stays with the evidence.</h2>
+    <div class="case-study">
+      <h3>ByteAsk repair acceptance: five synthetic cases</h3>
+      <p>The real ByteAsk CLI, using <code>gpt-5.4</code>, correctly repaired all five authored cases. All candidates passed 5,419 independent evaluator checks and the frozen gates preserved all five correct acceptances. <strong>No advantage over ByteAsk was demonstrated in this pilot.</strong></p>
+      <p class="small muted">The fifteen authored controls above are excluded from model scores. This comparison measures final acceptance of the same repairs, not improved repair generation. Five synthetic cases cannot establish general superiority.</p>
+      <div class="links-list">
+        <a href="../">Case-study overview</a>
+        <a href="../experiments/byteask-comparison/live-v1-score/index.html">Real repairs, measurements, and receipts →</a>
+      </div>
+      <details><summary>Earlier research and additional limits</summary><p class="small">The earlier automatic verifier-generation pilot had zero fail-to-pass successes in twelve observations and seven historical token-limit violations. The repaired protocol has no new paid observations. The real ByteAsk run also retained errors for unavailable optional native-analysis dependencies. These outcomes remain in the repository.</p><a class="small" href="https://github.com/chinnuteja/proofsmith/blob/main/README.md">Read the full research status and limitations</a></details>
+    </div>
+  </section>
+  <footer>Proofsmith · An independent C++ verification project. No affiliation with a coding-agent or inference provider is implied. The examples establish behavior on supplied checks; CUDA kernels, GPU isolation, and distributed orchestration have not been evaluated.</footer>
+</main>
+</body>
+</html>

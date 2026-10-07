@@ -28,7 +28,7 @@ with zipfile.ZipFile(kit) as archive:
         if not target.is_relative_to(out):
             raise ValueError("archive path escapes site")
         archive.extract(item, out)
-for relative in ("index.html", "results/byteask-comparison-package.json", "results/byteask-comparison-reproduction.json"):
+for relative in ("index.html", "overview/index.html", "results/byteask-comparison-package.json", "results/byteask-comparison-reproduction.json"):
     target = out / relative
     target.parent.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(ROOT / relative, target)

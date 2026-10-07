@@ -4,7 +4,7 @@ Freeze a C++ regression check before repair. Test the original and candidate ind
 
 Proofsmith is a working verification companion with CLI, MCP and CI interfaces. It qualifies supplied checks, binds their identities to the original source and build recipe, and returns **VERIFIED**, **REJECTED** or **INCONCLUSIVE**, with HTML/JSON receipts, raw compiler/run logs and integrity manifests. Source trees remain untouched.
 
-**[Open the results and product overview](https://chinnuteja.github.io/proofsmith/)** · **[Download the installable evaluation kit](artifacts/proofsmith-byteask-evaluation-kit.zip)** · [Integration guide](docs/byteask-integration.md)
+**[Open the product overview](https://chinnuteja.github.io/proofsmith/overview/)** · [ByteAsk case study](https://chinnuteja.github.io/proofsmith/) · **[Download the installable evaluation kit](artifacts/proofsmith-byteask-evaluation-kit.zip)** · [Integration guide](docs/byteask-integration.md)
 
 ## What the real ByteAsk run showed
 
